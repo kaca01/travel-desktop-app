@@ -12,6 +12,6 @@
         ResizeMode="CanMinimize"
         WindowStartupLocation="CenterScreen">
     <Grid>
-
+        <ContentControl Content="{Binding CurrentViewModel}" />
     </Grid>
 </Window>

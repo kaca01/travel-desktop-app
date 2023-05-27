@@ -7,4 +7,17 @@
     <UseWPF>true</UseWPF>
   </PropertyGroup>
 
+  <ItemGroup>
+    <PackageReference Include="MaterialDesignColors" Version="2.1.4" />
+    <PackageReference Include="MaterialDesignThemes" Version="4.9.0" />
+    <PackageReference Include="Newtonsoft.Json" Version="13.0.3" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="Core\Model\" />
+    <Folder Include="Core\Service\" />
+    <Folder Include="Database\Data\" />
+    <Folder Include="DesktopHost\View\" />
+  </ItemGroup>
+
 </Project>
