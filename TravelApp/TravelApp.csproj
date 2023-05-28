@@ -17,7 +17,6 @@
     <Folder Include="Core\Model\" />
     <Folder Include="Core\Service\" />
     <Folder Include="Database\Data\" />
-    <Folder Include="DesktopHost\View\" />
   </ItemGroup>
 
 </Project>
