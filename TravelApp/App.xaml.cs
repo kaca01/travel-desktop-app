@@ -5,7 +5,6 @@ using System.Data;
 using System.Linq;
 using System.Threading.Tasks;
 using System.Windows;
-using TravelApp.Database;
 using TravelApp.DesktopHost.ViewModel.Navigation;
 using TravelApp.DesktopHost.ViewModel;
 
