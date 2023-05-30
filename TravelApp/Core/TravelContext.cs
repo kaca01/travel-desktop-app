@@ -15,7 +15,7 @@ namespace TravelApp.Core
         protected override void OnConfiguring
        (DbContextOptionsBuilder optionsBuilder)
         {
-            optionsBuilder.UseInMemoryDatabase(databaseName: "AuthorDb");
+            optionsBuilder.UseInMemoryDatabase(databaseName: "TravelDb");
         }
         public DbSet<User> Users { get; set; }
     }

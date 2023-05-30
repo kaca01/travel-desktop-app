@@ -15,6 +15,7 @@ using System.Windows.Navigation;
 using System.Windows.Shapes;
 using TravelApp.Core;
 using TravelApp.Core.Model;
+using TravelApp.Core.Repository;
 
 namespace TravelApp
 {
@@ -25,22 +26,7 @@ namespace TravelApp
     {
         public MainWindow()
         {
-            using(var db = new TravelContext())
-{
-                Console.WriteLine("Adding some authors into database...");
-                User client = new User() { Name = "Roberto", Surname = "Bolano", Email = "roberto@gmail.com", Password = "pass1234", Role = Role.CLIENT };
-                User agent = new User() { Name = "Mario", Surname = "Giordani", Email = "mario@gmail.com", Password = "pass1234", Role = Role.AGENT };
-                db.Users.Add(client);
-                db.Users.Add(agent);
-                db.SaveChanges();
-            }
-
-            using (var context = new TravelContext())
-            {
-                var list = context.Users.ToList();
-                System.Diagnostics.Trace.WriteLine(list);
-            }
-
+            new ConfigurationData().PopulateDataBase();
             InitializeComponent();
         }
     }
