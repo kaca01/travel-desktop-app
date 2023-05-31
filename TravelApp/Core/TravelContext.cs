@@ -21,5 +21,6 @@ namespace TravelApp.Core
         public DbSet<TouristFacility> TouristFacilities { get; set; }
         public DbSet<Attraction> Attractions { get; set; }
         public DbSet<Trip> Trips { get; set; }
+        public DbSet<Transaction> Transactions { get; set; }
     }
 }

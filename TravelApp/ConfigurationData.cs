@@ -17,9 +17,11 @@ namespace TravelApp
                 // todo add data
 
                 //users
-                User client = new User() { Name = "Niksa", Surname = "Jovic", Email = "niksa@gmail.com", Password = "pass1234", Role = Role.CLIENT };
+                User client1 = new User() { Name = "Niksa", Surname = "Jovic", Email = "niksa@gmail.com", Password = "pass1234", Role = Role.CLIENT };
+                User client2 = new User() { Name = "Ines", Surname = "Miletic", Email = "ines@gmail.com", Password = "pass1234", Role = Role.CLIENT };
                 User agent = new User() { Name = "Mario", Surname = "Giordani", Email = "mario@gmail.com", Password = "pass1234", Role = Role.AGENT };
-                db.Users.Add(client);
+                db.Users.Add(client1);
+                db.Users.Add(client2);
                 db.Users.Add(agent);
                 db.SaveChanges();
 
@@ -58,6 +60,13 @@ namespace TravelApp
                 };
                 trip1.Attractions = attractions;
                 db.Trips.Add(trip1);
+                db.SaveChanges();
+
+                //purchases and reservations
+                Transaction reservation = new Transaction() { User = client1, Trip = trip1, Type = TransactionType.RESERVATION };
+                Transaction purchase = new Transaction() { User = client2, Trip = trip1, Type = TransactionType.PURCHASE };
+                db.Transactions.Add(reservation);
+                db.Transactions.Add(purchase);
                 db.SaveChanges();
             }
         }
