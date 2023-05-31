@@ -27,6 +27,16 @@ namespace TravelApp
         public MainWindow()
         {
             new ConfigurationData().PopulateDataBase();
+
+            // used to check if data has been properly added to database
+            /* using (var context = new TravelContext())
+            {
+                // add breakpoint and check if everything has been properly added
+                List<Attraction> attractions = context.Attractions.ToList();
+                List<TouristFacility> facilities = context.TouristFacilities.ToList();
+                List<Trip> trips = context.Trips.ToList();
+                
+            }*/
             InitializeComponent();
         }
     }

@@ -18,5 +18,8 @@ namespace TravelApp.Core
             optionsBuilder.UseInMemoryDatabase(databaseName: "TravelDb");
         }
         public DbSet<User> Users { get; set; }
+        public DbSet<TouristFacility> TouristFacilities { get; set; }
+        public DbSet<Attraction> Attractions { get; set; }
+        public DbSet<Trip> Trips { get; set; }
     }
 }
