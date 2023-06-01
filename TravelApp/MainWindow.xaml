@@ -9,12 +9,9 @@
         xmlns:local="clr-namespace:TravelApp"
         mc:Ignorable="d"
         Title="TravelApp"
-        Width="{x:Static SystemParameters.PrimaryScreenWidth}"  
-        Height="{x:Static SystemParameters.PrimaryScreenHeight}"
         Style="{StaticResource AllWindows}"
         TextElement.Foreground="{DynamicResource MaterialDesignBody}"
-        ResizeMode="CanMinimize"
-        WindowStartupLocation="CenterScreen">
+        WindowState="Maximized">
     <Grid>
         <Grid.Resources>
             <DataTemplate DataType="{x:Type viewmodels:LoginViewModel}">
