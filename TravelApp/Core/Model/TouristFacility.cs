@@ -2,28 +2,23 @@
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
-using System.Reflection;
 using System.Text;
 using System.Threading.Tasks;
 
 namespace TravelApp.Core.Model
 {
-
-    public enum Role
+    public enum PlaceType
     {
-        AGENT, CLIENT
+        ACCOMODATION, RESTAURANT
     }
 
-
-    public class User
+    public class TouristFacility
     {
         [Key]
         public int Id { get; set; }
         public string Name { get; set; }
-        public string Surname { get; set; }
-        public string Email { get; set; }
-        public string Password { get; set; }
-        public Role Role { get; set; }
+        public string Address { get; set; }
+        public PlaceType Type { get; set; }
+        public string Link { get; set; }
     }
-
 }
