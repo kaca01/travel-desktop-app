@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Input;
-using TravelApp.Core.Command;
+using TravelApp.DesktopHost.Command;
 
 namespace TravelApp.DesktopHost.ViewModel
 {

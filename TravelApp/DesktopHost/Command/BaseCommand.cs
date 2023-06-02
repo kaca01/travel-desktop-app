@@ -5,7 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Input;
 
-namespace TravelApp.Core.Command
+namespace TravelApp.DesktopHost.Command
 {
     public abstract class BaseCommand : ICommand
     {
