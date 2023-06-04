@@ -7,14 +7,76 @@
         xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
         xmlns:viewmodels="clr-namespace:TravelApp.DesktopHost.ViewModel"
         mc:Ignorable="d"
-        Background="White"
+        Background="#DFE6F0"
         Width="{x:Static SystemParameters.PrimaryScreenWidth}"  
         Height="{x:Static SystemParameters.PrimaryScreenHeight}"
         d:DataContext="{d:DesignInstance Type=viewmodels:LoginViewModel}">
     <Grid>
-        <Label Padding="150px">Welcome to Login Page!</Label>
-        <Button
-            Command="{Binding Signup}">
-            Go to Sign Up Page</Button>
+
+        <Grid.RowDefinitions>
+            <RowDefinition Height="2.5*"></RowDefinition>
+            <RowDefinition Height="1*"></RowDefinition>
+            <RowDefinition Height="0.5*"></RowDefinition>
+            <RowDefinition Height="3*"></RowDefinition>
+            <RowDefinition Height="1*"></RowDefinition>
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="3*"></ColumnDefinition>
+            <ColumnDefinition Width="3*"></ColumnDefinition>
+            <ColumnDefinition Width="3*"></ColumnDefinition>
+        </Grid.ColumnDefinitions>
+
+        <TextBlock FontSize="60"
+                   Foreground="#161A25"
+                   TextAlignment="Left"
+                   Grid.Row="1"
+                   Grid.Column="1"
+                   FontWeight="Medium"
+                   Text="Welcome to Travel App!"></TextBlock>
+        <StackPanel Grid.Row="3"
+                    Grid.Column="1"
+                    Width="439"
+                    Height="50"
+                    Margin="0,30,0,0"
+                    VerticalAlignment="Top">
+            <TextBox Style="{StaticResource MaterialDesignFilledTextBox}"
+                     VerticalAlignment="Top"
+                     TextWrapping="NoWrap"
+                     FontSize="12"
+                     materialDesign:HintAssist.Hint="name@domain.com"
+                     Background="#A5FFFFFF"
+                     materialDesign:TextFieldAssist.UnderlineBrush="#4889E6"
+                     Text="{Binding Email}">
+
+                <TextBox.SelectionBrush>
+                    <ImageBrush />
+                </TextBox.SelectionBrush>
+            </TextBox>
+        </StackPanel>
+        <StackPanel Grid.Row="3"
+                    Grid.Column="1"
+                    Width="439"
+                    Height="50"
+                    Margin="0,60,0,0">
+
+            <PasswordBox x:Name="passwordBox"
+                 Style="{StaticResource MaterialDesignFilledPasswordBox}"
+                 VerticalAlignment="Top"
+                 FontSize="12"
+                 materialDesign:TextFieldAssist.UnderlineBrush="#4889E6"
+                 Background="#A5FFFFFF" />
+        </StackPanel>
+
+        <Button Grid.Column="1"
+                Grid.Row="4"
+                Style="{StaticResource MaterialDesignFlatSecondaryDarkBgButton}"
+                Width="439"
+                ToolTip="Log in to your account"
+                Content="Log in"
+                Background="#4889E6"
+                BorderBrush="#4889E6"
+                Command="{Binding Submit}"
+                IsDefault="True" />
+
     </Grid>
 </UserControl>
