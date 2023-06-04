@@ -18,9 +18,9 @@ namespace TravelApp.DesktopHost.View
     /// <summary>
     /// Interaction logic for NavigationView.xaml
     /// </summary>
-    public partial class NavigationView : UserControl
+    public partial class ClientNavigationView : UserControl
     {
-        public NavigationView()
+        public ClientNavigationView()
         {
             InitializeComponent();
         }

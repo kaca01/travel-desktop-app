@@ -18,7 +18,7 @@ namespace TravelApp.DesktopHost.Command
         }
         public override void Execute(object parameter)
         {
-            _navigation.CurrentViewModel = new NavigationViewModel();
+            _navigation.CurrentViewModel = new ClientNavigationViewModel();
         }
     }
 }

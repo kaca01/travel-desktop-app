@@ -1,4 +1,4 @@
-﻿<UserControl x:Class="TravelApp.DesktopHost.View.NavigationView"
+﻿<UserControl x:Class="TravelApp.DesktopHost.View.ClientNavigationView"
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
@@ -7,8 +7,8 @@
              mc:Ignorable="d" 
              d:DesignHeight="450" d:DesignWidth="800"
              xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
-             xmlns:navigation="clr-namespace:TravelApp.DesktopHost.ViewModel.Navigation"
-             d:DataContext="{d:DesignInstance Type=viewmodels:Navigation}">
+             xmlns:navigation="clr-namespace:TravelApp.DesktopHost.ViewModel.Navigation" xmlns:viewmodel="clr-namespace:TravelApp.DesktopHost.ViewModel"
+             d:DataContext="{d:DesignInstance Type=viewmodel:ClientNavigationViewModel}">
 
     <TabControl Name="navigation"
                 materialDesign:NavigationRailAssist.ShowSelectionBackground="True"
@@ -19,21 +19,20 @@
                 BorderBrush="#00ACACAC"
                 Background="#DFE6F0"
         >
-        <TabItem Width="150"
+        <TabItem Width="170"
                  Height="50">
             <TabItem.Header>
                 <StackPanel Width="auto"
                             Height="auto">
-                    <Button Width="150"
-                            Content="Trips"
-                            ToolTip="Check out trips we offer"
-                            Background="Transparent"
-                            Foreground="#000000"
-                            BorderBrush="Transparent"
-                            Padding="-4"
-                            FontSize="20"
-                            FontWeight="Bold"
-                            BorderThickness="0,0,0,0" />
+                    <TextBlock 
+                        Width="170"
+                        Text="Trips"
+                        ToolTip="Check out trips we offer"
+                        Background="Transparent"
+                        Foreground="#000000"
+                        FontSize="20"
+                        FontWeight="Bold"
+                        TextAlignment="Center"/>
                 </StackPanel>
             </TabItem.Header>
         </TabItem>
@@ -41,16 +40,15 @@
             <TabItem.Header>
                 <StackPanel Width="auto"
                             Height="auto">
-                    <Button Width="170"
-                            Content="Attractions"
-                            ToolTip="Check out attractions"
-                            Background="Transparent"
-                            Foreground="Black"
-                            BorderBrush="Transparent"
-                            Padding="-4"
-                            FontSize="20"
-                            FontWeight="Bold"
-                            BorderThickness="0,0,0,0" />
+                    <TextBlock 
+                        Width="170"
+                        Text="Attractions"
+                        ToolTip="Check out attractions"
+                        Background="Transparent"
+                        Foreground="#000000"
+                        FontSize="20"
+                        FontWeight="Bold"
+                        TextAlignment="Center"/>
                 </StackPanel>
             </TabItem.Header>
         </TabItem>
@@ -59,16 +57,15 @@
             <TabItem.Header>
                 <StackPanel Width="auto"
                             Height="auto">
-                    <Button Width="170"
-                            Content="Stay&amp;Eat"
-                            ToolTip="Check out restaurants and accommodations"
-                            Background="Transparent"
-                            Foreground="Black"
-                            BorderBrush="Transparent"
-                            Padding="-4"
-                            FontSize="20"
-                            FontWeight="Bold"
-                            BorderThickness="0,0,0,0" />
+                    <TextBlock 
+                        Width="170"
+                        Text="Stay&amp;Eat"
+                        ToolTip="Check out accommodations and restaurants"
+                        Background="Transparent"
+                        Foreground="#000000"
+                        FontSize="20"
+                        FontWeight="Bold"
+                        TextAlignment="Center"/>
                 </StackPanel>
             </TabItem.Header>
         </TabItem>
@@ -77,16 +74,15 @@
             <TabItem.Header>
                 <StackPanel Width="auto"
                             Height="auto">
-                    <Button Width="170"
-                            Content="My Trips"
-                            ToolTip="Check out bought trips"
-                            Background="Transparent"
-                            Foreground="Black"
-                            BorderBrush="Transparent"
-                            Padding="-4"
-                            FontSize="20"
-                            FontWeight="Bold"
-                            BorderThickness="0,0,0,0" />
+                    <TextBlock 
+                        Width="170"
+                        Text="My Trips"
+                        ToolTip="Check out bought trips"
+                        Background="Transparent"
+                        Foreground="#000000"
+                        FontSize="20"
+                        FontWeight="Bold"
+                        TextAlignment="Center"/>
                 </StackPanel>
             </TabItem.Header>
         </TabItem>
@@ -95,16 +91,15 @@
             <TabItem.Header>
                 <StackPanel Width="auto"
                             Height="auto">
-                    <Button Width="170"
-                            Content="My Reservations"
-                            ToolTip="Check out your reservations"
-                            Background="Transparent"
-                            Foreground="Black"
-                            BorderBrush="Transparent"
-                            Padding="-4"
-                            FontSize="20"
-                            FontWeight="Bold"
-                            BorderThickness="0,0,0,0" />
+                    <TextBlock 
+                        Width="170"
+                        Text="My Reservations"
+                        ToolTip="Check out your reservations"
+                        Background="Transparent"
+                        Foreground="#000000"
+                        FontSize="20"
+                        FontWeight="Bold"
+                        TextAlignment="Center"/>
                 </StackPanel>
             </TabItem.Header>
         </TabItem>
@@ -114,15 +109,15 @@
             <TabItem.Header>
                 <StackPanel Width="auto"
                             Height="auto">
-                    <Button Style="{StaticResource MaterialDesignFlatSecondaryDarkBgButton}"
-                            Width="170"
-                            Content="Help"
-                            ToolTip="Need help? Click me!"
-                            Background="Transparent"
-                            Foreground="Black"
-                            BorderBrush="Transparent"
-                            FontSize="20"
-                            FontWeight="Bold" />
+                    <TextBlock 
+                        Width="170"
+                        Text="Help"
+                        ToolTip="Need help? Click me!"
+                        Background="Transparent"
+                        Foreground="#000000"
+                        FontSize="20"
+                        FontWeight="Bold"
+                        TextAlignment="Center"/>
                 </StackPanel>
             </TabItem.Header>
         </TabItem>
@@ -132,17 +127,16 @@
         <TabItem.Header>
             <StackPanel Width="auto"
                             Height="auto">
-                <Button Style="{StaticResource MaterialDesignFlatSecondaryDarkBgButton}"
-                            Width="170"
-                            ToolTip="Log out from your account"
-                            Content="Log Out"
-                            Background="#DFE6F0"
-                            Foreground="Black"
-                            BorderBrush="Transparent"
-                            FontSize="20"
-                            FontWeight="Bold"
-                            Height="50" />
-            </StackPanel>
+                    <TextBlock 
+                        Width="170"
+                        Text="Log Out"
+                        ToolTip="Log out from your account"
+                        Background="Transparent"
+                        Foreground="#000000"
+                        FontSize="20"
+                        FontWeight="Bold"
+                        TextAlignment="Center"/>
+                </StackPanel>
         </TabItem.Header>
         </TabItem>
     </TabControl>
