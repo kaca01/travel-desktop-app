@@ -10,8 +10,8 @@
         Background="#DFE6F0"
         SizeChanged="Window_SizeChanged"
         d:DataContext="{d:DesignInstance Type=viewmodels:LoginViewModel}">
-    <Grid>
-
+    <ScrollViewer>
+        <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="1.5*"></RowDefinition>
             <RowDefinition Height="2.5*"></RowDefinition>
@@ -131,4 +131,5 @@
         </StackPanel>
 
     </Grid>
+    </ScrollViewer>
 </UserControl>
