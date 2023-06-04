@@ -20,6 +20,7 @@ namespace TravelApp.DesktopHost.View
     /// </summary>
     public partial class ClientNavigationView : UserControl
     {
+        public int SelectedIndex { get => navigation.SelectedIndex; set => navigation.SelectedIndex = value; }  
         public ClientNavigationView()
         {
             InitializeComponent();
