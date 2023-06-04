@@ -23,6 +23,9 @@
             <DataTemplate DataType="{x:Type viewmodels:ClientNavigationViewModel}">
                 <views:ClientNavigationView/>
             </DataTemplate>
+            <DataTemplate DataType="{x:Type viewmodels:AgentNavigationViewModel}">
+                <views:AgentNavigationView/>
+            </DataTemplate>
         </Grid.Resources>
         <ContentControl Content="{Binding CurrentViewModel}" />
     </Grid>
