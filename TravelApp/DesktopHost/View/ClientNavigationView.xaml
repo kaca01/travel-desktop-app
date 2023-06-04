@@ -120,28 +120,28 @@
                             ToolTip="Need help? Click me!"
                             Background="Transparent"
                             Foreground="Black"
-                            BorderBrush="#6680DEEA"
+                            BorderBrush="Transparent"
                             FontSize="20"
                             FontWeight="Bold" />
                 </StackPanel>
             </TabItem.Header>
         </TabItem>
-        <TabItem Width="120"
-                 Height="32"
-                 Margin="95 0 0 0">
+        <TabItem Width="170"
+                 Height="50"
+                 Margin="50 0 0 0">
         <TabItem.Header>
             <StackPanel Width="auto"
                             Height="auto">
                 <Button Style="{StaticResource MaterialDesignFlatSecondaryDarkBgButton}"
-                            Width="120"
+                            Width="170"
                             ToolTip="Log out from your account"
                             Content="Log Out"
                             Background="#DFE6F0"
                             Foreground="Black"
-                            BorderBrush="#6680DEEA"
+                            BorderBrush="Transparent"
                             FontSize="20"
                             FontWeight="Bold"
-                            Height="32" />
+                            Height="50" />
             </StackPanel>
         </TabItem.Header>
         </TabItem>
