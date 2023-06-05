@@ -29,6 +29,7 @@ namespace TravelApp.DesktopHost.Command
             try
             {
                 _userService.Login(_loginVM.Email, _loginVM.Password);
+                _loginVM.ErrorVisibility = System.Windows.Visibility.Collapsed;
                 if (UserService.CurrentUser.Role.Equals(Role.CLIENT))
                 {
                     //_navigationStore.CurrentViewModel = new AllTripsViewModel();
@@ -40,6 +41,7 @@ namespace TravelApp.DesktopHost.Command
             }
             catch(Exception e) 
             {
+                _loginVM.ErrorVisibility = System.Windows.Visibility.Visible;
                 _loginVM.SnackbarMessageQueue.Enqueue(e.Message);
             }
         }

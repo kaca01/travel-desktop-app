@@ -46,6 +46,13 @@
                 MaxWidth="439"
                 x:Name="Title">
             Welcome to <LineBreak/> Travel App!</TextBlock>
+            <Label
+                Grid.Row="1"
+                Grid.Column="1"
+                VerticalAlignment="Bottom"
+                FontSize="25"
+                Visibility="{Binding ErrorVisibility}"
+                Foreground="Red">Incorrect email or password</Label>
         <StackPanel Grid.Row="2"
                     Grid.Column="1"
                     Width="{Binding Width}"

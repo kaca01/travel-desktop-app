@@ -5,6 +5,7 @@ using System.ComponentModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows;
 using System.Windows.Input;
 using TravelApp.DesktopHost.Command;
 
@@ -18,6 +19,12 @@ namespace TravelApp.DesktopHost.ViewModel
         private double _textFontSize;
 
         private double _width;
+
+        private Visibility _errorVisibility;
+        public Visibility ErrorVisibility {
+            get => _errorVisibility;
+            set { _errorVisibility = value; OnPropertyChanged(nameof(ErrorVisibility)); }
+        }
 
         public string Email
         {
@@ -71,6 +78,7 @@ namespace TravelApp.DesktopHost.ViewModel
         {
             Signup = new SignupNavigationCommand();
             Login = new LoginCommand(this);
+            ErrorVisibility = Visibility.Collapsed;
             SnackbarMessageQueue = new SnackbarMessageQueue();
         }
 
