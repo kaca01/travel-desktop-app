@@ -20,6 +20,9 @@
             <DataTemplate DataType="{x:Type viewmodels:SignupViewModel}">
                 <views:SignupView />
             </DataTemplate>
+            <DataTemplate DataType="{x:Type viewmodels:TableViewModel}">
+                <views:TableView />
+            </DataTemplate>
         </Grid.Resources>
         <ContentControl Content="{Binding CurrentViewModel}" />
     </Grid>
