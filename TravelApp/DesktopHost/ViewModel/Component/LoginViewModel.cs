@@ -1,4 +1,5 @@
-﻿using System;
+﻿using MaterialDesignThemes.Wpf;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Linq;
@@ -11,11 +12,24 @@ namespace TravelApp.DesktopHost.ViewModel
 {
     public class LoginViewModel : BaseViewModel, INotifyPropertyChanged
     {
-        public ICommand Signup { get; }
+        private string _email;
+        private string _password;
 
         private double _textFontSize;
 
         private double _width;
+
+        public string Email
+        {
+            get => _email;
+            set { _email = value; OnPropertyChanged(nameof(Email)); }
+        }
+
+        public string Password
+        {
+            get => _password;
+            set { _password = value; OnPropertyChanged(nameof(Password)); }
+        }
 
         public double TextFontSize
         {
@@ -43,6 +57,9 @@ namespace TravelApp.DesktopHost.ViewModel
             }
         }
 
+        public ICommand Signup { get; }
+        public ICommand Login { get; }
+
         public event PropertyChangedEventHandler PropertyChanged;
 
         protected virtual void OnPropertyChanged(string propertyName)
@@ -53,6 +70,8 @@ namespace TravelApp.DesktopHost.ViewModel
         public LoginViewModel()
         {
             Signup = new SignupNavigationCommand();
+            Login = new LoginCommand(this);
+            SnackbarMessageQueue = new SnackbarMessageQueue();
         }
 
     }

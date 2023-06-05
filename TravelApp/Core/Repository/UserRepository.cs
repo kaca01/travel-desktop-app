@@ -30,7 +30,7 @@ namespace TravelApp.Core.Repository
         {
             using (var context = new TravelContext())
             {
-                return context.Users.First(u => u.Email == email);
+                return context.Users.FirstOrDefault(u => u.Email == email);
             }
         }
     }

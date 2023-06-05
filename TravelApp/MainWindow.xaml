@@ -10,6 +10,7 @@
         mc:Ignorable="d"
         Title="TravelApp"
         Style="{StaticResource AllWindows}"
+        d:DataContext="{d:DesignInstance Type=viewmodels:MainViewModel}"
         TextElement.Foreground="{DynamicResource MaterialDesignBody}"
         WindowState="Maximized">
     <Grid>

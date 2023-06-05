@@ -1,4 +1,5 @@
-﻿using System;
+﻿using MaterialDesignThemes.Wpf;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Linq;
@@ -11,48 +12,20 @@ namespace TravelApp.DesktopHost.ViewModel
 {
     public abstract class BaseViewModel : INotifyPropertyChanged
     {
+
+        private SnackbarMessageQueue _snackbarMessageQueue;
+
+        public SnackbarMessageQueue SnackbarMessageQueue
+        {
+            get { return _snackbarMessageQueue; }
+            set
+            {
+                _snackbarMessageQueue = value;
+                OnPropertyChanged(nameof(SnackbarMessageQueue));
+            }
+        }
+
         public event PropertyChangedEventHandler PropertyChanged;
-
-        private string _message = "";
-        public string Message
-        {
-            get => _message;
-            set
-            {
-                _message = value;
-                OnPropertyChanged(nameof(Message));
-            }
-        }
-        private bool _messageVisibility;
-
-        public bool MessageVisibility
-        {
-            get { return _messageVisibility; }
-            set
-            {
-                _messageVisibility = value;
-                OnPropertyChanged(nameof(MessageVisibility));
-            }
-        }
-
-        public void ShowMessage(string message, bool logOut = false)
-        {
-            Message = message;
-            MessageVisibility = true;
-            Wait(logOut);
-
-        }
-
-        public async void Wait(bool logOut)
-        {
-            await Task.Delay(3000);
-            MessageVisibility = false;
-            if (logOut)
-            {
-                NavigationStore.Instance().CurrentViewModel = new LoginViewModel();
-
-            }
-        }
 
         protected void OnPropertyChanged(string propertyName)
         {
