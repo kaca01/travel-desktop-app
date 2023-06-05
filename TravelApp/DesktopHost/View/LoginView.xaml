@@ -56,7 +56,7 @@
                    FontSize="18"
                    FontFamily="Poppins"
                    FontWeight="Regular"
-                   HorizontalAlignment="Left">Email*</Label>
+                   HorizontalAlignment="Left">Email</Label>
             <TextBox Style="{StaticResource MaterialDesignOutlinedTextBox}"
                      FontSize="15"
                      Margin="0"
@@ -65,7 +65,8 @@
                      Background="#A5FFFFFF"
                      materialDesign:TextFieldAssist.UnderlineBrush="#4889E6"
                      ToolTip="Enter email address associated with your account"
-                     Text="{Binding Email}">
+                     Text="{Binding Email}"
+                     PreviewTextInput="TextBox_PreviewTextInputEmail">
             </TextBox>
         </StackPanel>
         <StackPanel Grid.Row="3"
@@ -78,7 +79,7 @@
                    FontSize="18"
                    FontFamily="Poppins"
                    FontWeight="Regular"
-                   HorizontalAlignment="Left">Password*</Label>
+                   HorizontalAlignment="Left">Password</Label>
             <views:BindablePasswordBox 
                  Password="{Binding Password}"/>
         </StackPanel>

@@ -26,6 +26,17 @@ namespace TravelApp.DesktopHost.View
             DataContext = new LoginViewModel();
         }
 
+        private void TextBox_PreviewTextInputEmail(object sender, TextCompositionEventArgs e)
+        {
+            TextBox textBox = (TextBox)sender;
+
+            // Check if the new text length exceeds the maximum character count
+            if (textBox.Text.Length + e.Text.Length > 50)
+            {
+                e.Handled = true; // Prevent the input from being added to the TextBox
+            }
+        }
+
         private void Window_SizeChanged(object sender, SizeChangedEventArgs e)
         {
             double windowWidth = e.NewSize.Width;

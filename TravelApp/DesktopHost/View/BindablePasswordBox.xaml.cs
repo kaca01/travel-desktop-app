@@ -22,6 +22,17 @@ namespace TravelApp.DesktopHost.View
     {
         private bool _isPasswordChanging;
 
+        private void TextBox_PreviewTextInputPassword(object sender, TextCompositionEventArgs e)
+        {
+            PasswordBox textBox = (PasswordBox)sender;
+
+            // Check if the new text length exceeds the maximum character count
+            if (textBox.Password.Length + e.Text.Length > 40)
+            {
+                e.Handled = true; // Prevent the input from being added to the TextBox
+            }
+        }
+
         public static readonly DependencyProperty PasswordProperty =
             DependencyProperty.Register("Password", typeof(string), typeof(BindablePasswordBox),
                 new FrameworkPropertyMetadata(string.Empty, FrameworkPropertyMetadataOptions.BindsTwoWayByDefault,
