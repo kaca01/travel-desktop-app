@@ -9,9 +9,11 @@
              xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
              xmlns:navigation="clr-namespace:TravelApp.DesktopHost.ViewModel.Navigation"
              xmlns:viewmodel="clr-namespace:TravelApp.DesktopHost.ViewModel"
+             SizeChanged="Window_SizeChanged"
              d:DataContext="{d:DesignInstance Type=viewmodel:AgentNavigationViewModel}">
-    
-    <TabControl Name="navigation"
+
+
+        <TabControl Name="navigation"
                 materialDesign:NavigationRailAssist.ShowSelectionBackground="True"
                 SnapsToDevicePixels="True"
                 Style="{StaticResource MaterialDesignNavigationRailTabControl}"
@@ -20,130 +22,143 @@
                 BorderBrush="#00ACACAC"
                 Background="#DFE6F0"
         >
-        <TabItem Width="190"
+        <TabItem Width="{ Binding Navigation.TabWidth }"
                  Height="50">
             <TabItem.Header>
-                <StackPanel Width="auto"
+                <StackPanel Width="{ Binding Navigation.TabWidth }"
                             Height="auto">
                     <Button 
-                        Width="190"
+                        HorizontalContentAlignment="Center"
+                        VerticalContentAlignment="Center"
+                        Width="{ Binding Navigation.TabWidth }"
                         Height="50"
                         Content="Trips"
                         ToolTip="Check out trips we offer"
                         Background="Transparent"
                         BorderBrush="Transparent"
                         Foreground="#000000"
-                        FontSize="20"
-                        FontWeight="Bold"
-                        BorderThickness="0,0,0,0"/>
+                        FontSize="{ Binding Navigation.TextFontSize }"
+                        FontWeight="Bold"/>
                 </StackPanel>
             </TabItem.Header>
         </TabItem>
-        <TabItem Width="190" Height="50">
+        <TabItem Width="{ Binding Navigation.TabWidth }" Height="50">
             <TabItem.Header>
-                <StackPanel Width="auto"
+                <StackPanel Width="{ Binding Navigation.TabWidth }"
                             Height="auto">
                     <Button 
-                        Width="190"
+                        HorizontalContentAlignment="Center"
+                        VerticalContentAlignment="Center"
+                        Width="{ Binding Navigation.TabWidth }"
                         Height="50"
                         Content="Attractions"
                         ToolTip="Check out attractions"
-                        Background="Transparent"
+                        Background="yellow"
                         BorderBrush="Transparent"
                         Foreground="#000000"
-                        FontSize="20"
+                        FontSize="{Binding Navigation.TextFontSize}"
                         FontWeight="Bold"/>
                 </StackPanel>
             </TabItem.Header>
         </TabItem>
-        <TabItem Width="190"
+        <TabItem Width="{ Binding Navigation.TabWidth }"
                  Height="50">
             <TabItem.Header>
-                <StackPanel Width="auto"
+                <StackPanel Width="{ Binding Navigation.TabWidth }"
                             Height="auto">
                     <Button 
-                        Width="190"
+                        HorizontalContentAlignment="Center"
+                        VerticalContentAlignment="Center"
+                        Width="{ Binding Navigation.TabWidth }"
                         Height="50"
                         Content="Stay&amp;Eat"
                         ToolTip="Check out accommodations and restaurants"
-                        Background="Transparent"
+                        Background="Pink"
                         BorderBrush="Transparent"
                         Foreground="#000000"
-                        FontSize="20"
+                        FontSize="{Binding Navigation.TextFontSize}"
                         FontWeight="Bold"/>
                 </StackPanel>
             </TabItem.Header>
         </TabItem>
-        <TabItem Width="190"
+        <TabItem Width="{ Binding Navigation.TabWidth }"
                  Height="50">
             <TabItem.Header>
-                <StackPanel Width="auto"
+                <StackPanel Width="{ Binding Navigation.TabWidth }"
                             Height="auto">
-                    <Button 
-                        Width="190"
+                    <Button
+                        HorizontalContentAlignment="Center"
+                        VerticalContentAlignment="Center"
+                        Width="{ Binding Navigation.TabWidth }"
                         Height="50"
                         Content="Sold Trips"
                         ToolTip="Check out bought trips"
-                        Background="Transparent"
+                        Background="Yellow"
                         BorderBrush="Transparent"
                         Foreground="#000000"
-                        FontSize="20"
+                        FontSize="{Binding Navigation.TextFontSize}"
                         FontWeight="Bold"/>
                 </StackPanel>
             </TabItem.Header>
         </TabItem>
-        <TabItem Width="190"
+        <TabItem Width="{ Binding Navigation.TabWidth }"
                  Height="50">
             <TabItem.Header>
-                <StackPanel Width="auto"
+                <StackPanel Width="{ Binding Navigation.TabWidth }"
                             Height="auto">
                     <Button 
-                        Width="190"
+                        HorizontalContentAlignment="Center"
+                        VerticalContentAlignment="Center"
+                        Width="{ Binding Navigation.TabWidth }"
                         Height="50"
                         Content="Reservations"
                         ToolTip="Check out your reservations"
-                        Background="Transparent"
+                        Background="Pink"
                         BorderBrush="Transparent"
                         Foreground="#000000"
-                        FontSize="20"
+                        FontSize="{Binding Navigation.TextFontSize}"
                         FontWeight="Bold"/>
                 </StackPanel>
             </TabItem.Header>
         </TabItem>
 
-        <TabItem Width="190"
+        <TabItem Width="{ Binding Navigation.TabWidth }"
                  Height="50">
             <TabItem.Header>
-                <StackPanel Width="auto"
+                <StackPanel Width="{ Binding Navigation.TabWidth }"
                             Height="auto">
                     <Button 
-                        Width="190"
+                        HorizontalContentAlignment="Center"
+                        VerticalContentAlignment="Center"
+                        Width="{ Binding Navigation.TabWidth }"
                         Height="50"
                         Content="Help"
                         ToolTip="Need help? Click me!"
-                        Background="Transparent"
+                        Background="Yellow"
                         BorderBrush="Transparent"
                         Foreground="#000000"
-                        FontSize="20"
+                        FontSize="{Binding Navigation.TextFontSize}"
                         FontWeight="Bold"/>
                 </StackPanel>
             </TabItem.Header>
         </TabItem>
-        <TabItem Width="190"
+        <TabItem Width="{ Binding Navigation.TabWidth }"
                  Height="50"
-                 Margin="30 0 0 0">
+                 >
             <TabItem.Header>
-                <StackPanel Width="auto"
+                <StackPanel Width="{ Binding Navigation.TabWidth }"
                             Height="auto">
                     <Button 
-                        Width="190"
+                        HorizontalContentAlignment="Center"
+                        VerticalContentAlignment="Center"
+                        Width="{ Binding Navigation.TabWidth }"
                         Height="50"
                         Content="Log Out"
                         ToolTip="Log out from your account"
                         Background="Transparent"
                         BorderBrush="Transparent"
                         Foreground="#000000"
-                        FontSize="20"
+                        FontSize="{Binding Navigation.TextFontSize}"
                         FontWeight="Bold"
                         Command="{Binding Navigation.LogOut}"/>
                 </StackPanel>
