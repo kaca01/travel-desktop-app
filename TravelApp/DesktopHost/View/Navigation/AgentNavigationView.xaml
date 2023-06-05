@@ -5,7 +5,7 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:TravelApp.DesktopHost.View"
              mc:Ignorable="d" 
-             d:DesignHeight="50" d:DesignWidth="800"
+             d:DesignHeight="40" d:DesignWidth="800"
              xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
              xmlns:navigation="clr-namespace:TravelApp.DesktopHost.ViewModel.Navigation"
              xmlns:viewmodel="clr-namespace:TravelApp.DesktopHost.ViewModel"
@@ -23,7 +23,7 @@
                 Background="#DFE6F0"
         >
         <TabItem Width="{ Binding Navigation.TabWidth }"
-                 Height="50">
+                 Height="40">
             <TabItem.Header>
                 <StackPanel Width="{ Binding Navigation.TabWidth }"
                             Height="auto">
@@ -31,7 +31,7 @@
                         HorizontalContentAlignment="Center"
                         VerticalContentAlignment="Center"
                         Width="{ Binding Navigation.TabWidth }"
-                        Height="50"
+                        Height="40"
                         Content="Trips"
                         ToolTip="Check out trips we offer"
                         Background="Transparent"
@@ -42,7 +42,7 @@
                 </StackPanel>
             </TabItem.Header>
         </TabItem>
-        <TabItem Width="{ Binding Navigation.TabWidth }" Height="50">
+        <TabItem Width="{ Binding Navigation.TabWidth }" Height="40">
             <TabItem.Header>
                 <StackPanel Width="{ Binding Navigation.TabWidth }"
                             Height="auto">
@@ -50,10 +50,10 @@
                         HorizontalContentAlignment="Center"
                         VerticalContentAlignment="Center"
                         Width="{ Binding Navigation.TabWidth }"
-                        Height="50"
+                        Height="40"
                         Content="Attractions"
                         ToolTip="Check out attractions"
-                        Background="yellow"
+                        Background="Transparent"
                         BorderBrush="Transparent"
                         Foreground="#000000"
                         FontSize="{Binding Navigation.TextFontSize}"
@@ -62,7 +62,7 @@
             </TabItem.Header>
         </TabItem>
         <TabItem Width="{ Binding Navigation.TabWidth }"
-                 Height="50">
+                 Height="40">
             <TabItem.Header>
                 <StackPanel Width="{ Binding Navigation.TabWidth }"
                             Height="auto">
@@ -70,10 +70,10 @@
                         HorizontalContentAlignment="Center"
                         VerticalContentAlignment="Center"
                         Width="{ Binding Navigation.TabWidth }"
-                        Height="50"
+                        Height="40"
                         Content="Stay&amp;Eat"
                         ToolTip="Check out accommodations and restaurants"
-                        Background="Pink"
+                        Background="Transparent"
                         BorderBrush="Transparent"
                         Foreground="#000000"
                         FontSize="{Binding Navigation.TextFontSize}"
@@ -82,7 +82,7 @@
             </TabItem.Header>
         </TabItem>
         <TabItem Width="{ Binding Navigation.TabWidth }"
-                 Height="50">
+                 Height="40">
             <TabItem.Header>
                 <StackPanel Width="{ Binding Navigation.TabWidth }"
                             Height="auto">
@@ -90,10 +90,10 @@
                         HorizontalContentAlignment="Center"
                         VerticalContentAlignment="Center"
                         Width="{ Binding Navigation.TabWidth }"
-                        Height="50"
+                        Height="40"
                         Content="Sold Trips"
                         ToolTip="Check out bought trips"
-                        Background="Yellow"
+                        Background="Transparent"
                         BorderBrush="Transparent"
                         Foreground="#000000"
                         FontSize="{Binding Navigation.TextFontSize}"
@@ -102,7 +102,7 @@
             </TabItem.Header>
         </TabItem>
         <TabItem Width="{ Binding Navigation.TabWidth }"
-                 Height="50">
+                 Height="40">
             <TabItem.Header>
                 <StackPanel Width="{ Binding Navigation.TabWidth }"
                             Height="auto">
@@ -110,10 +110,10 @@
                         HorizontalContentAlignment="Center"
                         VerticalContentAlignment="Center"
                         Width="{ Binding Navigation.TabWidth }"
-                        Height="50"
+                        Height="40"
                         Content="Reservations"
                         ToolTip="Check out your reservations"
-                        Background="Pink"
+                        Background="Transparent"
                         BorderBrush="Transparent"
                         Foreground="#000000"
                         FontSize="{Binding Navigation.TextFontSize}"
@@ -123,7 +123,7 @@
         </TabItem>
 
         <TabItem Width="{ Binding Navigation.TabWidth }"
-                 Height="50">
+                 Height="40">
             <TabItem.Header>
                 <StackPanel Width="{ Binding Navigation.TabWidth }"
                             Height="auto">
@@ -131,10 +131,10 @@
                         HorizontalContentAlignment="Center"
                         VerticalContentAlignment="Center"
                         Width="{ Binding Navigation.TabWidth }"
-                        Height="50"
+                        Height="40"
                         Content="Help"
                         ToolTip="Need help? Click me!"
-                        Background="Yellow"
+                        Background="Transparent"
                         BorderBrush="Transparent"
                         Foreground="#000000"
                         FontSize="{Binding Navigation.TextFontSize}"
@@ -143,7 +143,7 @@
             </TabItem.Header>
         </TabItem>
         <TabItem Width="{ Binding Navigation.TabWidth }"
-                 Height="50"
+                 Height="40"
                  >
             <TabItem.Header>
                 <StackPanel Width="{ Binding Navigation.TabWidth }"
@@ -152,7 +152,7 @@
                         HorizontalContentAlignment="Center"
                         VerticalContentAlignment="Center"
                         Width="{ Binding Navigation.TabWidth }"
-                        Height="50"
+                        Height="40"
                         Content="Log Out"
                         ToolTip="Log out from your account"
                         Background="Transparent"
