@@ -144,7 +144,8 @@
                         BorderBrush="Transparent"
                         Foreground="#000000"
                         FontSize="20"
-                        FontWeight="Bold"/>
+                        FontWeight="Bold"
+                        Command="{Binding Navigation.LogOut}"/>
                 </StackPanel>
             </TabItem.Header>
         </TabItem>

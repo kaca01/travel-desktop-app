@@ -9,8 +9,11 @@ namespace TravelApp.DesktopHost.ViewModel
     class AgentTripsViewModel : BaseViewModel
     {
 
+        public AgentNavigationViewModel Navigation { get; set; }    
+
         public AgentTripsViewModel() 
         {
+            Navigation = new AgentNavigationViewModel();
 
         }
     }
