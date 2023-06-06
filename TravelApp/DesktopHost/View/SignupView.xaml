@@ -15,7 +15,7 @@
         <Grid>
             <Grid.RowDefinitions>
                 <RowDefinition Height="1*"></RowDefinition>
-                <RowDefinition Height="1.5*"></RowDefinition>
+                <RowDefinition Height="2*"></RowDefinition>
                 <RowDefinition Height="auto"></RowDefinition>
                 <RowDefinition Height="auto"></RowDefinition>
                 <RowDefinition Height="auto"></RowDefinition>
@@ -23,7 +23,6 @@
                 <RowDefinition Height="auto"></RowDefinition>
                 <RowDefinition Height="1.5*"></RowDefinition>
                 <RowDefinition Height="auto"></RowDefinition>
-                <RowDefinition Height="1*"></RowDefinition>
             </Grid.RowDefinitions>
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="*"></ColumnDefinition>
@@ -32,7 +31,7 @@
             </Grid.ColumnDefinitions>
 
             <materialDesign:Snackbar MessageQueue="{Binding SnackbarMessageQueue}"
-                                 Grid.Row="6"
+                                 Grid.Row="8"
                                  Grid.Column="1"
                                  Margin="0,0,0,20">
                 <materialDesign:SnackbarMessage Content="{Binding SnackbarMessageQueue}" />
@@ -41,17 +40,71 @@
             <TextBlock FontSize="{Binding TextFontSize}"
                 Foreground="#161A25"
                 TextAlignment="Left"
+                Margin="0, 20, 0 ,10"
                 Grid.Row="1"
                 Grid.Column="1"
                 FontWeight="Medium"
                 FontFamily="Poppins"
-                MaxWidth="439"
+                MaxWidth="{Binding Width}"
                 x:Name="Title">Sign up</TextBlock>
             <StackPanel Grid.Row="2"
                     Grid.Column="1"
                     Width="{Binding Width}"
-                    Height="90"
-                    Margin="0,0,0,20">
+                    Height="110">
+                <Label Margin="0 0 0 3"
+                   Height="27"
+                   FontSize="18"
+                   FontFamily="Poppins"
+                   FontWeight="Regular"
+                   HorizontalAlignment="Left">Name</Label>
+                <TextBox Style="{StaticResource MaterialDesignOutlinedTextBox}"
+                     FontSize="15"
+                     Margin="0"
+                     materialDesign:HintAssist.Foreground="#4889E6"
+                     Background="#A5FFFFFF"
+                     materialDesign:TextFieldAssist.UnderlineBrush="#4889E6"
+                     ToolTip="Enter your first name"
+                     Text="{Binding Name}">
+                </TextBox>
+                <Label Height="27"
+                       FontSize="15"
+                       FontFamily="Poppins"
+                       FontWeight="Regular"
+                       HorizontalAlignment="Left"
+                       Content="{Binding NameValidation}"
+                       Foreground="Red"/>
+            </StackPanel>
+            <StackPanel Grid.Row="3"
+                    Grid.Column="1"
+                    Width="{Binding Width}"
+                    Height="110">
+                <Label Margin="0 0 0 3"
+                   Height="27"
+                   FontSize="18"
+                   FontFamily="Poppins"
+                   FontWeight="Regular"
+                   HorizontalAlignment="Left">Surname</Label>
+                <TextBox Style="{StaticResource MaterialDesignOutlinedTextBox}"
+                     FontSize="15"
+                     Margin="0"
+                     materialDesign:HintAssist.Foreground="#4889E6"
+                     Background="#A5FFFFFF"
+                     materialDesign:TextFieldAssist.UnderlineBrush="#4889E6"
+                     ToolTip="Enter your last name"
+                     Text="{Binding Surname}">
+                </TextBox>
+                <Label Height="27"
+                       FontSize="15"
+                       FontFamily="Poppins"
+                       FontWeight="Regular"
+                       HorizontalAlignment="Left"
+                       Content="{Binding SurnameValidation}"
+                       Foreground="Red"/>
+            </StackPanel>
+            <StackPanel Grid.Row="4"
+                    Grid.Column="1"
+                    Width="{Binding Width}"
+                    Height="110">
                 <Label Margin="0 0 0 3"
                    Height="27"
                    FontSize="18"
@@ -69,12 +122,18 @@
                      Text="{Binding Email}"
                      PreviewTextInput="TextBox_PreviewTextInputEmail">
                 </TextBox>
+                <TextBlock Height="27"
+                       FontSize="15"
+                       FontFamily="Poppins"
+                       FontWeight="Regular"
+                       HorizontalAlignment="Left"
+                       Text="{Binding EmailValidation}"
+                       Foreground="Red"/>
             </StackPanel>
-            <StackPanel Grid.Row="3"
+            <StackPanel Grid.Row="5"
                     Grid.Column="1"
                     Width="{Binding Width}"
-                    Height="90"
-                    Margin="0,10,0,0">
+                    Height="110">
                 <Label Margin="0"
                    Height="27"
                    FontSize="18"
@@ -83,15 +142,43 @@
                    HorizontalAlignment="Left">Password</Label>
                 <views:BindablePasswordBox 
                  Password="{Binding Password}"/>
+                <Label Height="27"
+                       FontSize="15"
+                       FontFamily="Poppins"
+                       FontWeight="Regular"
+                       HorizontalAlignment="Left"
+                       Content="{Binding PasswordValidation}"
+                        Foreground="Red"/> 
+            </StackPanel>
+            <StackPanel Grid.Row="6"
+                    Grid.Column="1"
+                    Width="{Binding Width}"
+                    Height="110">
+                <Label Margin="0"
+                   Height="27"
+                   FontSize="18"
+                   FontFamily="Poppins"
+                   FontWeight="Regular"
+                   HorizontalAlignment="Left">Password again</Label>
+                <views:BindablePasswordBox 
+                 Password="{Binding PasswordAgain}"/>
+                <Label Height="27"
+                       FontSize="15"
+                       FontFamily="Poppins"
+                       FontWeight="Regular"
+                       HorizontalAlignment="Left"
+                       Content="{Binding PasswordAgainValidation}"
+                       Foreground="Red"/>
             </StackPanel>
 
             <Button Grid.Column="1"
-                Grid.Row="4"
+                Grid.Row="7"
                 VerticalAlignment="Bottom"
                 Width="{Binding Width}"
                 Height="40"
+                Margin="0, 22 ,0 ,0"
                 ToolTip="Click to sign up to the app"
-                Content="Signup"
+                Content="Sign up"
                 Style="{StaticResource FormButton}"
                 Command="{Binding Signup}"
                 IsDefault="True" Cursor="Hand" >
@@ -102,18 +189,18 @@
                 </Button.Resources>
             </Button>
             <StackPanel Grid.Column="1"
-                    Grid.Row="5"
+                    Grid.Row="8"
                     Width="{Binding Width}"
                     Height="80">
                 <Grid>
                     <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="*"></ColumnDefinition>
+                        <ColumnDefinition Width="auto"></ColumnDefinition>
                         <ColumnDefinition Width="*"></ColumnDefinition>
                     </Grid.ColumnDefinitions>
                     <Label HorizontalAlignment="Right"
                        Grid.Column="0"
-                       FontSize="20"
-                       Margin="0, 10, 10, 0"
+                       FontSize="{Binding LoginFontSize}"
+                       Margin="45, 10, 10, 0"
                        Foreground="#808080"
                        FontFamily="Poppins"
                        FontWeight="Medium">Already have an account ?</Label>
@@ -125,7 +212,7 @@
                             </ControlTemplate>
                         </Button.Template>
                         <TextBlock HorizontalAlignment="Left"
-                       FontSize="20"
+                       FontSize="{Binding LoginFontSize}"
                        Margin="10, 10, 0, 0"
                        Foreground="#4889E6" 
                        Background="#DFE6F0"

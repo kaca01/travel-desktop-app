@@ -48,11 +48,13 @@ namespace TravelApp.DesktopHost.View
             {
                 viewModel.TextFontSize = 40;
                 viewModel.Width = 300;
+                viewModel.LoginFontSize = 14;
             }
             else
             {
                 viewModel.TextFontSize = 60;
                 viewModel.Width = 439;
+                viewModel.LoginFontSize = 18;
             }
         }
     }
