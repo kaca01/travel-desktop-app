@@ -23,7 +23,6 @@ namespace TravelApp.DesktopHost.View
         public LoginView()
         {
             InitializeComponent();
-            DataContext = new LoginViewModel();
         }
 
         private void TextBox_PreviewTextInputEmail(object sender, TextCompositionEventArgs e)

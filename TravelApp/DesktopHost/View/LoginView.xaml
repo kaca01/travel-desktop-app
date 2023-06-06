@@ -43,7 +43,7 @@
                 Grid.Column="1"
                 FontWeight="Medium"
                 FontFamily="Poppins"
-                MaxWidth="439"
+                MaxWidth="{Binding Width}"
                 x:Name="Title">
             Welcome to <LineBreak/> Travel App!</TextBlock>
             <Label
