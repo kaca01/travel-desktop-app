@@ -72,7 +72,7 @@ namespace TravelApp.DesktopHost.View
         {
             BindablePasswordBox textBox = (BindablePasswordBox)sender;
             SignupViewModel viewModel = (SignupViewModel)DataContext;
-            if (!viewModel.ValidationViewModel.IsPasswordValid(textBox.Password))
+            if (!viewModel.ValidationViewModel.IsPasswordValid(textBox.Password, viewModel.PasswordAgain))
             {
                 textBox.BorderBrush = Brushes.Red;
             }

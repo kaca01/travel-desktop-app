@@ -53,7 +53,7 @@ namespace TravelApp.DesktopHost.ViewModel
             IsNameValid(user.Name);
             IsSurnameValid(user.Surname);
             IsEmailValid(user.Email);
-            IsPasswordValid(user.Password);
+            IsPasswordValid(user.Password, user.PasswordAgain);
             IsPasswordAgainValid(user.PasswordAgain, user.Password);
         }
 
@@ -68,6 +68,7 @@ namespace TravelApp.DesktopHost.ViewModel
         {
             if (string.IsNullOrWhiteSpace(name)) NameValidation = "Required";
             else if (string.IsNullOrWhiteSpace(name.Trim())) NameValidation = "Required";
+            else if (name.Trim().Length < 3) NameValidation = "Name must contain minimum 3 characters";
             else
             {
                 NameValidation = "";
@@ -80,6 +81,7 @@ namespace TravelApp.DesktopHost.ViewModel
         {
             if (string.IsNullOrWhiteSpace(name)) SurnameValidation = "Required";
             else if (string.IsNullOrWhiteSpace(name.Trim())) SurnameValidation = "Required";
+            else if (name.Trim().Length < 3) SurnameValidation = "Surname must contain minimum 3 characters";
             else
             {
                 SurnameValidation = "";
@@ -117,15 +119,23 @@ namespace TravelApp.DesktopHost.ViewModel
             }
         }
 
-        public bool IsPasswordValid(string name)
+        public bool IsPasswordValid(string name, string password)
         {
             if (string.IsNullOrWhiteSpace(name)) PasswordValidation = "Required";
             else if (string.IsNullOrWhiteSpace(name.Trim())) PasswordValidation = "Required";
             else if (name.Trim().Length < 8) PasswordValidation = "Password must contain minimum 8 characters";
             else
             {
-                PasswordValidation = "";
-                return true;
+                if (name.Equals(password)) { 
+                    PasswordAgainValidation = "";
+                    return true;
+                }
+                else
+                {
+                    PasswordAgainValidation = "Passwords aren't matching!";
+                    PasswordValidation = "";
+                    return false;
+                }
             }
             return false;
         }

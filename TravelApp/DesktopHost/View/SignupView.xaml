@@ -167,7 +167,7 @@
                    FontSize="18"
                    FontFamily="Poppins"
                    FontWeight="Regular"
-                   HorizontalAlignment="Left">Password again</Label>
+                   HorizontalAlignment="Left">Repeat password</Label>
                 <views:BindablePasswordBox 
                  Password="{Binding PasswordAgain}"
                  ToolTip="Repeat your password"
