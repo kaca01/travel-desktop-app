@@ -12,47 +12,13 @@ namespace TravelApp.DesktopHost.ViewModel
 {
     public class SignupViewModel : BaseViewModel, INotifyPropertyChanged
     {
+
         private string _name;
         private string _surname;
         private string _email;
         private string _password;
         private string _passwordAgain;
-
-        private string _nameValidation;
-        private string _surnameValidation;
-        private string _emailValidation;
-        private string _passwordValidation;
-        private string _passwordAgainValidation;
-
-        public string NameValidation
-        {
-            get => _nameValidation;
-            set { _nameValidation = value; OnPropertyChanged(nameof(NameValidation)); }
-        }
-
-        public string SurnameValidation
-        {
-            get => _surnameValidation;
-            set { _surnameValidation = value; OnPropertyChanged(nameof(SurnameValidation)); }
-        }
-
-        public string EmailValidation
-        {
-            get => _emailValidation;
-            set { _emailValidation = value; OnPropertyChanged(nameof(EmailValidation)); }
-        }
-
-        public string PasswordValidation
-        {
-            get => _passwordValidation;
-            set { _passwordValidation = value; OnPropertyChanged(nameof(PasswordValidation)); }
-        }
-
-        public string PasswordAgainValidation
-        {
-            get => _passwordAgainValidation;
-            set { _passwordAgainValidation = value; OnPropertyChanged(nameof(PasswordAgainValidation)); }
-        }
+        public ValidationViewModel ValidationViewModel { get; }
 
         public string Name
         {
@@ -70,10 +36,7 @@ namespace TravelApp.DesktopHost.ViewModel
         public string Email
         {
             get => _email;
-            set { _email = value; 
-                EmailValidation = "Required";
-                //todo call validation function
-                OnPropertyChanged(nameof(Email)); }
+            set { _email = value; OnPropertyChanged(nameof(Email)); }
         }
 
         public string Password
@@ -144,6 +107,7 @@ namespace TravelApp.DesktopHost.ViewModel
             Login = new LoginNavigationCommand();
             Signup = new SignupCommand(this);
             SnackbarMessageQueue = new SnackbarMessageQueue();
+            ValidationViewModel = new ValidationViewModel();
         }
     }
 }

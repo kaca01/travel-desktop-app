@@ -26,12 +26,104 @@ namespace TravelApp.DesktopHost.View
             InitializeComponent();
         }
 
+        private void TextBox_NameLostFocus(object sender, RoutedEventArgs e)
+        {
+            TextBox textBox = (TextBox)sender;
+            SignupViewModel viewModel = (SignupViewModel)DataContext;
+            if (!viewModel.ValidationViewModel.IsNameValid(textBox.Text))
+            {
+                textBox.BorderBrush = Brushes.Red;
+            }
+            else
+            {
+                textBox.BorderBrush = Brushes.Gray;
+            }
+        }
+
+        private void TextBox_SurnameLostFocus(object sender, RoutedEventArgs e)
+        {
+            TextBox textBox = (TextBox)sender;
+            SignupViewModel viewModel = (SignupViewModel)DataContext;
+            if (!viewModel.ValidationViewModel.IsSurnameValid(textBox.Text))
+            {
+                textBox.BorderBrush = Brushes.Red;
+            }
+            else
+            {
+                textBox.BorderBrush = Brushes.Gray;
+            }
+        }
+
+        private void TextBox_EmailLostFocus(object sender, RoutedEventArgs e)
+        {
+            TextBox textBox = (TextBox)sender;
+            SignupViewModel viewModel = (SignupViewModel)DataContext;
+            if (!viewModel.ValidationViewModel.IsEmailValid(textBox.Text))
+            {
+                textBox.BorderBrush = Brushes.Red;
+            }
+            else
+            {
+                textBox.BorderBrush = Brushes.Gray;
+            }
+        }
+
+        private void TextBox_PasswordLostFocus(object sender, RoutedEventArgs e)
+        {
+            BindablePasswordBox textBox = (BindablePasswordBox)sender;
+            SignupViewModel viewModel = (SignupViewModel)DataContext;
+            if (!viewModel.ValidationViewModel.IsPasswordValid(textBox.Password))
+            {
+                textBox.BorderBrush = Brushes.Red;
+            }
+            else
+            {
+                textBox.BorderBrush = Brushes.Gray;
+            }
+        }
+
+        private void TextBox_PasswordAgainLostFocus(object sender, RoutedEventArgs e)
+        {
+            BindablePasswordBox textBox = (BindablePasswordBox)sender;
+            SignupViewModel viewModel = (SignupViewModel)DataContext;
+            if (!viewModel.ValidationViewModel.IsPasswordAgainValid(textBox.Password, viewModel.Password))
+            {
+                textBox.BorderBrush = Brushes.Red;
+            }
+            else
+            {
+                textBox.BorderBrush = Brushes.Gray;
+            }
+        }
+
         private void TextBox_PreviewTextInputEmail(object sender, TextCompositionEventArgs e)
         {
             TextBox textBox = (TextBox)sender;
 
             // Check if the new text length exceeds the maximum character count
-            if (textBox.Text.Length + e.Text.Length > 50)
+            if (textBox.Text.Length + e.Text.Length > 60)
+            {
+                e.Handled = true; // Prevent the input from being added to the TextBox
+            }
+        }
+
+        private void TextBox_PreviewTextInputName(object sender, TextCompositionEventArgs e)
+        {
+            TextBox textBox = (TextBox)sender;
+
+            // Check if the new text length exceeds the maximum character count
+            if (textBox.Text.Length + e.Text.Length > 60)
+            {
+                e.Handled = true; // Prevent the input from being added to the TextBox
+            }
+        }
+
+        private void TextBox_PreviewTextInputSurname(object sender, TextCompositionEventArgs e)
+        {
+            TextBox textBox = (TextBox)sender;
+
+            // Check if the new text length exceeds the maximum character count
+            if (textBox.Text.Length + e.Text.Length > 60)
             {
                 e.Handled = true; // Prevent the input from being added to the TextBox
             }

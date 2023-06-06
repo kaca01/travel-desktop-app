@@ -33,10 +33,12 @@ namespace TravelApp.DesktopHost.Command
                 if (UserService.CurrentUser.Role.Equals(Role.CLIENT))
                 {
                     //_navigationStore.CurrentViewModel = new AllTripsViewModel();
+                    //todo navigate
                 }
                 else if (UserService.CurrentUser.Role.Equals(Role.AGENT))
                 {
                     //_navigationStore.CurrentViewModel = new AllTripsViewModel();
+                    //todo navigate
                 }
             }
             catch(Exception e) 

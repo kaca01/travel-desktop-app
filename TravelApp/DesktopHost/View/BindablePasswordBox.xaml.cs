@@ -12,6 +12,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using TravelApp.DesktopHost.ViewModel;
 
 namespace TravelApp.DesktopHost.View
 {
@@ -21,6 +22,20 @@ namespace TravelApp.DesktopHost.View
     public partial class BindablePasswordBox : UserControl
     {
         private bool _isPasswordChanging;
+
+        private void TextBox_PasswordLostFocus(object sender, RoutedEventArgs e)
+        {
+            PasswordBox textBox = (PasswordBox)sender;
+            SignupViewModel viewModel = (SignupViewModel)DataContext;
+            if (!viewModel.ValidationViewModel.IsAnyPasswordValid(textBox.Password))
+            {
+                textBox.BorderBrush = Brushes.Red;
+            }
+            else
+            {
+                textBox.BorderBrush = Brushes.Gray;
+            }
+        }
 
         private void TextBox_PreviewTextInputPassword(object sender, TextCompositionEventArgs e)
         {
