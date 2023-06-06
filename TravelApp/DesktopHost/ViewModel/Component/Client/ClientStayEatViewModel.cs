@@ -11,6 +11,7 @@ namespace TravelApp.DesktopHost.ViewModel
 {
     public class ClientStayEatViewModel : BaseViewModel, INotifyPropertyChanged
     {
+        public ClientNavigationViewModel Navigation { get; set; }
         private ObservableCollection<TouristFacilityListItemViewModel> _items;
         public ObservableCollection<TouristFacilityListItemViewModel> Items
         {
@@ -80,6 +81,8 @@ namespace TravelApp.DesktopHost.ViewModel
 
         public ClientStayEatViewModel()
         {
+            Navigation = new ClientNavigationViewModel();
+
             var dataService = new TouristFacilityService();
             var data = dataService.GetTableData();
 

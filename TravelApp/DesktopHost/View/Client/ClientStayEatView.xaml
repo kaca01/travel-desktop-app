@@ -5,34 +5,40 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
         xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes" 
         xmlns:viewmodels="clr-namespace:TravelApp.DesktopHost.ViewModel"
+        xmlns:components="clr-namespace:TravelApp.DesktopHost.View"
+        xmlns:local="clr-namespace:TravelApp.DesktopHost.View"
         d:DataContext="{d:DesignInstance Type=viewmodels:ClientStayEatViewModel}"
         mc:Ignorable="d" 
         Background="White"
         SizeChanged="Window_SizeChanged">
 
-    <Grid HorizontalAlignment="Center">
+    <Grid>
         <Grid>
             <Grid.RowDefinitions>
-                <RowDefinition Height="Auto" />
+                <RowDefinition Height="auto" />
+                <RowDefinition Height="auto" />
                 <RowDefinition Height="*" />
             </Grid.RowDefinitions>
+            <components:ClientNavigationView Grid.Row="0" SelectedIndex="2"></components:ClientNavigationView>
 
-            <Grid Grid.Row="0">
+            <Grid Grid.Row="1">
                 <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="Auto" />
+                    <ColumnDefinition Width="1*" />
+                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="auto" />
                     <ColumnDefinition Width="*" />
                 </Grid.ColumnDefinitions>
 
-                <TextBlock Grid.Column="0" 
+                <TextBlock Grid.Column="1" 
                             Text="Stay&amp;Eat"
                             FontSize="{Binding TextFontSize}"
                             FontWeight="Medium"
-                            TextAlignment="Left"
+                            VerticalAlignment="Center"
                             FontFamily="Poppins"
                             MaxWidth="439"
                             Margin="0,70,0,16" />
 
-                <WrapPanel Grid.Column="1" HorizontalAlignment="Right">
+                <WrapPanel Grid.Column="2" VerticalAlignment="Center">
                     <Border Width="200" Height="30" Background="White" BorderBrush="Gray" BorderThickness="1" CornerRadius="15" Margin="0 70 0 0">
                         <Grid>
                             <Grid.ColumnDefinitions>
@@ -79,7 +85,7 @@
                 </WrapPanel>
             </Grid>
 
-            <materialDesign:Card Grid.Row="1" Background="White" Padding="16">
+            <materialDesign:Card Grid.Row="2" Background="White" Padding="16">
                 <DataGrid ItemsSource="{Binding FilteredItems}"
                           HorizontalAlignment="Center"
                           AutoGenerateColumns="False"

@@ -12,32 +12,33 @@
              Background="White"
              SizeChanged="Window_SizeChanged">
 
-    <Grid HorizontalAlignment="Center">
+    <Grid>
         <Grid>
             <Grid.RowDefinitions>
-                <RowDefinition Height="1*" />
+                <RowDefinition Height="auto" />
                 <RowDefinition Height="1*" />
                 <RowDefinition Height="4*" />
                 <RowDefinition Height="1*" />
             </Grid.RowDefinitions>
-            <components:AgentNavigationView Grid.Row="0" ></components:AgentNavigationView>
+            <components:AgentNavigationView Grid.Row="0" SelectedIndex="2"></components:AgentNavigationView>
 
-            <Grid Grid.Row="1">
+            <Grid Grid.Row="1" >
                 <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="1*" />
+                    <ColumnDefinition Width="*" />
                     <ColumnDefinition Width="Auto" />
                     <ColumnDefinition Width="*" />
                 </Grid.ColumnDefinitions>
 
-                <TextBlock Grid.Column="0" 
+                <TextBlock Grid.Column="1" 
                             Text="Stay&amp;Eat"
                             FontSize="{Binding TextSize}"
                             FontWeight="Medium"
-                            TextAlignment="Left"
-                           VerticalAlignment="Center"
+                            VerticalAlignment="Center"
                             FontFamily="Poppins"
                             MaxWidth="439" />
 
-                <WrapPanel Grid.Column="1" HorizontalAlignment="Right" VerticalAlignment="Center" >
+                <WrapPanel Grid.Column="2" VerticalAlignment="Center" >
                     <Button Cursor="Hand" Style="{StaticResource {x:Static ToolBar.ButtonStyleKey}}" Padding="2" Margin="0 0 30 0">
                         <StackPanel Orientation="Horizontal">
                             <Viewbox Width="25" Height="25">
@@ -93,7 +94,7 @@
                 </WrapPanel>
             </Grid>
 
-            <materialDesign:Card Grid.Row="2" Background="White" Padding="16">
+            <materialDesign:Card Grid.Row="2" Background="White" Padding="16" HorizontalAlignment="Center">
                 <DataGrid x:Name="MyDataGrid" ItemsSource="{Binding FilteredItems}"
                           HorizontalAlignment="Center"
                           AutoGenerateColumns="False"

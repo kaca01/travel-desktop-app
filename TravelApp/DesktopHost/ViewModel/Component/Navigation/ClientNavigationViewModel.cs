@@ -8,7 +8,7 @@ using TravelApp.DesktopHost.Command.Navigation;
 
 namespace TravelApp.DesktopHost.ViewModel
 {
-    class ClientNavigationViewModel : BaseViewModel
+    public class ClientNavigationViewModel : BaseViewModel
     {
         private double _textFontSize;
 
