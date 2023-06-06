@@ -28,13 +28,13 @@
             </Grid.ColumnDefinitions>
 
             <TextBlock Grid.Column="0" 
-                        Text="Stay&amp;Eat"
-                        FontSize="{Binding TextFontSize}"
-                        FontWeight="Medium"
-                        TextAlignment="Left"
-                        VerticalAlignment="Center"
-                        MaxWidth="439"
-                        Margin="30 0 0 0"/>
+                       Text="All Trips"
+                       FontSize="{Binding TextFontSize}"
+                       FontWeight="Medium"
+                       TextAlignment="Left"
+                       VerticalAlignment="Center"
+                       MaxWidth="439"
+                       Margin="50 0 0 0"/>
 
             <WrapPanel Grid.Column="1" HorizontalAlignment="Right" VerticalAlignment="Center" Margin="0 0 30 0">
                 <Button Cursor="Hand" Style="{StaticResource {x:Static ToolBar.ButtonStyleKey}}" Padding="2" Margin="0 0 30 0">
@@ -54,7 +54,7 @@
                         </Grid.ColumnDefinitions>
                         <materialDesign:PackIcon Grid.Column="0" Kind="Magnify" VerticalAlignment="Center" Margin="5" />
                         <Grid Grid.Column="1">
-                            <TextBox x:Name="myTextBox" Text="{Binding SearchText, UpdateSourceTrigger=PropertyChanged}" FontFamily="Poppins" MaxLength="60" Background="Transparent" BorderThickness="0" Padding="5" VerticalContentAlignment="Center" FontSize="14" Foreground="Black" >
+                            <TextBox x:Name="myTextBox" Text="{Binding Search, UpdateSourceTrigger=PropertyChanged}" FontFamily="Poppins" MaxLength="60" Background="Transparent" BorderThickness="0" Padding="5" VerticalContentAlignment="Center" FontSize="14" Foreground="Black" >
                                 <TextBox.Style>
                                     <Style TargetType="TextBox">
                                         <Setter Property="Template">
@@ -110,9 +110,9 @@
                     />
             </WrapPanel>
         </Grid>
-        <Grid Grid.Row="2" Margin="0 0 0 10">
+        <Grid Grid.Row="2" Margin="0 0 0 0">
             <ScrollViewer VerticalScrollBarVisibility="Auto">
-                <ItemsControl ItemsSource="{Binding Trips}">
+                <ItemsControl ItemsSource="{Binding SearchedTrips}">
                     <ItemsControl.ItemsPanel>
                         <ItemsPanelTemplate>
                             <WrapPanel Orientation="Horizontal" />
@@ -120,10 +120,10 @@
                     </ItemsControl.ItemsPanel>
                     <ItemsControl.ItemTemplate>
                         <DataTemplate>
-                            <Border Margin="35 0 10 0" 
+                            <Border Margin="35 0 10 30" 
                                     CornerRadius="30" 
                                     Background="#DFE6F0">
-                                <Grid  >
+                                <Grid>
                                     <Grid.RowDefinitions>
                                         <RowDefinition Height="Auto"/>
                                         <RowDefinition Height="Auto"/>
@@ -167,10 +167,11 @@
                                         Text="{ Binding Price }"
                                         HorizontalAlignment="Right"
                                         Margin="0 0 30 20"
-                                        FontSize="30"
+                                        FontSize="35"
                                         Foreground="#1E2F97"
                                         FontWeight="SemiBold"
                                         />
+                                    
                                     <Button
                                         Content="Delete"
                                         Width="180"

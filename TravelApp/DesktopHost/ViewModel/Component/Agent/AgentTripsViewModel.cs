@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -21,6 +22,10 @@ namespace TravelApp.DesktopHost.ViewModel
         private List<string> _sortCriteria;
 
         private List<Trip> _trips;
+
+        private List<Trip> _searchedTrips;
+
+        private string _search;
 
         public AgentNavigationViewModel Navigation { get; set; }
 
@@ -72,6 +77,27 @@ namespace TravelApp.DesktopHost.ViewModel
             }
         }
 
+        public List<Trip> SearchedTrips
+        {
+            get { return _searchedTrips; }
+            set
+            {
+                _searchedTrips = value;
+                OnPropertyChanged(nameof(SearchedTrips));
+            }
+        }
+
+        public string Search 
+        { 
+            get { return _search; }
+            set
+            {
+                _search = value;
+                OnPropertyChanged(nameof(Search));
+                search();
+            }
+        }
+
         public AgentTripsViewModel() 
         {
             _tripService = new TripService();
@@ -82,7 +108,10 @@ namespace TravelApp.DesktopHost.ViewModel
             Navigation = new AgentNavigationViewModel();
             DisplayWindowSize = new DisplayWidnowSizeCommand(this);
             _trips = new List<Trip>();
+            _searchedTrips = new List<Trip>();
             populateTrips("all");
+            _searchedTrips = _trips;
+            _search = "";
         }
 
         private void populateSortingCriteria()
@@ -106,6 +135,11 @@ namespace TravelApp.DesktopHost.ViewModel
         private void sort(string criteria)
         {
             throw new NotImplementedException();
+        }
+
+        private void search()
+        {
+            SearchedTrips = new List<Trip>(Trips.Where(item => item.Name.ToLower().Contains(Search.ToLower())));
         }
     }
 }
