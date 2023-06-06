@@ -1,26 +1,21 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using TravelApp.Core.Model;
+using TravelApp.Core.Repository;
 
-namespace TravelApp.Core.Model
+namespace TravelApp.DesktopHost.ViewModel
 {
-    public enum PlaceType
+    public class TouristFacilityListItemViewModel : BaseViewModel
     {
-        ACCOMODATION, RESTAURANT
-    }
-
-    public class TouristFacility
-    {
-        [Key]
         public int Id { get; set; }
         public string Name { get; set; }
         public string Address { get; set; }
-        public PlaceType Type { get; set; }
+        public string Type { get; set; }
         public string Link { get; set; }
-
         public bool IsDeleted { get; set; }
+        
     }
 }
