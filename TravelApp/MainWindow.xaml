@@ -14,14 +14,17 @@
         WindowState="Maximized">
     <Grid>
         <Grid.Resources>
+            <DataTemplate DataType="{x:Type viewmodels:ClientStayEatViewModel}">
+                <views:ClientStayEatView />
+            </DataTemplate>
             <DataTemplate DataType="{x:Type viewmodels:LoginViewModel}">
                 <views:LoginView />
             </DataTemplate>
             <DataTemplate DataType="{x:Type viewmodels:SignupViewModel}">
                 <views:SignupView />
             </DataTemplate>
-            <DataTemplate DataType="{x:Type viewmodels:StayEatViewModel}">
-                <views:ClientStayEatView />
+            <DataTemplate DataType="{x:Type viewmodels:AgentStayEatViewModel}">
+                <views:AgentStayEatView />
             </DataTemplate>
         </Grid.Resources>
         <ContentControl Content="{Binding CurrentViewModel}" />
