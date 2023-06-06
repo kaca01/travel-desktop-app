@@ -110,7 +110,7 @@
                     />
             </WrapPanel>
         </Grid>
-        <Grid Grid.Row="2" Margin="0 20 0 30">
+        <Grid Grid.Row="2" Margin="0 0 0 10">
             <ScrollViewer VerticalScrollBarVisibility="Auto">
                 <ItemsControl ItemsSource="{Binding Trips}">
                     <ItemsControl.ItemsPanel>
@@ -120,7 +120,7 @@
                     </ItemsControl.ItemsPanel>
                     <ItemsControl.ItemTemplate>
                         <DataTemplate>
-                            <Border Margin="40 0 10 0" 
+                            <Border Margin="35 0 10 0" 
                                     CornerRadius="30" 
                                     Background="#DFE6F0">
                                 <Grid  >
@@ -131,12 +131,12 @@
                                         <RowDefinition Height="Auto"/>
                                         <RowDefinition Height="Auto"/>
                                     </Grid.RowDefinitions>
-                                    
+
                                     <Border CornerRadius="5">
                                         <Image Source="../../../Style/Images/trip.png" 
                                                Width="400" 
                                                Height="auto" 
-                                               Margin="0 20 0 0"
+                                               Margin="0 25 0 0"
                                                Grid.Row="1"/>
                                     </Border>
                                     <TextBlock
@@ -148,24 +148,46 @@
                                         FontSize="30"
                                         FontWeight="DemiBold"
                                         />
-                                    <TextBlock
+                                    <ScrollViewer VerticalScrollBarVisibility="Auto"
+                                                  Grid.Row="3"
+                                                  Height="200">
+                                        <TextBlock
                                         Text="{ Binding Description }"
                                         Width="400"
-                                        Height="100"
                                         TextWrapping="Wrap"
                                         Grid.Row="3"
                                         Margin="20 0 20 20"
                                         FontSize="17"
                                         Foreground="#545454"
                                         LineHeight="32"/>
+                                    </ScrollViewer>
 
                                     <TextBlock
                                         Grid.Row="4"
                                         Text="{ Binding Price }"
                                         HorizontalAlignment="Right"
-                                        Margin="0 0 20 0"
-                                        FontSize="25"
+                                        Margin="0 0 30 20"
+                                        FontSize="30"
+                                        Foreground="#1E2F97"
+                                        FontWeight="SemiBold"
                                         />
+                                    <Button
+                                        Content="Delete"
+                                        Width="180"
+                                        Background="#4889E6"
+                                        BorderBrush="Transparent"
+                                        Grid.Row="5" 
+                                        Margin="30 50 30 30"
+                                        HorizontalAlignment="Left"/>
+                                    <Button
+                                        Content="See Details"
+                                        Width="180"
+                                        Background="White"
+                                        Foreground="Black"
+                                        BorderBrush="Transparent"
+                                        Grid.Row="5" 
+                                        Margin="0 50 30 30"
+                                        HorizontalAlignment="Right"/>
                                 </Grid>
                             </Border>
                         </DataTemplate>
