@@ -75,9 +75,9 @@ namespace TravelApp
                 db.SaveChanges();
 
                 //trips
-                Trip trip1 = new Trip() { Name = "Trip to Novi Sad", Description = "In a way, Novi Sad is also the city of freedom, due to the fact that in 1748 it was bought from the state by rich citizens, and this square you see in the photo bears that name. Apart from its spaciousness and the fact that it is one of the favorite places of all the locals of this city, Freedom Square will reveal two very important monuments of Novi Sad. The city can really boast of a lot of good options for all accommodation categories.", Price = 5000, Image = new byte[10], Departure = "Banja Luka", Destination = "Novi Sad", StartDate = new DateTime().AddDays(30), EndDate = new DateTime().AddDays(31) };
-                Trip trip2 = new Trip() { Name = "Trip to Zrenjanin", Description = "Coming to Zrenjanin today, you are coming to a city of multiculturalism, multiconfessionalism and inter-ethnic tolerance, you are coming to a city of culture, art, sports, a city of bridges, a city of young people and a city of strong economic momentum. Zrenjanin can be recognized by world-renowned choirs, the National Museum or the Historical Archive, the best in Serbia in 2007, but also by the sports names of Dejan Bodiroga, the Grbić brothers, Snežana Perić, Ivan Lenđer, Ivana Španović, Jovana Brakočević or Maja Ognjenović.", Price = 8000, Image = new byte[10], Departure = "Niš", Destination = "Zrenjanin", StartDate = new DateTime().AddDays(20), EndDate = new DateTime().AddDays(21) };
-                Trip trip3 = new Trip() { Name = "Trip to Zrenjanin", Description = "Vrnjačka Banja is a more developed Serbian spa, with a long spa tradition, a spa where entire generations have come for their \"dose of health\", and yet it is much more than that, much more than a spa and much more than \"just\" a spa.\r\nSince the opening of the first spa season, the people of Vrnjačka Banja have strived to offer their guests more than the already impressive 7 mineral springs and other healing natural factors.", Price = 5500, Image = new byte[10], Departure = "Kragujevac", Destination = "Vrnjačka Banja", StartDate = new DateTime().AddDays(35), EndDate = new DateTime().AddDays(36) };
+                Trip trip1 = new Trip() { Name = "Trip to Novi Sad", Description = "In a way, Novi Sad is also the city of freedom, due to the fact that in 1748 it was bought from the state by rich citizens, and this square you see in the photo bears that name. Apart from its spaciousness and the fact that it is one of the favorite places of all the locals of this city, Freedom Square will reveal two very important monuments of Novi Sad. The city can really boast of a lot of good options for all accommodation categories.", Price = 5000, Image = new byte[10], Departure = "Banja Luka", Destination = "Novi Sad", StartDate = DateTime.Now.AddDays(30), EndDate = DateTime.Now.AddDays(31) };
+                Trip trip2 = new Trip() { Name = "Trip to Zrenjanin", Description = "Coming to Zrenjanin today, you are coming to a city of multiculturalism, multiconfessionalism and inter-ethnic tolerance, you are coming to a city of culture, art, sports, a city of bridges, a city of young people and a city of strong economic momentum. Zrenjanin can be recognized by world-renowned choirs, the National Museum or the Historical Archive, the best in Serbia in 2007, but also by the sports names of Dejan Bodiroga, the Grbić brothers, Snežana Perić, Ivan Lenđer, Ivana Španović, Jovana Brakočević or Maja Ognjenović.", Price = 8000, Image = new byte[10], Departure = "Niš", Destination = "Zrenjanin", StartDate = DateTime.Now.AddDays(20), EndDate = DateTime.Now.AddDays(21) };
+                Trip trip3 = new Trip() { Name = "Trip to Zrenjanin", Description = "Vrnjačka Banja is a more developed Serbian spa, with a long spa tradition, a spa where entire generations have come for their \"dose of health\", and yet it is much more than that, much more than a spa and much more than \"just\" a spa.\r\nSince the opening of the first spa season, the people of Vrnjačka Banja have strived to offer their guests more than the already impressive 7 mineral springs and other healing natural factors.", Price = 5500, Image = new byte[10], Departure = "Kragujevac", Destination = "Vrnjačka Banja", StartDate = DateTime.Now.AddDays(35), EndDate = DateTime.Now.AddDays(36) };
                 List<TouristFacility> facilities = new List<TouristFacility>
                 {
                     facility1,
@@ -130,14 +130,14 @@ namespace TravelApp
                 db.SaveChanges();
 
                 //purchases and reservations
-                Transaction reservation1 = new Transaction() { User = client1, Trip = trip1, Type = TransactionType.RESERVATION };
-                Transaction purchase1 = new Transaction() { User = client2, Trip = trip1, Type = TransactionType.PURCHASE };
-                Transaction reservation2 = new Transaction() { User = client2, Trip = trip2, Type = TransactionType.RESERVATION };
-                Transaction purchase2 = new Transaction() { User = client1, Trip = trip2, Type = TransactionType.PURCHASE };
-                Transaction reservation3 = new Transaction() { User = client1, Trip = trip3, Type = TransactionType.RESERVATION };
-                Transaction purchase3 = new Transaction() { User = client3, Trip = trip3, Type = TransactionType.PURCHASE };
-                Transaction reservation4 = new Transaction() { User = client2, Trip = trip3, Type = TransactionType.RESERVATION };
-                Transaction purchase4 = new Transaction() { User = client4, Trip = trip3, Type = TransactionType.PURCHASE };
+                Transaction reservation1 = new Transaction() { User = client1, Trip = trip1, Type = TransactionType.RESERVATION, IsDeleted=false };
+                Transaction purchase1 = new Transaction() { User = client2, Trip = trip1, Type = TransactionType.PURCHASE, IsDeleted = false };
+                Transaction reservation2 = new Transaction() { User = client2, Trip = trip2, Type = TransactionType.RESERVATION, IsDeleted=false };
+                Transaction purchase2 = new Transaction() { User = client1, Trip = trip2, Type = TransactionType.PURCHASE , IsDeleted = false };
+                Transaction reservation3 = new Transaction() { User = client1, Trip = trip3, Type = TransactionType.RESERVATION , IsDeleted = false };
+                Transaction purchase3 = new Transaction() { User = client3, Trip = trip3, Type = TransactionType.PURCHASE , IsDeleted = false };
+                Transaction reservation4 = new Transaction() { User = client2, Trip = trip3, Type = TransactionType.RESERVATION , IsDeleted = false };
+                Transaction purchase4 = new Transaction() { User = client4, Trip = trip3, Type = TransactionType.PURCHASE , IsDeleted = false };
                 db.Transactions.Add(reservation1);
                 db.Transactions.Add(purchase1);
                 db.Transactions.Add(reservation2);

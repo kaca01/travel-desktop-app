@@ -1,9 +1,12 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using TravelApp.Core.Repository;
+using TravelApp.Core.Service;
 
 namespace TravelApp.DesktopHost.ViewModel 
 { 
@@ -42,14 +45,59 @@ namespace TravelApp.DesktopHost.ViewModel
             }
         }
 
+        private ObservableCollection<AgentTransactionListItemViewModel> _items;
+        public ObservableCollection<AgentTransactionListItemViewModel> Items
+        {
+            get { return _items; }
+            set
+            {
+                _items = value;
+                OnPropertyChanged(nameof(Items));
+            }
+        }
+
+        private ObservableCollection<AgentTransactionListItemViewModel> _filteredItems;
+        public ObservableCollection<AgentTransactionListItemViewModel> FilteredItems
+        {
+            get { return _filteredItems; }
+            set
+            {
+                _filteredItems = value;
+                OnPropertyChanged(nameof(FilteredItems));
+            }
+        }
+
+        private string _searchText;
+
+        public string SearchText
+        {
+            get { return _searchText; }
+            set
+            {
+                _searchText = value;
+                OnPropertyChanged(nameof(SearchText));
+                FilterData();
+            }
+        }
+
         public AgentReservationsViewModel()
         {
             Navigation = new AgentNavigationViewModel();
+
+            var dataService = new TransactionService();
+            var data = dataService.GetReservations();
+            Items = new ObservableCollection<AgentTransactionListItemViewModel>(data);
+            FilteredItems = new ObservableCollection<AgentTransactionListItemViewModel>(Items);
         }
 
         protected virtual void OnPropertyChanged(string propertyName)
         {
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
+        }
+
+        private void FilterData()
+        {
+            FilteredItems = new ObservableCollection<AgentTransactionListItemViewModel>(Items.Where(item => item.Passenger.ToLower().Contains(SearchText.ToLower()) || item.Trip.ToLower().Contains(SearchText.ToLower()) || item.Price.Contains(SearchText.ToLower()) || item.StartDate.Contains(SearchText.ToLower()) || item.EndDate.Contains(SearchText.ToLower())));
         }
     }
 }

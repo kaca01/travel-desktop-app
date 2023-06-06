@@ -17,9 +17,158 @@
                 <RowDefinition Height="auto" />
                 <RowDefinition Height="1*" />
                 <RowDefinition Height="4*" />
-                <RowDefinition Height="1*" />
             </Grid.RowDefinitions>
             <components:AgentNavigationView Grid.Row="0" SelectedIndex="4"></components:AgentNavigationView>
+
+            <Grid Grid.Row="1" >
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="auto" />
+                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="auto" />
+                    <ColumnDefinition Width="*" />
+                </Grid.ColumnDefinitions>
+
+                <TextBlock Grid.Column="1" 
+                            Text="Reservations"
+                            FontSize="{Binding TextSize}"
+                            FontWeight="Medium"
+                            VerticalAlignment="Center"
+                            FontFamily="Poppins"
+                            MaxWidth="439"/>
+
+                <WrapPanel Grid.Column="3" VerticalAlignment="Center">
+                    <Border Width="200" Height="30" Background="White" BorderBrush="Gray" BorderThickness="1" CornerRadius="15" >
+                        <Grid>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="Auto" />
+                                <ColumnDefinition Width="*" />
+                            </Grid.ColumnDefinitions>
+                            <materialDesign:PackIcon Grid.Column="0" Kind="Magnify" VerticalAlignment="Center" Margin="5" />
+                            <Grid Grid.Column="1">
+                                <TextBox x:Name="myTextBox" Text="{Binding SearchText, UpdateSourceTrigger=PropertyChanged}" FontFamily="Poppins" MaxLength="60" Cursor="IBeam" Background="Transparent" BorderThickness="0" Padding="5" VerticalContentAlignment="Center" FontSize="14" Foreground="Black" >
+                                    <TextBox.Style>
+                                        <Style TargetType="TextBox">
+                                            <Setter Property="Template">
+                                                <Setter.Value>
+                                                    <ControlTemplate TargetType="TextBox">
+                                                        <Grid>
+                                                            <ScrollViewer x:Name="PART_ContentHost" />
+                                                            <TextBlock Text="Search..." FontSize="14" FontFamily="Poppins" Foreground="Gray" VerticalAlignment="Center" Panel.ZIndex="1">
+                                                                <TextBlock.Style>
+                                                                    <Style TargetType="TextBlock">
+                                                                        <Setter Property="Visibility" Value="Collapsed" />
+                                                                        <Style.Triggers>
+                                                                            <DataTrigger Binding="{Binding IsKeyboardFocused, RelativeSource={RelativeSource TemplatedParent}}" Value="False">
+                                                                                <Setter Property="Visibility" Value="Visible" />
+                                                                            </DataTrigger>
+                                                                        </Style.Triggers>
+                                                                    </Style>
+                                                                </TextBlock.Style>
+                                                            </TextBlock>
+                                                        </Grid>
+                                                        <ControlTemplate.Triggers>
+                                                            <Trigger Property="IsKeyboardFocused" Value="True">
+                                                                <Setter TargetName="PART_ContentHost" Property="Visibility" Value="Visible" />
+                                                            </Trigger>
+                                                        </ControlTemplate.Triggers>
+                                                    </ControlTemplate>
+                                                </Setter.Value>
+                                            </Setter>
+                                        </Style>
+                                    </TextBox.Style>
+                                </TextBox>
+                            </Grid>
+                        </Grid>
+                    </Border>
+                </WrapPanel>
+            </Grid>
+
+            <materialDesign:Card Grid.Row="2" Background="White" Padding="16" HorizontalAlignment="Center">
+                <DataGrid ItemsSource="{Binding FilteredItems}"
+                          HorizontalAlignment="Center"
+                          AutoGenerateColumns="False"
+                          CanUserAddRows="False"
+                          CanUserDeleteRows="False"
+                          CanUserResizeColumns="False"
+                          CanUserResizeRows="False"
+                          CanUserReorderColumns="False"
+                          RowHeaderWidth="0"
+                          HeadersVisibility="Column"
+                          ScrollViewer.VerticalScrollBarVisibility="Visible"
+                          ScrollViewer.HorizontalScrollBarVisibility="Auto"
+                          BorderThickness="0">
+
+                    <DataGrid.ColumnHeaderStyle>
+                        <Style TargetType="DataGridColumnHeader">
+                            <Setter Property="Background" Value="LightGray" />
+                            <Setter Property="Padding" Value="16" />
+                            <Setter Property="FontFamily" Value="Poppins" />
+                        </Style>
+                    </DataGrid.ColumnHeaderStyle>
+
+                    <DataGrid.Resources>
+                        <SolidColorBrush x:Key="MaterialDesignSelection" Color="Transparent" />
+                        <SolidColorBrush x:Key="MaterialDesignSelectionForeground" Color="	#5A5A5A" />
+
+                        <Style TargetType="DataGridCell">
+                            <Setter Property="Background" Value="{StaticResource MaterialDesignSelection}" />
+                            <Setter Property="Foreground" Value="{StaticResource MaterialDesignSelectionForeground}" />
+                            <Setter Property="BorderThickness" Value="0" />
+                            <Style.Triggers>
+                                <Trigger Property="IsSelected" Value="True">
+                                    <Setter Property="Background" Value="{StaticResource MaterialDesignSelection}" />
+                                    <Setter Property="Foreground" Value="{StaticResource MaterialDesignSelectionForeground}" />
+                                    <Setter Property="BorderThickness" Value="0" />
+                                </Trigger>
+                            </Style.Triggers>
+                        </Style>
+                    </DataGrid.Resources>
+
+                    <DataGrid.Columns>
+                        <DataGridTextColumn Header="Passenger" Binding="{Binding Passenger}" IsReadOnly="True">
+                            <DataGridTextColumn.ElementStyle>
+                                <Style TargetType="TextBlock">
+                                    <Setter Property="Padding" Value="16" />
+                                    <Setter Property="FontFamily" Value="Poppins" />
+                                </Style>
+                            </DataGridTextColumn.ElementStyle>
+                        </DataGridTextColumn>
+                        <DataGridTextColumn Header="Trip" Binding="{Binding Trip}" IsReadOnly="True">
+                            <DataGridTextColumn.ElementStyle>
+                                <Style TargetType="TextBlock">
+                                    <Setter Property="Padding" Value="16" />
+                                    <Setter Property="FontFamily" Value="Poppins" />
+                                </Style>
+                            </DataGridTextColumn.ElementStyle>
+                        </DataGridTextColumn>
+                        <DataGridTextColumn Header="Price" Binding="{Binding Price}" IsReadOnly="True">
+                            <DataGridTextColumn.ElementStyle>
+                                <Style TargetType="TextBlock">
+                                    <Setter Property="Padding" Value="16" />
+                                    <Setter Property="FontFamily" Value="Poppins" />
+                                </Style>
+                            </DataGridTextColumn.ElementStyle>
+                        </DataGridTextColumn>
+                        <DataGridTextColumn Header="Start date" Binding="{Binding StartDate}" IsReadOnly="True">
+                            <DataGridTextColumn.ElementStyle>
+                                <Style TargetType="TextBlock">
+                                    <Setter Property="Padding" Value="16" />
+                                    <Setter Property="FontFamily" Value="Poppins" />
+                                </Style>
+                            </DataGridTextColumn.ElementStyle>
+                        </DataGridTextColumn>
+                        <DataGridTextColumn Header="End date" Binding="{Binding EndDate}" IsReadOnly="True">
+                            <DataGridTextColumn.ElementStyle>
+                                <Style TargetType="TextBlock">
+                                    <Setter Property="Padding" Value="16" />
+                                    <Setter Property="FontFamily" Value="Poppins" />
+                                </Style>
+                            </DataGridTextColumn.ElementStyle>
+                        </DataGridTextColumn>
+                    </DataGrid.Columns>
+                </DataGrid>
+            </materialDesign:Card>
         </Grid>
     </Grid>
 </UserControl>
