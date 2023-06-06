@@ -14,6 +14,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 using TravelApp.DesktopHost.ViewModel;
+using TravelApp.DesktopHost.ViewModel.Component;
 
 namespace TravelApp.DesktopHost.View
 {
@@ -50,12 +51,12 @@ namespace TravelApp.DesktopHost.View
             AgentStayEatViewModel viewModel = (AgentStayEatViewModel)DataContext;
             if (windowWidth <= 1200 || windowHeigth <= 700)
             {
-                viewModel.TextFontSize = 40;
+                viewModel.TextSize = 40;
                 viewModel.Width = 300;
             }
             else
             {
-                viewModel.TextFontSize = 60;
+                viewModel.TextSize = 60;
                 viewModel.Width = 439;
             }
         }

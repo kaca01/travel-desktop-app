@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using TravelApp.DesktopHost.ViewModel;
 using TravelApp.DesktopHost.ViewModel.Navigation;
 
 namespace TravelApp.DesktopHost.Command.Navigation
@@ -17,9 +18,7 @@ namespace TravelApp.DesktopHost.Command.Navigation
         }
         public override void Execute(object parameter)
         {
-            // TODO : add here _navigation.CurrentViewModel = new AttractionViewModel()
-            // or whatever the class is called
-            throw new NotImplementedException();
+            _navigation.CurrentViewModel = new ClientStayEatViewModel();
         }
     }
 }

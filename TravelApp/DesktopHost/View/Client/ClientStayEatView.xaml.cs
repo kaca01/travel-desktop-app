@@ -14,6 +14,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 using TravelApp.DesktopHost.ViewModel;
+using TravelApp.DesktopHost.ViewModel.Component;
 
 namespace TravelApp.DesktopHost.View
 {

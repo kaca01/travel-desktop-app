@@ -5,6 +5,8 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes" 
              xmlns:viewmodels="clr-namespace:TravelApp.DesktopHost.ViewModel"
+             xmlns:components="clr-namespace:TravelApp.DesktopHost.View"
+             xmlns:local="clr-namespace:TravelApp.DesktopHost.View"
              d:DataContext="{d:DesignInstance Type=viewmodels:AgentStayEatViewModel}"
              mc:Ignorable="d" 
              Background="White"
@@ -14,11 +16,13 @@
         <Grid>
             <Grid.RowDefinitions>
                 <RowDefinition Height="1*" />
+                <RowDefinition Height="1*" />
                 <RowDefinition Height="4*" />
                 <RowDefinition Height="1*" />
             </Grid.RowDefinitions>
+            <components:AgentNavigationView Grid.Row="0" ></components:AgentNavigationView>
 
-            <Grid Grid.Row="0">
+            <Grid Grid.Row="1">
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="Auto" />
                     <ColumnDefinition Width="*" />
@@ -26,7 +30,7 @@
 
                 <TextBlock Grid.Column="0" 
                             Text="Stay&amp;Eat"
-                            FontSize="{Binding TextFontSize}"
+                            FontSize="{Binding TextSize}"
                             FontWeight="Medium"
                             TextAlignment="Left"
                            VerticalAlignment="Center"
@@ -34,7 +38,7 @@
                             MaxWidth="439" />
 
                 <WrapPanel Grid.Column="1" HorizontalAlignment="Right" VerticalAlignment="Center" >
-                    <Button Command="{Binding ClientStayEat}" Cursor="Hand" Style="{StaticResource {x:Static ToolBar.ButtonStyleKey}}" Padding="2" Margin="0 0 30 0">
+                    <Button Cursor="Hand" Style="{StaticResource {x:Static ToolBar.ButtonStyleKey}}" Padding="2" Margin="0 0 30 0">
                         <StackPanel Orientation="Horizontal">
                             <Viewbox Width="25" Height="25">
                                 <materialDesign:PackIcon Kind="Plus" VerticalAlignment="Center" />
@@ -89,7 +93,7 @@
                 </WrapPanel>
             </Grid>
 
-            <materialDesign:Card Grid.Row="1" Background="White" Padding="16">
+            <materialDesign:Card Grid.Row="2" Background="White" Padding="16">
                 <DataGrid x:Name="MyDataGrid" ItemsSource="{Binding FilteredItems}"
                           HorizontalAlignment="Center"
                           AutoGenerateColumns="False"
@@ -179,7 +183,7 @@
                 </DataGrid>
             </materialDesign:Card>
 
-            <Button Grid.Row="2" Width="200" Height="30" Content="Delete" Background="#4889E6" BorderBrush="#4889E6" BorderThickness="1"
+            <Button Grid.Row="3" Width="200" Height="30" Content="Delete" Background="#4889E6" BorderBrush="#4889E6" BorderThickness="1"
                     Command="{Binding Delete}"
                     CommandParameter="{Binding SelectedItem, ElementName=MyDataGrid}"/>
 
