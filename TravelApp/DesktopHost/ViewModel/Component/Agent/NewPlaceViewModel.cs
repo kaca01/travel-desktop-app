@@ -1,0 +1,80 @@
+﻿using MaterialDesignThemes.Wpf;
+using System;
+using System.Collections.Generic;
+using System.ComponentModel;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+using System.Windows.Input;
+using System.Windows;
+using TravelApp.DesktopHost.Command;
+using TravelApp.DesktopHost.Command.Agent;
+
+namespace TravelApp.DesktopHost.ViewModel.Component.Agent
+{
+    public class NewPlaceViewModel :BaseViewModel, INotifyPropertyChanged
+    {
+        private string _name;
+        private string _address;
+
+        private double _textFontSize;
+
+        private double _width;
+
+        public string Name
+        {
+            get => _name;
+            set { _name = value; OnPropertyChanged(nameof(Name)); }
+        }
+
+        public string Address
+        {
+            get => _address;
+            set { _address = value; OnPropertyChanged(nameof(Address)); }
+        }
+
+        public double TextFontSize
+        {
+            get { return _textFontSize; }
+            set
+            {
+                if (_textFontSize != value)
+                {
+                    _textFontSize = value;
+                    OnPropertyChanged(nameof(TextFontSize));
+                }
+            }
+        }
+
+        public double Width
+        {
+            get { return _width; }
+            set
+            {
+                if (_width != value)
+                {
+                    _width = value;
+                    OnPropertyChanged(nameof(Width));
+                }
+            }
+        }
+
+        public ICommand Cancel { get; }
+        public ICommand Create { get; }
+
+        public event PropertyChangedEventHandler PropertyChanged;
+
+        protected virtual void OnPropertyChanged(string propertyName)
+        {
+            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
+        }
+
+        public NewPlaceViewModel()
+        {
+            Cancel = new CancelNewPlaceCommand();
+            Create = new CreateNewPlaceCommand(this);
+            SnackbarMessageQueue = new SnackbarMessageQueue();
+        }
+
+    }
+}
