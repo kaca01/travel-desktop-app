@@ -87,7 +87,7 @@
                    FontFamily="Poppins"
                    FontWeight="Regular"
                    HorizontalAlignment="Left">Password</Label>
-            <views:BindablePasswordBox 
+            <views:LoginPasswordBox 
                  Password="{Binding Password}"/>
         </StackPanel>
 
