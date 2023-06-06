@@ -18,6 +18,8 @@ namespace TravelApp.DesktopHost.ViewModel
         private string _passwordValidation;
         private string _passwordAgainValidation;
 
+        private string _addressValidation;
+
         public string NameValidation
         {
             get => _nameValidation;
@@ -43,6 +45,12 @@ namespace TravelApp.DesktopHost.ViewModel
         }
 
         public string PasswordAgainValidation
+        {
+            get => _passwordAgainValidation;
+            set { _passwordAgainValidation = value; OnPropertyChanged(nameof(PasswordAgainValidation)); }
+        }
+
+        public string AddressValidation
         {
             get => _passwordAgainValidation;
             set { _passwordAgainValidation = value; OnPropertyChanged(nameof(PasswordAgainValidation)); }
@@ -150,6 +158,19 @@ namespace TravelApp.DesktopHost.ViewModel
             else
             {
                 PasswordAgainValidation = "";
+                return true;
+            }
+            return false;
+        }
+
+        public bool IsAddressValid(string name)
+        {
+            if (string.IsNullOrWhiteSpace(name)) AddressValidation = "Required";
+            else if (string.IsNullOrWhiteSpace(name.Trim())) AddressValidation = "Required";
+            else if (name.Trim().Length < 3) AddressValidation = "Name must contain minimum 3 characters";
+            else
+            {
+                AddressValidation = "";
                 return true;
             }
             return false;

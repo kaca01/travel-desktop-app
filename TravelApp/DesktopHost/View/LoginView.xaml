@@ -91,7 +91,7 @@
                  Password="{Binding Password}"/>
         </StackPanel>
 
-        <Button Grid.Column="1"
+            <Button Grid.Column="1"
                 Grid.Row="4"
                 VerticalAlignment="Bottom"
                 Width="{Binding Width}"
@@ -101,12 +101,7 @@
                 Style="{StaticResource FormButton}"
                 Command="{Binding Login}"
                 IsDefault="True" Cursor="Hand" >
-            <Button.Resources>
-                <Style TargetType="{x:Type Border}">
-                    <Setter Property="CornerRadius" Value="7"/>
-                </Style>
-            </Button.Resources>
-        </Button>
+            </Button>
         <StackPanel Grid.Column="1"
                     Grid.Row="5"
                     Width="{Binding Width}"

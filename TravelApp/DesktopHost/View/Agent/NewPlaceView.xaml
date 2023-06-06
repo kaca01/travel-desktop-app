@@ -10,7 +10,125 @@
              mc:Ignorable="d" Background="#DFE6F0"
              SizeChanged="Window_SizeChanged"
              d:DataContext="{d:DesignInstance Type=viewmodels:NewPlaceViewModel}" >
-    <Grid>
-        
-    </Grid>
+    <ScrollViewer>
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="1*"></RowDefinition>
+                <RowDefinition Height="2*"></RowDefinition>
+                <RowDefinition Height="auto"></RowDefinition>
+                <RowDefinition Height="auto"></RowDefinition>
+                <RowDefinition Height="auto"></RowDefinition>
+                <RowDefinition Height="1.5*"></RowDefinition>
+                <RowDefinition Height="auto"></RowDefinition>
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"></ColumnDefinition>
+                <ColumnDefinition Width="auto"></ColumnDefinition>
+                <ColumnDefinition Width="*"></ColumnDefinition>
+            </Grid.ColumnDefinitions>
+
+            <materialDesign:Snackbar MessageQueue="{Binding SnackbarMessageQueue}"
+                                 Grid.Row="6"
+                                 Grid.Column="1"
+                                 Margin="0,0,0,20"
+                                 Panel.ZIndex="999">
+                <materialDesign:SnackbarMessage Content="{Binding SnackbarMessageQueue}" />
+            </materialDesign:Snackbar>
+
+            <TextBlock FontSize="{Binding TextFontSize}"
+                Foreground="#161A25"
+                TextAlignment="Left"
+                Margin="0, 20, 0 ,10"
+                Grid.Row="1"
+                Grid.Column="1"
+                FontWeight="Medium"
+                FontFamily="Poppins"
+                MaxWidth="{Binding Width}"
+                x:Name="Title">New Place</TextBlock>
+            <StackPanel Grid.Row="2"
+                    Grid.Column="1"
+                    Width="{Binding Width}"
+                    Height="110">
+                <Label Margin="0 0 0 3"
+                   Height="27"
+                   FontSize="18"
+                   FontFamily="Poppins"
+                   FontWeight="Regular"
+                   HorizontalAlignment="Left">Name</Label>
+                <TextBox Style="{StaticResource MaterialDesignOutlinedTextBox}"
+                     FontSize="15"
+                     Margin="0"
+                     materialDesign:HintAssist.Foreground="#4889E6"
+                     Background="#A5FFFFFF"
+                     materialDesign:TextFieldAssist.UnderlineBrush="#4889E6"
+                     ToolTip="Enter the name for your new place"
+                     Text="{Binding Name}"
+                     PreviewTextInput="TextBox_PreviewTextInputName"
+                     LostFocus="TextBox_NameLostFocus">
+                </TextBox>
+                <Label Height="27"
+                       FontSize="15"
+                       FontFamily="Poppins"
+                       FontWeight="Regular"
+                       HorizontalAlignment="Left"
+                       Content="{Binding ValidationViewModel.NameValidation}"
+                       Foreground="Red"/>
+            </StackPanel>
+            <StackPanel Grid.Row="3"
+                    Grid.Column="1"
+                    Width="{Binding Width}"
+                    Height="110">
+                <Label Margin="0 0 0 3"
+                   Height="27"
+                   FontSize="18"
+                   FontFamily="Poppins"
+                   FontWeight="Regular"
+                   HorizontalAlignment="Left">Address</Label>
+                <TextBox Style="{StaticResource MaterialDesignOutlinedTextBox}"
+                     FontSize="15"
+                     Margin="0"
+                     materialDesign:HintAssist.Foreground="#4889E6"
+                     Background="#A5FFFFFF"
+                     materialDesign:TextFieldAssist.UnderlineBrush="#4889E6"
+                     ToolTip="Enter the address of your new place"
+                     Text="{Binding Address}"
+                     PreviewTextInput="TextBox_PreviewTextInputAddress"
+                     LostFocus="TextBox_AddressLostFocus">
+                </TextBox>
+                <Label Height="27"
+                       FontSize="15"
+                       FontFamily="Poppins"
+                       FontWeight="Regular"
+                       HorizontalAlignment="Left"
+                       Content="{Binding ValidationViewModel.AddressValidation}"
+                       Foreground="Red"/>
+            </StackPanel>
+            <StackPanel Grid.Row="4"
+                    Grid.Column="1"
+                    Width="{Binding Width}"
+                    Height="110">
+                <Label Margin="0 0 0 3"
+                   Height="27"
+                   FontSize="18"
+                   FontFamily="Poppins"
+                   FontWeight="Regular"
+                   HorizontalAlignment="Left">Choose type</Label>
+                <CheckBox></CheckBox>
+                <CheckBox></CheckBox>
+            </StackPanel>
+
+            <Button Grid.Column="1"
+                Grid.Row="5"
+                VerticalAlignment="Bottom"
+                Width="{Binding Width}"
+                Height="40"
+                Margin="0, 22 ,0 ,0"
+                ToolTip="Click to create the new place"
+                Content="Create"
+                Style="{StaticResource FormButton}"
+                Command="{Binding Create}"
+                IsDefault="True" Cursor="Hand" >
+            </Button>
+        </Grid>
+    </ScrollViewer>
 </UserControl>

@@ -61,6 +61,7 @@ namespace TravelApp.DesktopHost.ViewModel.Component.Agent
 
         public ICommand Cancel { get; }
         public ICommand Create { get; }
+        public ValidationViewModel ValidationViewModel { get; }
 
         public event PropertyChangedEventHandler PropertyChanged;
 
@@ -74,6 +75,7 @@ namespace TravelApp.DesktopHost.ViewModel.Component.Agent
             Cancel = new CancelNewPlaceCommand();
             Create = new CreateNewPlaceCommand(this);
             SnackbarMessageQueue = new SnackbarMessageQueue();
+            ValidationViewModel = new ValidationViewModel();
         }
 
     }

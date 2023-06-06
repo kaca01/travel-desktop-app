@@ -192,11 +192,6 @@
                 Style="{StaticResource FormButton}"
                 Command="{Binding Signup}"
                 IsDefault="True" Cursor="Hand" >
-                <Button.Resources>
-                    <Style TargetType="{x:Type Border}">
-                        <Setter Property="CornerRadius" Value="7"/>
-                    </Style>
-                </Button.Resources>
             </Button>
             <StackPanel Grid.Column="1"
                     Grid.Row="8"
