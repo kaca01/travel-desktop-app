@@ -126,6 +126,7 @@ namespace TravelApp.DesktopHost.ViewModel
             else if (name.Trim().Length < 8) PasswordValidation = "Password must contain minimum 8 characters";
             else
             {
+                PasswordValidation = "";
                 if (name.Equals(password)) { 
                     PasswordAgainValidation = "";
                     return true;
@@ -133,7 +134,6 @@ namespace TravelApp.DesktopHost.ViewModel
                 else
                 {
                     PasswordAgainValidation = "Passwords aren't matching!";
-                    PasswordValidation = "";
                     return false;
                 }
             }
