@@ -17,24 +17,11 @@ using TravelApp.DesktopHost.ViewModel;
 namespace TravelApp.DesktopHost.View
 {
     /// <summary>
-    /// Interaction logic for BindablePasswordBox.xaml
+    /// Interaction logic for LoginPasswordBox.xaml
     /// </summary>
-    public partial class BindablePasswordBox : UserControl
+    public partial class LoginPasswordBox : UserControl
     {
         private bool _isPasswordChanging;
-
-        private void TextBox_PasswordLostFocus(object sender, RoutedEventArgs e)
-        {
-            PasswordBox textBox = (PasswordBox)sender;
-            if (!ValidationViewModel.IsAnyPasswordValid(textBox.Password))
-            {
-                textBox.BorderBrush = Brushes.Red;
-            }
-            else
-            {
-                textBox.BorderBrush = Brushes.Gray;
-            }
-        }
 
         private void TextBox_PreviewTextInputPassword(object sender, TextCompositionEventArgs e)
         {
@@ -48,7 +35,7 @@ namespace TravelApp.DesktopHost.View
         }
 
         public static readonly DependencyProperty PasswordProperty =
-            DependencyProperty.Register("Password", typeof(string), typeof(BindablePasswordBox),
+            DependencyProperty.Register("Password", typeof(string), typeof(LoginPasswordBox),
                 new FrameworkPropertyMetadata(string.Empty, FrameworkPropertyMetadataOptions.BindsTwoWayByDefault,
                     PasswordPropertyChanged, null, false, UpdateSourceTrigger.PropertyChanged));
 
@@ -59,14 +46,14 @@ namespace TravelApp.DesktopHost.View
             set { SetValue(PasswordProperty, value); }
         }
 
-        public BindablePasswordBox()
+        public LoginPasswordBox()
         {
             InitializeComponent();
         }
 
         private static void PasswordPropertyChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
         {
-            if (d is BindablePasswordBox passwordBox)
+            if (d is LoginPasswordBox passwordBox)
             {
                 passwordBox.UpdatePassword();
             }
