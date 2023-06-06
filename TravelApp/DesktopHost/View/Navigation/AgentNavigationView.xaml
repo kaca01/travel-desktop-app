@@ -38,7 +38,8 @@
                         BorderBrush="Transparent"
                         Foreground="#000000"
                         FontSize="{ Binding Navigation.TextFontSize }"
-                        FontWeight="Bold"/>
+                        FontWeight="Bold"
+                        Command="{ Binding Navigation.Trips }"/>
                 </StackPanel>
             </TabItem.Header>
         </TabItem>
@@ -56,8 +57,9 @@
                         Background="Transparent"
                         BorderBrush="Transparent"
                         Foreground="#000000"
-                        FontSize="{Binding Navigation.TextFontSize}"
-                        FontWeight="Bold"/>
+                        FontSize="{ Binding Navigation.TextFontSize }"
+                        FontWeight="Bold"
+                        Command="{ Binding Navigation.Attractions }"/>
                 </StackPanel>
             </TabItem.Header>
         </TabItem>
@@ -76,8 +78,9 @@
                         Background="Transparent"
                         BorderBrush="Transparent"
                         Foreground="#000000"
-                        FontSize="{Binding Navigation.TextFontSize}"
-                        FontWeight="Bold"/>
+                        FontSize="{ Binding Navigation.TextFontSize }"
+                        FontWeight="Bold"
+                        Command="{ Binding Navigation.StayAndEat }"/>
                 </StackPanel>
             </TabItem.Header>
         </TabItem>
@@ -96,8 +99,9 @@
                         Background="Transparent"
                         BorderBrush="Transparent"
                         Foreground="#000000"
-                        FontSize="{Binding Navigation.TextFontSize}"
-                        FontWeight="Bold"/>
+                        FontSize="{ Binding Navigation.TextFontSize }"
+                        FontWeight="Bold"
+                        Command="{ Binding Navigation.SoldTrips }"/>
                 </StackPanel>
             </TabItem.Header>
         </TabItem>
@@ -116,8 +120,9 @@
                         Background="Transparent"
                         BorderBrush="Transparent"
                         Foreground="#000000"
-                        FontSize="{Binding Navigation.TextFontSize}"
-                        FontWeight="Bold"/>
+                        FontSize="{ Binding Navigation.TextFontSize }"
+                        FontWeight="Bold"
+                        Command="{ Binding Navigation.Reservations }"/>
                 </StackPanel>
             </TabItem.Header>
         </TabItem>
@@ -137,8 +142,9 @@
                         Background="Transparent"
                         BorderBrush="Transparent"
                         Foreground="#000000"
-                        FontSize="{Binding Navigation.TextFontSize}"
-                        FontWeight="Bold"/>
+                        FontSize="{ Binding Navigation.TextFontSize }"
+                        FontWeight="Bold"
+                        Command="{ Binding Navigation.Help }"/>
                 </StackPanel>
             </TabItem.Header>
         </TabItem>

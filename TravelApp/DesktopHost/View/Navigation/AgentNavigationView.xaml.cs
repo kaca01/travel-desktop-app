@@ -35,27 +35,30 @@ namespace TravelApp.DesktopHost.View
             double windowHeigth = e.NewSize.Height;
 
             // Adjust the font size based on the window width
-            // TODO : how to make this generic ????
-            AgentTripsViewModel viewModel = (AgentTripsViewModel)DataContext;
-            if (windowWidth <= 930)
+            // TODO : add here or and view model that you are using
+            // note that you will need to add Navigation property in your view model
+            if (DataContext is AgentTripsViewModel viewModel)
             {
-                viewModel.Navigation.TextFontSize = 14;
-                viewModel.Navigation.TabWidth = windowWidth / 7; //125
-            }
-            else if (windowWidth <= 1100)
-            {
-                viewModel.Navigation.TextFontSize = 15;
-                viewModel.Navigation.TabWidth = windowWidth / 7; //150
-            }
-            else if (windowWidth <= 1250)
-            {
-                viewModel.Navigation.TextFontSize = 16;
-                viewModel.Navigation.TabWidth = windowWidth/7; //180
-            }
-            else
-            {
-                viewModel.Navigation.TextFontSize = 20;
-                viewModel.Navigation.TabWidth = windowWidth/7; //220
+                if (windowWidth <= 930)
+                {
+                    viewModel.Navigation.TextFontSize = 14;
+                    viewModel.Navigation.TabWidth = windowWidth / 7; //125
+                }
+                else if (windowWidth <= 1100)
+                {
+                    viewModel.Navigation.TextFontSize = 15;
+                    viewModel.Navigation.TabWidth = windowWidth / 7; //150
+                }
+                else if (windowWidth <= 1250)
+                {
+                    viewModel.Navigation.TextFontSize = 16;
+                    viewModel.Navigation.TabWidth = windowWidth / 7; //180
+                }
+                else
+                {
+                    viewModel.Navigation.TextFontSize = 20;
+                    viewModel.Navigation.TabWidth = windowWidth / 7; //220
+                }
             }
         }
     }
