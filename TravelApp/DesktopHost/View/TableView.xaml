@@ -41,14 +41,14 @@
                                 <ColumnDefinition Width="*" />
                             </Grid.ColumnDefinitions>
                             <materialDesign:PackIcon Grid.Column="0" Kind="Magnify" VerticalAlignment="Center" Margin="5" />
-                            <TextBox Grid.Column="1" Background="Transparent" BorderThickness="0" Padding="5" VerticalContentAlignment="Center" FontSize="14" Foreground="Black" />
+                            <TextBox Text="{Binding SearchText, UpdateSourceTrigger=PropertyChanged}" Grid.Column="1" Background="Transparent" BorderThickness="0" Padding="5" VerticalContentAlignment="Center" FontSize="14" Foreground="Black" />
                         </Grid>
                     </Border>
                 </WrapPanel>
             </Grid>
 
             <materialDesign:Card Grid.Row="1" Background="White" Padding="16">
-                <DataGrid ItemsSource="{Binding Items}"
+                <DataGrid ItemsSource="{Binding FilteredItems}"
                           VerticalAlignment="Center"
                           HorizontalAlignment="Center"
                           AutoGenerateColumns="False"

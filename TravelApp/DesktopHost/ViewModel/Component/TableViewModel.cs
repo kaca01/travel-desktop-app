@@ -13,13 +13,33 @@ namespace TravelApp.DesktopHost.ViewModel
 {
     public class TableViewModel : BaseViewModel, INotifyPropertyChanged
     {
-        public ObservableCollection<TouristFacilityListItemViewModel> Items { get; set; }
+        private ObservableCollection<TouristFacilityListItemViewModel> _items;
+        public ObservableCollection<TouristFacilityListItemViewModel> Items
+        {
+            get { return _items; }
+            set
+            {
+                _items = value;
+                OnPropertyChanged(nameof(Items));
+            }
+        }
+
+        private ObservableCollection<TouristFacilityListItemViewModel> _filteredItems;
+        public ObservableCollection<TouristFacilityListItemViewModel> FilteredItems
+        {
+            get { return _filteredItems; }
+            set
+            {
+                _filteredItems = value;
+                OnPropertyChanged(nameof(FilteredItems));
+            }
+        }
 
         private double _textFontSize;
 
         private double _width;
 
-        private string _orientation;
+        private string _searchText;
 
         public double TextFontSize
         {
@@ -47,16 +67,14 @@ namespace TravelApp.DesktopHost.ViewModel
             }
         }
 
-        public string Orientation
+        public string SearchText
         {
-            get { return _orientation; }
+            get { return _searchText; }
             set
             {
-                if (_orientation != value)
-                {
-                    _orientation = value;
-                    OnPropertyChanged(nameof(TextFontSize));
-                }
+                _searchText = value;
+                OnPropertyChanged(nameof(SearchText));
+                FilterData();
             }
         }
 
@@ -67,12 +85,20 @@ namespace TravelApp.DesktopHost.ViewModel
             var dataService = new TouristFacilityService();
             var data = dataService.GetTableData();
 
-            Items = new ObservableCollection<TouristFacilityListItemViewModel>(data);   
+            Items = new ObservableCollection<TouristFacilityListItemViewModel>(data);
+            FilteredItems = new ObservableCollection<TouristFacilityListItemViewModel>(Items);
         }
 
         protected virtual void OnPropertyChanged(string propertyName)
         {
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
         }
+
+        private void FilterData()
+        {
+            FilteredItems = new ObservableCollection<TouristFacilityListItemViewModel>(Items.Where(item => item.Name.ToLower().Contains(SearchText.ToLower()) || item.Address.ToLower().Contains(SearchText.ToLower()) || item.Type.ToLower().Contains(SearchText.ToLower())));
+        }
+
+
     }
 }

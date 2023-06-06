@@ -54,13 +54,11 @@ namespace TravelApp.DesktopHost.View
             {
                 viewModel.TextFontSize = 40;
                 viewModel.Width = 300;
-                viewModel.Orientation = "Horizontal";
             }
             else
             {
                 viewModel.TextFontSize = 60;
                 viewModel.Width = 439;
-                viewModel.Orientation = "Vertical";
             }
         }
     }
