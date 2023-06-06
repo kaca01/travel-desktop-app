@@ -10,6 +10,12 @@
         Background="White"
         SizeChanged="Window_SizeChanged">
 
+    <UserControl.Resources>
+        <Style x:Key="PlaceholderTextBlockStyle" TargetType="TextBox">
+            <Setter Property="Foreground" Value="Gray"/>
+        </Style>
+    </UserControl.Resources>
+
     <Grid HorizontalAlignment="Center">
         <Grid>
             <Grid.RowDefinitions>
@@ -33,7 +39,6 @@
                             Margin="0,70,0,16" />
 
                 <WrapPanel Grid.Column="1" HorizontalAlignment="Right">
-                    <TextBlock Text="Search:" FontFamily="Poppins" VerticalAlignment="Center" Margin="0,70,16,0" />
                     <Border Width="200" Height="30" Background="White" BorderBrush="Gray" BorderThickness="1" CornerRadius="15" Margin="0 70 0 0">
                         <Grid>
                             <Grid.ColumnDefinitions>
@@ -41,7 +46,21 @@
                                 <ColumnDefinition Width="*" />
                             </Grid.ColumnDefinitions>
                             <materialDesign:PackIcon Grid.Column="0" Kind="Magnify" VerticalAlignment="Center" Margin="5" />
-                            <TextBox Text="{Binding SearchText, UpdateSourceTrigger=PropertyChanged}" FontFamily="Poppins" Grid.Column="1" Background="Transparent" BorderThickness="0" Padding="5" VerticalContentAlignment="Center" FontSize="14" Foreground="Black" />
+                            <Grid Grid.Column="1">
+                                <TextBox x:Name="myTextBox" Style="{StaticResource PlaceholderTextBlockStyle}"  Text="{Binding SearchText, UpdateSourceTrigger=PropertyChanged}" FontFamily="Poppins" MaxLength="15" Background="Transparent" BorderThickness="0" Padding="5" VerticalContentAlignment="Center" FontSize="14" Foreground="Black" />
+                                <TextBlock Text="Search..." FontSize="14" FontFamily="Poppins" Foreground="Gray"  VerticalAlignment="Center" Panel.ZIndex="1">
+                                    <TextBlock.Style>
+                                        <Style TargetType="TextBlock">
+                                            <Setter Property="Visibility" Value="Collapsed" />
+                                            <Style.Triggers>
+                                                <DataTrigger Binding="{Binding Text, ElementName=myTextBox}" Value="">
+                                                    <Setter Property="Visibility" Value="Visible" />
+                                                </DataTrigger>
+                                            </Style.Triggers>
+                                        </Style>
+                                    </TextBlock.Style>
+                                </TextBlock>
+                            </Grid>
                         </Grid>
                     </Border>
                 </WrapPanel>
@@ -135,11 +154,8 @@
                             </DataGridTemplateColumn.CellTemplate>
                         </DataGridTemplateColumn>
                     </DataGrid.Columns>
-
                 </DataGrid>
             </materialDesign:Card>
-
-
         </Grid>
     </Grid>
 </UserControl>
