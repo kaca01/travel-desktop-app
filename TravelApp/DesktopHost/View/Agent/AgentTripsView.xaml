@@ -1,0 +1,33 @@
+﻿<UserControl x:Class="TravelApp.DesktopHost.View.AgentTripsView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:TravelApp.DesktopHost.View"
+             mc:Ignorable="d" 
+             d:DesignHeight="350" d:DesignWidth="800"
+             xmlns:viewmodel="clr-namespace:TravelApp.DesktopHost.ViewModel"
+             d:DataContext="{d:DesignInstance Type=viewmodel:AgentTripsViewModel}"
+             xmlns:components="clr-namespace:TravelApp.DesktopHost.View">
+    
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="auto"></RowDefinition>
+            <RowDefinition Height="*"></RowDefinition>
+        </Grid.RowDefinitions>
+        <components:AgentNavigationView Grid.Row="0" SelectedIndex="0"></components:AgentNavigationView>
+
+        <Button
+            Grid.Row="1"
+            Width="300"
+            Height="50"
+            Content="{ Binding WindowSize }"
+            ToolTip="Log out from your account"
+            Background="IndianRed"
+            Foreground="#ffffff"
+            FontSize="30"
+            FontWeight="Bold"
+            Command="{ Binding DisplayWindowSize }"/>
+
+    </Grid>
+</UserControl>

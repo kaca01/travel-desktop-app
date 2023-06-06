@@ -9,6 +9,7 @@
         xmlns:local="clr-namespace:TravelApp"
         mc:Ignorable="d"
         Title="TravelApp"
+        Icon="./Style/Images/airplane.ico"
         Style="{StaticResource AllWindows}"
         TextElement.Foreground="{DynamicResource MaterialDesignBody}"
         WindowState="Maximized">
@@ -25,6 +26,14 @@
             </DataTemplate>
             <DataTemplate DataType="{x:Type viewmodels:AgentStayEatViewModel}">
                 <views:AgentStayEatView />
+            <DataTemplate DataType="{x:Type viewmodels:ClientNavigationViewModel}">
+                <views:ClientNavigationView/>
+            </DataTemplate>
+            <DataTemplate DataType="{x:Type viewmodels:AgentNavigationViewModel}">
+                <views:AgentNavigationView/>
+            </DataTemplate>
+            <DataTemplate DataType="{x:Type viewmodels:AgentTripsViewModel}">
+                <views:AgentTripsView/>
             </DataTemplate>
         </Grid.Resources>
         <ContentControl Content="{Binding CurrentViewModel}" />
