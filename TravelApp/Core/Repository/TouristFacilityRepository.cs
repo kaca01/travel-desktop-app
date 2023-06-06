@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Microsoft.EntityFrameworkCore;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -18,6 +19,14 @@ namespace TravelApp.Core.Repository
             }
         }
 
+        public TouristFacility GetById(int id)
+        {
+            using (var context = new TravelContext())
+            {
+                return context.TouristFacilities.First(u => u.Id == id);
+            }
+        }
+
         public List<string> GetAllNames()
         {
             using (var context = new TravelContext())
@@ -30,13 +39,29 @@ namespace TravelApp.Core.Repository
         {
             using (var context = new TravelContext())
             {
-                return context.TouristFacilities.Select(t => new TouristFacilityListItemViewModel 
-                { 
+                return context.TouristFacilities.Select(t => new TouristFacilityListItemViewModel
+                {
+                    Id = t.Id,
                     Name = t.Name,
                     Address = t.Address,
                     Type = t.Type.ToString(),
                     Link = t.Link,
-                }).ToList();
+                    IsDeleted = t.IsDeleted
+                }).Where(t => !t.IsDeleted).ToList();
+            }
+        }
+
+        public void DeleteItem(int id) 
+        {
+            using (var context = new TravelContext())
+            {
+                TouristFacility facility = GetById(id);
+
+                if (facility != null)
+                {
+                    facility.IsDeleted = true;
+                    context.SaveChanges();
+                }
             }
         }
     }

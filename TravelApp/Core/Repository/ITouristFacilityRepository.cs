@@ -11,8 +11,9 @@ namespace TravelApp.Core.Repository
     public interface ITouristFacilityRepository
     {
         public List<TouristFacility> GetAll();
+        public TouristFacility GetById(int id);
         public List<string> GetAllNames();
         public List<TouristFacilityListItemViewModel> Get();
-
+        public void DeleteItem(int id);
     }
 }

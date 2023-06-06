@@ -13,9 +13,9 @@
     <Grid HorizontalAlignment="Center">
         <Grid>
             <Grid.RowDefinitions>
-                <RowDefinition Height="2*" />
-                <RowDefinition Height="3*" />
-                <RowDefinition Height="*" />
+                <RowDefinition Height="1*" />
+                <RowDefinition Height="4*" />
+                <RowDefinition Height="1*" />
             </Grid.RowDefinitions>
 
             <Grid Grid.Row="0">
@@ -29,11 +29,11 @@
                             FontSize="{Binding TextFontSize}"
                             FontWeight="Medium"
                             TextAlignment="Left"
+                           VerticalAlignment="Center"
                             FontFamily="Poppins"
-                            MaxWidth="439"
-                            Margin="0,70,0,16" />
+                            MaxWidth="439" />
 
-                <WrapPanel Grid.Column="1" HorizontalAlignment="Right" VerticalAlignment="Center" Margin="0 70 0 0">
+                <WrapPanel Grid.Column="1" HorizontalAlignment="Right" VerticalAlignment="Center" >
                     <Button Cursor="Hand" Style="{StaticResource {x:Static ToolBar.ButtonStyleKey}}" Padding="2" Margin="0 0 30 0">
                         <StackPanel Orientation="Horizontal">
                             <Viewbox Width="25" Height="25">
@@ -58,7 +58,7 @@
             </Grid>
 
             <materialDesign:Card Grid.Row="1" Background="White" Padding="16">
-                <DataGrid ItemsSource="{Binding FilteredItems}"
+                <DataGrid x:Name="MyDataGrid" ItemsSource="{Binding FilteredItems}"
                           HorizontalAlignment="Center"
                           AutoGenerateColumns="False"
                           CanUserAddRows="False"
@@ -70,7 +70,8 @@
                           HeadersVisibility="Column"
                           ScrollViewer.VerticalScrollBarVisibility="Visible"
                           ScrollViewer.HorizontalScrollBarVisibility="Auto"
-                          BorderThickness="0">
+                          BorderThickness="0"
+                          SelectionMode="Single">
 
                     <DataGrid.ColumnHeaderStyle>
                         <Style TargetType="DataGridColumnHeader">
@@ -85,13 +86,11 @@
                         <SolidColorBrush x:Key="MaterialDesignSelectionForeground" Color="	#5A5A5A" />
 
                         <Style TargetType="DataGridCell">
-                            <Setter Property="Background" Value="{StaticResource MaterialDesignSelection}" />
-                            <Setter Property="Foreground" Value="{StaticResource MaterialDesignSelectionForeground}" />
                             <Setter Property="BorderThickness" Value="0" />
                             <Style.Triggers>
                                 <Trigger Property="IsSelected" Value="True">
-                                    <Setter Property="Background" Value="{StaticResource MaterialDesignSelection}" />
-                                    <Setter Property="Foreground" Value="{StaticResource MaterialDesignSelectionForeground}" />
+                                    <Setter Property="Background" Value="#ECECEC" />
+                                    <Setter Property="Foreground" Value="Black" />
                                     <Setter Property="BorderThickness" Value="0" />
                                 </Trigger>
                             </Style.Triggers>
@@ -148,43 +147,10 @@
                 </DataGrid>
             </materialDesign:Card>
 
-            <Button Grid.Row="2">
-                
-            </Button>
+            <Button Grid.Row="2" Width="200" Height="30" Content="Delete" Background="#4889E6" BorderBrush="#4889E6" BorderThickness="1"
+                    Command="{Binding Delete}"
+                    CommandParameter="{Binding SelectedItem, ElementName=MyDataGrid}"/>
+
         </Grid>
     </Grid>
-    <UserControl.Resources>
-        <ResourceDictionary>
-            <Style TargetType="TextBox">
-                <Setter Property="Background" Value="Transparent"/>
-                <Setter Property="BorderBrush" Value="Transparent"/>
-                <Setter Property="BorderThickness" Value="0"/>
-                <Setter Property="Padding" Value="5"/>
-                <Setter Property="VerticalContentAlignment" Value="Center"/>
-                <Setter Property="FontSize" Value="14"/>
-                <Setter Property="Foreground" Value="Black"/>
-                <Setter Property="Template">
-                    <Setter.Value>
-                        <ControlTemplate TargetType="TextBox">
-                            <Grid>
-                                <Border Background="{TemplateBinding Background}" BorderThickness="{TemplateBinding BorderThickness}" BorderBrush="{TemplateBinding BorderBrush}"/>
-                                <ScrollViewer x:Name="PART_ContentHost" Focusable="false" HorizontalScrollBarVisibility="Hidden" VerticalScrollBarVisibility="Hidden"/>
-                            </Grid>
-                        </ControlTemplate>
-                    </Setter.Value>
-                </Setter>
-                <Style.Triggers>
-                    <Trigger Property="IsEnabled" Value="False">
-                        <Setter Property="Opacity" Value="0.5"/>
-                    </Trigger>
-                    <Trigger Property="IsMouseOver" Value="True">
-                        <Setter Property="BorderBrush" Value="Gray"/>
-                    </Trigger>
-                    <Trigger Property="IsKeyboardFocused" Value="True">
-                        <Setter Property="BorderBrush" Value="Gray"/>
-                    </Trigger>
-                </Style.Triggers>
-            </Style>
-        </ResourceDictionary>
-    </UserControl.Resources>
 </UserControl>

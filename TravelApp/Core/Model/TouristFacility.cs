@@ -20,5 +20,7 @@ namespace TravelApp.Core.Model
         public string Address { get; set; }
         public PlaceType Type { get; set; }
         public string Link { get; set; }
+
+        public bool IsDeleted { get; set; }
     }
 }

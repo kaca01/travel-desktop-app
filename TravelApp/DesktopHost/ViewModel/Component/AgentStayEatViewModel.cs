@@ -5,7 +5,9 @@ using System.ComponentModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Input;
 using TravelApp.Core.Service;
+using TravelApp.DesktopHost.Command;
 
 namespace TravelApp.DesktopHost.ViewModel
 {
@@ -32,6 +34,21 @@ namespace TravelApp.DesktopHost.ViewModel
                 OnPropertyChanged(nameof(FilteredItems));
             }
         }
+
+        private TouristFacilityListItemViewModel _selectedItem;
+
+        public TouristFacilityListItemViewModel SelectedItem 
+        {
+            get { return _selectedItem; }
+            set
+            {
+                _selectedItem = value;
+                OnPropertyChanged(nameof(SelectedItem));
+            }
+        }
+
+
+        public ICommand Delete { get; set; }
 
         private double _textFontSize;
 
@@ -84,6 +101,8 @@ namespace TravelApp.DesktopHost.ViewModel
 
             Items = new ObservableCollection<TouristFacilityListItemViewModel>(data);
             FilteredItems = new ObservableCollection<TouristFacilityListItemViewModel>(Items);
+
+            Delete = new DeleteStayEatItemCommand(this);
         }
 
         protected virtual void OnPropertyChanged(string propertyName)

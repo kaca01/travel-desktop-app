@@ -10,10 +10,12 @@ namespace TravelApp.DesktopHost.ViewModel
 {
     public class TouristFacilityListItemViewModel : BaseViewModel
     {
+        public int Id { get; set; }
         public string Name { get; set; }
         public string Address { get; set; }
         public string Type { get; set; }
         public string Link { get; set; }
+        public bool IsDeleted { get; set; }
         
     }
 }

@@ -12,6 +12,8 @@ namespace TravelApp.Core.Service
     {
         private ITouristFacilityRepository _facilityRepository;
 
+        public ITouristFacilityRepository FacilityRepository { get { return _facilityRepository; } }
+
         public TouristFacilityService()
         {
             this._facilityRepository = new TouristFacilityRepository();
