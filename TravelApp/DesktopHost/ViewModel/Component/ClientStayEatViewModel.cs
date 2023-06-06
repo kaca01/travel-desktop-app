@@ -9,7 +9,7 @@ using TravelApp.Core.Service;
 
 namespace TravelApp.DesktopHost.ViewModel
 {
-    public class StayEatViewModel : BaseViewModel, INotifyPropertyChanged
+    public class ClientStayEatViewModel : BaseViewModel, INotifyPropertyChanged
     {
         private ObservableCollection<TouristFacilityListItemViewModel> _items;
         public ObservableCollection<TouristFacilityListItemViewModel> Items
@@ -78,7 +78,7 @@ namespace TravelApp.DesktopHost.ViewModel
 
         public event PropertyChangedEventHandler PropertyChanged;
 
-        public StayEatViewModel()
+        public ClientStayEatViewModel()
         {
             var dataService = new TouristFacilityService();
             var data = dataService.GetTableData();

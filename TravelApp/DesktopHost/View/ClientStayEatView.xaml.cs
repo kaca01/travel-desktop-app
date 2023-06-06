@@ -25,7 +25,7 @@ namespace TravelApp.DesktopHost.View
         public ClientStayEatView()
         {
             InitializeComponent();
-            DataContext = new StayEatViewModel();
+            DataContext = new ClientStayEatViewModel();
         }
 
         private void Hyperlink_RequestNavigate(object sender, RequestNavigateEventArgs e)
@@ -47,7 +47,7 @@ namespace TravelApp.DesktopHost.View
             double windowHeigth = e.NewSize.Height;
 
             // Adjust the font size based on the window width
-            StayEatViewModel viewModel = (StayEatViewModel)DataContext;
+            ClientStayEatViewModel viewModel = (ClientStayEatViewModel)DataContext;
             if (windowWidth <= 1200 || windowHeigth <= 700)
             {
                 viewModel.TextFontSize = 40;
