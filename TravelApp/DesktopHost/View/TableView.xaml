@@ -10,7 +10,7 @@
         Background="White"
         SizeChanged="Window_SizeChanged">
 
-    <Grid HorizontalAlignment="Center" VerticalAlignment="Center">
+    <Grid HorizontalAlignment="Center">
         <Grid>
             <Grid.RowDefinitions>
                 <RowDefinition Height="Auto" />
@@ -33,7 +33,7 @@
                             Margin="0,70,0,16" />
 
                 <WrapPanel Grid.Column="1" HorizontalAlignment="Right">
-                    <TextBlock Text="Search:" VerticalAlignment="Center" Margin="0,70,16,0" />
+                    <TextBlock Text="Search:" FontFamily="Poppins" VerticalAlignment="Center" Margin="0,70,16,0" />
                     <Border Width="200" Height="30" Background="White" BorderBrush="Gray" BorderThickness="1" CornerRadius="15" Margin="0 70 0 0">
                         <Grid>
                             <Grid.ColumnDefinitions>
@@ -41,7 +41,7 @@
                                 <ColumnDefinition Width="*" />
                             </Grid.ColumnDefinitions>
                             <materialDesign:PackIcon Grid.Column="0" Kind="Magnify" VerticalAlignment="Center" Margin="5" />
-                            <TextBox Text="{Binding SearchText, UpdateSourceTrigger=PropertyChanged}" Grid.Column="1" Background="Transparent" BorderThickness="0" Padding="5" VerticalContentAlignment="Center" FontSize="14" Foreground="Black" />
+                            <TextBox Text="{Binding SearchText, UpdateSourceTrigger=PropertyChanged}" FontFamily="Poppins" Grid.Column="1" Background="Transparent" BorderThickness="0" Padding="5" VerticalContentAlignment="Center" FontSize="14" Foreground="Black" />
                         </Grid>
                     </Border>
                 </WrapPanel>
@@ -49,7 +49,6 @@
 
             <materialDesign:Card Grid.Row="1" Background="White" Padding="16">
                 <DataGrid ItemsSource="{Binding FilteredItems}"
-                          VerticalAlignment="Center"
                           HorizontalAlignment="Center"
                           AutoGenerateColumns="False"
                           CanUserAddRows="False"
@@ -59,7 +58,7 @@
                           CanUserReorderColumns="False"
                           RowHeaderWidth="0"
                           HeadersVisibility="Column"
-                          ScrollViewer.VerticalScrollBarVisibility="Auto"
+                          ScrollViewer.VerticalScrollBarVisibility="Visible"
                           ScrollViewer.HorizontalScrollBarVisibility="Auto"
                           BorderThickness="0">
 
@@ -67,6 +66,7 @@
                         <Style TargetType="DataGridColumnHeader">
                             <Setter Property="Background" Value="LightGray" />
                             <Setter Property="Padding" Value="16" />
+                            <Setter Property="FontFamily" Value="Poppins" />
                         </Style>
                     </DataGrid.ColumnHeaderStyle>
 
@@ -93,6 +93,7 @@
                             <DataGridTextColumn.ElementStyle>
                                 <Style TargetType="TextBlock">
                                     <Setter Property="Padding" Value="16" />
+                                    <Setter Property="FontFamily" Value="Poppins" />
                                 </Style>
                             </DataGridTextColumn.ElementStyle>
                         </DataGridTextColumn>
@@ -100,6 +101,7 @@
                             <DataGridTextColumn.ElementStyle>
                                 <Style TargetType="TextBlock">
                                     <Setter Property="Padding" Value="16" />
+                                    <Setter Property="FontFamily" Value="Poppins" />
                                 </Style>
                             </DataGridTextColumn.ElementStyle>
                         </DataGridTextColumn>
@@ -107,13 +109,14 @@
                             <DataGridTextColumn.ElementStyle>
                                 <Style TargetType="TextBlock">
                                     <Setter Property="Padding" Value="16" />
+                                    <Setter Property="FontFamily" Value="Poppins" />
                                 </Style>
                             </DataGridTextColumn.ElementStyle>
                         </DataGridTextColumn>
                         <DataGridTemplateColumn Header="Link">
                             <DataGridTemplateColumn.CellTemplate>
                                 <DataTemplate>
-                                    <TextBlock Padding="16">
+                                    <TextBlock Padding="16" FontFamily="Poppins">
                                         <Hyperlink NavigateUri="{Binding Link}" RequestNavigate="Hyperlink_RequestNavigate">
                                             <Hyperlink.Style>
                                                 <Style TargetType="Hyperlink">
