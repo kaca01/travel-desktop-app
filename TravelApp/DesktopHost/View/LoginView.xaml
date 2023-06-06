@@ -35,47 +35,47 @@
                                  Margin="0,0,0,20">
             <materialDesign:SnackbarMessage Content="{Binding SnackbarMessageQueue}" />
         </materialDesign:Snackbar>
-
-        <TextBlock FontSize="{Binding TextFontSize}"
+            <StackPanel Grid.Row="1"
+                        Grid.Column="1"
+                        MaxWidth="{Binding Width}">
+                <TextBlock FontSize="{Binding TextFontSize}"
                 Foreground="#161A25"
                 TextAlignment="Left"
-                Grid.Row="1"
-                Grid.Column="1"
                 FontWeight="Medium"
                 FontFamily="Poppins"
-                MaxWidth="{Binding Width}"
                 x:Name="Title">
             Welcome to <LineBreak/> Travel App!</TextBlock>
             <Label
-                Grid.Row="1"
-                Grid.Column="1"
                 VerticalAlignment="Bottom"
-                FontSize="25"
+                FontSize="23"
+                FontFamily="Poppins"
+                MaxWidth="{Binding Width}"
                 Visibility="{Binding ErrorVisibility}"
                 Foreground="Red">Incorrect email or password</Label>
-        <StackPanel Grid.Row="2"
-                    Grid.Column="1"
-                    Width="{Binding Width}"
-                    Height="90"
-                    Margin="0,0,0,20">
-            <Label Margin="0 0 0 3"
-                   Height="27"
-                   FontSize="18"
-                   FontFamily="Poppins"
-                   FontWeight="Regular"
-                   HorizontalAlignment="Left">Email</Label>
-            <TextBox Style="{StaticResource MaterialDesignOutlinedTextBox}"
-                     FontSize="15"
-                     Margin="0"
-                     materialDesign:HintAssist.Hint="name@domain.com"
-                     materialDesign:HintAssist.Foreground="#4889E6"
-                     Background="#A5FFFFFF"
-                     materialDesign:TextFieldAssist.UnderlineBrush="#4889E6"
-                     ToolTip="Enter email address associated with your account"
-                     Text="{Binding Email}"
-                     PreviewTextInput="TextBox_PreviewTextInputEmail">
-            </TextBox>
         </StackPanel>
+        <StackPanel Grid.Row="2"
+                Grid.Column="1"
+                Width="{Binding Width}"
+                Height="90"
+                Margin="0,0,0,20">
+                <Label Margin="0 0 0 3"
+                    Height="27"
+                    FontSize="18"
+                    FontFamily="Poppins"
+                    FontWeight="Regular"
+                    HorizontalAlignment="Left">Email</Label>
+                <TextBox Style="{StaticResource MaterialDesignOutlinedTextBox}"
+                    FontSize="15"
+                    Margin="0"
+                    materialDesign:HintAssist.Hint="name@domain.com"
+                    materialDesign:HintAssist.Foreground="#4889E6"
+                    Background="#A5FFFFFF"
+                    materialDesign:TextFieldAssist.UnderlineBrush="#4889E6"
+                    ToolTip="Enter email address associated with your account"
+                    Text="{Binding Email}"
+                    PreviewTextInput="TextBox_PreviewTextInputEmail">
+                </TextBox>
+            </StackPanel>
         <StackPanel Grid.Row="3"
                     Grid.Column="1"
                     Width="{Binding Width}"
