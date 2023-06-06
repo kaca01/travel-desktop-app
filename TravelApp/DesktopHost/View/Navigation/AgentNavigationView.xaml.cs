@@ -34,7 +34,6 @@ namespace TravelApp.DesktopHost.View
             double windowWidth = e.NewSize.Width;
             double windowHeigth = e.NewSize.Height;
 
-            // Adjust the font size based on the window width
             // TODO : add here or and view model that you are using
             // note that you will need to add Navigation property in your view model
             if (DataContext is AgentTripsViewModel viewModel)
