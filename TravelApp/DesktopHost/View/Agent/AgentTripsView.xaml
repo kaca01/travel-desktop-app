@@ -17,7 +17,6 @@
             <RowDefinition Height="auto"/>
             <RowDefinition Height="1*" />
             <RowDefinition Height="4*" />
-            <RowDefinition Height="1*" />
         </Grid.RowDefinitions>
         <components:AgentNavigationView Grid.Row="0" SelectedIndex="0"></components:AgentNavigationView>
 
@@ -34,7 +33,6 @@
                         FontWeight="Medium"
                         TextAlignment="Left"
                         VerticalAlignment="Center"
-                        FontFamily="Poppins"
                         MaxWidth="439"
                         Margin="30 0 0 0"/>
 
@@ -109,11 +107,71 @@
                     ItemsSource="{Binding SortCriteria}"
                     Width="250"
                     Height="30"
-                    
                     />
-
             </WrapPanel>
+        </Grid>
+        <Grid Grid.Row="2" Margin="0 20 0 30">
+            <ScrollViewer VerticalScrollBarVisibility="Auto">
+                <ItemsControl ItemsSource="{Binding Trips}">
+                    <ItemsControl.ItemsPanel>
+                        <ItemsPanelTemplate>
+                            <WrapPanel Orientation="Horizontal" />
+                        </ItemsPanelTemplate>
+                    </ItemsControl.ItemsPanel>
+                    <ItemsControl.ItemTemplate>
+                        <DataTemplate>
+                            <Border Margin="40 0 10 0" 
+                                    CornerRadius="30" 
+                                    Background="#DFE6F0">
+                                <Grid  >
+                                    <Grid.RowDefinitions>
+                                        <RowDefinition Height="Auto"/>
+                                        <RowDefinition Height="Auto"/>
+                                        <RowDefinition Height="Auto"/>
+                                        <RowDefinition Height="Auto"/>
+                                        <RowDefinition Height="Auto"/>
+                                    </Grid.RowDefinitions>
+                                    
+                                    <Border CornerRadius="5">
+                                        <Image Source="../../../Style/Images/trip.png" 
+                                               Width="400" 
+                                               Height="auto" 
+                                               Margin="0 20 0 0"
+                                               Grid.Row="1"/>
+                                    </Border>
+                                    <TextBlock
+                                        Text="{Binding Name}"
+                                        TextWrapping="Wrap"
+                                        Grid.Row="2"
+                                        Margin="20 20 10 20"
+                                        Foreground="Black"
+                                        FontSize="30"
+                                        FontWeight="DemiBold"
+                                        />
+                                    <TextBlock
+                                        Text="{ Binding Description }"
+                                        Width="400"
+                                        Height="100"
+                                        TextWrapping="Wrap"
+                                        Grid.Row="3"
+                                        Margin="20 0 20 20"
+                                        FontSize="17"
+                                        Foreground="#545454"
+                                        LineHeight="32"/>
 
+                                    <TextBlock
+                                        Grid.Row="4"
+                                        Text="{ Binding Price }"
+                                        HorizontalAlignment="Right"
+                                        Margin="0 0 20 0"
+                                        FontSize="25"
+                                        />
+                                </Grid>
+                            </Border>
+                        </DataTemplate>
+                    </ItemsControl.ItemTemplate>
+                </ItemsControl>
+            </ScrollViewer>
         </Grid>
     </Grid>
 </UserControl>
