@@ -41,13 +41,21 @@ namespace TravelApp.DesktopHost.ViewModel
                 }
             }
         }
+
         public ICommand Trips { get; }
+
         public ICommand Attractions { get; }
+
         public ICommand StayAndEat { get; }
+
         public ICommand SoldTrips { get; }
+
         public ICommand Reservations { get; }
+
         public ICommand Help { get; }
+
         public ICommand LogOut { get; }
+
 
         public AgentNavigationViewModel() 
         {
