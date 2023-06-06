@@ -51,7 +51,7 @@
                             </Grid.ColumnDefinitions>
                             <materialDesign:PackIcon Grid.Column="0" Kind="Magnify" VerticalAlignment="Center" Margin="5" />
                             <Grid Grid.Column="1">
-                                <TextBox x:Name="myTextBox" Text="{Binding SearchText, UpdateSourceTrigger=PropertyChanged}" FontFamily="Poppins" MaxLength="60" Background="Transparent" BorderThickness="0" Padding="5" VerticalContentAlignment="Center" FontSize="14" Foreground="Black" >
+                                <TextBox x:Name="myTextBox" Text="{Binding SearchText, UpdateSourceTrigger=PropertyChanged}" Cursor="IBeam" FontFamily="Poppins" MaxLength="60" Background="Transparent" BorderThickness="0" Padding="5" VerticalContentAlignment="Center" FontSize="14" Foreground="Black" >
                                     <TextBox.Style>
                                         <Style TargetType="TextBox">
                                             <Setter Property="Template">
