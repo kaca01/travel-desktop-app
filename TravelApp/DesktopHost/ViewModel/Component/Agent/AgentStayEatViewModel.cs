@@ -50,7 +50,6 @@ namespace TravelApp.DesktopHost.ViewModel
             }
         }
 
-
         public ICommand Delete { get; set; }
 
         private double _textSize;
