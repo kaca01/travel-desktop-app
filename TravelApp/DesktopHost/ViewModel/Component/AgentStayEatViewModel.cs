@@ -92,6 +92,8 @@ namespace TravelApp.DesktopHost.ViewModel
             }
         }
 
+        public ICommand ClientStayEat { get; }
+
         public event PropertyChangedEventHandler PropertyChanged;
 
         public AgentStayEatViewModel()
@@ -103,6 +105,8 @@ namespace TravelApp.DesktopHost.ViewModel
             FilteredItems = new ObservableCollection<TouristFacilityListItemViewModel>(Items);
 
             Delete = new DeleteStayEatItemCommand(this);
+            ClientStayEat = new ClientStayEatNavigationCommand();
+
         }
 
         protected virtual void OnPropertyChanged(string propertyName)
