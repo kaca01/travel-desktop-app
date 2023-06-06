@@ -5,13 +5,11 @@ using System.ComponentModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using TravelApp.Core.Model;
-using TravelApp.Core.Repository;
 using TravelApp.Core.Service;
 
 namespace TravelApp.DesktopHost.ViewModel
 {
-    public class TableViewModel : BaseViewModel, INotifyPropertyChanged
+    public class StayEatViewModel : BaseViewModel, INotifyPropertyChanged
     {
         private ObservableCollection<TouristFacilityListItemViewModel> _items;
         public ObservableCollection<TouristFacilityListItemViewModel> Items
@@ -80,7 +78,7 @@ namespace TravelApp.DesktopHost.ViewModel
 
         public event PropertyChangedEventHandler PropertyChanged;
 
-        public TableViewModel()
+        public StayEatViewModel()
         {
             var dataService = new TouristFacilityService();
             var data = dataService.GetTableData();
@@ -98,7 +96,5 @@ namespace TravelApp.DesktopHost.ViewModel
         {
             FilteredItems = new ObservableCollection<TouristFacilityListItemViewModel>(Items.Where(item => item.Name.ToLower().Contains(SearchText.ToLower()) || item.Address.ToLower().Contains(SearchText.ToLower()) || item.Type.ToLower().Contains(SearchText.ToLower())));
         }
-
-
     }
 }

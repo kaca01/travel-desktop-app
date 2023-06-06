@@ -20,8 +20,8 @@
             <DataTemplate DataType="{x:Type viewmodels:SignupViewModel}">
                 <views:SignupView />
             </DataTemplate>
-            <DataTemplate DataType="{x:Type viewmodels:TableViewModel}">
-                <views:TableView />
+            <DataTemplate DataType="{x:Type viewmodels:StayEatViewModel}">
+                <views:ClientStayEatView />
             </DataTemplate>
         </Grid.Resources>
         <ContentControl Content="{Binding CurrentViewModel}" />

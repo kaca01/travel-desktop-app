@@ -2,8 +2,6 @@
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
-using System.Runtime.Intrinsics.X86;
-using System.Security.Policy;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
@@ -20,14 +18,14 @@ using TravelApp.DesktopHost.ViewModel;
 namespace TravelApp.DesktopHost.View
 {
     /// <summary>
-    /// Interaction logic for TableView.xaml
+    /// Interaction logic for ClientStayEatView.xaml
     /// </summary>
-    public partial class TableView : UserControl
+    public partial class ClientStayEatView : UserControl
     {
-        public TableView()
+        public ClientStayEatView()
         {
             InitializeComponent();
-            DataContext = new TableViewModel(); 
+            DataContext = new StayEatViewModel();
         }
 
         private void Hyperlink_RequestNavigate(object sender, RequestNavigateEventArgs e)
@@ -49,7 +47,7 @@ namespace TravelApp.DesktopHost.View
             double windowHeigth = e.NewSize.Height;
 
             // Adjust the font size based on the window width
-            TableViewModel viewModel = (TableViewModel)DataContext;
+            StayEatViewModel viewModel = (StayEatViewModel)DataContext;
             if (windowWidth <= 1200 || windowHeigth <= 700)
             {
                 viewModel.TextFontSize = 40;

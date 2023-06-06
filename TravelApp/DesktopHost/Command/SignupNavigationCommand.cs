@@ -18,7 +18,7 @@ namespace TravelApp.DesktopHost.Command
         }
         public override void Execute(object parameter)
         {
-            _navigation.CurrentViewModel = new TableViewModel();
+            _navigation.CurrentViewModel = new StayEatViewModel();
         }
     }
 }
