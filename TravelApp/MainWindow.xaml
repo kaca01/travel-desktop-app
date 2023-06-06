@@ -18,23 +18,31 @@
             <DataTemplate DataType="{x:Type viewmodels:ClientStayEatViewModel}">
                 <views:ClientStayEatView />
             </DataTemplate>
+            
             <DataTemplate DataType="{x:Type viewmodels:LoginViewModel}">
                 <views:LoginView />
             </DataTemplate>
+            
             <DataTemplate DataType="{x:Type viewmodels:SignupViewModel}">
                 <views:SignupView />
             </DataTemplate>
+
             <DataTemplate DataType="{x:Type viewmodels:AgentStayEatViewModel}">
                 <views:AgentStayEatView />
+            </DataTemplate>
+            
             <DataTemplate DataType="{x:Type viewmodels:ClientNavigationViewModel}">
                 <views:ClientNavigationView/>
             </DataTemplate>
+            
             <DataTemplate DataType="{x:Type viewmodels:AgentNavigationViewModel}">
                 <views:AgentNavigationView/>
             </DataTemplate>
+            
             <DataTemplate DataType="{x:Type viewmodels:AgentTripsViewModel}">
                 <views:AgentTripsView/>
             </DataTemplate>
+            
         </Grid.Resources>
         <ContentControl Content="{Binding CurrentViewModel}" />
     </Grid>
