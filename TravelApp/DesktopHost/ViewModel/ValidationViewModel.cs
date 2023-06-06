@@ -6,6 +6,7 @@ using System.Net.Mail;
 using System.Text;
 using System.Text.RegularExpressions;
 using System.Threading.Tasks;
+using TravelApp.DesktopHost.Command;
 
 namespace TravelApp.DesktopHost.ViewModel
 {
@@ -47,6 +48,22 @@ namespace TravelApp.DesktopHost.ViewModel
             set { _passwordAgainValidation = value; OnPropertyChanged(nameof(PasswordAgainValidation)); }
         }
 
+        public void ValidateAll(Validation user)
+        {
+            IsNameValid(user.Name);
+            IsSurnameValid(user.Surname);
+            IsEmailValid(user.Email);
+            IsPasswordValid(user.Password);
+            IsPasswordAgainValid(user.PasswordAgain, user.Password);
+        }
+
+        public Validation GetValidationMessages()
+        {
+
+            return new Validation(NameValidation, SurnameValidation, EmailValidation, 
+                PasswordValidation, PasswordAgainValidation);
+        }
+
         public bool IsNameValid(string name)
         {
             if (string.IsNullOrWhiteSpace(name)) NameValidation = "Required";
@@ -74,20 +91,23 @@ namespace TravelApp.DesktopHost.ViewModel
 
         public bool IsEmailValid(string name)
         {
-            Regex regex = new Regex("^\\S+@\\S+\\.\\S+$");
-            Match match = regex.Match(name);
             if (string.IsNullOrWhiteSpace(name)) EmailValidation = "Required";
             else if (string.IsNullOrWhiteSpace(name.Trim())) EmailValidation = "Required";
-            else if (!match.Success) EmailValidation = "Format not valid";
             else
             {
+                Regex regex = new Regex("^\\S+@\\S+\\.\\S+$");
+                Match match = regex.Match(name);
+                if (!match.Success) { 
+                    EmailValidation = "Format not valid";
+                    return false;
+                }
                 EmailValidation = "";
                 return true;
             }
             return false;
         }
 
-        public bool IsAnyPasswordValid(string name)
+        public static bool IsAnyPasswordValid(string name)
         {
             if (string.IsNullOrWhiteSpace(name)) return false;
             else if (string.IsNullOrWhiteSpace(name.Trim())) return false;
@@ -123,6 +143,25 @@ namespace TravelApp.DesktopHost.ViewModel
                 return true;
             }
             return false;
+        }
+    }
+
+
+    public class Validation
+    {
+        public string Name { get; set; }
+        public string Surname { get; set; }
+        public string Email { get; set; }
+        public string Password { get; set; }
+        public string PasswordAgain { get; set; }
+
+        public Validation(string name, string surname, string email, string password, string pa)
+        {
+            Name = name;
+            Surname = surname;
+            Email = email;
+            Password = password;
+            PasswordAgain = pa;
         }
     }
 }

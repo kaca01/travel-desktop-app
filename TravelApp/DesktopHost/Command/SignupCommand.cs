@@ -27,9 +27,9 @@ namespace TravelApp.DesktopHost.Command
         {
             try
             {
-                _userService.Signup(_signupVM.Name, _signupVM.Surname, _signupVM.Email, _signupVM.Password, _signupVM.PasswordAgain);
-                //todo navigate to what page?
-                _signupVM.SnackbarMessageQueue.Enqueue("Pozzz");
+                Validation user = new Validation(_signupVM.Name, _signupVM.Surname, _signupVM.Email, _signupVM.Password, _signupVM.PasswordAgain);  
+                _userService.Signup(user, _signupVM);
+                _navigationStore.CurrentViewModel = new LoginViewModel();
             }
             catch (Exception e)
             {

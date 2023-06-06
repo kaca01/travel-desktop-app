@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using TravelApp.Core.Model;
 using TravelApp.Core.Repository;
 using TravelApp.DesktopHost.Command;
+using TravelApp.DesktopHost.ViewModel;
 using TravelApp.DesktopHost.ViewModel.Navigation;
 
 namespace TravelApp.Core.Service
@@ -37,9 +38,21 @@ namespace TravelApp.Core.Service
             CurrentUser = foundUser;
         }
 
-        public void Signup(string name, string surname, string email, string password, string passwordAgain)
-        {
-            // todo implement sign up logic: checking whether email is taken ...
+        public void Signup(Validation user, SignupViewModel vm)
+        {   
+            vm.ValidationViewModel.ValidateAll(user);
+            Validation validation = vm.ValidationViewModel.GetValidationMessages();
+            if (string.IsNullOrEmpty(validation.Name) & string.IsNullOrEmpty(validation.Surname) &
+                string.IsNullOrEmpty(validation.Email) &string.IsNullOrEmpty(validation.Password) &
+                    string.IsNullOrEmpty(validation.PasswordAgain))
+            {
+                if (this.userRepository.GetByEmail(user.Email) != null) throw new Exception("User with this email already exists!");
+                this.userRepository.Create(user.Name, user.Surname, user.Email, user.Password);
+            }
+            else
+            {
+                throw new Exception("Invalid data!");
+            }
         }
 
     }

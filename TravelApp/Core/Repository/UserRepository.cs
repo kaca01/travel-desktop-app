@@ -33,5 +33,16 @@ namespace TravelApp.Core.Repository
                 return context.Users.FirstOrDefault(u => u.Email == email);
             }
         }
+
+        public User Create(string name, string surname, string email, string password)
+        {
+            using (var context = new TravelContext())
+            {
+                User user = new User() { Name = name, Surname = surname, Email = email, Password = password, Role = Role.CLIENT };
+                context.Users.Add(user);
+                context.SaveChanges();
+                return user;
+            }
+        }
     }
 }

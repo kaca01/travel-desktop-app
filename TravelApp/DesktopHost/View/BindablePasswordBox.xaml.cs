@@ -26,8 +26,7 @@ namespace TravelApp.DesktopHost.View
         private void TextBox_PasswordLostFocus(object sender, RoutedEventArgs e)
         {
             PasswordBox textBox = (PasswordBox)sender;
-            SignupViewModel viewModel = (SignupViewModel)DataContext;
-            if (!viewModel.ValidationViewModel.IsAnyPasswordValid(textBox.Password))
+            if (!ValidationViewModel.IsAnyPasswordValid(textBox.Password))
             {
                 textBox.BorderBrush = Brushes.Red;
             }

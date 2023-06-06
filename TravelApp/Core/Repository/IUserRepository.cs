@@ -14,5 +14,7 @@ namespace TravelApp.Core.Repository
         public User GetById(int id);
 
         public User GetByEmail(string email);
+
+        public User Create(string name, string surname, string email, string password);
     }
 }
