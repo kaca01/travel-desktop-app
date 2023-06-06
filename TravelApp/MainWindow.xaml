@@ -11,6 +11,7 @@
         Title="TravelApp"
         Icon="./Style/Images/airplane.ico"
         Style="{StaticResource AllWindows}"
+        d:DataContext="{d:DesignInstance Type=viewmodels:MainViewModel}"
         TextElement.Foreground="{DynamicResource MaterialDesignBody}"
         WindowState="Maximized">
     <Grid>

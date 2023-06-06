@@ -6,15 +6,145 @@
         xmlns:local="clr-namespace:TravelApp.DesktopHost.View"
         xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
         xmlns:viewmodels="clr-namespace:TravelApp.DesktopHost.ViewModel"
+        xmlns:views="clr-namespace:TravelApp.DesktopHost.View"
         mc:Ignorable="d"
-        Background="White"
-        Width="{x:Static SystemParameters.PrimaryScreenWidth}"  
-        Height="{x:Static SystemParameters.PrimaryScreenHeight}"
+        Background="#DFE6F0"
+        SizeChanged="Window_SizeChanged"
         d:DataContext="{d:DesignInstance Type=viewmodels:LoginViewModel}">
-    <Grid>
-        <Label Padding="150px">Welcome to Login Page!</Label>
-        <Button
-            Command="{Binding Signup}">
-            Go to Sign Up Page</Button>
+    <ScrollViewer>
+        <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="1.5*"></RowDefinition>
+            <RowDefinition Height="2.5*"></RowDefinition>
+            <RowDefinition Height="auto"></RowDefinition>
+            <RowDefinition Height="auto"></RowDefinition>
+            <RowDefinition Height="1.2*"></RowDefinition>
+            <RowDefinition Height="auto"></RowDefinition>
+            <RowDefinition Height="1.5*"></RowDefinition>
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*"></ColumnDefinition>
+            <ColumnDefinition Width="auto"></ColumnDefinition>
+            <ColumnDefinition Width="*"></ColumnDefinition>
+        </Grid.ColumnDefinitions>
+
+
+        <materialDesign:Snackbar MessageQueue="{Binding SnackbarMessageQueue}"
+                                 Grid.Row="6"
+                                 Grid.Column="1"
+                                 Margin="0,0,0,20">
+            <materialDesign:SnackbarMessage Content="{Binding SnackbarMessageQueue}" />
+        </materialDesign:Snackbar>
+            <StackPanel Grid.Row="1"
+                        Grid.Column="1"
+                        MaxWidth="{Binding Width}">
+                <TextBlock FontSize="{Binding TextFontSize}"
+                Foreground="#161A25"
+                TextAlignment="Left"
+                FontWeight="Medium"
+                FontFamily="Poppins"
+                x:Name="Title">
+            Welcome to <LineBreak/> Travel App!</TextBlock>
+            <Label
+                VerticalAlignment="Bottom"
+                FontSize="23"
+                FontFamily="Poppins"
+                MaxWidth="{Binding Width}"
+                Visibility="{Binding ErrorVisibility}"
+                Foreground="Red">Incorrect email or password</Label>
+        </StackPanel>
+        <StackPanel Grid.Row="2"
+                Grid.Column="1"
+                Width="{Binding Width}"
+                Height="90"
+                Margin="0,0,0,20">
+                <Label Margin="0 0 0 3"
+                    Height="27"
+                    FontSize="18"
+                    FontFamily="Poppins"
+                    FontWeight="Regular"
+                    HorizontalAlignment="Left">Email</Label>
+                <TextBox Style="{StaticResource MaterialDesignOutlinedTextBox}"
+                    FontSize="15"
+                    Margin="0"
+                    materialDesign:HintAssist.Hint="name@domain.com"
+                    materialDesign:HintAssist.Foreground="#4889E6"
+                    Background="#A5FFFFFF"
+                    materialDesign:TextFieldAssist.UnderlineBrush="#4889E6"
+                    ToolTip="Enter email address associated with your account"
+                    Text="{Binding Email}"
+                    PreviewTextInput="TextBox_PreviewTextInputEmail">
+                </TextBox>
+            </StackPanel>
+        <StackPanel Grid.Row="3"
+                    Grid.Column="1"
+                    Width="{Binding Width}"
+                    Height="90"
+                    Margin="0,10,0,0">
+            <Label Margin="0"
+                   Height="27"
+                   FontSize="18"
+                   FontFamily="Poppins"
+                   FontWeight="Regular"
+                   HorizontalAlignment="Left">Password</Label>
+            <views:LoginPasswordBox 
+                 Password="{Binding Password}"/>
+        </StackPanel>
+
+        <Button Grid.Column="1"
+                Grid.Row="4"
+                VerticalAlignment="Bottom"
+                Width="{Binding Width}"
+                Height="40"
+                ToolTip="Click to log in to your account"
+                Content="Login"
+                Style="{StaticResource FormButton}"
+                Command="{Binding Login}"
+                IsDefault="True" Cursor="Hand" >
+            <Button.Resources>
+                <Style TargetType="{x:Type Border}">
+                    <Setter Property="CornerRadius" Value="7"/>
+                </Style>
+            </Button.Resources>
+        </Button>
+        <StackPanel Grid.Column="1"
+                    Grid.Row="5"
+                    Width="{Binding Width}"
+                    Height="80">
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*"></ColumnDefinition>
+                    <ColumnDefinition Width="*"></ColumnDefinition>
+                </Grid.ColumnDefinitions>
+                <Label HorizontalAlignment="Right"
+                       Grid.Column="0"
+                       FontSize="20"
+                       Margin="0, 10, 10, 0"
+                       Foreground="#808080"
+                       FontFamily="Poppins"
+                       FontWeight="Medium">No account ?</Label>
+                <Button Grid.Column="1"
+                        Command="{Binding Signup}">
+                    <Button.Template>
+                        <ControlTemplate TargetType="Button">
+                            <ContentPresenter />
+                        </ControlTemplate>
+                    </Button.Template>
+                    <TextBlock HorizontalAlignment="Left"
+                       FontSize="20"
+                       Margin="10, 10, 0, 0"
+                       Foreground="#4889E6" 
+                       Background="#DFE6F0"
+                       FontFamily="Poppins" 
+                       ToolTip="Go to sign up page"
+                       FontWeight="Medium" Cursor="Hand"
+                       TextDecorations="Underline"
+                       Text="Sign up"/>
+                </Button>
+            </Grid>
+           
+        </StackPanel>
+
     </Grid>
+    </ScrollViewer>
 </UserControl>

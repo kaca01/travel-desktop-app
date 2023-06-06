@@ -14,6 +14,7 @@ namespace TravelApp
         {
             using (var db = new TravelContext())
             {
+
                 //users
                 User client1 = new User() { Name = "Niksa", Surname = "Jovic", Email = "niksa@gmail.com", Password = "pass1234", Role = Role.CLIENT };
                 User client2 = new User() { Name = "Ines", Surname = "Miletic", Email = "ines@gmail.com", Password = "pass1234", Role = Role.CLIENT };
