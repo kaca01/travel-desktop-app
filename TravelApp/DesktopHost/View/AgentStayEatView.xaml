@@ -9,12 +9,6 @@
              mc:Ignorable="d" 
              Background="White"
              SizeChanged="Window_SizeChanged">
-    
-    <UserControl.Resources>
-        <Style x:Key="PlaceholderTextBlockStyle" TargetType="TextBox">
-            <Setter Property="Foreground" Value="Gray"/>
-        </Style>
-    </UserControl.Resources>
 
     <Grid HorizontalAlignment="Center">
         <Grid>
@@ -57,19 +51,38 @@
                             </Grid.ColumnDefinitions>
                             <materialDesign:PackIcon Grid.Column="0" Kind="Magnify" VerticalAlignment="Center" Margin="5" />
                             <Grid Grid.Column="1">
-                                <TextBox x:Name="myTextBox" Style="{StaticResource PlaceholderTextBlockStyle}"  Text="{Binding SearchText, UpdateSourceTrigger=PropertyChanged}" FontFamily="Poppins" MaxLength="15" Background="Transparent" BorderThickness="0" Padding="5" VerticalContentAlignment="Center" FontSize="14" Foreground="Black" />
-                                <TextBlock Text="Search..." FontSize="14" FontFamily="Poppins" Foreground="Gray" VerticalAlignment="Center" Panel.ZIndex="1">
-                                    <TextBlock.Style>
-                                        <Style TargetType="TextBlock">
-                                            <Setter Property="Visibility" Value="Collapsed" />
-                                            <Style.Triggers>
-                                                <DataTrigger Binding="{Binding Text, ElementName=myTextBox}" Value="">
-                                                    <Setter Property="Visibility" Value="Visible" />
-                                                </DataTrigger>
-                                            </Style.Triggers>
+                                <TextBox x:Name="myTextBox" Text="{Binding SearchText, UpdateSourceTrigger=PropertyChanged}" FontFamily="Poppins" MaxLength="60" Background="Transparent" BorderThickness="0" Padding="5" VerticalContentAlignment="Center" FontSize="14" Foreground="Black" >
+                                    <TextBox.Style>
+                                        <Style TargetType="TextBox">
+                                            <Setter Property="Template">
+                                                <Setter.Value>
+                                                    <ControlTemplate TargetType="TextBox">
+                                                        <Grid>
+                                                            <ScrollViewer x:Name="PART_ContentHost" />
+                                                            <TextBlock Text="Search..." FontSize="14" FontFamily="Poppins" Foreground="Gray" VerticalAlignment="Center" Panel.ZIndex="1">
+                                                                <TextBlock.Style>
+                                                                    <Style TargetType="TextBlock">
+                                                                        <Setter Property="Visibility" Value="Collapsed" />
+                                                                        <Style.Triggers>
+                                                                            <DataTrigger Binding="{Binding IsKeyboardFocused, RelativeSource={RelativeSource TemplatedParent}}" Value="False">
+                                                                                <Setter Property="Visibility" Value="Visible" />
+                                                                            </DataTrigger>
+                                                                        </Style.Triggers>
+                                                                    </Style>
+                                                                </TextBlock.Style>
+                                                            </TextBlock>
+                                                        </Grid>
+                                                        <ControlTemplate.Triggers>
+                                                            <Trigger Property="IsKeyboardFocused" Value="True">
+                                                                <Setter TargetName="PART_ContentHost" Property="Visibility" Value="Visible" />
+                                                            </Trigger>
+                                                        </ControlTemplate.Triggers>
+                                                    </ControlTemplate>
+                                                </Setter.Value>
+                                            </Setter>
                                         </Style>
-                                    </TextBlock.Style>
-                                </TextBlock>
+                                    </TextBox.Style>
+                                </TextBox>
                             </Grid>
                         </Grid>
                     </Border>
