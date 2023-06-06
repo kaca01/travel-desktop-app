@@ -9,6 +9,7 @@
         xmlns:local="clr-namespace:TravelApp"
         mc:Ignorable="d"
         Title="TravelApp"
+        Icon="./Style/Images/airplane.ico"
         Style="{StaticResource AllWindows}"
         TextElement.Foreground="{DynamicResource MaterialDesignBody}"
         WindowState="Maximized">
