@@ -2,7 +2,9 @@
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Linq;
+using System.Net.Mail;
 using System.Text;
+using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 
 namespace TravelApp.DesktopHost.ViewModel
@@ -72,8 +74,11 @@ namespace TravelApp.DesktopHost.ViewModel
 
         public bool IsEmailValid(string name)
         {
+            Regex regex = new Regex("^\\S+@\\S+\\.\\S+$");
+            Match match = regex.Match(name);
             if (string.IsNullOrWhiteSpace(name)) EmailValidation = "Required";
             else if (string.IsNullOrWhiteSpace(name.Trim())) EmailValidation = "Required";
+            else if (!match.Success) EmailValidation = "Format not valid";
             else
             {
                 EmailValidation = "";
@@ -86,39 +91,38 @@ namespace TravelApp.DesktopHost.ViewModel
         {
             if (string.IsNullOrWhiteSpace(name)) return false;
             else if (string.IsNullOrWhiteSpace(name.Trim())) return false;
-            else
+            else if (name.Trim().Length < 8) return false;
             {
                 return true;
             }
-            return false;
-            //todo add check for min characters
         }
 
         public bool IsPasswordValid(string name)
         {
             if (string.IsNullOrWhiteSpace(name)) PasswordValidation = "Required";
             else if (string.IsNullOrWhiteSpace(name.Trim())) PasswordValidation = "Required";
+            else if (name.Trim().Length < 8) PasswordValidation = "Password must contain minimum 8 characters";
             else
             {
                 PasswordValidation = "";
                 return true;
             }
             return false;
-            //todo add check for min characters
         }
 
 
-        public bool IsPasswordAgainValid(string name, string passwordAgain)
+        public bool IsPasswordAgainValid(string name, string password)
         {
             if (string.IsNullOrWhiteSpace(name)) PasswordAgainValidation = "Required";
             else if (string.IsNullOrWhiteSpace(name.Trim())) PasswordAgainValidation = "Required";
+            else if (name.Trim().Length < 8) PasswordAgainValidation = "Password must contain minimum 8 characters";
+            else if (!name.Equals(password)) PasswordAgainValidation = "Passwords aren't matching!";
             else
             {
                 PasswordAgainValidation = "";
                 return true;
             }
             return false;
-            //todo add check for min characters and compare passwords
         }
     }
 }
