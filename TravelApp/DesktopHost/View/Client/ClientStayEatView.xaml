@@ -197,6 +197,7 @@
                                     <Setter Property="Padding" Value="16" />
                                     <Setter Property="FontFamily" Value="Poppins" />
                                     <Setter Property="VerticalAlignment" Value="Center" />
+                                    <Setter Property="ToolTip" Value="{Binding Name}" />
                                 </Style>
                             </DataGridTextColumn.ElementStyle>
                         </DataGridTextColumn>
@@ -208,6 +209,7 @@
                                     <Setter Property="Padding" Value="16" />
                                     <Setter Property="FontFamily" Value="Poppins" />
                                     <Setter Property="VerticalAlignment" Value="Center" />
+                                    <Setter Property="ToolTip" Value="{Binding Address}" />
                                 </Style>
                             </DataGridTextColumn.ElementStyle>
                         </DataGridTextColumn>
@@ -219,6 +221,7 @@
                                     <Setter Property="Padding" Value="16" />
                                     <Setter Property="FontFamily" Value="Poppins" />
                                     <Setter Property="VerticalAlignment" Value="Center" />
+                                    <Setter Property="ToolTip" Value="{Binding Type}" />
                                 </Style>
                             </DataGridTextColumn.ElementStyle>
                         </DataGridTextColumn>

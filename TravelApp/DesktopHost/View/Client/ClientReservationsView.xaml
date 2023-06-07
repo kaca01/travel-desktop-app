@@ -48,6 +48,11 @@
                             <materialDesign:PackIcon Grid.Column="0" Kind="Magnify" VerticalAlignment="Center" Margin="5" />
                             <Grid Grid.Column="1">
                                 <TextBox x:Name="myTextBox" Text="{Binding SearchText, UpdateSourceTrigger=PropertyChanged}" FontFamily="Poppins" MaxLength="60" Cursor="IBeam" Background="Transparent" BorderThickness="0" Padding="5" VerticalContentAlignment="Center" FontSize="14" Foreground="Black" >
+                                    <TextBox.ToolTip>
+                                        <ToolTip>
+                                            <TextBlock Text="Input Your search text" />
+                                        </ToolTip>
+                                    </TextBox.ToolTip>
                                     <TextBox.Style>
                                         <Style TargetType="TextBox">
                                             <Setter Property="Template">
@@ -186,6 +191,7 @@
                                     <Setter Property="Padding" Value="16" />
                                     <Setter Property="FontFamily" Value="Poppins" />
                                     <Setter Property="VerticalAlignment" Value="Center" />
+                                    <Setter Property="ToolTip" Value="{Binding Trip}" />
                                 </Style>
                             </DataGridTextColumn.ElementStyle>
                         </DataGridTextColumn>
@@ -197,12 +203,13 @@
                                     <Setter Property="Padding" Value="16" />
                                     <Setter Property="FontFamily" Value="Poppins" />
                                     <Setter Property="VerticalAlignment" Value="Center" />
+                                    <Setter Property="ToolTip" Value="{Binding Price}" />
                                 </Style>
                             </DataGridTextColumn.ElementStyle>
                         </DataGridTextColumn>
-                        
+
                         <DataGridTextColumn Binding="{Binding StartDate, StringFormat='{}{0:d}'}" IsReadOnly="True" Width="*" 
-                                SortMemberPath="StartDate" HeaderStyle="{StaticResource SortableColumnHeaderStyle}" >
+                                            SortMemberPath="StartDate" HeaderStyle="{StaticResource SortableColumnHeaderStyle}" >
                             <DataGridTextColumn.Header>
                                 <DataGridColumnHeader Content="Start date">
                                     <DataGridColumnHeader.ToolTip>
@@ -215,10 +222,11 @@
                                     <Setter Property="Padding" Value="16" />
                                     <Setter Property="FontFamily" Value="Poppins" />
                                     <Setter Property="VerticalAlignment" Value="Center" />
+                                    <Setter Property="ToolTip" Value="{Binding StartDate}" />
                                 </Style>
                             </DataGridTextColumn.ElementStyle>
                         </DataGridTextColumn>
-                        
+
                         <DataGridTextColumn Binding="{Binding EndDate, StringFormat='{}{0:d}'}" IsReadOnly="True" Width="*" 
                                 SortMemberPath="EndDate" HeaderStyle="{StaticResource SortableColumnHeaderStyle}" >
                             <DataGridTextColumn.Header>
@@ -233,6 +241,7 @@
                                     <Setter Property="Padding" Value="16" />
                                     <Setter Property="FontFamily" Value="Poppins" />
                                     <Setter Property="VerticalAlignment" Value="Center" />
+                                    <Setter Property="ToolTip" Value="{Binding EndDate}" />
                                 </Style>
                             </DataGridTextColumn.ElementStyle>
                         </DataGridTextColumn>
@@ -249,11 +258,11 @@
                     <ColumnDefinition Width="2*"/>
                     <ColumnDefinition Width="2*"/>
                 </Grid.ColumnDefinitions>
-                <Button Grid.Column="1" Width="200" Height="30" Content="Call off" Background="#DFE6F0" BorderBrush="#DFE6F0" Foreground="#161A25" BorderThickness="1"
+                <Button Grid.Column="1" Width="200" Height="30" Content="Call off" Background="#DFE6F0" BorderBrush="#DFE6F0" Foreground="#161A25" BorderThickness="1" ToolTip="Click to call off selected reservation"
                     Command="{Binding CallOff}"
                     CommandParameter="{Binding SelectedItem, ElementName=MyDataGrid}"/>
                 
-                <Button Grid.Column="2" Width="200" Height="30" Content="Buy" Background="#4889E6" BorderBrush="#4889E6" BorderThickness="1"
+                <Button Grid.Column="2" Width="200" Height="30" Content="Buy" Background="#4889E6" BorderBrush="#4889E6" BorderThickness="1" ToolTip="Click to buy selected trip"
                     Command="{Binding Buy}"
                     CommandParameter="{Binding SelectedItem, ElementName=MyDataGrid}"/>
             </Grid>

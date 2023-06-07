@@ -60,8 +60,8 @@ namespace TravelApp.DesktopHost.View
                 viewModel.Width = 439;
             }
 
-            if (windowWidth <= 930) { viewModel.TableWidth = 500; viewModel.ArrowMargin = new Thickness(-10, 0, 0, 0); }
-            else if (windowWidth <= 1100) { viewModel.TableWidth = 600; viewModel.ArrowMargin = new Thickness(-20, 0, 0, 0); }
+            if (windowWidth <= 930) { viewModel.TableWidth = 650; viewModel.ArrowMargin = new Thickness(-10, 0, 0, 0); }
+            else if (windowWidth <= 990) { viewModel.TableWidth = 700; viewModel.ArrowMargin = new Thickness(-20, 0, 0, 0); }
             else if (windowWidth <= 1250) { viewModel.TableWidth = 750; viewModel.ArrowMargin = new Thickness(-30, 0, 0, 0); }
             else { viewModel.TableWidth = 800; viewModel.ArrowMargin = new Thickness(-40, 0, 0, 0); }
         }
