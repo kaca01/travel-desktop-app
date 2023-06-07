@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using TravelApp.Core.Model;
 using TravelApp.DesktopHost.ViewModel;
 
 namespace TravelApp.Core.Repository
@@ -63,7 +64,7 @@ namespace TravelApp.Core.Repository
                     EndDate = t.Trip.EndDate,
                     Type = t.Type.ToString(),
                     IsDeleted = t.IsDeleted
-                }).Where(t => !t.IsDeleted && t.Type.Equals("TRIP")).ToList();
+                }).Where(t => !t.IsDeleted && t.Type.Equals("PURCHASE")).ToList();
             }
         }
 
@@ -83,7 +84,43 @@ namespace TravelApp.Core.Repository
                     Type = t.Type.ToString(),
                     IsDeleted = t.IsDeleted
                     // TODO promeni za trenutnog korisnika
-                }).Where(t => !t.IsDeleted && t.Type.Equals("TRIP") && t.User.Email.Equals("ines@gmail.com")).ToList();
+                }).Where(t => !t.IsDeleted && t.Type.Equals("PURCHASE") && t.User.Email.Equals("ines@gmail.com")).ToList();
+            }
+        }
+
+        public Transaction GetById(int id)
+        {
+            using (var context = new TravelContext())
+            {
+                return context.Transactions.First(u => u.Id == id);
+            }
+        }
+
+        public void BuyTrip(int id)
+        {
+            using (var context = new TravelContext())
+            {
+                Transaction transaction = GetById(id);
+
+                if (transaction != null)
+                {
+                    transaction.Type = TransactionType.PURCHASE;
+                    context.SaveChanges();
+                }
+            }
+        }
+
+        public void CallOffReservation(int id)
+        {
+            using (var context = new TravelContext())
+            {
+                Transaction transaction = GetById(id);
+
+                if (transaction != null)
+                {
+                    transaction.IsDeleted = true;
+                    context.SaveChanges();
+                }
             }
         }
     }

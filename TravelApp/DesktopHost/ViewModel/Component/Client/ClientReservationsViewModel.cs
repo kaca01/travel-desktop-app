@@ -5,7 +5,9 @@ using System.ComponentModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Input;
 using TravelApp.Core.Service;
+using TravelApp.DesktopHost.Command;
 
 namespace TravelApp.DesktopHost.ViewModel
 {
@@ -109,6 +111,10 @@ namespace TravelApp.DesktopHost.ViewModel
             }
         }
 
+        public ICommand Buy { get; set; }
+
+        public ICommand CallOff { get; set; }
+
         public ClientReservationsViewModel()
         {
             Navigation = new ClientNavigationViewModel();
@@ -117,6 +123,9 @@ namespace TravelApp.DesktopHost.ViewModel
             var data = dataService.GetReservationsForCurrentUser();
             Items = new ObservableCollection<TransactionListItemViewModel>(data);
             FilteredItems = new ObservableCollection<TransactionListItemViewModel>(Items);
+
+            Buy = new BuyTripCommand(this);
+            CallOff = new CallOffReservationCommand(this);
         }
 
         protected virtual void OnPropertyChanged(string propertyName)

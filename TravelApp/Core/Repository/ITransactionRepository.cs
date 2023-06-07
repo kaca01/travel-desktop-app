@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using TravelApp.Core.Model;
 using TravelApp.DesktopHost.ViewModel;
 
 namespace TravelApp.Core.Repository
@@ -13,5 +14,7 @@ namespace TravelApp.Core.Repository
         public List<TransactionListItemViewModel> GetReservationsForCurrentUser();
         public List<TransactionListItemViewModel> GetTrips();
         public List<TransactionListItemViewModel> GetTripsForCurrentUser();
+        public Transaction GetById(int id);
+        public void BuyTrip(int id);
     }
 }
