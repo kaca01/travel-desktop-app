@@ -62,13 +62,6 @@
                 <ColumnDefinition Width="*"></ColumnDefinition>
             </Grid.ColumnDefinitions>
 
-            <materialDesign:Snackbar MessageQueue="{Binding SnackbarMessageQueue}"
-                                 Grid.Row="7"
-                                 Grid.Column="1"
-                                 Margin="0,0,0,20"
-                                 Panel.ZIndex="999">
-                <materialDesign:SnackbarMessage Content="{Binding SnackbarMessageQueue}" />
-            </materialDesign:Snackbar>
             <Button Command="{Binding Cancel}"
                     Width="50" Height="50"
                     Grid.Column="2"

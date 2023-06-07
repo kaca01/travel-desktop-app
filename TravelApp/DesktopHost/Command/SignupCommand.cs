@@ -7,6 +7,7 @@ using TravelApp.Core.Model;
 using TravelApp.Core.Service;
 using TravelApp.DesktopHost.ViewModel.Navigation;
 using TravelApp.DesktopHost.ViewModel;
+using System.Windows;
 
 namespace TravelApp.DesktopHost.Command
 {
@@ -33,7 +34,7 @@ namespace TravelApp.DesktopHost.Command
             }
             catch (Exception e)
             {
-                _signupVM.SnackbarMessageQueue.Enqueue(e.Message);
+                MessageBox.Show(e.Message, "Warning", MessageBoxButton.OK, MessageBoxImage.Warning);
             }
         }
     }

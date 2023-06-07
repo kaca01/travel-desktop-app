@@ -96,7 +96,6 @@ namespace TravelApp.DesktopHost.ViewModel.Component.Agent
         {
             Cancel = new CancelNewPlaceCommand();
             Create = new CreateNewPlaceCommand(this);
-            SnackbarMessageQueue = new SnackbarMessageQueue();
             ValidationViewModel = new ValidationViewModel();
             Restaurant = true;
         }

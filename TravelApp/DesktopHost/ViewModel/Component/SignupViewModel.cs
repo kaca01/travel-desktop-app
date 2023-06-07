@@ -106,7 +106,6 @@ namespace TravelApp.DesktopHost.ViewModel
         {
             Login = new LoginNavigationCommand();
             Signup = new SignupCommand(this);
-            SnackbarMessageQueue = new SnackbarMessageQueue();
             ValidationViewModel = new ValidationViewModel();
         }
     }

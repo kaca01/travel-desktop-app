@@ -8,6 +8,7 @@ using TravelApp.DesktopHost.ViewModel;
 using TravelApp.Core.Service;
 using TravelApp.Core.Model;
 using MaterialDesignThemes.Wpf;
+using System.Windows;
 
 namespace TravelApp.DesktopHost.Command
 {
@@ -42,7 +43,7 @@ namespace TravelApp.DesktopHost.Command
             catch(Exception e) 
             {
                 _loginVM.ErrorVisibility = System.Windows.Visibility.Visible;
-                _loginVM.SnackbarMessageQueue.Enqueue(e.Message);
+                MessageBox.Show(e.Message, "Warning", MessageBoxButton.OK, MessageBoxImage.Warning);
             }
         }
     }

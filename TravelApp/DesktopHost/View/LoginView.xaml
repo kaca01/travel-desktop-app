@@ -28,13 +28,6 @@
             <ColumnDefinition Width="*"></ColumnDefinition>
         </Grid.ColumnDefinitions>
 
-
-        <materialDesign:Snackbar MessageQueue="{Binding SnackbarMessageQueue}"
-                                 Grid.Row="6"
-                                 Grid.Column="1"
-                                 Margin="0,0,0,20">
-            <materialDesign:SnackbarMessage Content="{Binding SnackbarMessageQueue}" />
-        </materialDesign:Snackbar>
             <StackPanel Grid.Row="1"
                         Grid.Column="1"
                         MaxWidth="{Binding Width}">

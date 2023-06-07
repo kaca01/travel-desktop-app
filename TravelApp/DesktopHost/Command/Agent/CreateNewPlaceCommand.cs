@@ -35,7 +35,7 @@ namespace TravelApp.DesktopHost.Command.Agent
             }
             catch (Exception e)
             {
-                _placeVM.SnackbarMessageQueue.Enqueue(e.Message);
+                MessageBox.Show(e.Message, "Warning", MessageBoxButton.OK, MessageBoxImage.Warning);
             }
         }
     }

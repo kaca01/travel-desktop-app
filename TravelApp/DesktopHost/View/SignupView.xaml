@@ -30,14 +30,6 @@
                 <ColumnDefinition Width="*"></ColumnDefinition>
             </Grid.ColumnDefinitions>
 
-            <materialDesign:Snackbar MessageQueue="{Binding SnackbarMessageQueue}"
-                                 Grid.Row="8"
-                                 Grid.Column="1"
-                                 Margin="0,0,0,20"
-                                 Panel.ZIndex="999">
-                <materialDesign:SnackbarMessage Content="{Binding SnackbarMessageQueue}" />
-            </materialDesign:Snackbar>
-
             <TextBlock FontSize="{Binding TextFontSize}"
                 Foreground="#161A25"
                 TextAlignment="Left"

@@ -79,7 +79,6 @@ namespace TravelApp.DesktopHost.ViewModel
             Signup = new SignupNavigationCommand();
             Login = new LoginCommand(this);
             ErrorVisibility = Visibility.Collapsed;
-            SnackbarMessageQueue = new SnackbarMessageQueue();
         }
 
     }
