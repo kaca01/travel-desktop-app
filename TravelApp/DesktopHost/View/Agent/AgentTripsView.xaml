@@ -100,8 +100,7 @@
                     FontWeight="DemiBold"/>
 
                 <ComboBox
-                    SelectedIndex="0"
-                    SelectionChanged="ComboBox_SelectionChanged"
+                    SelectedIndex="{ Binding SelectedSort }"
                     FontSize="15"
                     VerticalContentAlignment="Top"
                     ItemsSource="{Binding SortCriteria}"

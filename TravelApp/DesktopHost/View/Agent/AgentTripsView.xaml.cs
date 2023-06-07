@@ -47,17 +47,5 @@ namespace TravelApp.DesktopHost.View
                 }
             }
         }
-
-        private void ComboBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
-        {
-            if (sender is ComboBox comboBox)
-            {
-                if (comboBox.SelectedItem is string selectedItem)
-                {
-                    string selectedContent = selectedItem.ToString();
-                    // TODO : imeplement this
-                }
-            }
-        }
     }
 }

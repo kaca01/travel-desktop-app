@@ -27,6 +27,8 @@ namespace TravelApp.DesktopHost.ViewModel
 
         private string _search;
 
+        private int _selectedSort;
+
         public AgentNavigationViewModel Navigation { get; set; }
 
         public ICommand DisplayWindowSize { get; }
@@ -98,6 +100,17 @@ namespace TravelApp.DesktopHost.ViewModel
             }
         }
 
+        public int SelectedSort
+        {
+            get { return _selectedSort; }
+            set
+            {
+                _selectedSort = value;
+                OnPropertyChanged(nameof(SelectedSort));
+                sort(SelectedSort);
+            }
+        }
+
         public AgentTripsViewModel() 
         {
             _tripService = new TripService();
@@ -112,16 +125,15 @@ namespace TravelApp.DesktopHost.ViewModel
             populateTrips("all");
             _searchedTrips = _trips;
             _search = "";
+            _selectedSort = 0;
         }
 
         private void populateSortingCriteria()
         {
-            _sortCriteria.Add("All");
+            _sortCriteria.Add("Default");
             _sortCriteria.Add("Trip name");
             _sortCriteria.Add("Departure location");
             _sortCriteria.Add("Destination location");
-            _sortCriteria.Add("One day trip");
-            _sortCriteria.Add("Multi days trip");
         }
 
         private void populateTrips(string criteria)
@@ -132,9 +144,17 @@ namespace TravelApp.DesktopHost.ViewModel
             }
         }
 
-        private void sort(string criteria)
+        private void sort(int criteria)
         {
-            throw new NotImplementedException();
+            if (criteria == 0) SearchedTrips = _trips;
+            
+            else if (criteria == 1) SearchedTrips = _searchedTrips.OrderBy(obj => obj.Name).ToList();
+            
+            else if (criteria == 2) SearchedTrips = _searchedTrips.OrderBy(obj => obj.Departure).ToList();
+            
+            else if (criteria == 3) SearchedTrips = _searchedTrips.OrderBy(obj => obj.Destination).ToList();
+
+     
         }
 
         private void search()
