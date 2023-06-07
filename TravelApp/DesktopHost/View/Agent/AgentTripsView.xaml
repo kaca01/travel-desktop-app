@@ -204,7 +204,7 @@
                                         Foreground="Black"
                                         FontSize="16"
                                         FontWeight="DemiBold"
-                                        Style="{ Binding FormButton }">
+                                        Style="{ StaticResource FormButton }">
                                         <Button.Resources>
                                             <Style TargetType="{x:Type Border}">
                                                 <Setter Property="CornerRadius" Value="20"/>
@@ -224,7 +224,7 @@
                                         Height="36"
                                         FontWeight="DemiBold"
                                         Cursor="Hand"
-                                        Style="{ Binding FormButton }">
+                                        Style="{ StaticResource FormButton }">
                                         <Button.Resources>
                                             <Style TargetType="{x:Type Border}">
                                                 <Setter Property="CornerRadius" Value="20"/>
