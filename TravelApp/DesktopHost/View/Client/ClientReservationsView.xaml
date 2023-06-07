@@ -36,8 +36,7 @@
                             FontSize="{Binding TextSize}"
                             FontWeight="Medium"
                             VerticalAlignment="Center"
-                            FontFamily="Poppins"
-                            MaxWidth="439"/>
+                            FontFamily="Poppins"/>
 
                 <WrapPanel Grid.Column="3" VerticalAlignment="Center">
                     <Border Width="200" Height="30" Background="White" BorderBrush="Gray" BorderThickness="1" CornerRadius="15" >
@@ -117,6 +116,7 @@
                             <Setter Property="Data" Value="M0,0 L1,0 0.5,1 Z" />
                             <Setter Property="Fill" Value="Black" />
                             <Setter Property="RenderTransformOrigin" Value="0.5, 0.5" />
+
                             <Style.Triggers>
                                 <EventTrigger RoutedEvent="Loaded">
                                     <BeginStoryboard>
@@ -130,7 +130,6 @@
 
                         <Style x:Key="SortableColumnHeaderStyle" TargetType="DataGridColumnHeader">
                             <Setter Property="Background" Value="LightGray" />
-                            <Setter Property="Padding" Value="16" />
                             <Setter Property="FontFamily" Value="Poppins" />
                             <Setter Property="HorizontalContentAlignment" Value="Center" />
                             <Setter Property="VerticalContentAlignment" Value="Center" />
@@ -143,13 +142,8 @@
                                                 <ColumnDefinition Width="*" />
                                                 <ColumnDefinition Width="Auto" />
                                             </Grid.ColumnDefinitions>
-                                            <ContentPresenter Grid.Column="0" HorizontalAlignment="Center" VerticalAlignment="Center" />
-                                            <Path x:Name="SortArrow"
-                                      Grid.Column="1"
-                                      HorizontalAlignment="Left"
-                                      VerticalAlignment="Center"
-                                      Margin="2"
-                                      Style="{StaticResource SortIconStyle}" />
+                                            <ContentPresenter Grid.Column="0" VerticalAlignment="Center" HorizontalAlignment="Center" />
+                                            <Path x:Name="SortArrow" Grid.Column="1" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="{Binding DataContext.ArrowMargin, RelativeSource={RelativeSource AncestorType={x:Type DataGrid}}}" Style="{StaticResource SortIconStyle}" />
                                         </Grid>
                                         <ControlTemplate.Triggers>
                                             <Trigger Property="SortDirection" Value="Ascending">
@@ -252,12 +246,14 @@
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="2*"/>
                     <ColumnDefinition Width="2*"/>
+                    <ColumnDefinition Width="2*"/>
+                    <ColumnDefinition Width="2*"/>
                 </Grid.ColumnDefinitions>
-                <Button Grid.Column="0" Width="200" Height="30" Content="Call off" Background="#DFE6F0" BorderBrush="#DFE6F0" Foreground="#161A25" BorderThickness="1"
+                <Button Grid.Column="1" Width="200" Height="30" Content="Call off" Background="#DFE6F0" BorderBrush="#DFE6F0" Foreground="#161A25" BorderThickness="1"
                     Command="{Binding CallOff}"
                     CommandParameter="{Binding SelectedItem, ElementName=MyDataGrid}"/>
                 
-                <Button Grid.Column="1" Width="200" Height="30" Content="Buy" Background="#4889E6" BorderBrush="#4889E6" BorderThickness="1"
+                <Button Grid.Column="2" Width="200" Height="30" Content="Buy" Background="#4889E6" BorderBrush="#4889E6" BorderThickness="1"
                     Command="{Binding Buy}"
                     CommandParameter="{Binding SelectedItem, ElementName=MyDataGrid}"/>
             </Grid>

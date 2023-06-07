@@ -47,7 +47,6 @@ namespace TravelApp.DesktopHost.View
             double windowWidth = e.NewSize.Width;
             double windowHeigth = e.NewSize.Height;
 
-            // Adjust the font size based on the window width
             ClientStayEatViewModel viewModel = (ClientStayEatViewModel)DataContext;
             if (windowWidth <= 1200 || windowHeigth <= 700)
             {
@@ -59,6 +58,11 @@ namespace TravelApp.DesktopHost.View
                 viewModel.TextFontSize = 60;
                 viewModel.Width = 439;
             }
+
+            if (windowWidth <= 930) { viewModel.TableWidth = 500; viewModel.ArrowMargin = new Thickness(-20, 0, 0, 0); }
+            else if (windowWidth <= 1100) { viewModel.TableWidth = 600; viewModel.ArrowMargin = new Thickness(-30, 0, 0, 0); }
+            else if (windowWidth <= 1250) { viewModel.TableWidth = 750; viewModel.ArrowMargin = new Thickness(-40, 0, 0, 0); }
+            else { viewModel.TableWidth = 800; viewModel.ArrowMargin = new Thickness(-55, 0, 0, 0); }
         }
     }
 }

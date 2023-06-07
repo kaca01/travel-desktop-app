@@ -16,14 +16,17 @@
         <Grid>
             <Grid.RowDefinitions>
                 <RowDefinition Height="auto" />
+                <RowDefinition Height="1*" />
                 <RowDefinition Height="auto" />
-                <RowDefinition Height="*" />
+                <RowDefinition Height="4*" />
+                <RowDefinition Height="1*" />
             </Grid.RowDefinitions>
             <components:ClientNavigationView Grid.Row="0" SelectedIndex="2"></components:ClientNavigationView>
 
             <Grid Grid.Row="1">
                 <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="1*" />
+                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="auto" />
                     <ColumnDefinition Width="*" />
                     <ColumnDefinition Width="auto" />
                     <ColumnDefinition Width="*" />
@@ -34,12 +37,10 @@
                             FontSize="{Binding TextFontSize}"
                             FontWeight="Medium"
                             VerticalAlignment="Center"
-                            FontFamily="Poppins"
-                            MaxWidth="439"
-                            Margin="0,70,0,16" />
+                            FontFamily="Poppins" />
 
-                <WrapPanel Grid.Column="2" VerticalAlignment="Center">
-                    <Border Width="200" Height="30" Background="White" BorderBrush="Gray" BorderThickness="1" CornerRadius="15" Margin="0 70 0 0">
+                <WrapPanel Grid.Column="3" VerticalAlignment="Center">
+                    <Border Width="200" Height="30" Background="White" BorderBrush="Gray" BorderThickness="1" CornerRadius="15">
                         <Grid>
                             <Grid.ColumnDefinitions>
                                 <ColumnDefinition Width="Auto" />
@@ -85,8 +86,9 @@
                 </WrapPanel>
             </Grid>
 
-            <materialDesign:Card Grid.Row="2" Background="White" Padding="16">
+            <materialDesign:Card Grid.Row="3" Background="White" Padding="16" HorizontalAlignment="Center">
                 <DataGrid ItemsSource="{Binding FilteredItems}"
+                          Width="{Binding TableWidth}"
                           HorizontalAlignment="Center"
                           AutoGenerateColumns="False"
                           CanUserAddRows="False"
@@ -124,33 +126,99 @@
                                 </Trigger>
                             </Style.Triggers>
                         </Style>
+
+                        <Style x:Key="SortIconStyle" TargetType="Path">
+                            <Setter Property="Width" Value="8" />
+                            <Setter Property="Height" Value="6" />
+                            <Setter Property="Stretch" Value="Fill" />
+                            <Setter Property="Data" Value="M0,0 L1,0 0.5,1 Z" />
+                            <Setter Property="Fill" Value="Black" />
+                            <Setter Property="RenderTransformOrigin" Value="0.5, 0.5" />
+
+                            <Style.Triggers>
+                                <EventTrigger RoutedEvent="Loaded">
+                                    <BeginStoryboard>
+                                        <Storyboard>
+                                            <DoubleAnimation Storyboard.TargetProperty="RenderTransform.(RotateTransform.Angle)" Duration="0:0:0.4" From="0" To="180" AutoReverse="True" RepeatBehavior="Forever" />
+                                        </Storyboard>
+                                    </BeginStoryboard>
+                                </EventTrigger>
+                            </Style.Triggers>
+                        </Style>
+
+                        <Style x:Key="SortableColumnHeaderStyle" TargetType="DataGridColumnHeader">
+                            <Setter Property="Background" Value="LightGray" />
+                            <Setter Property="FontFamily" Value="Poppins" />
+                            <Setter Property="HorizontalContentAlignment" Value="Center" />
+                            <Setter Property="VerticalContentAlignment" Value="Center" />
+                            <Setter Property="Cursor" Value="Hand" />
+                            <Setter Property="Template">
+                                <Setter.Value>
+                                    <ControlTemplate TargetType="{x:Type DataGridColumnHeader}">
+                                        <Grid>
+                                            <Grid.ColumnDefinitions>
+                                                <ColumnDefinition Width="*" />
+                                                <ColumnDefinition Width="auto" />
+                                            </Grid.ColumnDefinitions>
+                                            <ContentPresenter Grid.Column="0" VerticalAlignment="Center" HorizontalAlignment="Center"/>
+                                            <Path x:Name="SortArrow" Grid.Column="1" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="{Binding DataContext.ArrowMargin, RelativeSource={RelativeSource AncestorType={x:Type DataGrid}}}" Style="{StaticResource SortIconStyle}" />
+                                        </Grid>
+                                        <ControlTemplate.Triggers>
+                                            <Trigger Property="SortDirection" Value="Ascending">
+                                                <Setter TargetName="SortArrow" Property="Visibility" Value="Visible" />
+                                                <Setter TargetName="SortArrow" Property="RenderTransform">
+                                                    <Setter.Value>
+                                                        <RotateTransform Angle="180" />
+                                                    </Setter.Value>
+                                                </Setter>
+                                            </Trigger>
+                                            <Trigger Property="SortDirection" Value="Descending">
+                                                <Setter TargetName="SortArrow" Property="Visibility" Value="Visible" />
+                                            </Trigger>
+                                            <Trigger Property="IsMouseOver" Value="True">
+                                                <Setter Property="Background" Value="LightGray" />
+                                            </Trigger>
+                                        </ControlTemplate.Triggers>
+                                    </ControlTemplate>
+                                </Setter.Value>
+                            </Setter>
+                        </Style>
                     </DataGrid.Resources>
 
                     <DataGrid.Columns>
-                        <DataGridTextColumn Header="Name" Binding="{Binding Name}" IsReadOnly="True">
+                        <DataGridTextColumn Header="Name" Binding="{Binding Name}" IsReadOnly="True" Width="*"
+                                            SortMemberPath="Name" HeaderStyle="{StaticResource SortableColumnHeaderStyle}" >
                             <DataGridTextColumn.ElementStyle>
                                 <Style TargetType="TextBlock">
                                     <Setter Property="Padding" Value="16" />
                                     <Setter Property="FontFamily" Value="Poppins" />
+                                    <Setter Property="HorizontalAlignment" Value="Center" />
                                 </Style>
                             </DataGridTextColumn.ElementStyle>
                         </DataGridTextColumn>
-                        <DataGridTextColumn Header="Address" Binding="{Binding Address}" IsReadOnly="True">
+                        
+                        <DataGridTextColumn Header="Address" Binding="{Binding Address}" IsReadOnly="True" Width="*"
+                                            SortMemberPath="Address" HeaderStyle="{StaticResource SortableColumnHeaderStyle}" >
                             <DataGridTextColumn.ElementStyle>
                                 <Style TargetType="TextBlock">
                                     <Setter Property="Padding" Value="16" />
                                     <Setter Property="FontFamily" Value="Poppins" />
+                                    <Setter Property="HorizontalAlignment" Value="Center" />
                                 </Style>
                             </DataGridTextColumn.ElementStyle>
                         </DataGridTextColumn>
-                        <DataGridTextColumn Header="Type" Binding="{Binding Type}" IsReadOnly="True">
+                        
+                        <DataGridTextColumn Header="Type" Binding="{Binding Type}" IsReadOnly="True" Width="*"
+                                            SortMemberPath="Type" HeaderStyle="{StaticResource SortableColumnHeaderStyle}" >
                             <DataGridTextColumn.ElementStyle>
                                 <Style TargetType="TextBlock">
                                     <Setter Property="Padding" Value="16" />
                                     <Setter Property="FontFamily" Value="Poppins" />
+                                    <Setter Property="HorizontalAlignment" Value="Center" />
                                 </Style>
                             </DataGridTextColumn.ElementStyle>
                         </DataGridTextColumn>
+                        
                         <DataGridTemplateColumn Header="Link">
                             <DataGridTemplateColumn.CellTemplate>
                                 <DataTemplate>
@@ -172,6 +240,7 @@
                                 </DataTemplate>
                             </DataGridTemplateColumn.CellTemplate>
                         </DataGridTemplateColumn>
+                        
                     </DataGrid.Columns>
                 </DataGrid>
             </materialDesign:Card>

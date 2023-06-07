@@ -5,6 +5,7 @@ using System.ComponentModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows;
 using System.Windows.Input;
 using TravelApp.Core.Service;
 using TravelApp.DesktopHost.Command;
@@ -13,9 +14,6 @@ namespace TravelApp.DesktopHost.ViewModel
 {
     public class ClientReservationsViewModel : BaseViewModel, INotifyPropertyChanged
     {
-
-        // TODO promeni observable
-
         public ClientNavigationViewModel Navigation { get; set; }
 
         public event PropertyChangedEventHandler PropertyChanged;
@@ -61,6 +59,17 @@ namespace TravelApp.DesktopHost.ViewModel
                     _tableWidth = value;
                     OnPropertyChanged(nameof(TableWidth));
                 }
+            }
+        }
+
+        private Thickness _arrowMargin;
+        public Thickness ArrowMargin
+        {
+            get { return _arrowMargin; }
+            set
+            {
+                _arrowMargin = value;
+                OnPropertyChanged(nameof(ArrowMargin));
             }
         }
 
