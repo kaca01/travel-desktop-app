@@ -19,9 +19,14 @@ namespace TravelApp.Core.Service
             this._transactionRepository = new TransactionRepository();
         }
 
-        public List<AgentTransactionListItemViewModel> GetReservations()
+        public List<TransactionListItemViewModel> GetReservations()
         {
             return _transactionRepository.GetReservations();
+        }
+
+        public List<TransactionListItemViewModel> GetReservationsForCurrentUser()
+        {
+            return _transactionRepository.GetReservationsForCurrentUser();
         }
     }
 }

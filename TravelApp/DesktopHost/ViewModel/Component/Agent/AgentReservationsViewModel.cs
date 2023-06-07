@@ -60,8 +60,8 @@ namespace TravelApp.DesktopHost.ViewModel
             }
         }
 
-        private ObservableCollection<AgentTransactionListItemViewModel> _items;
-        public ObservableCollection<AgentTransactionListItemViewModel> Items
+        private ObservableCollection<TransactionListItemViewModel> _items;
+        public ObservableCollection<TransactionListItemViewModel> Items
         {
             get { return _items; }
             set
@@ -71,8 +71,8 @@ namespace TravelApp.DesktopHost.ViewModel
             }
         }
 
-        private ObservableCollection<AgentTransactionListItemViewModel> _filteredItems;
-        public ObservableCollection<AgentTransactionListItemViewModel> FilteredItems
+        private ObservableCollection<TransactionListItemViewModel> _filteredItems;
+        public ObservableCollection<TransactionListItemViewModel> FilteredItems
         {
             get { return _filteredItems; }
             set
@@ -101,8 +101,8 @@ namespace TravelApp.DesktopHost.ViewModel
 
             var dataService = new TransactionService();
             var data = dataService.GetReservations();
-            Items = new ObservableCollection<AgentTransactionListItemViewModel>(data);
-            FilteredItems = new ObservableCollection<AgentTransactionListItemViewModel>(Items);
+            Items = new ObservableCollection<TransactionListItemViewModel>(data);
+            FilteredItems = new ObservableCollection<TransactionListItemViewModel>(Items);
         }
 
         protected virtual void OnPropertyChanged(string propertyName)
@@ -112,7 +112,7 @@ namespace TravelApp.DesktopHost.ViewModel
 
         private void FilterData()
         {
-            FilteredItems = new ObservableCollection<AgentTransactionListItemViewModel>(Items.Where(item => item.Passenger.ToLower().Contains(SearchText.ToLower()) || item.Trip.ToLower().Contains(SearchText.ToLower()) || item.Price.Contains(SearchText.ToLower()) || item.StartDate.Contains(SearchText.ToLower()) || item.EndDate.Contains(SearchText.ToLower())));
+            FilteredItems = new ObservableCollection<TransactionListItemViewModel>(Items.Where(item => item.Passenger.ToLower().Contains(SearchText.ToLower()) || item.Trip.ToLower().Contains(SearchText.ToLower()) || item.Price.Contains(SearchText.ToLower()) || item.StartDate.ToString().Contains(SearchText.ToLower()) || item.EndDate.ToString().Contains(SearchText.ToLower())));
         }
     }
 }

@@ -9,6 +9,9 @@ namespace TravelApp.Core.Repository
 {
     public interface ITransactionRepository
     {
-        public List<AgentTransactionListItemViewModel> GetReservations();
+        public List<TransactionListItemViewModel> GetReservations();
+        public List<TransactionListItemViewModel> GetReservationsForCurrentUser();
+        public List<TransactionListItemViewModel> GetTrips();
+        public List<TransactionListItemViewModel> GetTripsForCurrentUser();
     }
 }

@@ -160,7 +160,7 @@
                                 </Style>
                             </DataGridTextColumn.ElementStyle>
                         </DataGridTextColumn>
-                        <DataGridTextColumn Header="Start date" Binding="{Binding StartDate}" IsReadOnly="True" Width="*" >
+                        <DataGridTextColumn Header="Start date" Binding="{Binding StartDate, StringFormat='{}{0:d}'}" IsReadOnly="True" Width="*" >
                             <DataGridTextColumn.ElementStyle>
                                 <Style TargetType="TextBlock">
                                     <Setter Property="Padding" Value="16" />
@@ -169,7 +169,7 @@
                                 </Style>
                             </DataGridTextColumn.ElementStyle>
                         </DataGridTextColumn>
-                        <DataGridTextColumn Header="End date" Binding="{Binding EndDate}" IsReadOnly="True" Width="*" >
+                        <DataGridTextColumn Header="End date" Binding="{Binding EndDate, StringFormat='{}{0:d}'}" IsReadOnly="True" Width="*" >
                             <DataGridTextColumn.ElementStyle>
                                 <Style TargetType="TextBlock">
                                     <Setter Property="Padding" Value="16" />
