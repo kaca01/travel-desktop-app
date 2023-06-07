@@ -17,6 +17,9 @@ namespace TravelApp.DesktopHost.ViewModel.Component.Agent
         private string _name;
         private string _address;
 
+        private bool _restaurant;
+        private bool _accomodation;
+
         private double _textFontSize;
 
         private double _width;
@@ -31,6 +34,18 @@ namespace TravelApp.DesktopHost.ViewModel.Component.Agent
         {
             get => _address;
             set { _address = value; OnPropertyChanged(nameof(Address)); }
+        }
+
+        public bool Restaurant
+        {
+            get => _restaurant;
+            set { _restaurant = value; OnPropertyChanged(nameof(Restaurant)); }
+        }
+
+        public bool Accomodation
+        {
+            get => _accomodation;
+            set { _accomodation = value; OnPropertyChanged(nameof(Accomodation)); }
         }
 
         public double TextFontSize
@@ -76,6 +91,7 @@ namespace TravelApp.DesktopHost.ViewModel.Component.Agent
             Create = new CreateNewPlaceCommand(this);
             SnackbarMessageQueue = new SnackbarMessageQueue();
             ValidationViewModel = new ValidationViewModel();
+            Restaurant = true;
         }
 
     }
