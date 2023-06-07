@@ -10,6 +10,40 @@
              mc:Ignorable="d" Background="#DFE6F0"
              SizeChanged="Window_SizeChanged"
              d:DataContext="{d:DesignInstance Type=viewmodels:NewPlaceViewModel}" >
+    <UserControl.Resources>
+        <Style TargetType="RadioButton">
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="RadioButton">
+                        <Grid Background="Transparent">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="Auto" />
+                                <ColumnDefinition Width="*" />
+                            </Grid.ColumnDefinitions>
+                            <Ellipse x:Name="RadioButtonCircle"
+                                     Width="16"
+                                     Height="16"
+                                     Stroke="Black"/>
+                                <ContentPresenter Grid.Column="1"
+                                              Margin="4,0,0,0"
+                                              VerticalAlignment="Center"
+                                              RecognizesAccessKey="True" />
+                        </Grid>
+                        <ControlTemplate.Triggers>
+                            <Trigger Property="IsChecked" Value="True">
+                                <Setter TargetName="RadioButtonCircle" Property="Fill" Value="#4889E6" />
+                                <!-- Change circle fill color when checked -->
+                            </Trigger>
+                            <Trigger Property="IsMouseOver" Value="True">
+                                <Setter TargetName="RadioButtonCircle" Property="Stroke" Value="Black" />
+                                <!-- Change circle stroke color on mouseover -->
+                            </Trigger>
+                        </ControlTemplate.Triggers>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+    </UserControl.Resources>
     <ScrollViewer>
         <Grid>
             <Grid.RowDefinitions>
@@ -35,6 +69,16 @@
                                  Panel.ZIndex="999">
                 <materialDesign:SnackbarMessage Content="{Binding SnackbarMessageQueue}" />
             </materialDesign:Snackbar>
+            <Button Command="{Binding Cancel}"
+                    Width="50" Height="50"
+                    Grid.Column="2"
+                    Grid.Row="1"
+                    VerticalAlignment="Top"
+                    HorizontalAlignment="Left"
+                    Style="{StaticResource CloseButton}"
+                    Cursor="Hand">
+                <materialDesign:PackIcon Kind="Close" Width="45" Height="45"/>
+            </Button>
 
             <TextBlock FontSize="{Binding TextFontSize}"
                 Foreground="#161A25"
@@ -145,9 +189,11 @@
                    FontWeight="SemiBold"
                    HorizontalAlignment="Left">Choose type:</Label>
                 <RadioButton IsChecked="{Binding Restaurant}"
-                          Margin="50,0,0,0">Restaurant</RadioButton>
+                          Margin="50,0,0,0"
+                             Cursor="Hand">Restaurant</RadioButton>
                 <RadioButton IsChecked="{Binding Accomodation}"
-                          Margin="50,0,0,0">Accommodation</RadioButton>
+                          Margin="50,0,0,0"
+                             Cursor="Hand">Accommodation</RadioButton>
             </StackPanel>
 
             <Button Grid.Column="1"
