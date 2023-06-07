@@ -81,6 +81,29 @@ namespace TravelApp.DesktopHost.View
                     vm.Navigation.TabWidth = windowWidth / 7; //220
                 }
             }
+            else if (DataContext is ClientReservationsViewModel reservationsViewModel)
+            {
+                if (windowWidth <= 930)
+                {
+                    reservationsViewModel.Navigation.TextFontSize = 14;
+                    reservationsViewModel.Navigation.TabWidth = windowWidth / 7; //125
+                }
+                else if (windowWidth <= 1100)
+                {
+                    reservationsViewModel.Navigation.TextFontSize = 15;
+                    reservationsViewModel.Navigation.TabWidth = windowWidth / 7; //150
+                }
+                else if (windowWidth <= 1250)
+                {
+                    reservationsViewModel.Navigation.TextFontSize = 16;
+                    reservationsViewModel.Navigation.TabWidth = windowWidth / 7; //180
+                }
+                else
+                {
+                    reservationsViewModel.Navigation.TextFontSize = 20;
+                    reservationsViewModel.Navigation.TabWidth = windowWidth / 7; //220
+                }
+            }
         }
     }
 }

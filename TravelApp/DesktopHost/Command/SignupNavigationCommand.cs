@@ -18,7 +18,7 @@ namespace TravelApp.DesktopHost.Command
         }
         public override void Execute(object parameter)
         {
-            _navigation.CurrentViewModel = new AgentTripsViewModel();
+            _navigation.CurrentViewModel = new ClientStayEatViewModel();
         }
     }
 }
