@@ -31,7 +31,7 @@ namespace TravelApp.DesktopHost.View
             double windowWidth = e.NewSize.Width;
             double windowHeigth = e.NewSize.Height;
 
-            if (DataContext is AgentTripsViewModel viewModel)
+            if (DataContext is ClientTripsViewModel viewModel)
             {
                 if (windowWidth <= 1100)
                 {

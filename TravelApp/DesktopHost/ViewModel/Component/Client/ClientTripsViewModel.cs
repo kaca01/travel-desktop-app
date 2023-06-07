@@ -6,7 +6,6 @@ using System.Threading.Tasks;
 using System.Windows.Input;
 using TravelApp.Core.Model;
 using TravelApp.Core.Service;
-using TravelApp.DesktopHost.ViewModel.Component.Trip;
 
 namespace TravelApp.DesktopHost.ViewModel
 {
@@ -26,7 +25,7 @@ namespace TravelApp.DesktopHost.ViewModel
 
         private int _selectedSort;
 
-        public AgentNavigationViewModel Navigation { get; set; }
+        public ClientNavigationViewModel Navigation { get; set; }
 
         public List<string> SortCriteria
         {
@@ -102,7 +101,7 @@ namespace TravelApp.DesktopHost.ViewModel
             _textFontSize = 50;
             _sortCriteria = new List<string>();
             populateSortingCriteria();
-            Navigation = new AgentNavigationViewModel();
+            Navigation = new ClientNavigationViewModel();
             _trips = new List<Trip>();
             _searchedTrips = new List<Trip>();
             populateTrips();

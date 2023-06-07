@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics.Eventing.Reader;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -35,27 +36,27 @@ namespace TravelApp.DesktopHost.View
 
             // TODO : add here or and view model that you are using
             // note that you will need to add Navigation property in your view model
-            if (DataContext is AgentTripsViewModel viewModel)
+            if (DataContext is ClientTripsViewModel viewModel)      
             {
                 if (windowWidth <= 930)
                 {
                     viewModel.Navigation.TextFontSize = 14;
-                    viewModel.Navigation.TabWidth = windowWidth / 7; //125
+                    viewModel.Navigation.TabWidth = windowWidth / 7;
                 }
                 else if (windowWidth <= 1100)
                 {
                     viewModel.Navigation.TextFontSize = 15;
-                    viewModel.Navigation.TabWidth = windowWidth / 7; //150
+                    viewModel.Navigation.TabWidth = windowWidth / 7; 
                 }
                 else if (windowWidth <= 1250)
                 {
                     viewModel.Navigation.TextFontSize = 16;
-                    viewModel.Navigation.TabWidth = windowWidth / 7; //180
+                    viewModel.Navigation.TabWidth = windowWidth / 7; 
                 }
                 else
                 {
                     viewModel.Navigation.TextFontSize = 20;
-                    viewModel.Navigation.TabWidth = windowWidth / 7; //220
+                    viewModel.Navigation.TabWidth = windowWidth / 7; 
                 }
             }
         }
