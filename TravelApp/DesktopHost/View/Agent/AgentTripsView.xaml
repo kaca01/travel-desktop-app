@@ -176,7 +176,7 @@
                                         Text="{Binding Price}"
                                         HorizontalAlignment="Center"
                                         TextAlignment="Right"
-                                        Margin="180 0 100 20"
+                                        Margin="180 10 100 20"
                                         FontSize="35"
                                         Foreground="#1E2F97"
                                         FontWeight="SemiBold"
@@ -185,7 +185,7 @@
                                         Grid.Row="4"
                                         Text="RSD"
                                         HorizontalAlignment="Right"
-                                        Margin="0 0 30 20"
+                                        Margin="0 10 30 20"
                                         FontSize="35"
                                         Foreground="#1E2F97"
                                         FontWeight="SemiBold"
@@ -196,12 +196,12 @@
                                         Content="Delete"
                                         Cursor="Hand"
                                         Width="180"
-                                        Background="#79ACF4"
+                                        Background="#4889E6"
                                         BorderBrush="Transparent"
                                         Grid.Row="5" 
-                                        Margin="30 50 30 30"
+                                        Margin="30 80 30 30"
                                         HorizontalAlignment="Left"
-                                        Foreground="Black"
+                                        Foreground="White"
                                         FontSize="16"
                                         FontWeight="DemiBold"
                                         Style="{ StaticResource FormButton }">
@@ -218,13 +218,13 @@
                                         Foreground="Black"
                                         BorderBrush="Transparent"
                                         Grid.Row="5" 
-                                        Margin="0 50 30 30"
+                                        Margin="0 80 30 30"
                                         HorizontalAlignment="Right"
                                         FontSize="16"
                                         Height="36"
                                         FontWeight="DemiBold"
                                         Cursor="Hand"
-                                        Style="{ StaticResource FormButton }">
+                                        Style="{ StaticResource CornerRadius }">
                                         <Button.Resources>
                                             <Style TargetType="{x:Type Border}">
                                                 <Setter Property="CornerRadius" Value="20"/>
