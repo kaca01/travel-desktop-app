@@ -28,7 +28,7 @@
                 <StackPanel Width="{ Binding Navigation.TabWidth }"
                             Height="auto">
                     <Button 
-                        HorizontalContentAlignment="Center"
+                        HorizontalContentAlignment="Left"
                         VerticalContentAlignment="Center"
                         Width="{ Binding Navigation.TabWidth }"
                         Height="40"
@@ -48,7 +48,7 @@
                 <StackPanel Width="{ Binding Navigation.TabWidth }"
                             Height="auto">
                     <Button 
-                        HorizontalContentAlignment="Center"
+                        HorizontalContentAlignment="Left"
                         VerticalContentAlignment="Center"
                         Width="{ Binding Navigation.TabWidth }"
                         Height="40"
@@ -69,7 +69,7 @@
                 <StackPanel Width="{ Binding Navigation.TabWidth }"
                             Height="auto">
                     <Button 
-                        HorizontalContentAlignment="Center"
+                        HorizontalContentAlignment="Left"
                         VerticalContentAlignment="Center"
                         Width="{ Binding Navigation.TabWidth }"
                         Height="40"
@@ -90,7 +90,7 @@
                 <StackPanel Width="{ Binding Navigation.TabWidth }"
                             Height="auto">
                     <Button
-                        HorizontalContentAlignment="Center"
+                        HorizontalContentAlignment="Left"
                         VerticalContentAlignment="Center"
                         Width="{ Binding Navigation.TabWidth }"
                         Height="40"
@@ -111,7 +111,7 @@
                 <StackPanel Width="{ Binding Navigation.TabWidth }"
                             Height="auto">
                     <Button 
-                        HorizontalContentAlignment="Center"
+                        HorizontalContentAlignment="Left"
                         VerticalContentAlignment="Center"
                         Width="{ Binding Navigation.TabWidth }"
                         Height="40"
@@ -133,7 +133,7 @@
                 <StackPanel Width="{ Binding Navigation.TabWidth }"
                             Height="auto">
                     <Button 
-                        HorizontalContentAlignment="Center"
+                        HorizontalContentAlignment="Left"
                         VerticalContentAlignment="Center"
                         Width="{ Binding Navigation.TabWidth }"
                         Height="40"
@@ -155,8 +155,9 @@
                 <StackPanel Width="{ Binding Navigation.TabWidth }"
                             Height="auto">
                     <Button 
-                        HorizontalContentAlignment="Center"
+                        HorizontalContentAlignment="Right"
                         VerticalContentAlignment="Center"
+                        Padding="0 0 30 0"
                         Width="{ Binding Navigation.TabWidth }"
                         Height="40"
                         Content="Log Out"
