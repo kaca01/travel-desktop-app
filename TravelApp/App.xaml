@@ -46,6 +46,14 @@
                 </Style.Resources>
             </Style>
 
+            <Style TargetType="Button" x:Key="CornerRadius">
+                <Style.Resources>
+                    <Style TargetType="Border">
+                        <Setter Property="CornerRadius" Value="20,20,20,20" />
+                    </Style>
+                </Style.Resources>
+            </Style>
+
         </ResourceDictionary>
     </Application.Resources>
 </Application>
