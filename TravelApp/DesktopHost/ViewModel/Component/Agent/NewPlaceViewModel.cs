@@ -16,6 +16,7 @@ namespace TravelApp.DesktopHost.ViewModel.Component.Agent
     {
         private string _name;
         private string _address;
+        private string _link;
 
         private bool _restaurant;
         private bool _accomodation;
@@ -34,6 +35,12 @@ namespace TravelApp.DesktopHost.ViewModel.Component.Agent
         {
             get => _address;
             set { _address = value; OnPropertyChanged(nameof(Address)); }
+        }
+
+        public string Link
+        {
+            get => _link;
+            set { _link = value; OnPropertyChanged(nameof(Link)); }
         }
 
         public bool Restaurant

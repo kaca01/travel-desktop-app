@@ -19,6 +19,7 @@ namespace TravelApp.DesktopHost.ViewModel
         private string _passwordAgainValidation;
 
         private string _addressValidation;
+        private string _linkValidation;
 
         public string NameValidation
         {
@@ -54,6 +55,12 @@ namespace TravelApp.DesktopHost.ViewModel
         {
             get => _addressValidation;
             set { _addressValidation = value; OnPropertyChanged(nameof(AddressValidation)); }
+        }
+
+        public string LinkValidation
+        {
+            get => _linkValidation;
+            set { _linkValidation = value; OnPropertyChanged(nameof(LinkValidation)); }
         }
 
         public void ValidateAll(Validation user)
@@ -175,6 +182,26 @@ namespace TravelApp.DesktopHost.ViewModel
             }
             return false;
         }
+
+        public bool IsLinkValid(string name)
+        {
+            if (string.IsNullOrWhiteSpace(name)) LinkValidation = "Required";
+            else if (string.IsNullOrWhiteSpace(name.Trim())) LinkValidation = "Required";
+            else
+            {
+                Regex regex = new Regex("^https?:\\/\\/(?:www\\.)?[-a-zA-Z0-9@:%._\\+~#=]{1,256}\\.[a-zA-Z0-9()]{1,6}\\b(?:[-a-zA-Z0-9()@:%_\\+.~#?&\\/=]*)$");
+                Match match = regex.Match(name);
+                if (!match.Success)
+                {
+                    LinkValidation = "Format not valid";
+                    return false;
+                }
+                LinkValidation = "";
+                return true;
+            }
+            return false;
+        }
+
     }
 
 

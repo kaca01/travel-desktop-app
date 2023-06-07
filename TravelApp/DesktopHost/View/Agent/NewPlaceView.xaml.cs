@@ -77,6 +77,31 @@ namespace TravelApp.DesktopHost.View.Agent
             }
         }
 
+        private void TextBox_LinkLostFocus(object sender, RoutedEventArgs e)
+        {
+            TextBox textBox = (TextBox)sender;
+            NewPlaceViewModel viewModel = (NewPlaceViewModel)DataContext;
+            if (!viewModel.ValidationViewModel.IsLinkValid(textBox.Text))
+            {
+                textBox.BorderBrush = Brushes.Red;
+            }
+            else
+            {
+                textBox.BorderBrush = Brushes.Gray;
+            }
+        }
+
+        private void TextBox_PreviewTextInputLink(object sender, TextCompositionEventArgs e)
+        {
+            TextBox textBox = (TextBox)sender;
+
+            // Check if the new text length exceeds the maximum character count
+            if (textBox.Text.Length + e.Text.Length > 60)
+            {
+                e.Handled = true; // Prevent the input from being added to the TextBox
+            }
+        }
+
 
         private void Window_SizeChanged(object sender, SizeChangedEventArgs e)
         {

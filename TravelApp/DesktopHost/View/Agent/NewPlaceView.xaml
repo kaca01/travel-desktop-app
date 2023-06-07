@@ -14,7 +14,8 @@
         <Grid>
             <Grid.RowDefinitions>
                 <RowDefinition Height="*"></RowDefinition>
-                <RowDefinition Height="1.2*"></RowDefinition>
+                <RowDefinition Height="1.5*"></RowDefinition>
+                <RowDefinition Height="auto"></RowDefinition>
                 <RowDefinition Height="auto"></RowDefinition>
                 <RowDefinition Height="auto"></RowDefinition>
                 <RowDefinition Height="auto"></RowDefinition>
@@ -28,7 +29,7 @@
             </Grid.ColumnDefinitions>
 
             <materialDesign:Snackbar MessageQueue="{Binding SnackbarMessageQueue}"
-                                 Grid.Row="6"
+                                 Grid.Row="7"
                                  Grid.Column="1"
                                  Margin="0,0,0,20"
                                  Panel.ZIndex="999">
@@ -112,6 +113,36 @@
                    FontSize="18"
                    FontFamily="Poppins"
                    FontWeight="SemiBold"
+                   HorizontalAlignment="Left">Link</Label>
+                <TextBox Style="{StaticResource MaterialDesignOutlinedTextBox}"
+                     FontSize="15"
+                     Margin="0"
+                     materialDesign:HintAssist.Foreground="#4889E6"
+                     materialDesign:HintAssist.Hint="http://example.com"
+                     Background="#A5FFFFFF"
+                     materialDesign:TextFieldAssist.UnderlineBrush="#4889E6"
+                     ToolTip="Leave a link that will lead to more information about a place"
+                     Text="{Binding Link}"
+                     PreviewTextInput="TextBox_PreviewTextInputLink"
+                     LostFocus="TextBox_LinkLostFocus">
+                </TextBox>
+                <Label Height="27"
+                       FontSize="15"
+                       FontFamily="Poppins"
+                       FontWeight="Regular"
+                       HorizontalAlignment="Left"
+                       Content="{Binding ValidationViewModel.LinkValidation}"
+                       Foreground="Red"/>
+            </StackPanel>
+            <StackPanel Grid.Row="5"
+                    Grid.Column="1"
+                    Width="{Binding Width}"
+                    Height="110">
+                <Label Margin="0 0 0 3"
+                   Height="27"
+                   FontSize="18"
+                   FontFamily="Poppins"
+                   FontWeight="SemiBold"
                    HorizontalAlignment="Left">Choose type:</Label>
                 <RadioButton IsChecked="{Binding Restaurant}"
                           Margin="50,0,0,0">Restaurant</RadioButton>
@@ -120,7 +151,7 @@
             </StackPanel>
 
             <Button Grid.Column="1"
-                Grid.Row="5"
+                Grid.Row="6"
                 VerticalAlignment="Bottom"
                 Width="{Binding Width}"
                 Height="40"
