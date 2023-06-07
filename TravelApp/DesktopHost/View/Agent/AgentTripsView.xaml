@@ -170,15 +170,26 @@
                                         Foreground="#1E2F97"
                                         FontWeight="SemiBold"
                                         />
-                                    
+
                                     <Button
                                         Content="Delete"
+                                        Cursor="Hand"
                                         Width="180"
-                                        Background="#4889E6"
+                                        Background="#79ACF4"
                                         BorderBrush="Transparent"
                                         Grid.Row="5" 
                                         Margin="30 50 30 30"
-                                        HorizontalAlignment="Left"/>
+                                        HorizontalAlignment="Left"
+                                        Foreground="Black"
+                                        FontSize="16"
+                                        FontWeight="DemiBold"
+                                        Style="{ Binding FormButton }">
+                                        <Button.Resources>
+                                            <Style TargetType="{x:Type Border}">
+                                                <Setter Property="CornerRadius" Value="20"/>
+                                            </Style>
+                                        </Button.Resources>
+                                    </Button>
                                     <Button
                                         Content="See Details"
                                         Width="180"
@@ -187,7 +198,18 @@
                                         BorderBrush="Transparent"
                                         Grid.Row="5" 
                                         Margin="0 50 30 30"
-                                        HorizontalAlignment="Right"/>
+                                        HorizontalAlignment="Right"
+                                        FontSize="16"
+                                        Height="36"
+                                        FontWeight="DemiBold"
+                                        Cursor="Hand"
+                                        Style="{ Binding FormButton }">
+                                        <Button.Resources>
+                                            <Style TargetType="{x:Type Border}">
+                                                <Setter Property="CornerRadius" Value="20"/>
+                                            </Style>
+                                        </Button.Resources>
+                                    </Button>
                                 </Grid>
                             </Border>
                         </DataTemplate>
