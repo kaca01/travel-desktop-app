@@ -40,7 +40,7 @@ namespace TravelApp.Core.Repository
                     Passenger = t.User.Name + " " + t.User.Surname,
                     Trip = t.Trip.Name,
                     Price = t.Trip.Price.ToString(),
-                    StartDate = t.Trip.StartDate.Date,
+                    StartDate = t.Trip.StartDate,
                     EndDate = t.Trip.EndDate,
                     Type = t.Type.ToString(),
                     IsDeleted = t.IsDeleted
