@@ -37,15 +37,6 @@
                        Margin="50 0 0 0"/>
 
             <WrapPanel Grid.Column="1" HorizontalAlignment="Right" VerticalAlignment="Center" Margin="0 0 30 0">
-                <Button Cursor="Hand" Style="{StaticResource {x:Static ToolBar.ButtonStyleKey}}" Padding="2" Margin="0 0 30 0">
-                    <StackPanel Orientation="Horizontal">
-                        <Viewbox Width="25" Height="25">
-                            <materialDesign:PackIcon Kind="Plus" VerticalAlignment="Center" />
-                        </Viewbox>
-                        <TextBlock Text="Add trip" FontFamily="Poppins" Grid.Column="1" Padding="5"  VerticalAlignment="Center" FontSize="20" Foreground="Black" TextDecorations="Underline"/>
-                    </StackPanel>
-                </Button>
-
                 <Border Width="200" Height="30" Background="White" BorderBrush="Gray" BorderThickness="1" CornerRadius="15">
                     <Grid>
                         <Grid.ColumnDefinitions>
@@ -107,6 +98,24 @@
                     Width="250"
                     Height="30"
                     />
+                <Button Cursor="Hand" 
+                        Background="#DFE6F0"
+                        BorderBrush="#DFE6F0"
+                        Padding="2" 
+                        Margin="20 0 30 0">
+                    <StackPanel Orientation="Horizontal">
+                        <Viewbox Width="25" Height="25">
+                            <materialDesign:PackIcon Kind="Plus" VerticalAlignment="Center" Foreground="Black"/>
+                        </Viewbox>
+                        <TextBlock Text="Add trip" 
+                                   FontFamily="Poppins" 
+                                   Grid.Column="1" 
+                                   Padding="5"  
+                                   VerticalAlignment="Center" 
+                                   FontSize="20" 
+                                   Foreground="Black"/>
+                    </StackPanel>
+                </Button>
             </WrapPanel>
         </Grid>
         <Grid Grid.Row="2" Margin="0 0 0 0">
@@ -163,13 +172,24 @@
 
                                     <TextBlock
                                         Grid.Row="4"
-                                        Text="{ Binding Price }"
+                                        Width="200"
+                                        Text="20000"
+                                        HorizontalAlignment="Left"
+                                        Margin="180 0 40 20"
+                                        FontSize="35"
+                                        Foreground="#1E2F97"
+                                        FontWeight="SemiBold"
+                                        />
+                                    <TextBlock
+                                        Grid.Row="4"
+                                        Text="RSD"
                                         HorizontalAlignment="Right"
                                         Margin="0 0 30 20"
                                         FontSize="35"
                                         Foreground="#1E2F97"
                                         FontWeight="SemiBold"
                                         />
+
 
                                     <Button
                                         Content="Delete"
