@@ -30,6 +30,7 @@ namespace TravelApp.DesktopHost.Command
             {
                 Validation user = new Validation(_signupVM.Name, _signupVM.Surname, _signupVM.Email, _signupVM.Password, _signupVM.PasswordAgain);  
                 _userService.Signup(user, _signupVM);
+                MessageBox.Show("You have created your account! You can login now.", "Successfull signup", MessageBoxButton.OK, MessageBoxImage.Information);
                 _navigationStore.CurrentViewModel = new LoginViewModel();
             }
             catch (Exception e)
