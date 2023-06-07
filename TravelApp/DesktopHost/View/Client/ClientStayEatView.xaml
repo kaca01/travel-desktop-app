@@ -49,6 +49,11 @@
                             <materialDesign:PackIcon Grid.Column="0" Kind="Magnify" VerticalAlignment="Center" Margin="5" />
                             <Grid Grid.Column="1">
                                 <TextBox x:Name="myTextBox" Text="{Binding SearchText, UpdateSourceTrigger=PropertyChanged}" FontFamily="Poppins" MaxLength="60" Cursor="IBeam" Background="Transparent" BorderThickness="0" Padding="5" VerticalContentAlignment="Center" FontSize="14" Foreground="Black" >
+                                    <TextBox.ToolTip>
+                                        <ToolTip>
+                                            <TextBlock Text="Input Your search text" />
+                                        </ToolTip>
+                                    </TextBox.ToolTip>
                                     <TextBox.Style>
                                         <Style TargetType="TextBox">
                                             <Setter Property="Template">
@@ -89,6 +94,7 @@
             <materialDesign:Card Grid.Row="3" Background="White" Padding="16" HorizontalAlignment="Center">
                 <DataGrid ItemsSource="{Binding FilteredItems}"
                           Width="{Binding TableWidth}"
+                          RowHeight="55"
                           HorizontalAlignment="Center"
                           AutoGenerateColumns="False"
                           CanUserAddRows="False"
@@ -102,15 +108,13 @@
                           ScrollViewer.HorizontalScrollBarVisibility="Auto"
                           BorderThickness="0">
 
-                    <DataGrid.ColumnHeaderStyle>
+                    <DataGrid.Resources>
                         <Style TargetType="DataGridColumnHeader">
                             <Setter Property="Background" Value="LightGray" />
-                            <Setter Property="Padding" Value="16" />
+                            <Setter Property="Padding" Value="23" />
                             <Setter Property="FontFamily" Value="Poppins" />
                         </Style>
-                    </DataGrid.ColumnHeaderStyle>
-
-                    <DataGrid.Resources>
+                        
                         <SolidColorBrush x:Key="MaterialDesignSelection" Color="Transparent" />
                         <SolidColorBrush x:Key="MaterialDesignSelectionForeground" Color="	#5A5A5A" />
 
@@ -160,7 +164,7 @@
                                                 <ColumnDefinition Width="*" />
                                                 <ColumnDefinition Width="auto" />
                                             </Grid.ColumnDefinitions>
-                                            <ContentPresenter Grid.Column="0" VerticalAlignment="Center" HorizontalAlignment="Center"/>
+                                            <ContentPresenter Grid.Column="0" VerticalAlignment="Center" Margin="20"/>
                                             <Path x:Name="SortArrow" Grid.Column="1" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="{Binding DataContext.ArrowMargin, RelativeSource={RelativeSource AncestorType={x:Type DataGrid}}}" Style="{StaticResource SortIconStyle}" />
                                         </Grid>
                                         <ControlTemplate.Triggers>
@@ -186,24 +190,24 @@
                     </DataGrid.Resources>
 
                     <DataGrid.Columns>
-                        <DataGridTextColumn Header="Name" Binding="{Binding Name}" IsReadOnly="True" Width="*"
+                        <DataGridTextColumn Header="Name" Binding="{Binding Name}" IsReadOnly="True" Width="1.5*"
                                             SortMemberPath="Name" HeaderStyle="{StaticResource SortableColumnHeaderStyle}" >
                             <DataGridTextColumn.ElementStyle>
                                 <Style TargetType="TextBlock">
                                     <Setter Property="Padding" Value="16" />
                                     <Setter Property="FontFamily" Value="Poppins" />
-                                    <Setter Property="HorizontalAlignment" Value="Center" />
+                                    <Setter Property="VerticalAlignment" Value="Center" />
                                 </Style>
                             </DataGridTextColumn.ElementStyle>
                         </DataGridTextColumn>
                         
-                        <DataGridTextColumn Header="Address" Binding="{Binding Address}" IsReadOnly="True" Width="*"
+                        <DataGridTextColumn Header="Address" Binding="{Binding Address}" IsReadOnly="True" Width="2*"
                                             SortMemberPath="Address" HeaderStyle="{StaticResource SortableColumnHeaderStyle}" >
                             <DataGridTextColumn.ElementStyle>
                                 <Style TargetType="TextBlock">
                                     <Setter Property="Padding" Value="16" />
                                     <Setter Property="FontFamily" Value="Poppins" />
-                                    <Setter Property="HorizontalAlignment" Value="Center" />
+                                    <Setter Property="VerticalAlignment" Value="Center" />
                                 </Style>
                             </DataGridTextColumn.ElementStyle>
                         </DataGridTextColumn>
@@ -214,15 +218,20 @@
                                 <Style TargetType="TextBlock">
                                     <Setter Property="Padding" Value="16" />
                                     <Setter Property="FontFamily" Value="Poppins" />
-                                    <Setter Property="HorizontalAlignment" Value="Center" />
+                                    <Setter Property="VerticalAlignment" Value="Center" />
                                 </Style>
                             </DataGridTextColumn.ElementStyle>
                         </DataGridTextColumn>
                         
-                        <DataGridTemplateColumn Header="Link">
+                        <DataGridTemplateColumn Header="Link" Width="1*">
                             <DataGridTemplateColumn.CellTemplate>
                                 <DataTemplate>
-                                    <TextBlock Padding="16" FontFamily="Poppins">
+                                    <TextBlock Padding="16" FontFamily="Poppins" VerticalAlignment="Center" FontSize="15">
+                                        <TextBlock.ToolTip>
+                                            <ToolTip>
+                                                <TextBlock Text="Visit us on the web" />
+                                            </ToolTip>
+                                        </TextBlock.ToolTip>
                                         <Hyperlink NavigateUri="{Binding Link}" RequestNavigate="Hyperlink_RequestNavigate">
                                             <Hyperlink.Style>
                                                 <Style TargetType="Hyperlink">

@@ -5,6 +5,7 @@ using System.ComponentModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows;
 using TravelApp.Core.Repository;
 using TravelApp.Core.Service;
 
@@ -57,6 +58,17 @@ namespace TravelApp.DesktopHost.ViewModel
                     _tableWidth = value;
                     OnPropertyChanged(nameof(TableWidth));
                 }
+            }
+        }
+
+        private Thickness _arrowMargin;
+        public Thickness ArrowMargin
+        {
+            get { return _arrowMargin; }
+            set
+            {
+                _arrowMargin = value;
+                OnPropertyChanged(nameof(ArrowMargin));
             }
         }
 
