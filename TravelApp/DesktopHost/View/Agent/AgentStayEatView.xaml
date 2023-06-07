@@ -96,6 +96,8 @@
 
             <materialDesign:Card Grid.Row="2" Background="White" Padding="16" HorizontalAlignment="Center">
                 <DataGrid x:Name="MyDataGrid" ItemsSource="{Binding FilteredItems}"
+                          Width="{Binding TableWidth}"
+                          RowHeight="50"
                           HorizontalAlignment="Center"
                           AutoGenerateColumns="False"
                           CanUserAddRows="False"
@@ -132,10 +134,16 @@
                                 </Trigger>
                             </Style.Triggers>
                         </Style>
+
+                        <Style TargetType="DataGridColumnHeader">
+                            <Setter Property="Background" Value="LightGray" />
+                            <Setter Property="Padding" Value="16" />
+                            <Setter Property="FontFamily" Value="Poppins" />
+                        </Style>
                     </DataGrid.Resources>
 
                     <DataGrid.Columns>
-                        <DataGridTextColumn Header="Name" Binding="{Binding Name}" IsReadOnly="True">
+                        <DataGridTextColumn Header="Name" Binding="{Binding Name}" IsReadOnly="True" Width="1.5*">
                             <DataGridTextColumn.ElementStyle>
                                 <Style TargetType="TextBlock">
                                     <Setter Property="Padding" Value="16" />
@@ -143,7 +151,7 @@
                                 </Style>
                             </DataGridTextColumn.ElementStyle>
                         </DataGridTextColumn>
-                        <DataGridTextColumn Header="Address" Binding="{Binding Address}" IsReadOnly="True">
+                        <DataGridTextColumn Header="Address" Binding="{Binding Address}" IsReadOnly="True" Width="2*">
                             <DataGridTextColumn.ElementStyle>
                                 <Style TargetType="TextBlock">
                                     <Setter Property="Padding" Value="16" />
@@ -151,7 +159,7 @@
                                 </Style>
                             </DataGridTextColumn.ElementStyle>
                         </DataGridTextColumn>
-                        <DataGridTextColumn Header="Type" Binding="{Binding Type}" IsReadOnly="True">
+                        <DataGridTextColumn Header="Type" Binding="{Binding Type}" IsReadOnly="True" Width="*">
                             <DataGridTextColumn.ElementStyle>
                                 <Style TargetType="TextBlock">
                                     <Setter Property="Padding" Value="16" />
@@ -159,7 +167,7 @@
                                 </Style>
                             </DataGridTextColumn.ElementStyle>
                         </DataGridTextColumn>
-                        <DataGridTemplateColumn Header="Link">
+                        <DataGridTemplateColumn Header="Link" Width="1*">
                             <DataGridTemplateColumn.CellTemplate>
                                 <DataTemplate>
                                     <TextBlock Padding="16" FontFamily="Poppins">

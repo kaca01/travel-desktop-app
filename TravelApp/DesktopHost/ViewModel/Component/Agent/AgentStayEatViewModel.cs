@@ -96,6 +96,21 @@ namespace TravelApp.DesktopHost.ViewModel
 
         public event PropertyChangedEventHandler PropertyChanged;
 
+        private double _tableWidth;
+
+        public double TableWidth
+        {
+            get { return _tableWidth; }
+            set
+            {
+                if (_tableWidth != value)
+                {
+                    _tableWidth = value;
+                    OnPropertyChanged(nameof(TableWidth));
+                }
+            }
+        }
+
         public AgentStayEatViewModel()
         {
             Navigation = new AgentNavigationViewModel();

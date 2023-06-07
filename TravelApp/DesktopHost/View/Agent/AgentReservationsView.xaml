@@ -86,7 +86,8 @@
 
             <materialDesign:Card Grid.Row="2" Background="White" Padding="16" HorizontalAlignment="Center">
                 <DataGrid ItemsSource="{Binding FilteredItems}"
-                          HorizontalAlignment="Center"
+                          Width="{Binding TableWidth}"
+                          RowHeight="50"
                           AutoGenerateColumns="False"
                           CanUserAddRows="False"
                           CanUserDeleteRows="False"
@@ -109,7 +110,7 @@
 
                     <DataGrid.Resources>
                         <SolidColorBrush x:Key="MaterialDesignSelection" Color="Transparent" />
-                        <SolidColorBrush x:Key="MaterialDesignSelectionForeground" Color="	#5A5A5A" />
+                        <SolidColorBrush x:Key="MaterialDesignSelectionForeground" Color="#5A5A5A" />
 
                         <Style TargetType="DataGridCell">
                             <Setter Property="Background" Value="{StaticResource MaterialDesignSelection}" />
@@ -123,50 +124,62 @@
                                 </Trigger>
                             </Style.Triggers>
                         </Style>
+
+                        <Style TargetType="DataGridColumnHeader">
+                            <Setter Property="Background" Value="LightGray" />
+                            <Setter Property="Padding" Value="16" />
+                            <Setter Property="FontFamily" Value="Poppins" />
+                        </Style>
                     </DataGrid.Resources>
 
                     <DataGrid.Columns>
-                        <DataGridTextColumn Header="Passenger" Binding="{Binding Passenger}" IsReadOnly="True">
+                        <DataGridTextColumn Header="Passenger" Binding="{Binding Passenger}" IsReadOnly="True" Width="*" >
                             <DataGridTextColumn.ElementStyle>
                                 <Style TargetType="TextBlock">
                                     <Setter Property="Padding" Value="16" />
                                     <Setter Property="FontFamily" Value="Poppins" />
+                                    <Setter Property="VerticalAlignment" Value="Center" />
                                 </Style>
                             </DataGridTextColumn.ElementStyle>
                         </DataGridTextColumn>
-                        <DataGridTextColumn Header="Trip" Binding="{Binding Trip}" IsReadOnly="True">
+                        <DataGridTextColumn Header="Trip" Binding="{Binding Trip}" IsReadOnly="True" Width="*" >
                             <DataGridTextColumn.ElementStyle>
                                 <Style TargetType="TextBlock">
                                     <Setter Property="Padding" Value="16" />
                                     <Setter Property="FontFamily" Value="Poppins" />
+                                    <Setter Property="VerticalAlignment" Value="Center" />
                                 </Style>
                             </DataGridTextColumn.ElementStyle>
                         </DataGridTextColumn>
-                        <DataGridTextColumn Header="Price" Binding="{Binding Price}" IsReadOnly="True">
+                        <DataGridTextColumn Header="Price" Binding="{Binding Price}" IsReadOnly="True" Width="*" >
                             <DataGridTextColumn.ElementStyle>
                                 <Style TargetType="TextBlock">
                                     <Setter Property="Padding" Value="16" />
                                     <Setter Property="FontFamily" Value="Poppins" />
+                                    <Setter Property="VerticalAlignment" Value="Center" />
                                 </Style>
                             </DataGridTextColumn.ElementStyle>
                         </DataGridTextColumn>
-                        <DataGridTextColumn Header="Start date" Binding="{Binding StartDate}" IsReadOnly="True">
+                        <DataGridTextColumn Header="Start date" Binding="{Binding StartDate}" IsReadOnly="True" Width="*" >
                             <DataGridTextColumn.ElementStyle>
                                 <Style TargetType="TextBlock">
                                     <Setter Property="Padding" Value="16" />
                                     <Setter Property="FontFamily" Value="Poppins" />
+                                    <Setter Property="VerticalAlignment" Value="Center" />
                                 </Style>
                             </DataGridTextColumn.ElementStyle>
                         </DataGridTextColumn>
-                        <DataGridTextColumn Header="End date" Binding="{Binding EndDate}" IsReadOnly="True">
+                        <DataGridTextColumn Header="End date" Binding="{Binding EndDate}" IsReadOnly="True" Width="*" >
                             <DataGridTextColumn.ElementStyle>
                                 <Style TargetType="TextBlock">
                                     <Setter Property="Padding" Value="16" />
                                     <Setter Property="FontFamily" Value="Poppins" />
+                                    <Setter Property="VerticalAlignment" Value="Center" />
                                 </Style>
                             </DataGridTextColumn.ElementStyle>
                         </DataGridTextColumn>
                     </DataGrid.Columns>
+
                 </DataGrid>
             </materialDesign:Card>
         </Grid>

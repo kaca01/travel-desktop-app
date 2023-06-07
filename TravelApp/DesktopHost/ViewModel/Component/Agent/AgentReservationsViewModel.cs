@@ -45,6 +45,21 @@ namespace TravelApp.DesktopHost.ViewModel
             }
         }
 
+        private double _tableWidth;
+
+        public double TableWidth
+        {
+            get { return _tableWidth; }
+            set
+            {
+                if (_tableWidth != value)
+                {
+                    _tableWidth = value;
+                    OnPropertyChanged(nameof(TableWidth));
+                }
+            }
+        }
+
         private ObservableCollection<AgentTransactionListItemViewModel> _items;
         public ObservableCollection<AgentTransactionListItemViewModel> Items
         {
