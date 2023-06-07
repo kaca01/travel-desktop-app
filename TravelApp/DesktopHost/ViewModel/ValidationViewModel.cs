@@ -63,7 +63,7 @@ namespace TravelApp.DesktopHost.ViewModel
             set { _linkValidation = value; OnPropertyChanged(nameof(LinkValidation)); }
         }
 
-        public void ValidateAll(Validation user)
+        public void ValidateSignup(Validation user)
         {
             IsNameValid(user.Name);
             IsSurnameValid(user.Surname);
@@ -72,12 +72,27 @@ namespace TravelApp.DesktopHost.ViewModel
             IsPasswordAgainValid(user.PasswordAgain, user.Password);
         }
 
-        public Validation GetValidationMessages()
+        public void ValidateNewPlace(string name, string address, string link)
+        {
+            IsNameValid(name);
+            IsAddressValid(address);
+            IsLinkValid(link);
+        }
+
+        public Validation GetSignupValidationMessages()
         {
 
             return new Validation(NameValidation, SurnameValidation, EmailValidation, 
                 PasswordValidation, PasswordAgainValidation);
         }
+
+        public Validation GetNewPlaceValidationMessages()
+        {
+
+            return new Validation(NameValidation, AddressValidation, LinkValidation,
+                null, null);
+        }
+
 
         public bool IsNameValid(string name)
         {

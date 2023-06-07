@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using TravelApp.Core.Model;
 using TravelApp.Core.Repository;
 using TravelApp.DesktopHost.ViewModel;
+using TravelApp.DesktopHost.ViewModel.Component.Agent;
 
 namespace TravelApp.Core.Service
 {
@@ -25,10 +26,21 @@ namespace TravelApp.Core.Service
             return _facilityRepository.Get();
         }
 
-        public TouristFacility Create(string name, string address, PlaceType placeType, string link)
+        public TouristFacility Create(NewPlaceViewModel vm)
         {
-            //todo call validation
-            return null;
+            vm.ValidationViewModel.ValidateNewPlace(vm.Name, vm.Address, vm.Link);
+            Validation validation = vm.ValidationViewModel.GetSignupValidationMessages();
+            if (string.IsNullOrEmpty(validation.Name) & string.IsNullOrEmpty(validation.Surname) &
+                string.IsNullOrEmpty(validation.Email))
+            {
+                PlaceType type = PlaceType.RESTAURANT;
+                if (vm.Accomodation) type = PlaceType.ACCOMODATION;
+                return this._facilityRepository.Create(vm.Name, vm.Address, vm.Link, type);
+            }
+            else
+            {
+                throw new Exception("Invalid data!");
+            }
         }
     }
 }

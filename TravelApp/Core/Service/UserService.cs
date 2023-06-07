@@ -40,8 +40,8 @@ namespace TravelApp.Core.Service
 
         public void Signup(Validation user, SignupViewModel vm)
         {   
-            vm.ValidationViewModel.ValidateAll(user);
-            Validation validation = vm.ValidationViewModel.GetValidationMessages();
+            vm.ValidationViewModel.ValidateSignup(user);
+            Validation validation = vm.ValidationViewModel.GetSignupValidationMessages();
             if (string.IsNullOrEmpty(validation.Name) & string.IsNullOrEmpty(validation.Surname) &
                 string.IsNullOrEmpty(validation.Email) &string.IsNullOrEmpty(validation.Password) &
                     string.IsNullOrEmpty(validation.PasswordAgain))
