@@ -17,9 +17,19 @@ namespace TravelApp.Core.Service
             _tripRepository = new TripRepository();
         }
 
-        public List<Trip> getAll()
+        public List<Trip> GetAll()
         {
-            return _tripRepository.getAll();
+            return _tripRepository.GetAll();
+        }
+
+        public Trip Get(int id)
+        {
+            return _tripRepository.Get(id);
+        }
+
+        public bool Delete(int id)
+        {
+            return _tripRepository.Delete(id);
         }
     }
 }

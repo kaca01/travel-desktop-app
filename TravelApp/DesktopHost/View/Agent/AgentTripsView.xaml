@@ -204,6 +204,8 @@
                                         Foreground="White"
                                         FontSize="16"
                                         FontWeight="DemiBold"
+                                        Click="Delete_Click"
+                                        CommandParameter="{ Binding Id }"
                                         Style="{ StaticResource FormButton }">
                                         <Button.Resources>
                                             <Style TargetType="{x:Type Border}">

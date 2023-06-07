@@ -9,6 +9,10 @@ namespace TravelApp.Core.Repository
 {
     public interface ITripRepository
     {
-        public List<Trip> getAll();
+        public List<Trip> GetAll();
+
+        public Trip Get(int id);
+
+        public bool Delete(int id);
     }
 }

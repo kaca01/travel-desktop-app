@@ -47,5 +47,12 @@ namespace TravelApp.DesktopHost.View
                 }
             }
         }
+
+        private void Delete_Click(object sender, RoutedEventArgs e)
+        {
+            AgentTripsViewModel viewModel = (AgentTripsViewModel)DataContext;
+            Button button = sender as Button;
+            viewModel.Delete((int) button.CommandParameter);
+        }
     }
 }

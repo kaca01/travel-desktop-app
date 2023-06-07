@@ -9,11 +9,34 @@ namespace TravelApp.Core.Repository
 {
     public class TripRepository : ITripRepository
     {
-        public List<Trip> getAll()
+        public List<Trip> GetAll()
         {
             using (var context = new TravelContext())
             {
-                return context.Trips.ToList();
+                return context.Trips.Where(t => !t.IsDeleted).ToList();
+            }
+        }
+
+        public Trip Get(int id)
+        {
+            using (var context = new TravelContext())
+            {
+                return context.Trips.First(t => t.Id == id);
+            }
+        }
+
+        public bool Delete(int id)
+        {
+            using (var context = new TravelContext())
+            {
+                Trip trip = context.Trips.First(t => t.Id == id);
+                if (trip != null)
+                {
+                    trip.IsDeleted = true;
+                    context.SaveChanges();
+                    return true;
+                }
+                return false;
             }
         }
     }

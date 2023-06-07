@@ -9,6 +9,11 @@ namespace TravelApp.Core.Service
 {
     public interface ITripService
     {
-        public List<Trip> getAll();
+        public List<Trip> GetAll();
+
+        public Trip Get(int id);
+
+        public bool Delete(int id);
+
     }
 }

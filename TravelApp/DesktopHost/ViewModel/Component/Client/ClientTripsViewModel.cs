@@ -120,7 +120,7 @@ namespace TravelApp.DesktopHost.ViewModel
 
         private void populateTrips()
         {
-            _trips = _tripService.getAll();
+            _trips = _tripService.GetAll();
             
         }
 
