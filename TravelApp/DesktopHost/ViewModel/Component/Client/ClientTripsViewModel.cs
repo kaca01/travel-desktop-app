@@ -117,7 +117,7 @@ namespace TravelApp.DesktopHost.ViewModel
             _trips = new List<Trip>();
             _searchedTrips = new List<Trip>();
             populateTrips();
-            _searchedTrips = _trips;
+            _searchedTrips = getDesriptionTrips();
             _search = "";
             _selectedSort = 0;
         }
@@ -136,9 +136,21 @@ namespace TravelApp.DesktopHost.ViewModel
             
         }
 
+        private List<Trip> getDesriptionTrips()
+        {
+            List<Trip> trips = new List<Trip>();
+            foreach (Trip trip in _trips)
+            {
+                trip.Description = trip.Description.Substring(0, Math.Min(trip.Description.Length, 120)) + "...";
+                trips.Add(trip);
+            }
+
+            return trips;
+        }
+
         private void sort(int criteria)
         {
-            if (criteria == 0) SearchedTrips = _trips;
+            if (criteria == 0) SearchedTrips = getDesriptionTrips();
 
             else if (criteria == 1) SearchedTrips = _searchedTrips.OrderBy(obj => obj.Name).ToList();
 

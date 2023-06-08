@@ -149,8 +149,8 @@ namespace TravelApp.DesktopHost.ViewModel
             DisplayWindowSize = new DisplayWidnowSizeCommand(this);
             _trips = new List<Trip>();
             _searchedTrips = new List<Trip>();
-            populateTrips("all");
-            _searchedTrips = _trips;
+            populateTrips();
+            _searchedTrips = getDesriptionTrips();
             _search = "";
             _selectedSort = 0;
         }
@@ -163,22 +163,31 @@ namespace TravelApp.DesktopHost.ViewModel
             _sortCriteria.Add("Destination location");
         }
 
-        private void populateTrips(string criteria)
+        private void populateTrips()
         {
-            if (criteria == "all")
+            _trips = _tripService.GetAll();           
+        }
+
+        private List<Trip> getDesriptionTrips()
+        {
+            List<Trip> trips = new List<Trip>();
+            foreach (Trip trip in _trips)
             {
-                _trips = _tripService.GetAll();
+                trip.Description = trip.Description.Substring(0, Math.Min(trip.Description.Length, 120)) + "...";
+                trips.Add(trip);
             }
+
+            return trips;
         }
 
         private void sort(int criteria)
         {
-            if (criteria == 0) SearchedTrips = _trips;
-            
+            if (criteria == 0) SearchedTrips = getDesriptionTrips();
+
             else if (criteria == 1) SearchedTrips = _searchedTrips.OrderBy(obj => obj.Name).ToList();
-            
+
             else if (criteria == 2) SearchedTrips = _searchedTrips.OrderBy(obj => obj.Departure).ToList();
-            
+
             else if (criteria == 3) SearchedTrips = _searchedTrips.OrderBy(obj => obj.Destination).ToList();
 
      
