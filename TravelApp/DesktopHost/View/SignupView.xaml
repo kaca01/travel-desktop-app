@@ -59,6 +59,7 @@
                      ToolTip="Enter your first name"
                      Text="{Binding Name}"
                      PreviewTextInput="TextBox_PreviewTextInputName"
+                     TextChanged="TextBox_NameLostFocus"
                      LostFocus="TextBox_NameLostFocus">
                 </TextBox>
                 <Label Height="27"
@@ -88,6 +89,7 @@
                      ToolTip="Enter your last name"
                      Text="{Binding Surname}"
                      PreviewTextInput="TextBox_PreviewTextInputSurname"
+                     TextChanged="TextBox_SurnameLostFocus"
                      LostFocus="TextBox_SurnameLostFocus">
                 </TextBox>
                 <Label Height="27"
@@ -118,6 +120,7 @@
                      ToolTip="Enter email address associated with your account"
                      Text="{Binding Email}"
                      PreviewTextInput="TextBox_PreviewTextInputEmail"
+                     TextChanged="TextBox_EmailLostFocus"
                      LostFocus="TextBox_EmailLostFocus">
                 </TextBox>
                 <TextBlock Height="27"

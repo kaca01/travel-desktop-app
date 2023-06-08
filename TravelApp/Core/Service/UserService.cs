@@ -46,7 +46,7 @@ namespace TravelApp.Core.Service
                 string.IsNullOrEmpty(validation.Email) &string.IsNullOrEmpty(validation.Password) &
                     string.IsNullOrEmpty(validation.PasswordAgain))
             {
-                if (this.userRepository.GetByEmail(user.Email) != null) throw new Exception("User with this email already exists!");
+                if (this.userRepository.GetByEmail(user.Email) != null) throw new Exception("User with this email already exists!Please choose another one!");
                 this.userRepository.Create(user.Name, user.Surname, user.Email, user.Password);
             }
             else
