@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using TravelApp.DesktopHost.ViewModel;
 using TravelApp.DesktopHost.ViewModel.Navigation;
 
 namespace TravelApp.DesktopHost.Command.Navigation
@@ -19,7 +20,8 @@ namespace TravelApp.DesktopHost.Command.Navigation
         {
             // TODO : add here _navigation.CurrentViewModel = new TripsViewModel()
             // or whatever the class is called
-            throw new NotImplementedException();
+            if(_navigation.CurrentViewModel.GetType() != typeof(ClientTripsViewModel))
+                _navigation.CurrentViewModel = new ClientTripsViewModel();
         }
     }
 }

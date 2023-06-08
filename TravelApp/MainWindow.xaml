@@ -15,7 +15,9 @@
         Style="{StaticResource AllWindows}"
         d:DataContext="{d:DesignInstance Type=viewmodels:MainViewModel}"
         TextElement.Foreground="{DynamicResource MaterialDesignBody}"
-        WindowState="Maximized">
+        WindowState="Maximized"
+        MinWidth="850"
+        MinHeight="400">
     <Grid>
         <Grid.Resources>
             <DataTemplate DataType="{x:Type viewmodels:ClientStayEatViewModel}">
@@ -44,6 +46,10 @@
 
             <DataTemplate DataType="{x:Type viewmodels:AgentTripsViewModel}">
                 <views:AgentTripsView/>
+            </DataTemplate>
+
+            <DataTemplate DataType="{x:Type viewmodels:ClientTripsViewModel}">
+                <views:ClientTripsView/>
             </DataTemplate>
 
             <DataTemplate DataType="{x:Type viewmodelsAgent:NewPlaceViewModel}">

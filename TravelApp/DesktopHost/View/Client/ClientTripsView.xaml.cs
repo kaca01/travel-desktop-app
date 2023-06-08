@@ -17,11 +17,11 @@ using TravelApp.DesktopHost.ViewModel;
 namespace TravelApp.DesktopHost.View
 {
     /// <summary>
-    /// Interaction logic for AgentTripsView.xaml
+    /// Interaction logic for ClientTripsView.xaml
     /// </summary>
-    public partial class AgentTripsView : UserControl
+    public partial class ClientTripsView : UserControl
     {
-        public AgentTripsView()
+        public ClientTripsView()
         {
             InitializeComponent();
         }
@@ -31,7 +31,7 @@ namespace TravelApp.DesktopHost.View
             double windowWidth = e.NewSize.Width;
             double windowHeigth = e.NewSize.Height;
 
-            if (DataContext is AgentTripsViewModel viewModel)
+            if (DataContext is ClientTripsViewModel viewModel)
             {
                 if (windowWidth <= 1000)
                 {
@@ -52,13 +52,6 @@ namespace TravelApp.DesktopHost.View
                     viewModel.TextFontSize = 50;
                 }
             }
-        }
-
-        private void Delete_Click(object sender, RoutedEventArgs e)
-        {
-            AgentTripsViewModel viewModel = (AgentTripsViewModel)DataContext;
-            Button button = sender as Button;
-            viewModel.Delete((int) button.CommandParameter);
         }
     }
 }

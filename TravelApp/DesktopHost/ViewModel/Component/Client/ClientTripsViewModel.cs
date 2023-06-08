@@ -1,23 +1,17 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Input;
-using TravelApp.DesktopHost.Command;
 using TravelApp.Core.Model;
 using TravelApp.Core.Service;
-using TravelApp.DesktopHost.ViewModel.Component.Trip;
-using System.Windows;
 
 namespace TravelApp.DesktopHost.ViewModel
 {
-    class AgentTripsViewModel : BaseViewModel
+    class ClientTripsViewModel : BaseViewModel
     {
         private ITripService _tripService;
-
-        private string _windowSize;
 
         private double _textFontSize;
 
@@ -31,19 +25,15 @@ namespace TravelApp.DesktopHost.ViewModel
 
         private int _selectedSort;
 
-        private int _selectedTrip;
-
         private double _fieldsWidth;
 
-        public AgentNavigationViewModel Navigation { get; set; }
-
-        public ICommand DisplayWindowSize { get; }
+        public ClientNavigationViewModel Navigation { get; set; }
 
         public List<string> SortCriteria
         {
             get { return _sortCriteria; }
-            set 
-            { 
+            set
+            {
                 if (value != _sortCriteria)
                 {
                     _sortCriteria = value;
@@ -62,16 +52,6 @@ namespace TravelApp.DesktopHost.ViewModel
                     _textFontSize = value;
                     OnPropertyChanged(nameof(TextFontSize));
                 }
-            }
-        }
-
-        public string WindowSize
-        {
-            get { return _windowSize; }
-            set
-            {
-                _windowSize = value;
-                OnPropertyChanged(nameof(WindowSize));
             }
         }
 
@@ -95,8 +75,8 @@ namespace TravelApp.DesktopHost.ViewModel
             }
         }
 
-        public string Search 
-        { 
+        public string Search
+        {
             get { return _search; }
             set
             {
@@ -117,16 +97,6 @@ namespace TravelApp.DesktopHost.ViewModel
             }
         }
 
-        public int SelectedTrip
-        {
-            get => _selectedTrip;
-            set
-            {
-                _selectedTrip = value;
-                OnPropertyChanged(nameof(SelectedTrip));
-            }
-        }
-
         public double FieldsWidth
         {
             get => _fieldsWidth;
@@ -137,16 +107,13 @@ namespace TravelApp.DesktopHost.ViewModel
             }
         }
 
-
-        public AgentTripsViewModel() 
+        public ClientTripsViewModel()
         {
             _tripService = new TripService();
-            _windowSize = "Dimenzije prozora";
             _textFontSize = 50;
             _sortCriteria = new List<string>();
             populateSortingCriteria();
-            Navigation = new AgentNavigationViewModel();
-            DisplayWindowSize = new DisplayWidnowSizeCommand(this);
+            Navigation = new ClientNavigationViewModel();
             _trips = new List<Trip>();
             _searchedTrips = new List<Trip>();
             populateTrips();
@@ -165,7 +132,8 @@ namespace TravelApp.DesktopHost.ViewModel
 
         private void populateTrips()
         {
-            _trips = _tripService.GetAll();           
+            _trips = _tripService.GetAll();
+            
         }
 
         private List<Trip> getDesriptionTrips()
@@ -190,38 +158,12 @@ namespace TravelApp.DesktopHost.ViewModel
 
             else if (criteria == 3) SearchedTrips = _searchedTrips.OrderBy(obj => obj.Destination).ToList();
 
-     
+
         }
 
         private void search()
         {
             SearchedTrips = new List<Trip>(Trips.Where(item => item.Name.ToLower().Contains(Search.ToLower())));
-        }
-
-        public void Delete(int id)
-        {
-            SelectedTrip = id;
-            Trip trip = _tripService.Get(SelectedTrip);
-            if (openMessageBox(trip))
-            {
-                _tripService.Delete(SelectedTrip);
-                _trips = _tripService.GetAll();
-                SearchedTrips = _trips;
-                MessageBox.Show("Deleted " + trip.Name + "!!!", "Successfully deleted", MessageBoxButton.OK, MessageBoxImage.Information);
-            }
-
-        }
-
-        // item is selected
-        private bool openMessageBox(Trip trip)
-        {
-            MessageBoxResult result = MessageBox.Show("Are you sure you want to delete " + trip.Name + " trip?", "Delete ", MessageBoxButton.YesNo, MessageBoxImage.Question);
-
-            if (result == MessageBoxResult.Yes)
-                return true;
-            else
-                return false;
-
         }
     }
 }

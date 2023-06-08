@@ -9,6 +9,7 @@
 
   <ItemGroup>
     <None Remove="airplane.ico" />
+    <None Remove="Style\Images\trip.png" />
   </ItemGroup>
 
   <ItemGroup>
@@ -22,6 +23,7 @@
     <Resource Include="Style\Images\airplane.ico">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Resource>
+    <Resource Include="Style\Images\trip.png" />
   </ItemGroup>
 
 </Project>
