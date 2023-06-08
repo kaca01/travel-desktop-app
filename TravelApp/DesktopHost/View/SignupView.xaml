@@ -178,6 +178,7 @@
                 VerticalAlignment="Bottom"
                 Width="{Binding Width}"
                 Height="40"
+                IsEnabled="{Binding IsButtonEnabled}"
                 Margin="0, 22 ,0 ,0"
                 ToolTip="Click to sign up to the app"
                 Content="Sign up"
