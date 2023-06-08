@@ -8,8 +8,8 @@
              xmlns:viewmodels="clr-namespace:TravelApp.DesktopHost.ViewModel"
              xmlns:views="clr-namespace:TravelApp.DesktopHost.View"
              mc:Ignorable="d"
-             Background="#DFE6F0"
              SizeChanged="Window_SizeChanged"
+             Background="White"
              d:DataContext="{d:DesignInstance Type=viewmodels:SignupViewModel}">
     <ScrollViewer>
         <Grid>
@@ -198,8 +198,8 @@
                        Grid.Column="0"
                        FontSize="{Binding LoginFontSize}"
                        Margin="45, 10, 10, 0"
-                       Foreground="#808080"
                        FontFamily="Poppins"
+                       Foreground="#808080"
                        FontWeight="Medium">Already have an account ?</Label>
                     <Button Grid.Column="1"
                         Command="{Binding Login}">
@@ -212,7 +212,6 @@
                        FontSize="{Binding LoginFontSize}"
                        Margin="10, 10, 0, 0"
                        Foreground="#4889E6" 
-                       Background="#DFE6F0"
                        FontFamily="Poppins" 
                        ToolTip="Go to sign up page"
                        FontWeight="Medium" Cursor="Hand"

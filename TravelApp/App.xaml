@@ -50,11 +50,11 @@
                 <Setter Property="TextBlock.TextAlignment" Value="Center" />
                 <Setter Property="Foreground" Value="Black"/>
                 <Setter Property="FontFamily" Value="Poppins"/>
-                <Setter Property="Background" Value="#DFE6F0"/>
+                <Setter Property="Background" Value="#EAECEC"/>
                 <Setter Property="Template">
                     <Setter.Value>
                         <ControlTemplate TargetType="{x:Type Button}">
-                            <Border Background="{TemplateBinding Background}" BorderBrush="#DFE6F0" BorderThickness="0">
+                            <Border Background="{TemplateBinding Background}" BorderBrush="#EAECEC" BorderThickness="0">
                                 <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
                             </Border>
                         </ControlTemplate>
