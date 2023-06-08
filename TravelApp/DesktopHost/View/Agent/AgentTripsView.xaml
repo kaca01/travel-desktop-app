@@ -112,6 +112,7 @@
                 <ComboBox
                     SelectedIndex="{ Binding SelectedSort }"
                     FontSize="15"
+                    Cursor="Hand"
                     VerticalContentAlignment="Top"
                     ItemsSource="{Binding SortCriteria}"
                     Width="{Binding FieldsWidth}"
