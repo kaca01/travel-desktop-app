@@ -8,6 +8,7 @@ using System.Threading.Tasks;
 using System.Windows.Input;
 using TravelApp.Core.Service;
 using TravelApp.DesktopHost.Command;
+using TravelApp.DesktopHost.Command.Agent;
 
 namespace TravelApp.DesktopHost.ViewModel
 {
@@ -92,7 +93,7 @@ namespace TravelApp.DesktopHost.ViewModel
             }
         }
 
-        public ICommand ClientStayEat { get; }
+        public ICommand NewPlace { get; }
 
         public event PropertyChangedEventHandler PropertyChanged;
 
@@ -105,7 +106,7 @@ namespace TravelApp.DesktopHost.ViewModel
             FilteredItems = new ObservableCollection<TouristFacilityListItemViewModel>(Items);
 
             Delete = new DeleteStayEatItemCommand(this);
-            ClientStayEat = new ClientStayEatNavigationCommand();
+            NewPlace = new NewPlaceNavigationCommand();
 
         }
 

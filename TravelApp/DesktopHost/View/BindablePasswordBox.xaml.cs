@@ -23,19 +23,6 @@ namespace TravelApp.DesktopHost.View
     {
         private bool _isPasswordChanging;
 
-        private void TextBox_PasswordLostFocus(object sender, RoutedEventArgs e)
-        {
-            PasswordBox textBox = (PasswordBox)sender;
-            if (!ValidationViewModel.IsAnyPasswordValid(textBox.Password))
-            {
-                textBox.BorderBrush = Brushes.Red;
-            }
-            else
-            {
-                textBox.BorderBrush = Brushes.Gray;
-            }
-        }
-
         private void TextBox_PreviewTextInputPassword(object sender, TextCompositionEventArgs e)
         {
             PasswordBox textBox = (PasswordBox)sender;
@@ -74,6 +61,15 @@ namespace TravelApp.DesktopHost.View
 
         private void PasswordBox_PasswordChanged(object sender, RoutedEventArgs e)
         {
+            PasswordBox textBox = (PasswordBox)sender;
+            if (!ValidationViewModel.IsAnyPasswordValid(textBox.Password))
+            {
+                textBox.BorderBrush = Brushes.Red;
+            }
+            else
+            {
+                textBox.BorderBrush = Brushes.Gray;
+            }
             _isPasswordChanging = true;
             Password = passwordBox.Password;
             _isPasswordChanging = false;

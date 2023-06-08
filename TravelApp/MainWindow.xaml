@@ -5,7 +5,9 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:views="clr-namespace:TravelApp.DesktopHost.View"
+        xmlns:viewsAgent="clr-namespace:TravelApp.DesktopHost.View.Agent"
         xmlns:viewmodels="clr-namespace:TravelApp.DesktopHost.ViewModel"
+        xmlns:viewmodelsAgent="clr-namespace:TravelApp.DesktopHost.ViewModel.Component.Agent"
         xmlns:local="clr-namespace:TravelApp"
         mc:Ignorable="d"
         Title="TravelApp"
@@ -19,11 +21,11 @@
             <DataTemplate DataType="{x:Type viewmodels:ClientStayEatViewModel}">
                 <views:ClientStayEatView />
             </DataTemplate>
-            
+
             <DataTemplate DataType="{x:Type viewmodels:LoginViewModel}">
                 <views:LoginView />
             </DataTemplate>
-            
+
             <DataTemplate DataType="{x:Type viewmodels:SignupViewModel}">
                 <views:SignupView />
             </DataTemplate>
@@ -31,19 +33,23 @@
             <DataTemplate DataType="{x:Type viewmodels:AgentStayEatViewModel}">
                 <views:AgentStayEatView />
             </DataTemplate>
-            
+
             <DataTemplate DataType="{x:Type viewmodels:ClientNavigationViewModel}">
                 <views:ClientNavigationView/>
             </DataTemplate>
-            
+
             <DataTemplate DataType="{x:Type viewmodels:AgentNavigationViewModel}">
                 <views:AgentNavigationView/>
             </DataTemplate>
-            
+
             <DataTemplate DataType="{x:Type viewmodels:AgentTripsViewModel}">
                 <views:AgentTripsView/>
             </DataTemplate>
-            
+
+            <DataTemplate DataType="{x:Type viewmodelsAgent:NewPlaceViewModel}">
+                <viewsAgent:NewPlaceView/>
+            </DataTemplate>
+
         </Grid.Resources>
         <ContentControl Content="{Binding CurrentViewModel}" />
     </Grid>

@@ -18,6 +18,9 @@ namespace TravelApp.DesktopHost.ViewModel
         private string _passwordValidation;
         private string _passwordAgainValidation;
 
+        private string _addressValidation;
+        private string _linkValidation;
+
         public string NameValidation
         {
             get => _nameValidation;
@@ -48,20 +51,16 @@ namespace TravelApp.DesktopHost.ViewModel
             set { _passwordAgainValidation = value; OnPropertyChanged(nameof(PasswordAgainValidation)); }
         }
 
-        public void ValidateAll(Validation user)
+        public string AddressValidation
         {
-            IsNameValid(user.Name);
-            IsSurnameValid(user.Surname);
-            IsEmailValid(user.Email);
-            IsPasswordValid(user.Password, user.PasswordAgain);
-            IsPasswordAgainValid(user.PasswordAgain, user.Password);
+            get => _addressValidation;
+            set { _addressValidation = value; OnPropertyChanged(nameof(AddressValidation)); }
         }
 
-        public Validation GetValidationMessages()
+        public string LinkValidation
         {
-
-            return new Validation(NameValidation, SurnameValidation, EmailValidation, 
-                PasswordValidation, PasswordAgainValidation);
+            get => _linkValidation;
+            set { _linkValidation = value; OnPropertyChanged(nameof(LinkValidation)); }
         }
 
         public bool IsNameValid(string name)
@@ -154,6 +153,39 @@ namespace TravelApp.DesktopHost.ViewModel
             }
             return false;
         }
+
+        public bool IsAddressValid(string name)
+        {
+            if (string.IsNullOrWhiteSpace(name)) AddressValidation = "Required";
+            else if (string.IsNullOrWhiteSpace(name.Trim())) AddressValidation = "Required";
+            else if (name.Trim().Length < 3) AddressValidation = "Address must contain minimum 3 characters";
+            else
+            {
+                AddressValidation = "";
+                return true;
+            }
+            return false;
+        }
+
+        public bool IsLinkValid(string name)
+        {
+            if (string.IsNullOrWhiteSpace(name)) LinkValidation = "Required";
+            else if (string.IsNullOrWhiteSpace(name.Trim())) LinkValidation = "Required";
+            else
+            {
+                Regex regex = new Regex("^https?:\\/\\/(?:www\\.)?[-a-zA-Z0-9@:%._\\+~#=]{1,256}\\.[a-zA-Z0-9()]{1,6}\\b(?:[-a-zA-Z0-9()@:%_\\+.~#?&\\/=]*)$");
+                Match match = regex.Match(name);
+                if (!match.Success)
+                {
+                    LinkValidation = "Format not valid";
+                    return false;
+                }
+                LinkValidation = "";
+                return true;
+            }
+            return false;
+        }
+
     }
 
 

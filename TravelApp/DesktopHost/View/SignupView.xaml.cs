@@ -30,6 +30,7 @@ namespace TravelApp.DesktopHost.View
         {
             TextBox textBox = (TextBox)sender;
             SignupViewModel viewModel = (SignupViewModel)DataContext;
+            if (viewModel == null)  return;
             if (!viewModel.ValidationViewModel.IsNameValid(textBox.Text))
             {
                 textBox.BorderBrush = Brushes.Red;
@@ -38,12 +39,14 @@ namespace TravelApp.DesktopHost.View
             {
                 textBox.BorderBrush = Brushes.Gray;
             }
+            viewModel.Name = textBox.Text;
         }
 
         private void TextBox_SurnameLostFocus(object sender, RoutedEventArgs e)
         {
             TextBox textBox = (TextBox)sender;
             SignupViewModel viewModel = (SignupViewModel)DataContext;
+            if (viewModel == null) return;
             if (!viewModel.ValidationViewModel.IsSurnameValid(textBox.Text))
             {
                 textBox.BorderBrush = Brushes.Red;
@@ -52,12 +55,14 @@ namespace TravelApp.DesktopHost.View
             {
                 textBox.BorderBrush = Brushes.Gray;
             }
+            viewModel.Surname = textBox.Text;
         }
 
         private void TextBox_EmailLostFocus(object sender, RoutedEventArgs e)
         {
             TextBox textBox = (TextBox)sender;
             SignupViewModel viewModel = (SignupViewModel)DataContext;
+            if (viewModel == null) return;
             if (!viewModel.ValidationViewModel.IsEmailValid(textBox.Text))
             {
                 textBox.BorderBrush = Brushes.Red;
@@ -66,12 +71,14 @@ namespace TravelApp.DesktopHost.View
             {
                 textBox.BorderBrush = Brushes.Gray;
             }
+            viewModel.Email = textBox.Text;
         }
 
         private void TextBox_PasswordLostFocus(object sender, RoutedEventArgs e)
         {
             BindablePasswordBox textBox = (BindablePasswordBox)sender;
             SignupViewModel viewModel = (SignupViewModel)DataContext;
+            if (viewModel == null) return;
             if (!viewModel.ValidationViewModel.IsPasswordValid(textBox.Password, viewModel.PasswordAgain))
             {
                 textBox.BorderBrush = Brushes.Red;
@@ -86,6 +93,7 @@ namespace TravelApp.DesktopHost.View
         {
             BindablePasswordBox textBox = (BindablePasswordBox)sender;
             SignupViewModel viewModel = (SignupViewModel)DataContext;
+            if (viewModel == null) return;
             if (!viewModel.ValidationViewModel.IsPasswordAgainValid(textBox.Password, viewModel.Password))
             {
                 textBox.BorderBrush = Brushes.Red;

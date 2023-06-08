@@ -40,19 +40,10 @@ namespace TravelApp.Core.Service
 
         public void Signup(Validation user, SignupViewModel vm)
         {   
-            vm.ValidationViewModel.ValidateAll(user);
-            Validation validation = vm.ValidationViewModel.GetValidationMessages();
-            if (string.IsNullOrEmpty(validation.Name) & string.IsNullOrEmpty(validation.Surname) &
-                string.IsNullOrEmpty(validation.Email) &string.IsNullOrEmpty(validation.Password) &
-                    string.IsNullOrEmpty(validation.PasswordAgain))
-            {
-                if (this.userRepository.GetByEmail(user.Email) != null) throw new Exception("User with this email already exists!");
-                this.userRepository.Create(user.Name, user.Surname, user.Email, user.Password);
-            }
-            else
-            {
-                throw new Exception("Invalid data!");
-            }
+            if (this.userRepository.GetByEmail(user.Email) != null) 
+                throw new Exception("User with this email already exists!Please choose another one!");
+            this.userRepository.Create(user.Name, user.Surname, user.Email, user.Password);
+
         }
 
     }

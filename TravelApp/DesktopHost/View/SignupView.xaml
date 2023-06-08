@@ -8,8 +8,8 @@
              xmlns:viewmodels="clr-namespace:TravelApp.DesktopHost.ViewModel"
              xmlns:views="clr-namespace:TravelApp.DesktopHost.View"
              mc:Ignorable="d"
-             Background="#DFE6F0"
              SizeChanged="Window_SizeChanged"
+             Background="White"
              d:DataContext="{d:DesignInstance Type=viewmodels:SignupViewModel}">
     <ScrollViewer>
         <Grid>
@@ -29,14 +29,6 @@
                 <ColumnDefinition Width="auto"></ColumnDefinition>
                 <ColumnDefinition Width="*"></ColumnDefinition>
             </Grid.ColumnDefinitions>
-
-            <materialDesign:Snackbar MessageQueue="{Binding SnackbarMessageQueue}"
-                                 Grid.Row="8"
-                                 Grid.Column="1"
-                                 Margin="0,0,0,20"
-                                 Panel.ZIndex="999">
-                <materialDesign:SnackbarMessage Content="{Binding SnackbarMessageQueue}" />
-            </materialDesign:Snackbar>
 
             <TextBlock FontSize="{Binding TextFontSize}"
                 Foreground="#161A25"
@@ -67,6 +59,7 @@
                      ToolTip="Enter your first name"
                      Text="{Binding Name}"
                      PreviewTextInput="TextBox_PreviewTextInputName"
+                     TextChanged="TextBox_NameLostFocus"
                      LostFocus="TextBox_NameLostFocus">
                 </TextBox>
                 <Label Height="27"
@@ -96,6 +89,7 @@
                      ToolTip="Enter your last name"
                      Text="{Binding Surname}"
                      PreviewTextInput="TextBox_PreviewTextInputSurname"
+                     TextChanged="TextBox_SurnameLostFocus"
                      LostFocus="TextBox_SurnameLostFocus">
                 </TextBox>
                 <Label Height="27"
@@ -126,6 +120,7 @@
                      ToolTip="Enter email address associated with your account"
                      Text="{Binding Email}"
                      PreviewTextInput="TextBox_PreviewTextInputEmail"
+                     TextChanged="TextBox_EmailLostFocus"
                      LostFocus="TextBox_EmailLostFocus">
                 </TextBox>
                 <TextBlock Height="27"
@@ -186,17 +181,13 @@
                 VerticalAlignment="Bottom"
                 Width="{Binding Width}"
                 Height="40"
+                IsEnabled="{Binding IsButtonEnabled}"
                 Margin="0, 22 ,0 ,0"
                 ToolTip="Click to sign up to the app"
                 Content="Sign up"
                 Style="{StaticResource FormButton}"
                 Command="{Binding Signup}"
                 IsDefault="True" Cursor="Hand" >
-                <Button.Resources>
-                    <Style TargetType="{x:Type Border}">
-                        <Setter Property="CornerRadius" Value="7"/>
-                    </Style>
-                </Button.Resources>
             </Button>
             <StackPanel Grid.Column="1"
                     Grid.Row="8"
@@ -211,8 +202,8 @@
                        Grid.Column="0"
                        FontSize="{Binding LoginFontSize}"
                        Margin="45, 10, 10, 0"
-                       Foreground="#808080"
                        FontFamily="Poppins"
+                       Foreground="#808080"
                        FontWeight="Medium">Already have an account ?</Label>
                     <Button Grid.Column="1"
                         Command="{Binding Login}">
@@ -225,7 +216,6 @@
                        FontSize="{Binding LoginFontSize}"
                        Margin="10, 10, 0, 0"
                        Foreground="#4889E6" 
-                       Background="#DFE6F0"
                        FontFamily="Poppins" 
                        ToolTip="Go to sign up page"
                        FontWeight="Medium" Cursor="Hand"

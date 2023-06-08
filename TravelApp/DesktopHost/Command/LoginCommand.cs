@@ -8,6 +8,7 @@ using TravelApp.DesktopHost.ViewModel;
 using TravelApp.Core.Service;
 using TravelApp.Core.Model;
 using MaterialDesignThemes.Wpf;
+using System.Windows;
 
 namespace TravelApp.DesktopHost.Command
 {
@@ -32,19 +33,17 @@ namespace TravelApp.DesktopHost.Command
                 _loginVM.ErrorVisibility = System.Windows.Visibility.Collapsed;
                 if (UserService.CurrentUser.Role.Equals(Role.CLIENT))
                 {
-                    //_navigationStore.CurrentViewModel = new AllTripsViewModel();
-                    //todo navigate
+                    //_navigationStore.CurrentViewModel = new ClientTripsViewModel();
                 }
                 else if (UserService.CurrentUser.Role.Equals(Role.AGENT))
                 {
-                    //_navigationStore.CurrentViewModel = new AllTripsViewModel();
-                    //todo navigate
+                    _navigationStore.CurrentViewModel = new AgentTripsViewModel();
                 }
             }
             catch(Exception e) 
             {
                 _loginVM.ErrorVisibility = System.Windows.Visibility.Visible;
-                _loginVM.SnackbarMessageQueue.Enqueue(e.Message);
+                MessageBox.Show(e.Message, "Warning", MessageBoxButton.OK, MessageBoxImage.Warning);
             }
         }
     }

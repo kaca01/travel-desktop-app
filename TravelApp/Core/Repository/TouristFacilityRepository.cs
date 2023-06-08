@@ -64,5 +64,16 @@ namespace TravelApp.Core.Repository
                 }
             }
         }
+
+        public TouristFacility Create(string name, string address, string link, PlaceType type)
+        {
+            using (var context = new TravelContext())
+            {
+                TouristFacility tf = new TouristFacility() { Name = name, Address = address, Link = link, Type = type };
+                context.TouristFacilities.Add(tf);
+                context.SaveChanges();
+                return tf;
+            }
+        }
     }
 }

@@ -8,7 +8,7 @@
         xmlns:viewmodels="clr-namespace:TravelApp.DesktopHost.ViewModel"
         xmlns:views="clr-namespace:TravelApp.DesktopHost.View"
         mc:Ignorable="d"
-        Background="#DFE6F0"
+        Background="White"
         SizeChanged="Window_SizeChanged"
         d:DataContext="{d:DesignInstance Type=viewmodels:LoginViewModel}">
     <ScrollViewer>
@@ -28,13 +28,6 @@
             <ColumnDefinition Width="*"></ColumnDefinition>
         </Grid.ColumnDefinitions>
 
-
-        <materialDesign:Snackbar MessageQueue="{Binding SnackbarMessageQueue}"
-                                 Grid.Row="6"
-                                 Grid.Column="1"
-                                 Margin="0,0,0,20">
-            <materialDesign:SnackbarMessage Content="{Binding SnackbarMessageQueue}" />
-        </materialDesign:Snackbar>
             <StackPanel Grid.Row="1"
                         Grid.Column="1"
                         MaxWidth="{Binding Width}">
@@ -91,7 +84,7 @@
                  Password="{Binding Password}"/>
         </StackPanel>
 
-        <Button Grid.Column="1"
+            <Button Grid.Column="1"
                 Grid.Row="4"
                 VerticalAlignment="Bottom"
                 Width="{Binding Width}"
@@ -101,12 +94,7 @@
                 Style="{StaticResource FormButton}"
                 Command="{Binding Login}"
                 IsDefault="True" Cursor="Hand" >
-            <Button.Resources>
-                <Style TargetType="{x:Type Border}">
-                    <Setter Property="CornerRadius" Value="7"/>
-                </Style>
-            </Button.Resources>
-        </Button>
+            </Button>
         <StackPanel Grid.Column="1"
                     Grid.Row="5"
                     Width="{Binding Width}"
@@ -134,7 +122,6 @@
                        FontSize="20"
                        Margin="10, 10, 0, 0"
                        Foreground="#4889E6" 
-                       Background="#DFE6F0"
                        FontFamily="Poppins" 
                        ToolTip="Go to sign up page"
                        FontWeight="Medium" Cursor="Hand"
