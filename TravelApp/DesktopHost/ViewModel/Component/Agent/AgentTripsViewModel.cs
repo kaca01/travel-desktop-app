@@ -33,6 +33,8 @@ namespace TravelApp.DesktopHost.ViewModel
 
         private int _selectedTrip;
 
+        private double _fieldsWidth;
+
         public AgentNavigationViewModel Navigation { get; set; }
 
         public ICommand DisplayWindowSize { get; }
@@ -122,6 +124,16 @@ namespace TravelApp.DesktopHost.ViewModel
             {
                 _selectedTrip = value;
                 OnPropertyChanged(nameof(SelectedTrip));
+            }
+        }
+
+        public double FieldsWidth
+        {
+            get => _fieldsWidth;
+            set
+            {
+                _fieldsWidth = value;
+                OnPropertyChanged(nameof(FieldsWidth));
             }
         }
 

@@ -33,16 +33,22 @@ namespace TravelApp.DesktopHost.View
 
             if (DataContext is AgentTripsViewModel viewModel)
             {
-                if (windowWidth <= 1100)
+                if (windowWidth <= 1000)
+                {
+                    viewModel.FieldsWidth = 170;
+                }
+                else if (windowWidth <= 1100)
                 {
                     viewModel.TextFontSize = 42;
                 }
                 else if (windowWidth <= 1250)
                 {
+                    viewModel.FieldsWidth = 250;
                     viewModel.TextFontSize = 46;
                 }
                 else
                 {
+                    viewModel.FieldsWidth = 280;
                     viewModel.TextFontSize = 50;
                 }
             }

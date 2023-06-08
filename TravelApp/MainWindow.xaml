@@ -12,7 +12,9 @@
         Icon="./Style/Images/airplane.ico"
         Style="{StaticResource AllWindows}"
         TextElement.Foreground="{DynamicResource MaterialDesignBody}"
-        WindowState="Maximized">
+        WindowState="Maximized"
+        MinWidth="850"
+        MinHeight="400">
     <Grid>
         <Grid.Resources>
             <DataTemplate DataType="{x:Type viewmodels:LoginViewModel}">
