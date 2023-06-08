@@ -33,7 +33,7 @@ namespace TravelApp.DesktopHost.Command
                 _loginVM.ErrorVisibility = System.Windows.Visibility.Collapsed;
                 if (UserService.CurrentUser.Role.Equals(Role.CLIENT))
                 {
-                    //_navigationStore.CurrentViewModel = new ClientTripsViewModel();
+                    _navigationStore.CurrentViewModel = new ClientTripsViewModel();
                 }
                 else if (UserService.CurrentUser.Role.Equals(Role.AGENT))
                 {
