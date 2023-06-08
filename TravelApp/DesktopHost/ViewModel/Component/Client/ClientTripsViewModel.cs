@@ -25,6 +25,8 @@ namespace TravelApp.DesktopHost.ViewModel
 
         private int _selectedSort;
 
+        private double _fieldsWidth;
+
         public ClientNavigationViewModel Navigation { get; set; }
 
         public List<string> SortCriteria
@@ -92,6 +94,16 @@ namespace TravelApp.DesktopHost.ViewModel
                 _selectedSort = value;
                 OnPropertyChanged(nameof(SelectedSort));
                 sort(SelectedSort);
+            }
+        }
+
+        public double FieldsWidth
+        {
+            get => _fieldsWidth;
+            set
+            {
+                _fieldsWidth = value;
+                OnPropertyChanged(nameof(FieldsWidth));
             }
         }
 
