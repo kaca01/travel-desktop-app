@@ -31,6 +31,7 @@ namespace TravelApp.DesktopHost.View.Agent
         {
             TextBox textBox = (TextBox)sender;
             NewPlaceViewModel viewModel = (NewPlaceViewModel)DataContext;
+            if (viewModel == null) return;
             if (!viewModel.ValidationViewModel.IsNameValid(textBox.Text))
             {
                 textBox.BorderBrush = Brushes.Red;
@@ -39,6 +40,7 @@ namespace TravelApp.DesktopHost.View.Agent
             {
                 textBox.BorderBrush = Brushes.Gray;
             }
+            viewModel.Name = textBox.Text;
         }
 
         private void TextBox_PreviewTextInputName(object sender, TextCompositionEventArgs e)
@@ -56,6 +58,7 @@ namespace TravelApp.DesktopHost.View.Agent
         {
             TextBox textBox = (TextBox)sender;
             NewPlaceViewModel viewModel = (NewPlaceViewModel)DataContext;
+            if (viewModel == null) return;
             if (!viewModel.ValidationViewModel.IsAddressValid(textBox.Text))
             {
                 textBox.BorderBrush = Brushes.Red;
@@ -64,6 +67,7 @@ namespace TravelApp.DesktopHost.View.Agent
             {
                 textBox.BorderBrush = Brushes.Gray;
             }
+            viewModel.Address = textBox.Text;
         }
 
         private void TextBox_PreviewTextInputAddress(object sender, TextCompositionEventArgs e)
@@ -81,6 +85,7 @@ namespace TravelApp.DesktopHost.View.Agent
         {
             TextBox textBox = (TextBox)sender;
             NewPlaceViewModel viewModel = (NewPlaceViewModel)DataContext;
+            if (viewModel == null) return;
             if (!viewModel.ValidationViewModel.IsLinkValid(textBox.Text))
             {
                 textBox.BorderBrush = Brushes.Red;
@@ -89,6 +94,7 @@ namespace TravelApp.DesktopHost.View.Agent
             {
                 textBox.BorderBrush = Brushes.Gray;
             }
+            viewModel.Link = textBox.Text;
         }
 
         private void TextBox_PreviewTextInputLink(object sender, TextCompositionEventArgs e)

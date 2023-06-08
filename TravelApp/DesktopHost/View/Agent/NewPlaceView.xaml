@@ -103,6 +103,7 @@
                      ToolTip="Enter the name for your new place"
                      Text="{Binding Name}"
                      PreviewTextInput="TextBox_PreviewTextInputName"
+                     TextChanged="TextBox_NameLostFocus"
                      LostFocus="TextBox_NameLostFocus">
                 </TextBox>
                 <Label Height="27"
@@ -132,6 +133,7 @@
                      ToolTip="Enter the address of your new place"
                      Text="{Binding Address}"
                      PreviewTextInput="TextBox_PreviewTextInputAddress"
+                     TextChanged="TextBox_AddressLostFocus"
                      LostFocus="TextBox_AddressLostFocus">
                 </TextBox>
                 <Label Height="27"
@@ -162,6 +164,7 @@
                      ToolTip="Leave a link that will lead to more information about a place"
                      Text="{Binding Link}"
                      PreviewTextInput="TextBox_PreviewTextInputLink"
+                     TextChanged="TextBox_LinkLostFocus"
                      LostFocus="TextBox_LinkLostFocus">
                 </TextBox>
                 <Label Height="27"
@@ -196,6 +199,7 @@
                 Width="{Binding Width}"
                 Height="40"
                 Margin="0, 22 ,0 ,0"
+                IsEnabled="{Binding IsButtonEnabled}"
                 ToolTip="Click to create the new place"
                 Content="Create"
                 Style="{StaticResource FormButton}"

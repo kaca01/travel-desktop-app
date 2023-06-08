@@ -28,19 +28,19 @@ namespace TravelApp.DesktopHost.ViewModel.Component.Agent
         public string Name
         {
             get => _name;
-            set { _name = value; OnPropertyChanged(nameof(Name)); }
+            set { _name = value; OnPropertyChanged(nameof(Name)); ValidationViewModel.IsNameValid(_name); CheckButtonStatus(); }
         }
 
         public string Address
         {
             get => _address;
-            set { _address = value; OnPropertyChanged(nameof(Address)); }
+            set { _address = value; OnPropertyChanged(nameof(Address)); ValidationViewModel.IsAddressValid(_address); CheckButtonStatus(); }
         }
 
         public string Link
         {
             get => _link;
-            set { _link = value; OnPropertyChanged(nameof(Link)); }
+            set { _link = value; OnPropertyChanged(nameof(Link)); ValidationViewModel.IsLinkValid(_link); CheckButtonStatus(); }
         }
 
         public bool Restaurant
@@ -81,6 +81,17 @@ namespace TravelApp.DesktopHost.ViewModel.Component.Agent
             }
         }
 
+        private bool _isButtonEnabled;
+        public bool IsButtonEnabled
+        {
+            get { return _isButtonEnabled; }
+            set
+            {
+                _isButtonEnabled = value;
+                OnPropertyChanged(nameof(IsButtonEnabled));
+            }
+        }
+
         public ICommand Cancel { get; }
         public ICommand Create { get; }
         public ValidationViewModel ValidationViewModel { get; }
@@ -92,12 +103,30 @@ namespace TravelApp.DesktopHost.ViewModel.Component.Agent
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
         }
 
+        public void CheckButtonStatus()
+        {
+            if (string.IsNullOrWhiteSpace(_name) || string.IsNullOrWhiteSpace(_address) || string.IsNullOrWhiteSpace(_link))
+                IsButtonEnabled = false;
+            else
+            {
+                if (string.IsNullOrWhiteSpace(ValidationViewModel.NameValidation) &&
+                    string.IsNullOrWhiteSpace(ValidationViewModel.AddressValidation) &&
+                    string.IsNullOrWhiteSpace(ValidationViewModel.LinkValidation))
+                    IsButtonEnabled = true;
+                else
+                {
+                    IsButtonEnabled = false;
+                }
+            }
+        }
+
         public NewPlaceViewModel()
         {
             Cancel = new CancelNewPlaceCommand();
             Create = new CreateNewPlaceCommand(this);
             ValidationViewModel = new ValidationViewModel();
             Restaurant = true;
+            IsButtonEnabled = false;
         }
 
     }
