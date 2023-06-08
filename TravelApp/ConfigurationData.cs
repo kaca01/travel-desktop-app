@@ -14,7 +14,6 @@ namespace TravelApp
         {
             using (var db = new TravelContext())
             {
-                // todo add data
 
                 //users
                 User client1 = new User() { Name = "Niksa", Surname = "Jovic", Email = "niksa@gmail.com", Password = "pass1234", Role = Role.CLIENT };
@@ -30,17 +29,17 @@ namespace TravelApp
                 db.SaveChanges();
 
                 //stay&eat
-                TouristFacility facility1 = new TouristFacility() { Name = "Student cafeteria SCNS", Address = "Dr Sime Milosevica 4, Novi Sad", Type = PlaceType.RESTAURANT, Link= "http://www.scns.rs/sektori/sektor-ishrane/" };
-                TouristFacility facility2 = new TouristFacility() { Name = "Dorm Zivojin Culum", Address = "Bulevar Despota Stefana 5A, Novi Sad", Type = PlaceType.ACCOMODATION, Link = "http://www.scns.rs/sektori/sektor-smestaja/smestaj-studenata/studentski-domovi/studentski-dom-prof-zivojin-culum/" };
-                TouristFacility facility3 = new TouristFacility() { Name = "Dorm Nikola Tesla", Address = "Bulevar Despota Stefana 7A, Novi Sad", Type = PlaceType.ACCOMODATION, Link = "http://www.scns.rs/sektori/sektor-smestaja/smestaj-studenata/studentski-domovi/studentski-dom-nikola-tesla/" };
-                TouristFacility facility4 = new TouristFacility() { Name = "City tavern Stara Zanatlija", Address = "Slobodana Bursaća 20, Zrenjanin", Type = PlaceType.RESTAURANT, Link = "https://starazanatlija.rs/" };
-                TouristFacility facility5 = new TouristFacility() { Name = "Kovac restaurant", Address = "Bagljaš Zapad 5, Zrenjanin", Type = PlaceType.RESTAURANT, Link = "https://kovaczrenjanin.rs/?_rstr_nocache=rstr1636478b708bbc85" };
-                TouristFacility facility6 = new TouristFacility() { Name = "Hotel Vojvodina", Address = "Trg slobode 3, Zrenjanin", Type = PlaceType.ACCOMODATION, Link = "https://hotel-vojvodina.rs/en/pocetna.html" };
-                TouristFacility facility7 = new TouristFacility() { Name = "Ečka Castle", Address = "Novosadska 7, Ečka", Type = PlaceType.ACCOMODATION, Link = "https://kastelecka.com/" };      
-                TouristFacility facility8 = new TouristFacility() { Name = "Zepter Hotel", Address = "Vrnjačka 12, Vrnjačka Banja", Type = PlaceType.ACCOMODATION, Link = "https://zepterhotels.com/destinations/vrnjacka-banja/?lang=en" };
-                TouristFacility facility9 = new TouristFacility() { Name = "Hotel Tonanti", Address = "Svetog Save 2, Vrnjačka Banja", Type = PlaceType.ACCOMODATION, Link = "https://hoteltonanti.rs/en/home.html" };
-                TouristFacility facility10 = new TouristFacility() { Name = "Restaurant Emilia", Address = "Heroja Čajke 3, Vrnjačka Banja", Type = PlaceType.RESTAURANT, Link = "https://vilaemilia.rs/restoran-emilia.php" };
-                TouristFacility facility11 = new TouristFacility() { Name = "Restaurant 3 golubice", Address = "Bulevar srpskih ratnika 28, Vrnjačka Banja", Type = PlaceType.RESTAURANT, Link = "http://www.vilaljubica.rs/restoran-tri-golubice" };
+                TouristFacility facility1 = new TouristFacility() { Name = "Student cafeteria SCNS", Address = "Dr Sime Milosevica 4, Novi Sad", Type = PlaceType.RESTAURANT, Link= "http://www.scns.rs/sektori/sektor-ishrane/", IsDeleted = false};
+                TouristFacility facility2 = new TouristFacility() { Name = "Dorm Zivojin Culum", Address = "Bulevar Despota Stefana 5A, Novi Sad", Type = PlaceType.ACCOMODATION, Link = "http://www.scns.rs/sektori/sektor-smestaja/smestaj-studenata/studentski-domovi/studentski-dom-prof-zivojin-culum/", IsDeleted = true };
+                TouristFacility facility3 = new TouristFacility() { Name = "Dorm Nikola Tesla", Address = "Bulevar Despota Stefana 7A, Novi Sad", Type = PlaceType.ACCOMODATION, Link = "http://www.scns.rs/sektori/sektor-smestaja/smestaj-studenata/studentski-domovi/studentski-dom-nikola-tesla/", IsDeleted = false };
+                TouristFacility facility4 = new TouristFacility() { Name = "City tavern Stara Zanatlija", Address = "Slobodana Bursaća 20, Zrenjanin", Type = PlaceType.RESTAURANT, Link = "https://starazanatlija.rs/", IsDeleted = false };
+                TouristFacility facility5 = new TouristFacility() { Name = "Kovac restaurant", Address = "Bagljaš Zapad 5, Zrenjanin", Type = PlaceType.RESTAURANT, Link = "https://kovaczrenjanin.rs/?_rstr_nocache=rstr1636478b708bbc85" , IsDeleted = false };
+                TouristFacility facility6 = new TouristFacility() { Name = "Hotel Vojvodina", Address = "Trg slobode 3, Zrenjanin", Type = PlaceType.ACCOMODATION, Link = "https://hotel-vojvodina.rs/en/pocetna.html" , IsDeleted = false };
+                TouristFacility facility7 = new TouristFacility() { Name = "Ečka Castle", Address = "Novosadska 7, Ečka", Type = PlaceType.ACCOMODATION, Link = "https://kastelecka.com/" , IsDeleted = false };      
+                TouristFacility facility8 = new TouristFacility() { Name = "Zepter Hotel", Address = "Vrnjačka 12, Vrnjačka Banja", Type = PlaceType.ACCOMODATION, Link = "https://zepterhotels.com/destinations/vrnjacka-banja/?lang=en", IsDeleted = false };
+                TouristFacility facility9 = new TouristFacility() { Name = "Hotel Tonanti", Address = "Svetog Save 2, Vrnjačka Banja", Type = PlaceType.ACCOMODATION, Link = "https://hoteltonanti.rs/en/home.html", IsDeleted = false };
+                TouristFacility facility10 = new TouristFacility() { Name = "Restaurant Emilia", Address = "Heroja Čajke 3, Vrnjačka Banja", Type = PlaceType.RESTAURANT, Link = "https://vilaemilia.rs/restoran-emilia.php", IsDeleted = false };
+                TouristFacility facility11 = new TouristFacility() { Name = "Restaurant 3 golubice", Address = "Bulevar srpskih ratnika 28, Vrnjačka Banja", Type = PlaceType.RESTAURANT, Link = "http://www.vilaljubica.rs/restoran-tri-golubice" , IsDeleted = false };
 
                 db.TouristFacilities.Add(facility1);
                 db.TouristFacilities.Add(facility2);

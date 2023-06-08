@@ -6,14 +6,226 @@
              xmlns:local="clr-namespace:TravelApp.DesktopHost.View"
              xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
              xmlns:viewmodels="clr-namespace:TravelApp.DesktopHost.ViewModel"
+             xmlns:views="clr-namespace:TravelApp.DesktopHost.View"
              mc:Ignorable="d"
+             SizeChanged="Window_SizeChanged"
              Background="White"
-             Width="{x:Static SystemParameters.PrimaryScreenWidth}"  
-             Height="{x:Static SystemParameters.PrimaryScreenHeight}"
              d:DataContext="{d:DesignInstance Type=viewmodels:SignupViewModel}">
-    <Grid>
-        <Label Padding="150px">Welcome to Sign Up Page!</Label>
-        <Button
-            Command="{Binding Login}">Go to Login Page</Button>
-    </Grid>
+    <ScrollViewer>
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="1*"></RowDefinition>
+                <RowDefinition Height="2*"></RowDefinition>
+                <RowDefinition Height="auto"></RowDefinition>
+                <RowDefinition Height="auto"></RowDefinition>
+                <RowDefinition Height="auto"></RowDefinition>
+                <RowDefinition Height="auto"></RowDefinition>
+                <RowDefinition Height="auto"></RowDefinition>
+                <RowDefinition Height="1.5*"></RowDefinition>
+                <RowDefinition Height="auto"></RowDefinition>
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"></ColumnDefinition>
+                <ColumnDefinition Width="auto"></ColumnDefinition>
+                <ColumnDefinition Width="*"></ColumnDefinition>
+            </Grid.ColumnDefinitions>
+
+            <TextBlock FontSize="{Binding TextFontSize}"
+                Foreground="#161A25"
+                TextAlignment="Left"
+                Margin="0, 20, 0 ,10"
+                Grid.Row="1"
+                Grid.Column="1"
+                FontWeight="Medium"
+                FontFamily="Poppins"
+                MaxWidth="{Binding Width}"
+                x:Name="Title">Sign up</TextBlock>
+            <StackPanel Grid.Row="2"
+                    Grid.Column="1"
+                    Width="{Binding Width}"
+                    Height="110">
+                <Label Margin="0 0 0 3"
+                   Height="27"
+                   FontSize="18"
+                   FontFamily="Poppins"
+                   FontWeight="Regular"
+                   HorizontalAlignment="Left">Name</Label>
+                <TextBox Style="{StaticResource MaterialDesignOutlinedTextBox}"
+                     FontSize="15"
+                     Margin="0"
+                     materialDesign:HintAssist.Foreground="#4889E6"
+                     Background="#A5FFFFFF"
+                     materialDesign:TextFieldAssist.UnderlineBrush="#4889E6"
+                     ToolTip="Enter your first name"
+                     Text="{Binding Name}"
+                     PreviewTextInput="TextBox_PreviewTextInputName"
+                     TextChanged="TextBox_NameLostFocus"
+                     LostFocus="TextBox_NameLostFocus">
+                </TextBox>
+                <Label Height="27"
+                       FontSize="15"
+                       FontFamily="Poppins"
+                       FontWeight="Regular"
+                       HorizontalAlignment="Left"
+                       Content="{Binding ValidationViewModel.NameValidation}"
+                       Foreground="Red"/>
+            </StackPanel>
+            <StackPanel Grid.Row="3"
+                    Grid.Column="1"
+                    Width="{Binding Width}"
+                    Height="110">
+                <Label Margin="0 0 0 3"
+                   Height="27"
+                   FontSize="18"
+                   FontFamily="Poppins"
+                   FontWeight="Regular"
+                   HorizontalAlignment="Left">Surname</Label>
+                <TextBox Style="{StaticResource MaterialDesignOutlinedTextBox}"
+                     FontSize="15"
+                     Margin="0"
+                     materialDesign:HintAssist.Foreground="#4889E6"
+                     Background="#A5FFFFFF"
+                     materialDesign:TextFieldAssist.UnderlineBrush="#4889E6"
+                     ToolTip="Enter your last name"
+                     Text="{Binding Surname}"
+                     PreviewTextInput="TextBox_PreviewTextInputSurname"
+                     TextChanged="TextBox_SurnameLostFocus"
+                     LostFocus="TextBox_SurnameLostFocus">
+                </TextBox>
+                <Label Height="27"
+                       FontSize="15"
+                       FontFamily="Poppins"
+                       FontWeight="Regular"
+                       HorizontalAlignment="Left"
+                       Content="{Binding ValidationViewModel.SurnameValidation}"
+                       Foreground="Red"/>
+            </StackPanel>
+            <StackPanel Grid.Row="4"
+                    Grid.Column="1"
+                    Width="{Binding Width}"
+                    Height="110">
+                <Label Margin="0 0 0 3"
+                   Height="27"
+                   FontSize="18"
+                   FontFamily="Poppins"
+                   FontWeight="Regular"
+                   HorizontalAlignment="Left">Email</Label>
+                <TextBox Style="{StaticResource MaterialDesignOutlinedTextBox}"
+                     FontSize="15"
+                     Margin="0"
+                     materialDesign:HintAssist.Hint="name@domain.com"
+                     materialDesign:HintAssist.Foreground="#4889E6"
+                     Background="#A5FFFFFF"
+                     materialDesign:TextFieldAssist.UnderlineBrush="#4889E6"
+                     ToolTip="Enter email address associated with your account"
+                     Text="{Binding Email}"
+                     PreviewTextInput="TextBox_PreviewTextInputEmail"
+                     TextChanged="TextBox_EmailLostFocus"
+                     LostFocus="TextBox_EmailLostFocus">
+                </TextBox>
+                <TextBlock Height="27"
+                       FontSize="15"
+                       FontFamily="Poppins"
+                       FontWeight="Regular"
+                       HorizontalAlignment="Left"
+                       Text="{Binding ValidationViewModel.EmailValidation}"
+                       Foreground="Red"/>
+            </StackPanel>
+            <StackPanel Grid.Row="5"
+                    Grid.Column="1"
+                    Width="{Binding Width}"
+                    Height="110">
+                <Label Margin="0"
+                   Height="27"
+                   FontSize="18"
+                   FontFamily="Poppins"
+                   FontWeight="Regular"
+                   HorizontalAlignment="Left">Password</Label>
+                <views:BindablePasswordBox 
+                 ToolTip="Enter password for your new account"
+                 Password="{Binding Password}"
+                 LostFocus="TextBox_PasswordLostFocus"/>
+                <Label Height="27"
+                       FontSize="15"
+                       FontFamily="Poppins"
+                       FontWeight="Regular"
+                       HorizontalAlignment="Left"
+                       Content="{Binding ValidationViewModel.PasswordValidation}"
+                        Foreground="Red"/> 
+            </StackPanel>
+            <StackPanel Grid.Row="6"
+                    Grid.Column="1"
+                    Width="{Binding Width}"
+                    Height="110">
+                <Label Margin="0"
+                   Height="27"
+                   FontSize="18"
+                   FontFamily="Poppins"
+                   FontWeight="Regular"
+                   HorizontalAlignment="Left">Repeat password</Label>
+                <views:BindablePasswordBox 
+                 Password="{Binding PasswordAgain}"
+                 ToolTip="Repeat your password"
+                 LostFocus="TextBox_PasswordAgainLostFocus"/>
+                <Label Height="27"
+                       FontSize="15"
+                       FontFamily="Poppins"
+                       FontWeight="Regular"
+                       HorizontalAlignment="Left"
+                       Content="{Binding ValidationViewModel.PasswordAgainValidation}"
+                       Foreground="Red"/>
+            </StackPanel>
+
+            <Button Grid.Column="1"
+                Grid.Row="7"
+                VerticalAlignment="Bottom"
+                Width="{Binding Width}"
+                Height="40"
+                IsEnabled="{Binding IsButtonEnabled}"
+                Margin="0, 22 ,0 ,0"
+                ToolTip="Click to sign up to the app"
+                Content="Sign up"
+                Style="{StaticResource FormButton}"
+                Command="{Binding Signup}"
+                IsDefault="True" Cursor="Hand" >
+            </Button>
+            <StackPanel Grid.Column="1"
+                    Grid.Row="8"
+                    Width="{Binding Width}"
+                    Height="80">
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="auto"></ColumnDefinition>
+                        <ColumnDefinition Width="*"></ColumnDefinition>
+                    </Grid.ColumnDefinitions>
+                    <Label HorizontalAlignment="Right"
+                       Grid.Column="0"
+                       FontSize="{Binding LoginFontSize}"
+                       Margin="45, 10, 10, 0"
+                       FontFamily="Poppins"
+                       Foreground="#808080"
+                       FontWeight="Medium">Already have an account ?</Label>
+                    <Button Grid.Column="1"
+                        Command="{Binding Login}">
+                        <Button.Template>
+                            <ControlTemplate TargetType="Button">
+                                <ContentPresenter />
+                            </ControlTemplate>
+                        </Button.Template>
+                        <TextBlock HorizontalAlignment="Left"
+                       FontSize="{Binding LoginFontSize}"
+                       Margin="10, 10, 0, 0"
+                       Foreground="#4889E6" 
+                       FontFamily="Poppins" 
+                       ToolTip="Go to sign up page"
+                       FontWeight="Medium" Cursor="Hand"
+                       TextDecorations="Underline"
+                       Text="Login"/>
+                    </Button>
+                </Grid>
+
+            </StackPanel>
+
+        </Grid>
+    </ScrollViewer>
 </UserControl>

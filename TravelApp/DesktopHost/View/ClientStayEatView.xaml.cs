@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -10,30 +11,34 @@ using System.Windows.Documents;
 using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
+using System.Windows.Navigation;
 using System.Windows.Shapes;
 using TravelApp.DesktopHost.ViewModel;
 
 namespace TravelApp.DesktopHost.View
 {
     /// <summary>
-    /// Interaction logic for LoginView.xaml
+    /// Interaction logic for ClientStayEatView.xaml
     /// </summary>
-    public partial class LoginView : UserControl
+    public partial class ClientStayEatView : UserControl
     {
-        public LoginView()
+        public ClientStayEatView()
         {
             InitializeComponent();
+            DataContext = new ClientStayEatViewModel();
         }
 
-        private void TextBox_PreviewTextInputEmail(object sender, TextCompositionEventArgs e)
+        private void Hyperlink_RequestNavigate(object sender, RequestNavigateEventArgs e)
         {
-            TextBox textBox = (TextBox)sender;
-
-            // Check if the new text length exceeds the maximum character count
-            if (textBox.Text.Length + e.Text.Length > 50)
+            string url = e.Uri.AbsoluteUri;
+            ProcessStartInfo psi = new ProcessStartInfo
             {
-                e.Handled = true; // Prevent the input from being added to the TextBox
-            }
+                FileName = url,
+                UseShellExecute = true
+            };
+
+            Process.Start(psi);
+            e.Handled = true;
         }
 
         private void Window_SizeChanged(object sender, SizeChangedEventArgs e)
@@ -42,7 +47,7 @@ namespace TravelApp.DesktopHost.View
             double windowHeigth = e.NewSize.Height;
 
             // Adjust the font size based on the window width
-            LoginViewModel viewModel = (LoginViewModel)DataContext;
+            ClientStayEatViewModel viewModel = (ClientStayEatViewModel)DataContext;
             if (windowWidth <= 1200 || windowHeigth <= 700)
             {
                 viewModel.TextFontSize = 40;
