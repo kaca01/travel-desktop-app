@@ -206,7 +206,7 @@ namespace TravelApp.DesktopHost.ViewModel
             {
                 _tripService.Delete(SelectedTrip);
                 _trips = _tripService.GetAll();
-                SearchedTrips = _trips;
+                SearchedTrips = getDesriptionTrips();
                 MessageBox.Show("Deleted " + trip.Name + "!!!", "Successfully deleted", MessageBoxButton.OK, MessageBoxImage.Information);
             }
 
