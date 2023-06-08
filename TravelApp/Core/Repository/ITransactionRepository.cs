@@ -16,5 +16,6 @@ namespace TravelApp.Core.Repository
         public List<TransactionListItemViewModel> GetTripsForCurrentUser();
         public Transaction GetById(int id);
         public void BuyTrip(int id);
+        public void CallOffReservation(int id);
     }
 }

@@ -105,6 +105,7 @@ namespace TravelApp.Core.Repository
                 if (transaction != null)
                 {
                     transaction.Type = TransactionType.PURCHASE;
+                    context.Update(transaction);
                     context.SaveChanges();
                 }
             }
@@ -119,6 +120,7 @@ namespace TravelApp.Core.Repository
                 if (transaction != null)
                 {
                     transaction.IsDeleted = true;
+                    context.Update(transaction);
                     context.SaveChanges();
                 }
             }

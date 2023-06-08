@@ -60,6 +60,7 @@ namespace TravelApp.Core.Repository
                 if (facility != null)
                 {
                     facility.IsDeleted = true;
+                    context.Update(facility);
                     context.SaveChanges();
                 }
             }

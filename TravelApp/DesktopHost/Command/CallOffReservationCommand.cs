@@ -27,7 +27,7 @@ namespace TravelApp.DesktopHost.Command
             {
                 if (openMessageBox(selectedItem))
                 {
-                    _service.TransactionRepository.BuyTrip(selectedItem.Id);
+                    _service.TransactionRepository.CallOffReservation(selectedItem.Id);
                     _model.FilteredItems.Remove(selectedItem);
                     MessageBox.Show("You called off the trip: " +
                                     "\nName: " + selectedItem.Trip +
