@@ -63,37 +63,6 @@ namespace TravelApp.DesktopHost.ViewModel
             set { _linkValidation = value; OnPropertyChanged(nameof(LinkValidation)); }
         }
 
-        public void ValidateSignup(Validation user)
-        {
-            IsNameValid(user.Name);
-            IsSurnameValid(user.Surname);
-            IsEmailValid(user.Email);
-            IsPasswordValid(user.Password, user.PasswordAgain);
-            IsPasswordAgainValid(user.PasswordAgain, user.Password);
-        }
-
-        public void ValidateNewPlace(string name, string address, string link)
-        {
-            IsNameValid(name);
-            IsAddressValid(address);
-            IsLinkValid(link);
-        }
-
-        public Validation GetSignupValidationMessages()
-        {
-
-            return new Validation(NameValidation, SurnameValidation, EmailValidation, 
-                PasswordValidation, PasswordAgainValidation);
-        }
-
-        public Validation GetNewPlaceValidationMessages()
-        {
-
-            return new Validation(NameValidation, AddressValidation, LinkValidation,
-                null, null);
-        }
-
-
         public bool IsNameValid(string name)
         {
             if (string.IsNullOrWhiteSpace(name)) NameValidation = "Required";

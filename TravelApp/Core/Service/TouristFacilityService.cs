@@ -28,19 +28,9 @@ namespace TravelApp.Core.Service
 
         public TouristFacility Create(NewPlaceViewModel vm)
         {
-            vm.ValidationViewModel.ValidateNewPlace(vm.Name, vm.Address, vm.Link);
-            Validation validation = vm.ValidationViewModel.GetSignupValidationMessages();
-            if (string.IsNullOrEmpty(validation.Name) & string.IsNullOrEmpty(validation.Surname) &
-                string.IsNullOrEmpty(validation.Email))
-            {
-                PlaceType type = PlaceType.RESTAURANT;
-                if (vm.Accomodation) type = PlaceType.ACCOMODATION;
-                return this._facilityRepository.Create(vm.Name, vm.Address, vm.Link, type);
-            }
-            else
-            {
-                throw new Exception("Invalid data!");
-            }
+            PlaceType type = PlaceType.RESTAURANT;
+            if (vm.Accomodation) type = PlaceType.ACCOMODATION;
+            return this._facilityRepository.Create(vm.Name, vm.Address, vm.Link, type);
         }
     }
 }
