@@ -115,6 +115,7 @@ namespace TravelApp.DesktopHost.View.Agent
             double windowHeigth = e.NewSize.Height;
 
             // Adjust the font size based on the window width
+            //todo check if null (in all windows)
             NewPlaceViewModel viewModel = (NewPlaceViewModel)DataContext;
             if (windowWidth <= 1200 || windowHeigth <= 700)
             {

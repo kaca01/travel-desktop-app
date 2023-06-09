@@ -9,28 +9,187 @@
              xmlns:local="clr-namespace:TravelApp.DesktopHost.View.Agent"
              mc:Ignorable="d" 
              Background="White"
+             SizeChanged="Window_SizeChanged"
              d:DataContext="{d:DesignInstance Type=viewmodels:NewTripViewModel}">
+    <ScrollViewer>
     <Grid>
         <Grid.RowDefinitions>
-            <RowDefinition Height="Auto"/>
-            <RowDefinition Height="*"/>
-            <RowDefinition Height="*"/>
+            <RowDefinition Height="*"></RowDefinition>
+            <RowDefinition Height="1.5*"></RowDefinition>
+            <RowDefinition Height="auto"></RowDefinition>
+            <RowDefinition Height="auto"></RowDefinition>
+            <RowDefinition Height="auto"></RowDefinition>
+            <RowDefinition Height="auto"></RowDefinition>
+            <RowDefinition Height="1*"></RowDefinition>
+            <RowDefinition Height="*"></RowDefinition>
         </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*"></ColumnDefinition>
+            <ColumnDefinition Width="auto"></ColumnDefinition>
+            <ColumnDefinition Width="*"></ColumnDefinition>
+        </Grid.ColumnDefinitions>
 
-        <TextBox Grid.Row="0" Text="{Binding SearchText, UpdateSourceTrigger=PropertyChanged}" Margin="10" 
-                 GotFocus="TextBox_GotFocus"
-                 LostFocus="TextBox_LostFocus"/>
+        <Button Command="{Binding Cancel}"
+                Width="50" Height="50"
+                Grid.Column="2"
+                Grid.Row="1"
+                VerticalAlignment="Top"
+                HorizontalAlignment="Left"
+                Style="{StaticResource CloseButton}"
+                Cursor="Hand">
+            <materialDesign:PackIcon Kind="Close" Width="45" Height="45"/>
+        </Button>
 
-        <ListBox Grid.Row="1" ItemsSource="{Binding Items}" SelectionMode="Extended" Margin="10" 
-                 Visibility="{Binding ListVisibility}"
-                 MaxHeight="50">
-            <ListBox.ItemTemplate>
-                <DataTemplate>
-                    <CheckBox Content="{Binding Name}" IsChecked="{Binding IsSelected, Mode=TwoWay}"/>
-                </DataTemplate>
-            </ListBox.ItemTemplate>
-        </ListBox>
+        <TextBlock FontSize="{Binding TextFontSize}"
+            Foreground="#161A25"
+            TextAlignment="Left"
+            Margin="0, 20, 0 ,10"
+            Grid.Row="1"
+            Grid.Column="1"
+            FontWeight="Medium"
+            FontFamily="Poppins"
+            MaxWidth="{Binding Width}"
+            x:Name="Title">New Trip</TextBlock>
+        
+        <StackPanel Grid.Row="2"
+                Grid.Column="1"
+                Width="{Binding Width}"
+                Height="110">
+            <Label Margin="0 0 0 3"
+                Height="27"
+                FontSize="18"
+                FontFamily="Poppins"
+                FontWeight="SemiBold"
+                HorizontalAlignment="Left">Name</Label>
+            <TextBox Style="{StaticResource MaterialDesignOutlinedTextBox}"
+                    FontSize="15"
+                    Margin="0"
+                    materialDesign:HintAssist.Foreground="#4889E6"
+                    Background="#A5FFFFFF"
+                    materialDesign:TextFieldAssist.UnderlineBrush="#4889E6"
+                    ToolTip="Enter the name for your new trip"
+                    Text="{Binding Name}"
+                    PreviewTextInput="TextBox_PreviewTextInput"
+                    TextChanged="TextBox_NameLostFocus"
+                    LostFocus="TextBox_NameLostFocus">
+            </TextBox>
+            <Label Height="27"
+                    FontSize="15"
+                    FontFamily="Poppins"
+                    FontWeight="Regular"
+                    HorizontalAlignment="Left"
+                    Content="{Binding ValidationViewModel.NameValidation}"
+                    Foreground="Red"/>
+        </StackPanel>
+        
+        <StackPanel Grid.Row="3"
+                Grid.Column="1"
+                Width="{Binding Width}"
+                Height="110">
+            <Label Margin="0 0 0 3"
+                Height="27"
+                FontSize="18"
+                FontFamily="Poppins"
+                FontWeight="SemiBold"
+                HorizontalAlignment="Left">Starting location</Label>
+            <TextBox Style="{StaticResource MaterialDesignOutlinedTextBox}"
+                    FontSize="15"
+                    Margin="0"
+                    materialDesign:HintAssist.Foreground="#4889E6"
+                    Background="#A5FFFFFF"
+                    materialDesign:TextFieldAssist.UnderlineBrush="#4889E6"
+                    ToolTip="Enter the starting location of your new trip"
+                    Text="{Binding Address}"
+                    PreviewTextInput="TextBox_PreviewTextInput"
+                    TextChanged="TextBox_StartLocationLostFocus"
+                    LostFocus="TextBox_StartLocationLostFocus">
+            </TextBox>
+            <Label Height="27"
+                    FontSize="15"
+                    FontFamily="Poppins"
+                    FontWeight="Regular"
+                    HorizontalAlignment="Left"
+                    Content="{Binding ValidationViewModel.AddressValidation}"
+                    Foreground="Red"/>
+        </StackPanel>
+        
+        <StackPanel Grid.Row="4"
+                Grid.Column="1"
+                Width="{Binding Width}"
+                Height="110">
+            <Label Margin="0 0 0 3"
+                Height="27"
+                FontSize="18"
+                FontFamily="Poppins"
+                FontWeight="SemiBold"
+                HorizontalAlignment="Left">Ending location</Label>
+            <TextBox Style="{StaticResource MaterialDesignOutlinedTextBox}"
+                    FontSize="15"
+                    Margin="0"
+                    materialDesign:HintAssist.Foreground="#4889E6"
+                    materialDesign:HintAssist.Hint="http://example.com"
+                    Background="#A5FFFFFF"
+                    materialDesign:TextFieldAssist.UnderlineBrush="#4889E6"
+                    ToolTip="Enter the starting location of your new trip"
+                    Text="{Binding Link}"
+                    PreviewTextInput="TextBox_PreviewTextInput"
+                    TextChanged="TextBox_EndLocationLostFocus"
+                    LostFocus="TextBox_EndLocationLostFocus">
+            </TextBox>
+            <Label Height="27"
+                    FontSize="15"
+                    FontFamily="Poppins"
+                    FontWeight="Regular"
+                    HorizontalAlignment="Left"
+                    Content="{Binding ValidationViewModel.LinkValidation}"
+                    Foreground="Red"/>
+        </StackPanel>
 
-        <TextBox Grid.Row="2" Text="Mama"></TextBox>
-    </Grid>
+        <StackPanel Grid.Row="5"
+            Grid.Column="1"
+            Width="{Binding Width}"
+            Height="250">
+                <Label Margin="0 0 0 3"
+                Height="27"
+                FontSize="18"
+                FontFamily="Poppins"
+                FontWeight="SemiBold"
+                HorizontalAlignment="Left">Attractions</Label>
+                <TextBox 
+                Text="{Binding SearchText, UpdateSourceTrigger=PropertyChanged}"
+                Style="{StaticResource MaterialDesignOutlinedTextBox}"
+                FontSize="15"
+                Margin="0"
+                materialDesign:HintAssist.Foreground="#4889E6"
+                materialDesign:HintAssist.Hint="Search and choose"
+                Background="#A5FFFFFF"
+                materialDesign:TextFieldAssist.UnderlineBrush="#4889E6"
+                ToolTip="Search and choose attractions for new trip"/>
+
+            <ListBox ItemsSource="{Binding Items}" SelectionMode="Extended" Margin="10" 
+                    Visibility="{Binding ListVisibility}"
+                    MaxHeight="150">
+                <ListBox.ItemTemplate>
+                    <DataTemplate>
+                        <CheckBox Content="{Binding Name}" IsChecked="{Binding IsSelected, Mode=TwoWay}"/>
+                    </DataTemplate>
+                </ListBox.ItemTemplate>
+            </ListBox>
+        </StackPanel>
+        
+            <Button Grid.Column="1"
+                Grid.Row="6"
+                VerticalAlignment="Bottom"
+                Width="{Binding Width}"
+                Height="40"
+                Margin="0, 22 ,0 ,0"
+                IsEnabled="{Binding IsButtonEnabled}"
+                ToolTip="Click to create the new trip"
+                Content="Create"
+                Style="{StaticResource FormButton}"
+                Command="{Binding Create}"
+                IsDefault="True" Cursor="Hand" >
+            </Button>
+        </Grid>
+    </ScrollViewer>
 </UserControl>
