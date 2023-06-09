@@ -38,6 +38,29 @@ namespace TravelApp.DesktopHost.View.Agent
             }
         }
 
+        private void TextBox_PreviewTextInputPrice(object sender, TextCompositionEventArgs e)
+        {
+            TextBox textBox = (TextBox)sender;
+
+            // Check if the new text length exceeds the maximum character count
+            if (textBox.Text.Length + e.Text.Length > 9)
+            {
+                e.Handled = true; // Prevent the input from being added to the TextBox
+            }
+        }
+
+
+        private void TextBox_PreviewTextInputDescription(object sender, TextCompositionEventArgs e)
+        {
+            TextBox textBox = (TextBox)sender;
+
+            // Check if the new text length exceeds the maximum character count
+            if (textBox.Text.Length + e.Text.Length > 200)
+            {
+                e.Handled = true; // Prevent the input from being added to the TextBox
+            }
+        }
+
         private void TextBox_NameLostFocus(object sender, RoutedEventArgs e)
         {
             //todo change view model in all functions
@@ -60,7 +83,7 @@ namespace TravelApp.DesktopHost.View.Agent
             TextBox textBox = (TextBox)sender;
             NewPlaceViewModel viewModel = (NewPlaceViewModel)DataContext;
             if (viewModel == null) return;
-            if (!viewModel.ValidationViewModel.IsAddressValid(textBox.Text))
+            if (!viewModel.ValidationViewModel.IsSurnameValid(textBox.Text))
             {
                 textBox.BorderBrush = Brushes.Red;
             }
@@ -76,7 +99,7 @@ namespace TravelApp.DesktopHost.View.Agent
             TextBox textBox = (TextBox)sender;
             NewPlaceViewModel viewModel = (NewPlaceViewModel)DataContext;
             if (viewModel == null) return;
-            if (!viewModel.ValidationViewModel.IsLinkValid(textBox.Text))
+            if (!viewModel.ValidationViewModel.IsAddressValid(textBox.Text))
             {
                 textBox.BorderBrush = Brushes.Red;
             }
@@ -85,6 +108,40 @@ namespace TravelApp.DesktopHost.View.Agent
                 textBox.BorderBrush = Brushes.Gray;
             }
             viewModel.Link = textBox.Text;
+        }
+
+        private void TextBox_PriceLostFocus(object sender, RoutedEventArgs e)
+        {
+            //todo change view model in all functions
+            TextBox textBox = (TextBox)sender;
+            NewPlaceViewModel viewModel = (NewPlaceViewModel)DataContext;
+            if (viewModel == null) return;
+            if (!viewModel.ValidationViewModel.IsNameValid(textBox.Text))
+            {
+                textBox.BorderBrush = Brushes.Red;
+            }
+            else
+            {
+                textBox.BorderBrush = Brushes.Gray;
+            }
+            viewModel.Name = textBox.Text;
+        }
+
+        private void TextBox_DescriptionLostFocus(object sender, RoutedEventArgs e)
+        {
+            //todo change view model in all functions
+            TextBox textBox = (TextBox)sender;
+            NewPlaceViewModel viewModel = (NewPlaceViewModel)DataContext;
+            if (viewModel == null) return;
+            if (!viewModel.ValidationViewModel.IsNameValid(textBox.Text))
+            {
+                textBox.BorderBrush = Brushes.Red;
+            }
+            else
+            {
+                textBox.BorderBrush = Brushes.Gray;
+            }
+            viewModel.Name = textBox.Text;
         }
 
         private void Attractions_GotFocus(object sender, RoutedEventArgs e)

@@ -22,6 +22,10 @@
             <RowDefinition Height="auto"></RowDefinition>
             <RowDefinition Height="auto"></RowDefinition>
             <RowDefinition Height="auto"></RowDefinition>
+            <RowDefinition Height="auto"></RowDefinition>
+            <RowDefinition Height="auto"></RowDefinition>
+            <RowDefinition Height="auto"></RowDefinition>
+            <RowDefinition Height="auto"></RowDefinition>
             <RowDefinition Height="1*"></RowDefinition>
             <RowDefinition Height="*"></RowDefinition>
         </Grid.RowDefinitions>
@@ -35,6 +39,7 @@
                 Width="50" Height="50"
                 Grid.Column="2"
                 Grid.Row="1"
+                Margin="0, 40, 0, 0"
                 VerticalAlignment="Top"
                 HorizontalAlignment="Left"
                 Style="{StaticResource CloseButton}"
@@ -45,7 +50,7 @@
         <TextBlock FontSize="{Binding TextFontSize}"
             Foreground="#161A25"
             TextAlignment="Left"
-            Margin="0, 20, 0 ,10"
+            Margin="0, 40, 0 ,20"
             Grid.Row="1"
             Grid.Column="1"
             FontWeight="Medium"
@@ -111,7 +116,7 @@
                     FontFamily="Poppins"
                     FontWeight="Regular"
                     HorizontalAlignment="Left"
-                    Content="{Binding ValidationViewModel.AddressValidation}"
+                    Content="{Binding ValidationViewModel.SurnameValidation}"
                     Foreground="Red"/>
         </StackPanel>
         
@@ -142,11 +147,129 @@
                     FontFamily="Poppins"
                     FontWeight="Regular"
                     HorizontalAlignment="Left"
-                    Content="{Binding ValidationViewModel.LinkValidation}"
+                    Content="{Binding ValidationViewModel.AddressValidation}"
                     Foreground="Red"/>
         </StackPanel>
 
-        <StackPanel Grid.Row="5"
+            <StackPanel Grid.Row="5"
+                Grid.Column="1"
+                Width="{Binding Width}"
+                Height="112">
+                <Label Margin="0 0 0 3"
+                Height="28"
+                FontSize="18"
+                FontFamily="Poppins"
+                FontWeight="SemiBold"
+                HorizontalAlignment="Left">Starting Date</Label>
+                <DatePicker
+                  materialDesign:HintAssist.Hint="01/31/2023"
+                  Style="{StaticResource MaterialDesignOutlinedDatePicker}" 
+                  ToolTip="Enter the starting date of your new trip"
+                    FontSize="15"
+                    Margin="0"
+                    materialDesign:HintAssist.Foreground="#4889E6"
+                    Background="#A5FFFFFF"
+                    materialDesign:TextFieldAssist.UnderlineBrush="#4889E6"/>
+                <Label Height="27"
+                    FontSize="15"
+                    FontFamily="Poppins"
+                    FontWeight="Regular"
+                    HorizontalAlignment="Left"
+                    Content="{Binding ValidationViewModel.StartDateValidation}"
+                    Foreground="Red"/>
+            </StackPanel>
+
+            <StackPanel Grid.Row="6"
+                Grid.Column="1"
+                Width="{Binding Width}"
+                Height="112">
+                <Label Margin="0 0 0 3"
+                Height="28"
+                FontSize="18"
+                FontFamily="Poppins"
+                FontWeight="SemiBold"
+                HorizontalAlignment="Left">Ending Date</Label>
+                <DatePicker
+                  materialDesign:HintAssist.Hint="01/31/2023"
+                    ToolTip="Enter the ending date of your new trip"
+                  Style="{StaticResource MaterialDesignOutlinedDatePicker}"
+                    FontSize="15"
+                    Margin="0"
+                    materialDesign:HintAssist.Foreground="#4889E6"
+                    Background="#A5FFFFFF"
+                    materialDesign:TextFieldAssist.UnderlineBrush="#4889E6"/>
+                <Label Height="27"
+                    FontSize="15"
+                    FontFamily="Poppins"
+                    FontWeight="Regular"
+                    HorizontalAlignment="Left"
+                    Content="{Binding ValidationViewModel.EndDateValidation}"
+                    Foreground="Red"/>
+            </StackPanel>
+
+            <StackPanel Grid.Row="7"
+                Grid.Column="1"
+                Width="{Binding Width}"
+                Height="112">
+                <Label Margin="0 0 0 3"
+                Height="28"
+                FontSize="18"
+                FontFamily="Poppins"
+                FontWeight="SemiBold"
+                HorizontalAlignment="Left">Price</Label>
+                <TextBox Style="{StaticResource MaterialDesignOutlinedTextBox}"
+                    FontSize="15"
+                    Margin="0"
+                    materialDesign:HintAssist.Foreground="#4889E6"
+                    Background="#A5FFFFFF"
+                    materialDesign:TextFieldAssist.UnderlineBrush="#4889E6"
+                    ToolTip="Enter the price of your new trip"
+                    Text="{Binding Price}"
+                    PreviewTextInput="TextBox_PreviewTextInputPrice"
+                    TextChanged="TextBox_PriceLostFocus"
+                    LostFocus="TextBox_PriceLostFocus">
+                </TextBox>
+                <Label Height="27"
+                    FontSize="15"
+                    FontFamily="Poppins"
+                    FontWeight="Regular"
+                    HorizontalAlignment="Left"
+                    Content="{Binding ValidationViewModel.PriceValidation}"
+                    Foreground="Red"/>
+            </StackPanel>
+        
+            <StackPanel Grid.Row="8"
+                Grid.Column="1"
+                Width="{Binding Width}"
+                Height="112">
+                <Label Margin="0 0 0 3"
+                Height="28"
+                FontSize="18"
+                FontFamily="Poppins"
+                FontWeight="SemiBold"
+                HorizontalAlignment="Left">Description</Label>
+                <TextBox Style="{StaticResource MaterialDesignOutlinedTextBox}"
+                    FontSize="15"
+                    Margin="0"
+                    materialDesign:HintAssist.Foreground="#4889E6"
+                    Background="#A5FFFFFF"
+                    materialDesign:TextFieldAssist.UnderlineBrush="#4889E6"
+                    ToolTip="Enter the description of your new trip"
+                    Text="{Binding Description}"
+                    PreviewTextInput="TextBox_PreviewTextInputDescription"
+                    TextChanged="TextBox_DescriptionLostFocus"
+                    LostFocus="TextBox_DescriptionLostFocus">
+                </TextBox>
+                <Label Height="27"
+                    FontSize="15"
+                    FontFamily="Poppins"
+                    FontWeight="Regular"
+                    HorizontalAlignment="Left"
+                    Content="{Binding ValidationViewModel.DescriptionValidation}"
+                    Foreground="Red"/>
+            </StackPanel>
+
+            <StackPanel Grid.Row="9"
             Grid.Column="1"
             Width="{Binding Width}"
             Height="112">
@@ -162,6 +285,7 @@
                     SelectedItem="{Binding Attractions.SearchText}"
                     FontSize="15"
                     Margin="0"
+                    Width="Auto"
                     materialDesign:HintAssist.Foreground="#4889E6"
                     materialDesign:HintAssist.Hint="Search and choose"
                     Background="#A5FFFFFF"
@@ -176,7 +300,7 @@
                 </ComboBox>
         </StackPanel>
 
-            <StackPanel Grid.Row="6"
+            <StackPanel Grid.Row="10"
             Grid.Column="1"
             Width="{Binding Width}"
             Height="112">
@@ -206,7 +330,7 @@
                 </ComboBox>
             </StackPanel>
 
-            <StackPanel Grid.Row="7"
+            <StackPanel Grid.Row="11"
             Grid.Column="1"
             Width="{Binding Width}"
             Height="112">
@@ -237,12 +361,12 @@
             </StackPanel>
 
             <Button 
-                Grid.Row="8"
+                Grid.Row="12"
                 Grid.Column="1"
                 VerticalAlignment="Bottom"
                 Width="{Binding Width}"
                 Height="40"
-                Margin="0, 22 ,0 ,0"
+                Margin="0, 40 ,0 ,40"
                 IsEnabled="{Binding IsButtonEnabled}"
                 ToolTip="Click to create the new trip"
                 Content="Create"
