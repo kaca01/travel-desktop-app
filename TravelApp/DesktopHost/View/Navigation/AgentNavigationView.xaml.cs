@@ -14,6 +14,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 using TravelApp.DesktopHost.ViewModel;
+using TravelApp.DesktopHost.ViewModel.Component.Agent;
 
 namespace TravelApp.DesktopHost.View
 {
@@ -103,6 +104,29 @@ namespace TravelApp.DesktopHost.View
                 {
                     reservationsViewModel.Navigation.TextFontSize = 20;
                     reservationsViewModel.Navigation.TabWidth = windowWidth / 7; //220
+                }
+            }
+            else if (DataContext is AgentSoldTripsViewModel soldTripsViewModel)
+            {
+                if (windowWidth <= 930)
+                {
+                    soldTripsViewModel.Navigation.TextFontSize = 14;
+                    soldTripsViewModel.Navigation.TabWidth = windowWidth / 7; //125
+                }
+                else if (windowWidth <= 1100)
+                {
+                    soldTripsViewModel.Navigation.TextFontSize = 15;
+                    soldTripsViewModel.Navigation.TabWidth = windowWidth / 7; //150
+                }
+                else if (windowWidth <= 1250)
+                {
+                    soldTripsViewModel.Navigation.TextFontSize = 16;
+                    soldTripsViewModel.Navigation.TabWidth = windowWidth / 7; //180
+                }
+                else
+                {
+                    soldTripsViewModel.Navigation.TextFontSize = 20;
+                    soldTripsViewModel.Navigation.TabWidth = windowWidth / 7; //220
                 }
             }
         }
