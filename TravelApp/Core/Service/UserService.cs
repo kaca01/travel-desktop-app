@@ -14,11 +14,13 @@ namespace TravelApp.Core.Service
     public class UserService
     {
         private IUserRepository userRepository;
+        private ITransactionRepository transactionRepository;
         public static User CurrentUser { get; set; }
 
         public UserService()
         {
             this.userRepository = new UserRepository();
+            this.transactionRepository = new TransactionRepository();   
         }
 
         public void Login(string email, string password)
@@ -46,5 +48,14 @@ namespace TravelApp.Core.Service
 
         }
 
+        public List<TransactionListItemViewModel> GetTripsForCurrentUser()
+        {
+            return transactionRepository.GetTripsForCurrentUser(CurrentUser.Email);
+        }
+
+        public List<TransactionListItemViewModel> GetReservationsForCurrentUser()
+        {
+            return transactionRepository.GetReservationsForCurrentUser(CurrentUser.Email);
+        }
     }
 }

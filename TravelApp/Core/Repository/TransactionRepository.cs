@@ -24,12 +24,13 @@ namespace TravelApp.Core.Repository
                     StartDate = t.Trip.StartDate,
                     EndDate = t.Trip.EndDate,
                     Type = t.Type.ToString(),
+                    TransactionDate = t.TransactionDate,
                     IsDeleted = t.IsDeleted
                 }).Where(t => !t.IsDeleted && t.Type.Equals("RESERVATION")).ToList();
             }
         }
 
-        public List<TransactionListItemViewModel> GetReservationsForCurrentUser()
+        public List<TransactionListItemViewModel> GetReservationsForCurrentUser(string currentUser)
         {
             using (var context = new TravelContext())
             {
@@ -43,9 +44,9 @@ namespace TravelApp.Core.Repository
                     StartDate = t.Trip.StartDate,
                     EndDate = t.Trip.EndDate,
                     Type = t.Type.ToString(),
+                    TransactionDate = t.TransactionDate,
                     IsDeleted = t.IsDeleted
-                    // TODO promeni za trenutnog korisnika
-                }).Where(t => !t.IsDeleted && t.Type.Equals("RESERVATION") && t.User.Email.Equals("ines@gmail.com")).ToList();
+                }).Where(t => !t.IsDeleted && t.Type.Equals("RESERVATION") && t.User.Email.Equals(currentUser)).ToList();
             }
         }
 
@@ -63,12 +64,13 @@ namespace TravelApp.Core.Repository
                     StartDate = t.Trip.StartDate.Date,
                     EndDate = t.Trip.EndDate,
                     Type = t.Type.ToString(),
+                    TransactionDate = t.TransactionDate,
                     IsDeleted = t.IsDeleted
                 }).Where(t => !t.IsDeleted && t.Type.Equals("PURCHASE")).ToList();
             }
         }
 
-        public List<TransactionListItemViewModel> GetTripsForCurrentUser()
+        public List<TransactionListItemViewModel> GetTripsForCurrentUser(string currentUser)
         {
             using (var context = new TravelContext())
             {
@@ -82,9 +84,9 @@ namespace TravelApp.Core.Repository
                     StartDate = t.Trip.StartDate.Date,
                     EndDate = t.Trip.EndDate,
                     Type = t.Type.ToString(),
+                    TransactionDate = t.TransactionDate,
                     IsDeleted = t.IsDeleted
-                    // TODO promeni za trenutnog korisnika
-                }).Where(t => !t.IsDeleted && t.Type.Equals("PURCHASE") && t.User.Email.Equals("ines@gmail.com")).ToList();
+                }).Where(t => !t.IsDeleted && t.Type.Equals("PURCHASE") && t.User.Email.Equals(currentUser)).ToList();
             }
         }
 
@@ -105,6 +107,7 @@ namespace TravelApp.Core.Repository
                 if (transaction != null)
                 {
                     transaction.Type = TransactionType.PURCHASE;
+                    transaction.TransactionDate = DateTime.Now;
                     context.Update(transaction);
                     context.SaveChanges();
                 }

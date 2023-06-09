@@ -128,9 +128,8 @@ namespace TravelApp.DesktopHost.ViewModel
         {
             Navigation = new ClientNavigationViewModel();
 
-            var dataService = new TransactionService();
-            var data = dataService.GetReservationsForCurrentUser();
-            Items = new ObservableCollection<TransactionListItemViewModel>(data);
+            var userService = new UserService();
+            Items = new ObservableCollection<TransactionListItemViewModel>(userService.GetReservationsForCurrentUser());
             FilteredItems = new ObservableCollection<TransactionListItemViewModel>(Items);
 
             Buy = new BuyTripCommand(this);

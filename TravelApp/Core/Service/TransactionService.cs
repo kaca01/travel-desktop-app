@@ -23,10 +23,5 @@ namespace TravelApp.Core.Service
         {
             return _transactionRepository.GetReservations();
         }
-
-        public List<TransactionListItemViewModel> GetReservationsForCurrentUser()
-        {
-            return _transactionRepository.GetReservationsForCurrentUser();
-        }
     }
 }
