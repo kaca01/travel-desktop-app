@@ -87,6 +87,13 @@ namespace TravelApp.DesktopHost.View.Agent
             viewModel.Link = textBox.Text;
         }
 
+        private void Attractions_GotFocus(object sender, RoutedEventArgs e)
+        {
+            NewTripViewModel viewModel = (NewTripViewModel)DataContext;
+            if (viewModel == null) return;
+            viewModel.Attractions.IsDropDownOpen = true;
+        }
+
         private void Window_SizeChanged(object sender, SizeChangedEventArgs e)
         {
             double windowWidth = e.NewSize.Width;

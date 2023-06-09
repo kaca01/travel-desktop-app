@@ -154,24 +154,24 @@
                 FontFamily="Poppins"
                 FontWeight="SemiBold"
                 HorizontalAlignment="Left">Attractions</Label>
-                <ComboBox ItemsSource="{Binding FilteredItems}" IsDropDownOpen="{Binding IsDropDownOpen}" IsEditable="True" IsTextSearchEnabled="False"
+                <ComboBox ItemsSource="{Binding Attractions.FilteredItems}" IsDropDownOpen="{Binding Attractions.IsDropDownOpen}" IsEditable="True" IsTextSearchEnabled="False"
                     Style="{StaticResource MaterialDesignOutlinedComboBox}"
-                    Text="{Binding SearchText}"
-                    SelectedItem="{Binding SearchText}"
-                    MaxHeight="150"
+                    Text="{Binding Attractions.SearchText}"
+                    SelectedItem="{Binding Attractions.SearchText}"
                     FontSize="15"
                     Margin="0"
                     materialDesign:HintAssist.Foreground="#4889E6"
                     materialDesign:HintAssist.Hint="Search and choose"
                     Background="#A5FFFFFF"
                     materialDesign:TextFieldAssist.UnderlineBrush="#4889E6"
-                    ToolTip="Search and choose attractions for new trip">
-                <ComboBox.ItemTemplate>
-                    <DataTemplate>
-                        <CheckBox Content="{Binding Name}" IsChecked="{Binding IsSelected, Mode=TwoWay}"/>
-                    </DataTemplate>
-                </ComboBox.ItemTemplate>
-            </ComboBox>
+                    ToolTip="Search and choose attractions for new trip"
+                    GotFocus="Attractions_GotFocus">
+                    <ComboBox.ItemTemplate>
+                        <DataTemplate>
+                            <CheckBox Content="{Binding Name}" IsChecked="{Binding IsSelected, Mode=TwoWay}"/>
+                        </DataTemplate>
+                    </ComboBox.ItemTemplate>
+                </ComboBox>
         </StackPanel>
         
             <Button Grid.Column="1"

@@ -1,4 +1,5 @@
-﻿using System;
+﻿using MaterialDesignThemes.Wpf;
+using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
@@ -11,6 +12,8 @@ using System.Windows;
 using System.Windows.Data;
 using System.Windows.Shapes;
 using System.Xml.Linq;
+using TravelApp.Core.Service;
+using TravelApp.DesktopHost.ViewModel.ComboBox;
 using TravelApp.DesktopHost.ViewModel.ItemViewModel;
 
 namespace TravelApp.DesktopHost.ViewModel.Component.Agent
@@ -22,14 +25,9 @@ namespace TravelApp.DesktopHost.ViewModel.Component.Agent
         private string _endLocation;
 
 
-
         private double _textFontSize;
         private double _width;
 
-        private string _searchText;
-        private ObservableCollection<ItemModel> _items;
-        private ObservableCollection<ItemModel> _filteredItems;
-        private ICollectionView _itemsView;
 
         public string Name
         {
@@ -50,13 +48,6 @@ namespace TravelApp.DesktopHost.ViewModel.Component.Agent
             get => _endLocation;
             set { _endLocation = value; OnPropertyChanged(nameof(EndLocation)); //ValidationViewModel.IsEndLocationValid(_endLocation); CheckButtonStatus();
             }
-        }
-
-        private bool _isDropDownOpen;
-        public bool IsDropDownOpen
-        {
-            get { return _isDropDownOpen; }
-            set { _isDropDownOpen = value; OnPropertyChanged(nameof(IsDropDownOpen)); }
         }
 
         public double TextFontSize
@@ -85,17 +76,6 @@ namespace TravelApp.DesktopHost.ViewModel.Component.Agent
             }
         }
 
-        public string SearchText
-        {
-            get { return _searchText; }
-            set
-            {
-                _searchText = value;
-                FilterItems();
-                OnPropertyChanged(nameof(SearchText));
-            }
-        }
-
         private bool _isButtonEnabled;
         public bool IsButtonEnabled
         {
@@ -107,46 +87,13 @@ namespace TravelApp.DesktopHost.ViewModel.Component.Agent
             }
         }
 
-        public ObservableCollection<ItemModel> Items
-        {
-            get { return _items; }
-            set
-            {
-                _items = value;
-                OnPropertyChanged(nameof(Items));
-            }
-        }
-
-        public ObservableCollection<ItemModel> FilteredItems
-        {
-            get { return _filteredItems; }
-            set { _filteredItems = value; OnPropertyChanged(nameof(FilteredItems)); }
-        }
+        public ComboBoxViewModel Attractions { get; }
 
         public NewTripViewModel()
         {
+            AttractionService service = new AttractionService();
+            Attractions = new ComboBoxViewModel(service.GetTableData());
             IsButtonEnabled = false;
-            Items = new ObservableCollection<ItemModel>
-        {
-            new ItemModel { Name = "Item 1" },
-            new ItemModel { Name = "Item 2" },
-            new ItemModel { Name = "Item 3" },
-            // Add more items as needed
-        };
-            FilteredItems = Items;
-            _itemsView = CollectionViewSource.GetDefaultView(FilteredItems);
-        }
-
-        private void FilterItems()
-        {
-            if (string.IsNullOrEmpty(SearchText))
-            {
-                FilteredItems = Items;
-            }
-            else
-            {
-                FilteredItems = new ObservableCollection<ItemModel>(Items.Where(item => item.Name.ToLower().Contains(SearchText.ToLower())));
-            }
         }
 
         public event PropertyChangedEventHandler PropertyChanged;
