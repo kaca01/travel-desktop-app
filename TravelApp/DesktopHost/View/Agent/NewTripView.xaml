@@ -127,10 +127,9 @@
                     FontSize="15"
                     Margin="0"
                     materialDesign:HintAssist.Foreground="#4889E6"
-                    materialDesign:HintAssist.Hint="http://example.com"
                     Background="#A5FFFFFF"
                     materialDesign:TextFieldAssist.UnderlineBrush="#4889E6"
-                    ToolTip="Enter the starting location of your new trip"
+                    ToolTip="Enter the ending location of your new trip"
                     Text="{Binding Link}"
                     PreviewTextInput="TextBox_PreviewTextInput"
                     TextChanged="TextBox_EndLocationLostFocus"
@@ -155,26 +154,24 @@
                 FontFamily="Poppins"
                 FontWeight="SemiBold"
                 HorizontalAlignment="Left">Attractions</Label>
-                <TextBox 
-                Text="{Binding SearchText, UpdateSourceTrigger=PropertyChanged}"
-                Style="{StaticResource MaterialDesignOutlinedTextBox}"
-                FontSize="15"
-                Margin="0"
-                materialDesign:HintAssist.Foreground="#4889E6"
-                materialDesign:HintAssist.Hint="Search and choose"
-                Background="#A5FFFFFF"
-                materialDesign:TextFieldAssist.UnderlineBrush="#4889E6"
-                ToolTip="Search and choose attractions for new trip"/>
-
-            <ListBox ItemsSource="{Binding Items}" SelectionMode="Extended" Margin="10" 
-                    Visibility="{Binding ListVisibility}"
-                    MaxHeight="150">
-                <ListBox.ItemTemplate>
+                <ComboBox ItemsSource="{Binding FilteredItems}" IsDropDownOpen="{Binding IsDropDownOpen}" IsEditable="True" IsTextSearchEnabled="False"
+                    Style="{StaticResource MaterialDesignOutlinedComboBox}"
+                    Text="{Binding SearchText}"
+                    SelectedItem="{Binding SearchText}"
+                    MaxHeight="150"
+                    FontSize="15"
+                    Margin="0"
+                    materialDesign:HintAssist.Foreground="#4889E6"
+                    materialDesign:HintAssist.Hint="Search and choose"
+                    Background="#A5FFFFFF"
+                    materialDesign:TextFieldAssist.UnderlineBrush="#4889E6"
+                    ToolTip="Search and choose attractions for new trip">
+                <ComboBox.ItemTemplate>
                     <DataTemplate>
                         <CheckBox Content="{Binding Name}" IsChecked="{Binding IsSelected, Mode=TwoWay}"/>
                     </DataTemplate>
-                </ListBox.ItemTemplate>
-            </ListBox>
+                </ComboBox.ItemTemplate>
+            </ComboBox>
         </StackPanel>
         
             <Button Grid.Column="1"

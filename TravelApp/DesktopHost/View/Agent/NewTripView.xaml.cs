@@ -27,6 +27,17 @@ namespace TravelApp.DesktopHost.View.Agent
             InitializeComponent();
         }
 
+        private void TextBox_PreviewTextInput(object sender, TextCompositionEventArgs e)
+        {
+            TextBox textBox = (TextBox)sender;
+
+            // Check if the new text length exceeds the maximum character count
+            if (textBox.Text.Length + e.Text.Length > 55)
+            {
+                e.Handled = true; // Prevent the input from being added to the TextBox
+            }
+        }
+
         private void TextBox_NameLostFocus(object sender, RoutedEventArgs e)
         {
             //todo change view model in all functions
@@ -42,17 +53,6 @@ namespace TravelApp.DesktopHost.View.Agent
                 textBox.BorderBrush = Brushes.Gray;
             }
             viewModel.Name = textBox.Text;
-        }
-
-        private void TextBox_PreviewTextInput(object sender, TextCompositionEventArgs e)
-        {
-            TextBox textBox = (TextBox)sender;
-
-            // Check if the new text length exceeds the maximum character count
-            if (textBox.Text.Length + e.Text.Length > 55)
-            {
-                e.Handled = true; // Prevent the input from being added to the TextBox
-            }
         }
 
         private void TextBox_StartLocationLostFocus(object sender, RoutedEventArgs e)
@@ -85,19 +85,6 @@ namespace TravelApp.DesktopHost.View.Agent
                 textBox.BorderBrush = Brushes.Gray;
             }
             viewModel.Link = textBox.Text;
-        }
-
-
-        private void TextBox_AttractionsLostFocus(object sender, RoutedEventArgs e)
-        {
-            NewTripViewModel viewModel = (NewTripViewModel)DataContext;
-            viewModel.ListVisibility = Visibility.Hidden;
-        }
-
-        private void TextBox_AttractionsGotFocus(object sender, RoutedEventArgs e)
-        {
-            NewTripViewModel viewModel = (NewTripViewModel)DataContext;
-            viewModel.ListVisibility = Visibility.Visible;
         }
 
         private void Window_SizeChanged(object sender, SizeChangedEventArgs e)

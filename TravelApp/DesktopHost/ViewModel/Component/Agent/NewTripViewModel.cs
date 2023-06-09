@@ -25,16 +25,11 @@ namespace TravelApp.DesktopHost.ViewModel.Component.Agent
 
         private double _textFontSize;
         private double _width;
+
         private string _searchText;
         private ObservableCollection<ItemModel> _items;
+        private ObservableCollection<ItemModel> _filteredItems;
         private ICollectionView _itemsView;
-
-        private Visibility _listVisibility;
-        public Visibility ListVisibility
-        {
-            get => _listVisibility;
-            set { _listVisibility = value; OnPropertyChanged(nameof(ListVisibility)); }
-        }
 
         public string Name
         {
@@ -55,6 +50,13 @@ namespace TravelApp.DesktopHost.ViewModel.Component.Agent
             get => _endLocation;
             set { _endLocation = value; OnPropertyChanged(nameof(EndLocation)); //ValidationViewModel.IsEndLocationValid(_endLocation); CheckButtonStatus();
             }
+        }
+
+        private bool _isDropDownOpen;
+        public bool IsDropDownOpen
+        {
+            get { return _isDropDownOpen; }
+            set { _isDropDownOpen = value; OnPropertyChanged(nameof(IsDropDownOpen)); }
         }
 
         public double TextFontSize
@@ -89,7 +91,7 @@ namespace TravelApp.DesktopHost.ViewModel.Component.Agent
             set
             {
                 _searchText = value;
-                _itemsView.Refresh();
+                FilterItems();
                 OnPropertyChanged(nameof(SearchText));
             }
         }
@@ -115,9 +117,14 @@ namespace TravelApp.DesktopHost.ViewModel.Component.Agent
             }
         }
 
+        public ObservableCollection<ItemModel> FilteredItems
+        {
+            get { return _filteredItems; }
+            set { _filteredItems = value; OnPropertyChanged(nameof(FilteredItems)); }
+        }
+
         public NewTripViewModel()
         {
-            ListVisibility = Visibility.Visible;
             IsButtonEnabled = false;
             Items = new ObservableCollection<ItemModel>
         {
@@ -126,18 +133,20 @@ namespace TravelApp.DesktopHost.ViewModel.Component.Agent
             new ItemModel { Name = "Item 3" },
             // Add more items as needed
         };
-
-            _itemsView = CollectionViewSource.GetDefaultView(Items);
-            _itemsView.Filter = FilterItems;
+            FilteredItems = Items;
+            _itemsView = CollectionViewSource.GetDefaultView(FilteredItems);
         }
 
-        private bool FilterItems(object obj)
+        private void FilterItems()
         {
-            var item = obj as ItemModel;
-            if (string.IsNullOrWhiteSpace(SearchText))
-                return true;
-
-            return item.Name.IndexOf(SearchText, StringComparison.OrdinalIgnoreCase) >= 0;
+            if (string.IsNullOrEmpty(SearchText))
+            {
+                FilteredItems = Items;
+            }
+            else
+            {
+                FilteredItems = new ObservableCollection<ItemModel>(Items.Where(item => item.Name.ToLower().Contains(SearchText.ToLower())));
+            }
         }
 
         public event PropertyChangedEventHandler PropertyChanged;
