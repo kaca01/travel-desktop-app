@@ -9,6 +9,7 @@ using System.Windows;
 using TravelApp.Core.Repository;
 using TravelApp.Core.Service;
 using TravelApp.DesktopHost.ViewModel;
+using TravelApp.DesktopHost.ViewModel.Component;
 
 namespace TravelApp.DesktopHost.Command
 {
@@ -25,9 +26,6 @@ namespace TravelApp.DesktopHost.Command
 
         public override void Execute(object parameter)
         {
-            // TODO svakako se izbacije dialog 1. ako je selektovano pitas da li je siguran da hoce da obrise 2. ako nije selektovan da mu kazes da mora da selektuje
-            // i kada obrises reci mu da je uspesno obrisao
-            
             var selectedItem = parameter as TouristFacilityListItemViewModel;
             if (selectedItem != null)
             {

@@ -5,12 +5,16 @@ using System.ComponentModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows;
 using TravelApp.Core.Service;
+using TravelApp.DesktopHost.Command;
+using TravelApp.DesktopHost.Command.Agent;
 
 namespace TravelApp.DesktopHost.ViewModel
 {
     public class ClientStayEatViewModel : BaseViewModel, INotifyPropertyChanged
     {
+        public ClientNavigationViewModel Navigation { get; set; }
         private ObservableCollection<TouristFacilityListItemViewModel> _items;
         public ObservableCollection<TouristFacilityListItemViewModel> Items
         {
@@ -76,15 +80,48 @@ namespace TravelApp.DesktopHost.ViewModel
             }
         }
 
+        public ICommand NewPlace { get; }
+        private double _tableWidth;
+
+        public double TableWidth
+        {
+            get { return _tableWidth; }
+            set
+            {
+                if (_tableWidth != value)
+                {
+                    _tableWidth = value;
+                    OnPropertyChanged(nameof(TableWidth));
+                }
+            }
+        }
+
+        private Thickness _arrowMargin;
+        public Thickness ArrowMargin
+        {
+            get { return _arrowMargin; }
+            set
+            {
+                _arrowMargin = value;
+                OnPropertyChanged(nameof(ArrowMargin));
+            }
+        }
+
         public event PropertyChangedEventHandler PropertyChanged;
 
         public ClientStayEatViewModel()
         {
+            Navigation = new ClientNavigationViewModel();
+
             var dataService = new TouristFacilityService();
             var data = dataService.GetTableData();
 
             Items = new ObservableCollection<TouristFacilityListItemViewModel>(data);
             FilteredItems = new ObservableCollection<TouristFacilityListItemViewModel>(Items);
+
+            Delete = new DeleteStayEatItemCommand(this);
+            NewPlace = new NewPlaceNavigationCommand();
+
         }
 
         protected virtual void OnPropertyChanged(string propertyName)

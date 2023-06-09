@@ -5,15 +5,18 @@ using System.ComponentModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows;
 using System.Windows.Input;
 using TravelApp.Core.Service;
 using TravelApp.DesktopHost.Command;
-using TravelApp.DesktopHost.Command.Agent;
+using TravelApp.DesktopHost.Command.Navigation;
 
 namespace TravelApp.DesktopHost.ViewModel
 {
     public class AgentStayEatViewModel : BaseViewModel, INotifyPropertyChanged
     {
+        public AgentNavigationViewModel Navigation { get; set; }
+
         private ObservableCollection<TouristFacilityListItemViewModel> _items;
         public ObservableCollection<TouristFacilityListItemViewModel> Items
         {
@@ -38,7 +41,7 @@ namespace TravelApp.DesktopHost.ViewModel
 
         private TouristFacilityListItemViewModel _selectedItem;
 
-        public TouristFacilityListItemViewModel SelectedItem 
+        public TouristFacilityListItemViewModel SelectedItem
         {
             get { return _selectedItem; }
             set
@@ -48,20 +51,19 @@ namespace TravelApp.DesktopHost.ViewModel
             }
         }
 
-
         public ICommand Delete { get; set; }
 
-        private double _textFontSize;
+        private double _textSize;
 
-        public double TextFontSize
+        public double TextSize
         {
-            get { return _textFontSize; }
+            get { return _textSize; }
             set
             {
-                if (_textFontSize != value)
+                if (_textSize != value)
                 {
-                    _textFontSize = value;
-                    OnPropertyChanged(nameof(TextFontSize));
+                    _textSize = value;
+                    OnPropertyChanged(nameof(TextSize));
                 }
             }
         }
@@ -80,7 +82,7 @@ namespace TravelApp.DesktopHost.ViewModel
             }
         }
 
-        private string _searchText;  
+        private string _searchText;
 
         public string SearchText
         {
@@ -93,12 +95,37 @@ namespace TravelApp.DesktopHost.ViewModel
             }
         }
 
-        public ICommand NewPlace { get; }
-
         public event PropertyChangedEventHandler PropertyChanged;
+
+        private double _tableWidth;
+
+        public double TableWidth
+        {
+            get { return _tableWidth; }
+            set
+            {
+                if (_tableWidth != value)
+                {
+                    _tableWidth = value;
+                    OnPropertyChanged(nameof(TableWidth));
+                }
+            }
+        }
+
+        private Thickness _arrowMargin;
+        public Thickness ArrowMargin
+        {
+            get { return _arrowMargin; }
+            set
+            {
+                _arrowMargin = value;
+                OnPropertyChanged(nameof(ArrowMargin));
+            }
+        }
 
         public AgentStayEatViewModel()
         {
+            Navigation = new AgentNavigationViewModel();
             var dataService = new TouristFacilityService();
             var data = dataService.GetTableData();
 
@@ -106,7 +133,6 @@ namespace TravelApp.DesktopHost.ViewModel
             FilteredItems = new ObservableCollection<TouristFacilityListItemViewModel>(Items);
 
             Delete = new DeleteStayEatItemCommand(this);
-            NewPlace = new NewPlaceNavigationCommand();
 
         }
 

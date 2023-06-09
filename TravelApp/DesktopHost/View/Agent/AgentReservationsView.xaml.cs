@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Diagnostics;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -18,27 +17,14 @@ using TravelApp.DesktopHost.ViewModel;
 namespace TravelApp.DesktopHost.View
 {
     /// <summary>
-    /// Interaction logic for ClientStayEatView.xaml
+    /// Interaction logic for AgentReservationsView.xaml
     /// </summary>
-    public partial class ClientStayEatView : UserControl
+    public partial class AgentReservationsView : UserControl
     {
-        public ClientStayEatView()
+        public AgentReservationsView()
         {
             InitializeComponent();
-            DataContext = new ClientStayEatViewModel();
-        }
-
-        private void Hyperlink_RequestNavigate(object sender, RequestNavigateEventArgs e)
-        {
-            string url = e.Uri.AbsoluteUri;
-            ProcessStartInfo psi = new ProcessStartInfo
-            {
-                FileName = url,
-                UseShellExecute = true
-            };
-
-            Process.Start(psi);
-            e.Handled = true;
+            DataContext = new AgentReservationsViewModel();
         }
 
         private void Window_SizeChanged(object sender, SizeChangedEventArgs e)
@@ -46,18 +32,22 @@ namespace TravelApp.DesktopHost.View
             double windowWidth = e.NewSize.Width;
             double windowHeigth = e.NewSize.Height;
 
-            // Adjust the font size based on the window width
-            ClientStayEatViewModel viewModel = (ClientStayEatViewModel)DataContext;
+            AgentReservationsViewModel viewModel = (AgentReservationsViewModel)DataContext;
             if (windowWidth <= 1200 || windowHeigth <= 700)
             {
-                viewModel.TextFontSize = 40;
+                viewModel.TextSize = 40;
                 viewModel.Width = 300;
             }
             else
             {
-                viewModel.TextFontSize = 60;
+                viewModel.TextSize = 60;
                 viewModel.Width = 439;
             }
+
+            if (windowWidth <= 930) { viewModel.TableWidth = 650; viewModel.ArrowMargin = new Thickness(-10, 0, 0, 0); }
+            else if (windowWidth <= 1100) { viewModel.TableWidth = 700; viewModel.ArrowMargin = new Thickness(-20, 0, 0, 0); }
+            else if (windowWidth <= 1250) { viewModel.TableWidth = 750; viewModel.ArrowMargin = new Thickness(-30, 0, 0, 0); }
+            else { viewModel.TableWidth = 800; viewModel.ArrowMargin = new Thickness(-40, 0, 0, 0); }
         }
     }
 }

@@ -18,8 +18,6 @@ namespace TravelApp.DesktopHost.Command.Navigation.Agent
         }
         public override void Execute(object parameter)
         {
-            // TODO : add here _navigation.CurrentViewModel = new TripsViewModel()
-            // or whatever the class is called
             if(_navigation.CurrentViewModel.GetType() != typeof(AgentTripsViewModel))
             _navigation.CurrentViewModel = new AgentTripsViewModel();
         }

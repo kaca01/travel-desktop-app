@@ -59,6 +59,52 @@ namespace TravelApp.DesktopHost.View
                     viewModel.Navigation.TabWidth = windowWidth / 7; 
                 }
             }
+            else if (DataContext is ClientStayEatViewModel vm)
+            {
+                if (windowWidth <= 930)
+                {
+                    vm.Navigation.TextFontSize = 14;
+                    vm.Navigation.TabWidth = windowWidth / 7; //125
+                }
+                else if (windowWidth <= 1100)
+                {
+                    vm.Navigation.TextFontSize = 15;
+                    vm.Navigation.TabWidth = windowWidth / 7; //150
+                }
+                else if (windowWidth <= 1250)
+                {
+                    vm.Navigation.TextFontSize = 16;
+                    vm.Navigation.TabWidth = windowWidth / 7; //180
+                }
+                else
+                {
+                    vm.Navigation.TextFontSize = 20;
+                    vm.Navigation.TabWidth = windowWidth / 7; //220
+                }
+            }
+            else if (DataContext is ClientReservationsViewModel reservationsViewModel)
+            {
+                if (windowWidth <= 930)
+                {
+                    reservationsViewModel.Navigation.TextFontSize = 14;
+                    reservationsViewModel.Navigation.TabWidth = windowWidth / 7; //125
+                }
+                else if (windowWidth <= 1100)
+                {
+                    reservationsViewModel.Navigation.TextFontSize = 15;
+                    reservationsViewModel.Navigation.TabWidth = windowWidth / 7; //150
+                }
+                else if (windowWidth <= 1250)
+                {
+                    reservationsViewModel.Navigation.TextFontSize = 16;
+                    reservationsViewModel.Navigation.TabWidth = windowWidth / 7; //180
+                }
+                else
+                {
+                    reservationsViewModel.Navigation.TextFontSize = 20;
+                    reservationsViewModel.Navigation.TabWidth = windowWidth / 7; //220
+                }
+            }
         }
     }
 }
