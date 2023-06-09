@@ -17,6 +17,7 @@ namespace TravelApp.DesktopHost.ViewModel
         public DateTime StartDate { get; set; }
         public DateTime EndDate { get; set; }
         public string Type { get; set; }
+        public DateTime TransactionDate { get; set; }
         public bool IsDeleted { get; set; }
     }
 }

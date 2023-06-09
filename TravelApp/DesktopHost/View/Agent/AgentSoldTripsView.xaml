@@ -71,9 +71,6 @@
                     <ColumnDefinition Width="auto" />
                     <ColumnDefinition Width="4*" />
                 </Grid.ColumnDefinitions>
-                <Grid.RowDefinitions>
-                    <RowDefinition Height="*" />
-                </Grid.RowDefinitions>
 
                 <Border Grid.Column="0" Grid.Row="0" Width="250" BorderBrush="#DFE6F0" BorderThickness="1" HorizontalAlignment="Center" Background="#DFE6F0">
                     <Grid>
@@ -131,7 +128,7 @@
                             </Grid>
                         </Border>
 
-                        <ListBox Grid.Row="1" x:Name="myListBox" SelectionMode="Multiple" ItemsSource="{Binding FilteredItems}" DisplayMemberPath="Trip" HorizontalAlignment="Center" FontSize="18">
+                        <ListBox Grid.Row="1" x:Name="myListBox" SelectionMode="Multiple" ItemsSource="{Binding FilteredTrips}" DisplayMemberPath="Name" HorizontalAlignment="Center" FontSize="18">
                             <ListBox.ItemContainerStyle>
                                 <Style TargetType="ListBoxItem">
                                     <Setter Property="Margin" Value="0,0,0,10" />
@@ -160,12 +157,10 @@
                                 </Style>
                             </ListBox.ItemContainerStyle>
                         </ListBox>
-
                     </Grid>
                 </Border>
 
-
-                <materialDesign:Card Grid.Column="3" Grid.Row="0" Background="White" Padding="16" HorizontalAlignment="Center" Margin="0 0 0 20">
+                <materialDesign:Card Grid.Column="3"  Background="White" Padding="16" HorizontalAlignment="Center" >
                     <DataGrid ItemsSource="{Binding FilteredItems}"
                           Width="{Binding TableWidth}"
                           RowHeight="55"
@@ -344,18 +339,26 @@
                 </materialDesign:Card>
 
 
-                <!--<Border Grid.Row="4"  BorderBrush="#DFE6F0" BorderThickness="1"  Background="#DFE6F0" Height="50">
-                    <StackPanel Orientation="Horizontal">
-                        <TextBlock Text="TOTAL PRICE (RSD): " ></TextBlock>
-                        <TextBlock Text="{Binding nesto}"></TextBlock>
-                        <Border BorderBrush="Gray" BorderThickness="1" Width="1" Height="Auto" Margin="5" />
-                        <TextBlock Text="TOTAL TRIPS: "></TextBlock>
-                        <TextBlock Text="{Binding nesto}"></TextBlock>
-                    </StackPanel>
-                </Border>-->
+                
             </Grid>
 
-        
+            <Grid Grid.Row="4">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="1*" />
+                    <ColumnDefinition Width="auto" />
+                    <ColumnDefinition Width="4*" />
+                </Grid.ColumnDefinitions>
+
+                <Border Grid.Column="2"  BorderBrush="#DFE6F0" BorderThickness="1"  Background="#DFE6F0" Height="50" HorizontalAlignment="Center">
+                    <StackPanel Orientation="Horizontal">
+                        <TextBlock Text="TOTAL PRICE (RSD): "  VerticalAlignment="Center" FontFamily="Poppins" FontSize="18" Margin="15 0 "/>
+                        <TextBlock Text="{Binding nesto}" VerticalAlignment="Center" FontFamily="Poppins" FontSize="18"/>
+                        <Border BorderBrush="Gray" BorderThickness="1" Width="1" Height="Auto" Margin="5" />
+                        <TextBlock Text="TOTAL TRIPS: " VerticalAlignment="Center" FontFamily="Poppins" FontSize="18" Margin="15 0 "/>
+                        <TextBlock Text="{Binding nesto}" VerticalAlignment="Center" FontFamily="Poppins" FontSize="18"/>
+                    </StackPanel>
+                </Border>
+            </Grid>
         </Grid>
     </Grid>
 </UserControl>

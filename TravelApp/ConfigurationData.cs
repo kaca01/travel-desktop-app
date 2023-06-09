@@ -131,14 +131,14 @@ namespace TravelApp
                 db.SaveChanges();
 
                 //purchases and reservations
-                Transaction reservation1 = new Transaction() { User = client1, Trip = trip1, Type = TransactionType.RESERVATION, IsDeleted=false };
-                Transaction purchase1 = new Transaction() { User = client2, Trip = trip1, Type = TransactionType.PURCHASE, IsDeleted = false };
-                Transaction reservation2 = new Transaction() { User = client2, Trip = trip2, Type = TransactionType.RESERVATION, IsDeleted=false };
-                Transaction purchase2 = new Transaction() { User = client1, Trip = trip2, Type = TransactionType.PURCHASE , IsDeleted = false };
-                Transaction reservation3 = new Transaction() { User = client1, Trip = trip3, Type = TransactionType.RESERVATION , IsDeleted = false };
-                Transaction purchase3 = new Transaction() { User = client3, Trip = trip3, Type = TransactionType.PURCHASE , IsDeleted = false };
-                Transaction reservation4 = new Transaction() { User = client2, Trip = trip3, Type = TransactionType.RESERVATION , IsDeleted = false };
-                Transaction purchase4 = new Transaction() { User = client4, Trip = trip3, Type = TransactionType.PURCHASE , IsDeleted = false };
+                Transaction reservation1 = new Transaction() { User = client1, Trip = trip1, Type = TransactionType.RESERVATION, TransactionDate= DateTime.Now.AddDays(-30), IsDeleted=false };
+                Transaction purchase1 = new Transaction() { User = client2, Trip = trip1, Type = TransactionType.PURCHASE, TransactionDate = DateTime.Now.AddDays(-6), IsDeleted = false };
+                Transaction reservation2 = new Transaction() { User = client2, Trip = trip2, Type = TransactionType.RESERVATION, TransactionDate = DateTime.Now.AddDays(-30), IsDeleted =false };
+                Transaction purchase2 = new Transaction() { User = client1, Trip = trip2, Type = TransactionType.PURCHASE, TransactionDate = DateTime.Now.AddDays(-2), IsDeleted = false };
+                Transaction reservation3 = new Transaction() { User = client1, Trip = trip3, Type = TransactionType.RESERVATION, TransactionDate = DateTime.Now.AddDays(-30), IsDeleted = false };
+                Transaction purchase3 = new Transaction() { User = client3, Trip = trip3, Type = TransactionType.PURCHASE, TransactionDate = DateTime.Now.AddDays(-10), IsDeleted = false };
+                Transaction reservation4 = new Transaction() { User = client2, Trip = trip3, Type = TransactionType.RESERVATION, TransactionDate = DateTime.Now.AddDays(-30), IsDeleted = false };
+                Transaction purchase4 = new Transaction() { User = client4, Trip = trip3, Type = TransactionType.PURCHASE, TransactionDate = DateTime.Now.AddDays(-20), IsDeleted = false };
                 db.Transactions.Add(reservation1);
                 db.Transactions.Add(purchase1);
                 db.Transactions.Add(reservation2);

@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Microsoft.VisualBasic;
+using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
@@ -6,6 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
+using TravelApp.Core.Model;
 using TravelApp.Core.Service;
 
 namespace TravelApp.DesktopHost.ViewModel
@@ -14,7 +16,7 @@ namespace TravelApp.DesktopHost.ViewModel
     {
         public AgentNavigationViewModel Navigation { get; set; }
 
-        private List<string> _pickMonth;
+        private List<string> _pickMonth;       
 
         private int _pickedMonth;
 
@@ -28,9 +30,22 @@ namespace TravelApp.DesktopHost.ViewModel
 
         private Thickness _arrowMargin;
 
-        private ObservableCollection<TransactionListItemViewModel> _items;
+        private ObservableCollection<TripListItemViewModel> _trips;
 
-        private ObservableCollection<TransactionListItemViewModel> _filteredItems;
+        private ObservableCollection<TripListItemViewModel> _filteredTrips;
+
+        private string _searchText;
+
+        public string SearchText
+        {
+            get { return _searchText; }
+            set
+            {
+                _searchText = value;
+                OnPropertyChanged(nameof(SearchText));
+                FilterData();
+            }
+        }
 
         public List<string> PickMonth
         {
@@ -94,23 +109,23 @@ namespace TravelApp.DesktopHost.ViewModel
             }
         }
        
-        public ObservableCollection<TransactionListItemViewModel> Items
+        public ObservableCollection<TripListItemViewModel> Trips
         {
-            get { return _items; }
+            get { return _trips; }
             set
             {
-                _items = value;
-                OnPropertyChanged(nameof(Items));
+                _trips = value;
+                OnPropertyChanged(nameof(Trips));
             }
         }
        
-        public ObservableCollection<TransactionListItemViewModel> FilteredItems
+        public ObservableCollection<TripListItemViewModel> FilteredTrips
         {
-            get { return _filteredItems; }
+            get { return _filteredTrips; }
             set
             {
-                _filteredItems = value;
-                OnPropertyChanged(nameof(FilteredItems));
+                _filteredTrips = value;
+                OnPropertyChanged(nameof(FilteredTrips));
             }
         }
 
@@ -127,10 +142,9 @@ namespace TravelApp.DesktopHost.ViewModel
         {
             Navigation = new AgentNavigationViewModel();
 
-            var dataService = new TransactionService();
-            var data = dataService.GetReservations();
-            Items = new ObservableCollection<TransactionListItemViewModel>(data);
-            FilteredItems = new ObservableCollection<TransactionListItemViewModel>(Items);
+            var tripService = new TripService();
+            Trips = new ObservableCollection<TripListItemViewModel>(tripService.GetAllReturnListItem());
+            FilteredTrips = new ObservableCollection<TripListItemViewModel>(Trips);
 
             _pickMonth = new List<string>();
             populateMonthList();
@@ -156,6 +170,11 @@ namespace TravelApp.DesktopHost.ViewModel
             _pickMonth.Add("October");
             _pickMonth.Add("November");
             _pickMonth.Add("December");
+        }
+
+        private void FilterData()
+        {
+            FilteredTrips = new ObservableCollection<TripListItemViewModel>(Trips.Where(item => item.Name.ToLower().Contains(SearchText.ToLower())));
         }
     }
 }

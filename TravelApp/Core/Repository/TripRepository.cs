@@ -1,9 +1,12 @@
-﻿using System;
+﻿using Microsoft.EntityFrameworkCore.ChangeTracking;
+using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using TravelApp.Core.Model;
+using TravelApp.DesktopHost.ViewModel;
 
 namespace TravelApp.Core.Repository
 {
@@ -37,6 +40,18 @@ namespace TravelApp.Core.Repository
                     return true;
                 }
                 return false;
+            }
+        }
+
+        public List<TripListItemViewModel> GetAllReturnListItem()
+        {
+            using (var context = new TravelContext())
+            {
+                return context.Trips.Select(t => new TripListItemViewModel
+                {
+                    Name = t.Name,
+                    IsDeleted = t.IsDeleted
+                }).Where(t => !t.IsDeleted).ToList();
             }
         }
     }
