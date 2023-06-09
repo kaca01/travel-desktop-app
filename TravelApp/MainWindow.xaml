@@ -56,6 +56,10 @@
                 <viewsAgent:NewPlaceView/>
             </DataTemplate>
 
+            <DataTemplate DataType="{x:Type viewmodels:AgentAttractionsViewModel}">
+                <views:AgentAttractionsView/>
+            </DataTemplate>
+
         </Grid.Resources>
         <ContentControl Content="{Binding CurrentViewModel}" />
     </Grid>

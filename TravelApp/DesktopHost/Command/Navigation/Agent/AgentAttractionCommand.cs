@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using TravelApp.DesktopHost.ViewModel;
 using TravelApp.DesktopHost.ViewModel.Navigation;
 
 namespace TravelApp.DesktopHost.Command.Navigation.Agent
@@ -17,8 +18,8 @@ namespace TravelApp.DesktopHost.Command.Navigation.Agent
         }
         public override void Execute(object parameter)
         {
-            // TODO : add here _navigation.CurrentViewModel = new AttractionViewModel()
-            // or whatever the class is called
+            if (_navigation.CurrentViewModel.GetType() != typeof(AgentAttractionsViewModel))
+                _navigation.CurrentViewModel = new AgentAttractionsViewModel();
         }
     }
 }
