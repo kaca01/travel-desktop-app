@@ -19,7 +19,7 @@ namespace TravelApp.Core.Service
             this.attractionRepository = new AttractionRepository();
         }
 
-        public List<ItemModel> GetTableData()
+        public List<ItemModel> GetItemModel()
         {
             List<Attraction> attractions = this.attractionRepository.GetAll();
             return attractions.Select(a => new ItemModel

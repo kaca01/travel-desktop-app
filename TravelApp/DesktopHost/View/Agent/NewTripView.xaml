@@ -20,6 +20,8 @@
             <RowDefinition Height="auto"></RowDefinition>
             <RowDefinition Height="auto"></RowDefinition>
             <RowDefinition Height="auto"></RowDefinition>
+            <RowDefinition Height="auto"></RowDefinition>
+            <RowDefinition Height="auto"></RowDefinition>
             <RowDefinition Height="1*"></RowDefinition>
             <RowDefinition Height="*"></RowDefinition>
         </Grid.RowDefinitions>
@@ -54,9 +56,9 @@
         <StackPanel Grid.Row="2"
                 Grid.Column="1"
                 Width="{Binding Width}"
-                Height="110">
+                Height="112">
             <Label Margin="0 0 0 3"
-                Height="27"
+                Height="28"
                 FontSize="18"
                 FontFamily="Poppins"
                 FontWeight="SemiBold"
@@ -85,9 +87,9 @@
         <StackPanel Grid.Row="3"
                 Grid.Column="1"
                 Width="{Binding Width}"
-                Height="110">
+                Height="112">
             <Label Margin="0 0 0 3"
-                Height="27"
+                Height="28"
                 FontSize="18"
                 FontFamily="Poppins"
                 FontWeight="SemiBold"
@@ -116,9 +118,9 @@
         <StackPanel Grid.Row="4"
                 Grid.Column="1"
                 Width="{Binding Width}"
-                Height="110">
+                Height="112">
             <Label Margin="0 0 0 3"
-                Height="27"
+                Height="28"
                 FontSize="18"
                 FontFamily="Poppins"
                 FontWeight="SemiBold"
@@ -147,9 +149,9 @@
         <StackPanel Grid.Row="5"
             Grid.Column="1"
             Width="{Binding Width}"
-            Height="250">
+            Height="112">
                 <Label Margin="0 0 0 3"
-                Height="27"
+                Height="28"
                 FontSize="18"
                 FontFamily="Poppins"
                 FontWeight="SemiBold"
@@ -173,9 +175,70 @@
                     </ComboBox.ItemTemplate>
                 </ComboBox>
         </StackPanel>
-        
-            <Button Grid.Column="1"
-                Grid.Row="6"
+
+            <StackPanel Grid.Row="6"
+            Grid.Column="1"
+            Width="{Binding Width}"
+            Height="112">
+                <Label Margin="0 0 0 3"
+                Height="28"
+                FontSize="18"
+                FontFamily="Poppins"
+                FontWeight="SemiBold"
+                HorizontalAlignment="Left">Accomodations</Label>
+                <ComboBox ItemsSource="{Binding Accomodations.FilteredItems}" IsDropDownOpen="{Binding Accomodations.IsDropDownOpen}" IsEditable="True" IsTextSearchEnabled="False"
+                    Style="{StaticResource MaterialDesignOutlinedComboBox}"
+                    Text="{Binding Accomodations.SearchText}"
+                    SelectedItem="{Binding Accomodations.SearchText}"
+                    FontSize="15"
+                    Margin="0"
+                    materialDesign:HintAssist.Foreground="#4889E6"
+                    materialDesign:HintAssist.Hint="Search and choose"
+                    Background="#A5FFFFFF"
+                    materialDesign:TextFieldAssist.UnderlineBrush="#4889E6"
+                    ToolTip="Search and choose accomodations for new trip"
+                    GotFocus="Accomodations_GotFocus">
+                    <ComboBox.ItemTemplate>
+                        <DataTemplate>
+                            <CheckBox Content="{Binding Name}" IsChecked="{Binding IsSelected, Mode=TwoWay}"/>
+                        </DataTemplate>
+                    </ComboBox.ItemTemplate>
+                </ComboBox>
+            </StackPanel>
+
+            <StackPanel Grid.Row="7"
+            Grid.Column="1"
+            Width="{Binding Width}"
+            Height="112">
+                <Label Margin="0 0 0 3"
+                Height="28"
+                FontSize="18"
+                FontFamily="Poppins"
+                FontWeight="SemiBold"
+                HorizontalAlignment="Left">Restaurants</Label>
+                <ComboBox ItemsSource="{Binding Restaurants.FilteredItems}" IsDropDownOpen="{Binding Restaurants.IsDropDownOpen}" IsEditable="True" IsTextSearchEnabled="False"
+                    Style="{StaticResource MaterialDesignOutlinedComboBox}"
+                    Text="{Binding Restaurants.SearchText}"
+                    SelectedItem="{Binding Restaurants.SearchText}"
+                    FontSize="15"
+                    Margin="0"
+                    materialDesign:HintAssist.Foreground="#4889E6"
+                    materialDesign:HintAssist.Hint="Search and choose"
+                    Background="#A5FFFFFF"
+                    materialDesign:TextFieldAssist.UnderlineBrush="#4889E6"
+                    ToolTip="Search and choose restaurants for new trip"
+                    GotFocus="Restaurants_GotFocus">
+                    <ComboBox.ItemTemplate>
+                        <DataTemplate>
+                            <CheckBox Content="{Binding Name}" IsChecked="{Binding IsSelected, Mode=TwoWay}"/>
+                        </DataTemplate>
+                    </ComboBox.ItemTemplate>
+                </ComboBox>
+            </StackPanel>
+
+            <Button 
+                Grid.Row="8"
+                Grid.Column="1"
                 VerticalAlignment="Bottom"
                 Width="{Binding Width}"
                 Height="40"

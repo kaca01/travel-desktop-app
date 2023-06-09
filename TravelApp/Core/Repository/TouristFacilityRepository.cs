@@ -51,6 +51,22 @@ namespace TravelApp.Core.Repository
             }
         }
 
+        public List<TouristFacility> GetValidRestaurants()
+        {
+            using (var context = new TravelContext())
+            {
+                return context.TouristFacilities.Where(t => !t.IsDeleted && t.Type.Equals(PlaceType.RESTAURANT)).ToList();
+            }
+        }
+
+        public List<TouristFacility> GetValidAccomodations()
+        {
+            using (var context = new TravelContext())
+            {
+                return context.TouristFacilities.Where(t => !t.IsDeleted && t.Type.Equals(PlaceType.ACCOMODATION)).ToList();
+            }
+        }
+
         public void DeleteItem(int id) 
         {
             using (var context = new TravelContext())

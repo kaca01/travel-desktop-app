@@ -88,11 +88,16 @@ namespace TravelApp.DesktopHost.ViewModel.Component.Agent
         }
 
         public ComboBoxViewModel Attractions { get; }
+        public ComboBoxViewModel Accomodations { get; }
+        public ComboBoxViewModel Restaurants { get; }
 
         public NewTripViewModel()
         {
-            AttractionService service = new AttractionService();
-            Attractions = new ComboBoxViewModel(service.GetTableData());
+            AttractionService attractionService = new AttractionService();
+            TouristFacilityService tfService = new TouristFacilityService();
+            Attractions = new ComboBoxViewModel(attractionService.GetItemModel());
+            Accomodations = new ComboBoxViewModel(tfService.GetAccomodationsItemModel());
+            Restaurants = new ComboBoxViewModel(tfService.GetRestaurantsItemModel());
             IsButtonEnabled = false;
         }
 

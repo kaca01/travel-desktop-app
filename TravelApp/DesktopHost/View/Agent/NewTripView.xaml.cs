@@ -94,6 +94,20 @@ namespace TravelApp.DesktopHost.View.Agent
             viewModel.Attractions.IsDropDownOpen = true;
         }
 
+        private void Accomodations_GotFocus(object sender, RoutedEventArgs e)
+        {
+            NewTripViewModel viewModel = (NewTripViewModel)DataContext;
+            if (viewModel == null) return;
+            viewModel.Accomodations.IsDropDownOpen = true;
+        }
+
+        private void Restaurants_GotFocus(object sender, RoutedEventArgs e)
+        {
+            NewTripViewModel viewModel = (NewTripViewModel)DataContext;
+            if (viewModel == null) return;
+            viewModel.Restaurants.IsDropDownOpen = true;
+        }
+
         private void Window_SizeChanged(object sender, SizeChangedEventArgs e)
         {
             double windowWidth = e.NewSize.Width;
