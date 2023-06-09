@@ -6,6 +6,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
+using System.Windows.Input;
 using TravelApp.Core.Service;
 using TravelApp.DesktopHost.Command;
 using TravelApp.DesktopHost.Command.Agent;
@@ -80,7 +81,8 @@ namespace TravelApp.DesktopHost.ViewModel
             }
         }
 
-        public ICommand NewPlace { get; }
+        
+
         private double _tableWidth;
 
         public double TableWidth
@@ -118,10 +120,6 @@ namespace TravelApp.DesktopHost.ViewModel
 
             Items = new ObservableCollection<TouristFacilityListItemViewModel>(data);
             FilteredItems = new ObservableCollection<TouristFacilityListItemViewModel>(Items);
-
-            Delete = new DeleteStayEatItemCommand(this);
-            NewPlace = new NewPlaceNavigationCommand();
-
         }
 
         protected virtual void OnPropertyChanged(string propertyName)

@@ -9,6 +9,7 @@ using System.Windows;
 using System.Windows.Input;
 using TravelApp.Core.Service;
 using TravelApp.DesktopHost.Command;
+using TravelApp.DesktopHost.Command.Agent;
 using TravelApp.DesktopHost.Command.Navigation;
 
 namespace TravelApp.DesktopHost.ViewModel
@@ -51,7 +52,9 @@ namespace TravelApp.DesktopHost.ViewModel
             }
         }
 
-        public ICommand Delete { get; set; }
+        public ICommand Delete { get; }
+
+        public ICommand NewPlace { get; }
 
         private double _textSize;
 
@@ -133,7 +136,7 @@ namespace TravelApp.DesktopHost.ViewModel
             FilteredItems = new ObservableCollection<TouristFacilityListItemViewModel>(Items);
 
             Delete = new DeleteStayEatItemCommand(this);
-
+            NewPlace = new NewPlaceNavigationCommand();
         }
 
         protected virtual void OnPropertyChanged(string propertyName)
