@@ -173,8 +173,12 @@
                                                Margin="0 25 0 0"
                                                Grid.Row="0"/>
                                     </Border>
-                                    <TextBlock
-                                        Text="{Binding Name}"
+                                    <ScrollViewer VerticalScrollBarVisibility="Auto"
+                                                  Grid.Row="1"
+                                                  Height="100"
+                                                  >
+                                        <TextBlock
+                                        Text="{ Binding Name }"
                                         TextWrapping="Wrap"
                                         VerticalAlignment="Center"
                                         Width="350"
@@ -184,6 +188,7 @@
                                         FontSize="30"
                                         FontWeight="DemiBold"
                                         />
+                                    </ScrollViewer>
                                     <ScrollViewer VerticalScrollBarVisibility="Auto"
                                                   Grid.Row="2"
                                                   Height="130">
