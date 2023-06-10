@@ -25,7 +25,7 @@ namespace TravelApp.DesktopHost.Command
             var selectedItem = parameter as TransactionListItemViewModel;
             if (selectedItem != null)
             {
-                if (openMessageBox(selectedItem))
+                if (OpenMessageBox(selectedItem))
                 {
                     _service.TransactionRepository.CallOffReservation(selectedItem.Id);
                     _model.FilteredItems.Remove(selectedItem);
@@ -40,7 +40,7 @@ namespace TravelApp.DesktopHost.Command
                 MessageBox.Show("By clicking on a trip in the table, select an item to call off", "Info", MessageBoxButton.OK, MessageBoxImage.Information);
         }
 
-        private bool openMessageBox(TransactionListItemViewModel item)
+        private bool OpenMessageBox(TransactionListItemViewModel item)
         {
             MessageBoxResult result = MessageBox.Show("You want call off the trip ?" +
                                                         "\nName: " + item.Trip +

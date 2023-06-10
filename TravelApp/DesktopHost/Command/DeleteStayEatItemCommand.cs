@@ -29,7 +29,7 @@ namespace TravelApp.DesktopHost.Command
             var selectedItem = parameter as TouristFacilityListItemViewModel;
             if (selectedItem != null)
             {
-                if (openMessageBox(selectedItem)) {
+                if (OpenMessageBox(selectedItem)) {
                     _service.FacilityRepository.DeleteItem(selectedItem.Id);
                     _model.FilteredItems.Remove(selectedItem);
                     MessageBox.Show("Deleted " + selectedItem.Type.ToString().ToLower() + " " + selectedItem.Name, "Successfully deleted", MessageBoxButton.OK, MessageBoxImage.Information);
@@ -41,7 +41,7 @@ namespace TravelApp.DesktopHost.Command
 
 
         // item is selected
-        private bool openMessageBox(TouristFacilityListItemViewModel item)
+        private bool OpenMessageBox(TouristFacilityListItemViewModel item)
         {
             MessageBoxResult result = MessageBox.Show("Delete the " + item.Type.ToString().ToLower() + " " + item.Name + " ?", "Delete " + item.Type.ToString().ToLower(), MessageBoxButton.YesNo, MessageBoxImage.Question);
 
