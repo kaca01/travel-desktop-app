@@ -9,6 +9,7 @@ using System.Windows.Input;
 using System.Windows;
 using TravelApp.DesktopHost.Command;
 using TravelApp.DesktopHost.Command.Agent;
+using TravelApp.DesktopHost.Command.Agent.NewPlace;
 
 namespace TravelApp.DesktopHost.ViewModel.Component.Agent
 {

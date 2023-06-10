@@ -28,8 +28,6 @@ namespace TravelApp.DesktopHost.Command
 
         public override void Execute(object parameter)
         {
-            _navigationStore.CurrentViewModel = new NewTripViewModel();
-            return;
             try
             {
                 _userService.Login(_loginVM.Email, _loginVM.Password);

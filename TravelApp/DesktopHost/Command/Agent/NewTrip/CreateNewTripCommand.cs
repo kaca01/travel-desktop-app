@@ -3,40 +3,41 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows;
+using TravelApp.Core.Model;
 using TravelApp.Core.Service;
+using TravelApp.DesktopHost.ViewModel.Component.Agent;
 using TravelApp.DesktopHost.ViewModel.Navigation;
 using TravelApp.DesktopHost.ViewModel;
-using TravelApp.DesktopHost.ViewModel.Component.Agent;
-using TravelApp.Core.Model;
-using System.Windows;
 
-namespace TravelApp.DesktopHost.Command.Agent
+namespace TravelApp.DesktopHost.Command.Agent.NewTrip
 {
-    public class CreateNewPlaceCommand : BaseCommand
+    public class CreateNewTripCommand : BaseCommand
     {
-        private TouristFacilityService _service;
+        private TripService _service;
         private readonly NavigationStore _navigationStore;
-        private readonly NewPlaceViewModel _placeVM;
+        private readonly NewTripViewModel _placeVM;
 
-        public CreateNewPlaceCommand(NewPlaceViewModel placeVM)
+        public CreateNewTripCommand(NewTripViewModel placeVM)
         {
-            _service = new TouristFacilityService();
+            _service = new TripService();
             _placeVM = placeVM;
             _navigationStore = NavigationStore.Instance();
         }
 
         public override void Execute(object parameter)
         {
-            try
+            /*try
             {
-                TouristFacility tf =  _service.Create(_placeVM);
-                MessageBox.Show("Created place with name "+ _placeVM.Name, "Successfully created", MessageBoxButton.OK, MessageBoxImage.Information);
+                TouristFacility tf = _service.Create(_placeVM);
+                MessageBox.Show("Created place with name " + _placeVM.Name, "Successfully created", MessageBoxButton.OK, MessageBoxImage.Information);
                 _navigationStore.CurrentViewModel = new AgentStayEatViewModel();
             }
             catch (Exception e)
             {
                 MessageBox.Show(e.Message, "Warning", MessageBoxButton.OK, MessageBoxImage.Warning);
-            }
+            }*/
+            
         }
     }
 }

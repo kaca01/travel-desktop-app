@@ -10,9 +10,12 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Data;
+using System.Windows.Input;
 using System.Windows.Shapes;
 using System.Xml.Linq;
 using TravelApp.Core.Service;
+using TravelApp.DesktopHost.Command.Agent;
+using TravelApp.DesktopHost.Command.Agent.NewTrip;
 using TravelApp.DesktopHost.ViewModel.ComboBox;
 using TravelApp.DesktopHost.ViewModel.ItemViewModel;
 
@@ -91,6 +94,9 @@ namespace TravelApp.DesktopHost.ViewModel.Component.Agent
         public ComboBoxViewModel Accomodations { get; }
         public ComboBoxViewModel Restaurants { get; }
 
+        public ICommand Cancel { get; }
+        public ICommand Create { get; }
+
         public NewTripViewModel()
         {
             AttractionService attractionService = new AttractionService();
@@ -99,6 +105,7 @@ namespace TravelApp.DesktopHost.ViewModel.Component.Agent
             Accomodations = new ComboBoxViewModel(tfService.GetAccomodationsItemModel());
             Restaurants = new ComboBoxViewModel(tfService.GetRestaurantsItemModel());
             IsButtonEnabled = false;
+            Cancel = new CancelNewTripCommand();
         }
 
         public event PropertyChangedEventHandler PropertyChanged;
