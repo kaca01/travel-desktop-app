@@ -49,6 +49,7 @@ namespace TravelApp.Core.Repository
             {
                 return context.Trips.Select(t => new TripListItemViewModel
                 {
+                    Id = t.Id,
                     Name = t.Name,
                     IsDeleted = t.IsDeleted
                 }).Where(t => !t.IsDeleted).ToList();

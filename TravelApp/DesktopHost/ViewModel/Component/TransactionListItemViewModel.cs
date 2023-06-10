@@ -10,6 +10,8 @@ namespace TravelApp.DesktopHost.ViewModel
     public class TransactionListItemViewModel
     {
         public int Id { get; set; }  // id of reservation from database
+
+        public int TripId { get; set; }
         public User User { get; set; }
         public string Passenger { get; set; } 
         public string Trip { get; set; }  

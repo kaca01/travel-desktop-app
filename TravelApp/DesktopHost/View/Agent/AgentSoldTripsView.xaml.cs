@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -26,6 +27,7 @@ namespace TravelApp.DesktopHost.View
         {
             InitializeComponent();
             DataContext = new AgentSoldTripsViewModel();
+            SelectItem();
         }
 
         private void Window_SizeChanged(object sender, SizeChangedEventArgs e)
@@ -45,10 +47,29 @@ namespace TravelApp.DesktopHost.View
                 viewModel.Width = 439;
             }
 
-            if (windowWidth <= 930) { viewModel.TableWidth = 650; viewModel.ArrowMargin = new Thickness(-10, 0, 0, 0); }
-            else if (windowWidth <= 1100) { viewModel.TableWidth = 700; viewModel.ArrowMargin = new Thickness(-20, 0, 0, 0); }
-            else if (windowWidth <= 1250) { viewModel.TableWidth = 750; viewModel.ArrowMargin = new Thickness(-30, 0, 0, 0); }
-            else { viewModel.TableWidth = 800; viewModel.ArrowMargin = new Thickness(-40, 0, 0, 0); }
+            if (windowWidth <= 930) { viewModel.TableWidth = 650; viewModel.ArrowMargin = new Thickness(-5, 0, 0, 0); }
+            else if (windowWidth <= 1100) { viewModel.TableWidth = 700; viewModel.ArrowMargin = new Thickness(-15, 0, 0, 0); }
+            else if (windowWidth <= 1250) { viewModel.TableWidth = 750; viewModel.ArrowMargin = new Thickness(-20, 0, 0, 0); }
+            else { viewModel.TableWidth = 800; viewModel.ArrowMargin = new Thickness(-25, 0, 0, 0); }
         }
+
+        private void SelectItem()
+        {
+            AgentSoldTripsViewModel viewModel = (AgentSoldTripsViewModel)DataContext;
+            myListBox.SelectedItems.Clear();
+            foreach (var pickedTrip in viewModel.PickedTrips)
+            {
+                myListBox.SelectedItems.Add(pickedTrip);
+            }
+        }
+
+        private void myListBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            var listBox = (ListBox)sender;
+            var selectedItems = listBox.SelectedItems.Cast<TripListItemViewModel>().ToList();
+            var viewModel = (AgentSoldTripsViewModel)DataContext;
+            viewModel.PickedTrips = new ObservableCollection<TripListItemViewModel>(selectedItems);
+        }
+
     }
 }

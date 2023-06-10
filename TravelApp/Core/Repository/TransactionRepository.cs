@@ -17,6 +17,7 @@ namespace TravelApp.Core.Repository
                 return context.Transactions.Select(t => new TransactionListItemViewModel
                 {
                     Id = t.Id,
+                    TripId = t.Trip.Id,
                     User = t.User,
                     Passenger = t.User.Name + " " + t.User.Surname,
                     Trip = t.Trip.Name,
@@ -37,6 +38,7 @@ namespace TravelApp.Core.Repository
                 return context.Transactions.Select(t => new TransactionListItemViewModel
                 {
                     Id = t.Id,
+                    TripId = t.Trip.Id,
                     User = t.User,
                     Passenger = t.User.Name + " " + t.User.Surname,
                     Trip = t.Trip.Name,
@@ -57,6 +59,7 @@ namespace TravelApp.Core.Repository
                 return context.Transactions.Select(t => new TransactionListItemViewModel
                 {
                     Id = t.Id,
+                    TripId = t.Trip.Id,
                     User = t.User,
                     Passenger = t.User.Name + " " + t.User.Surname,
                     Trip = t.Trip.Name,
@@ -77,6 +80,7 @@ namespace TravelApp.Core.Repository
                 return context.Transactions.Select(t => new TransactionListItemViewModel
                 {
                     Id = t.Id,
+                    TripId = t.Trip.Id,
                     User = t.User,
                     Passenger = t.User.Name + " " + t.User.Surname,
                     Trip = t.Trip.Name,

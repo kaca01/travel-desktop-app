@@ -2,11 +2,13 @@
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.Collections.Specialized;
 using System.ComponentModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
+using System.Windows.Controls;
 using TravelApp.Core.Model;
 using TravelApp.Core.Service;
 
@@ -16,9 +18,13 @@ namespace TravelApp.DesktopHost.ViewModel
     {
         public AgentNavigationViewModel Navigation { get; set; }
 
-        private List<string> _pickMonth;       
+        private ObservableCollection<string> _pickMonth;       
 
         private int _pickedMonth;
+
+        private double _totalPrice;
+
+        private int _totalTrips; 
 
         public event PropertyChangedEventHandler PropertyChanged;
 
@@ -34,6 +40,10 @@ namespace TravelApp.DesktopHost.ViewModel
 
         private ObservableCollection<TripListItemViewModel> _filteredTrips;
 
+        private ObservableCollection<TripListItemViewModel> _pickedTrips;
+
+        private ObservableCollection<TransactionListItemViewModel> _tableData;
+
         private string _searchText;
 
         public string SearchText
@@ -47,7 +57,7 @@ namespace TravelApp.DesktopHost.ViewModel
             }
         }
 
-        public List<string> PickMonth
+        public ObservableCollection<string> PickMonth
         {
             get { return _pickMonth; }
             set
@@ -56,6 +66,29 @@ namespace TravelApp.DesktopHost.ViewModel
                 {
                     _pickMonth = value;
                     OnPropertyChanged(nameof(PickMonth));
+                }
+            }
+        }
+
+        public double TotalPrice
+        {
+            get { return _totalPrice; }
+            set
+            {
+                _totalPrice = value;
+                OnPropertyChanged(nameof(TotalPrice));
+            }
+        }
+
+        public int TotalTrips
+        {
+            get { return _totalTrips; }
+            set
+            {
+                if (value != _totalTrips)
+                {
+                    _totalTrips = value;
+                    OnPropertyChanged(nameof(TotalTrips));
                 }
             }
         }
@@ -136,8 +169,41 @@ namespace TravelApp.DesktopHost.ViewModel
             {
                 _pickedMonth = value;
                 OnPropertyChanged(nameof(PickedMonth));
+                TableData = ShowData();
+                CalculateTotalPrice();
+                TotalTrips = TableData.Count();
             }
         }
+
+        public ObservableCollection<TripListItemViewModel> PickedTrips
+        {
+            get { return _pickedTrips; }
+            set
+            {
+                if (value != _pickedTrips)
+                {
+                    _pickedTrips = value;
+                    OnPropertyChanged(nameof(PickedTrips));
+                    TableData = ShowData();
+                    CalculateTotalPrice();
+                    TotalTrips = TableData.Count();
+                }
+            }
+        }
+
+        public ObservableCollection<TransactionListItemViewModel> TableData
+        {
+            get { return _tableData; }
+            set
+            {
+                if (value != _tableData)
+                {
+                    _tableData = value;
+                    OnPropertyChanged(nameof(TableData));
+                }
+            }
+        }
+
         public AgentSoldTripsViewModel() 
         {
             Navigation = new AgentNavigationViewModel();
@@ -145,10 +211,15 @@ namespace TravelApp.DesktopHost.ViewModel
             var tripService = new TripService();
             Trips = new ObservableCollection<TripListItemViewModel>(tripService.GetAllReturnListItem());
             FilteredTrips = new ObservableCollection<TripListItemViewModel>(Trips);
+            PickedTrips = new ObservableCollection<TripListItemViewModel>(Trips);
 
-            _pickMonth = new List<string>();
+            _pickMonth = new ObservableCollection<string>();
             populateMonthList();
             _pickedMonth = 5;
+
+            TableData = ShowData();
+            CalculateTotalPrice();
+            TotalTrips = TableData.Count();
         }
 
         protected virtual void OnPropertyChanged(string propertyName)
@@ -175,6 +246,22 @@ namespace TravelApp.DesktopHost.ViewModel
         private void FilterData()
         {
             FilteredTrips = new ObservableCollection<TripListItemViewModel>(Trips.Where(item => item.Name.ToLower().Contains(SearchText.ToLower())));
+        }
+
+        // todo stavi da vraca ObservableCollection<TransactionListItemViewModel>
+        private ObservableCollection<TransactionListItemViewModel> ShowData()
+        { 
+            var transactionService = new TransactionService();
+            return transactionService.GetSoldTrips(PickedMonth, PickedTrips);
+        }
+
+        private void CalculateTotalPrice()
+        { 
+            TotalPrice = 0;
+            foreach (var item in TableData) 
+            { 
+                TotalPrice += Double.Parse(item.Price);
+            }
         }
     }
 }

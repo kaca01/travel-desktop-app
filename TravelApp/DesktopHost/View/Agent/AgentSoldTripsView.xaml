@@ -128,7 +128,7 @@
                             </Grid>
                         </Border>
 
-                        <ListBox Grid.Row="1" x:Name="myListBox" SelectionMode="Multiple" ItemsSource="{Binding FilteredTrips}" DisplayMemberPath="Name" HorizontalAlignment="Center" FontSize="18">
+                        <ListBox Grid.Row="1" x:Name="myListBox" SelectionMode="Multiple" ItemsSource="{Binding FilteredTrips}" SelectedItem="{Binding PickedTrips}" SelectionChanged="myListBox_SelectionChanged" DisplayMemberPath="Name" HorizontalAlignment="Center" FontSize="18">
                             <ListBox.ItemContainerStyle>
                                 <Style TargetType="ListBoxItem">
                                     <Setter Property="Margin" Value="0,0,0,10" />
@@ -161,7 +161,7 @@
                 </Border>
 
                 <materialDesign:Card Grid.Column="3"  Background="White" Padding="16" HorizontalAlignment="Center" >
-                    <DataGrid ItemsSource="{Binding FilteredItems}"
+                    <DataGrid ItemsSource="{Binding TableData}"
                           Width="{Binding TableWidth}"
                           RowHeight="55"
                           AutoGenerateColumns="False"
@@ -334,12 +334,28 @@
                                 </DataGridTextColumn.ElementStyle>
                             </DataGridTextColumn>
 
+                            <DataGridTextColumn Binding="{Binding TransactionDate, StringFormat='{}{0:d}'}" IsReadOnly="True" Width="*" 
+                                            SortMemberPath="TransactionDate" HeaderStyle="{StaticResource SortableColumnHeaderStyle}" >
+                                <DataGridTextColumn.Header>
+                                    <DataGridColumnHeader Content="Purchase date">
+                                        <DataGridColumnHeader.ToolTip>
+                                            <ToolTip Content="Date format is MM/dd/yyyy" />
+                                        </DataGridColumnHeader.ToolTip>
+                                    </DataGridColumnHeader>
+                                </DataGridTextColumn.Header>
+                                <DataGridTextColumn.ElementStyle>
+                                    <Style TargetType="TextBlock">
+                                        <Setter Property="Padding" Value="16" />
+                                        <Setter Property="FontFamily" Value="Poppins" />
+                                        <Setter Property="VerticalAlignment" Value="Center" />
+                                        <Setter Property="ToolTip" Value="{Binding TransactionDate}" />
+                                    </Style>
+                                </DataGridTextColumn.ElementStyle>
+                            </DataGridTextColumn>
+
                         </DataGrid.Columns>
                     </DataGrid>
                 </materialDesign:Card>
-
-
-                
             </Grid>
 
             <Grid Grid.Row="4">
@@ -349,13 +365,13 @@
                     <ColumnDefinition Width="4*" />
                 </Grid.ColumnDefinitions>
 
-                <Border Grid.Column="2"  BorderBrush="#DFE6F0" BorderThickness="1"  Background="#DFE6F0" Height="50" HorizontalAlignment="Center">
+                <Border Grid.Column="2"  BorderBrush="#DFE6F0" BorderThickness="1"  Background="#DFE6F0" Height="50" Width="550" HorizontalAlignment="Center">
                     <StackPanel Orientation="Horizontal">
                         <TextBlock Text="TOTAL PRICE (RSD): "  VerticalAlignment="Center" FontFamily="Poppins" FontSize="18" Margin="15 0 "/>
-                        <TextBlock Text="{Binding nesto}" VerticalAlignment="Center" FontFamily="Poppins" FontSize="18"/>
+                        <TextBlock Text="{Binding TotalPrice}" VerticalAlignment="Center" FontFamily="Poppins" FontSize="18" Margin="15 0 "/>
                         <Border BorderBrush="Gray" BorderThickness="1" Width="1" Height="Auto" Margin="5" />
                         <TextBlock Text="TOTAL TRIPS: " VerticalAlignment="Center" FontFamily="Poppins" FontSize="18" Margin="15 0 "/>
-                        <TextBlock Text="{Binding nesto}" VerticalAlignment="Center" FontFamily="Poppins" FontSize="18"/>
+                        <TextBlock Text="{Binding TotalTrips}" VerticalAlignment="Center" FontFamily="Poppins" FontSize="18" Margin="15 0 "/>
                     </StackPanel>
                 </Border>
             </Grid>
