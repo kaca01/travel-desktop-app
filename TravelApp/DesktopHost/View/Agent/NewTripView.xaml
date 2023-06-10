@@ -106,7 +106,7 @@
                     Background="#A5FFFFFF"
                     materialDesign:TextFieldAssist.UnderlineBrush="#4889E6"
                     ToolTip="Enter the starting location of your new trip"
-                    Text="{Binding Address}"
+                    Text="{Binding StartLocation}"
                     PreviewTextInput="TextBox_PreviewTextInput"
                     TextChanged="TextBox_StartLocationLostFocus"
                     LostFocus="TextBox_StartLocationLostFocus">
@@ -137,7 +137,7 @@
                     Background="#A5FFFFFF"
                     materialDesign:TextFieldAssist.UnderlineBrush="#4889E6"
                     ToolTip="Enter the ending location of your new trip"
-                    Text="{Binding Link}"
+                    Text="{Binding EndLocation}"
                     PreviewTextInput="TextBox_PreviewTextInput"
                     TextChanged="TextBox_EndLocationLostFocus"
                     LostFocus="TextBox_EndLocationLostFocus">
@@ -167,9 +167,13 @@
                   ToolTip="Enter the starting date of your new trip"
                     FontSize="15"
                     Margin="0"
+                    SelectedDate="{Binding StartDate, Mode=TwoWay}"
                     materialDesign:HintAssist.Foreground="#4889E6"
                     Background="#A5FFFFFF"
-                    materialDesign:TextFieldAssist.UnderlineBrush="#4889E6"/>
+                    PreviewTextInput="TextBox_PreviewDateTextInput"
+                    materialDesign:TextFieldAssist.UnderlineBrush="#4889E6"
+                    SelectedDateChanged="TextBox_StartDateLostFocus"
+                    LostFocus="TextBox_StartDateLostFocus"/>
                 <Label Height="27"
                     FontSize="15"
                     FontFamily="Poppins"
@@ -195,9 +199,13 @@
                   Style="{StaticResource MaterialDesignOutlinedDatePicker}"
                     FontSize="15"
                     Margin="0"
+                    PreviewTextInput="TextBox_PreviewDateTextInput"
+                    SelectedDate="{Binding EndDate, Mode=TwoWay}"
                     materialDesign:HintAssist.Foreground="#4889E6"
                     Background="#A5FFFFFF"
-                    materialDesign:TextFieldAssist.UnderlineBrush="#4889E6"/>
+                    materialDesign:TextFieldAssist.UnderlineBrush="#4889E6"
+                    SelectedDateChanged="TextBox_EndDateLostFocus"
+                    LostFocus="TextBox_EndDateLostFocus"/>
                 <Label Height="27"
                     FontSize="15"
                     FontFamily="Poppins"

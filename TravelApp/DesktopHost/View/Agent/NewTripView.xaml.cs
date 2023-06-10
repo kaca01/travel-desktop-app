@@ -32,7 +32,7 @@ namespace TravelApp.DesktopHost.View.Agent
             TextBox textBox = (TextBox)sender;
 
             // Check if the new text length exceeds the maximum character count
-            if (textBox.Text.Length + e.Text.Length > 55)
+            if (textBox.Text.Length + e.Text.Length > 50)
             {
                 e.Handled = true; // Prevent the input from being added to the TextBox
             }
@@ -55,7 +55,18 @@ namespace TravelApp.DesktopHost.View.Agent
             TextBox textBox = (TextBox)sender;
 
             // Check if the new text length exceeds the maximum character count
-            if (textBox.Text.Length + e.Text.Length > 200)
+            if (textBox.Text.Length + e.Text.Length > 450)
+            {
+                e.Handled = true; // Prevent the input from being added to the TextBox
+            }
+        }
+
+        private void TextBox_PreviewDateTextInput(object sender, TextCompositionEventArgs e)
+        {
+            DatePicker textBox = (DatePicker)sender;
+
+            // Check if the new text length exceeds the maximum character count
+            if (textBox.Text.Length + e.Text.Length > 10)
             {
                 e.Handled = true; // Prevent the input from being added to the TextBox
             }
@@ -63,9 +74,8 @@ namespace TravelApp.DesktopHost.View.Agent
 
         private void TextBox_NameLostFocus(object sender, RoutedEventArgs e)
         {
-            //todo change view model in all functions
             TextBox textBox = (TextBox)sender;
-            NewPlaceViewModel viewModel = (NewPlaceViewModel)DataContext;
+            NewTripViewModel viewModel = (NewTripViewModel)DataContext;
             if (viewModel == null) return;
             if (!viewModel.ValidationViewModel.IsNameValid(textBox.Text))
             {
@@ -81,7 +91,7 @@ namespace TravelApp.DesktopHost.View.Agent
         private void TextBox_StartLocationLostFocus(object sender, RoutedEventArgs e)
         {
             TextBox textBox = (TextBox)sender;
-            NewPlaceViewModel viewModel = (NewPlaceViewModel)DataContext;
+            NewTripViewModel viewModel = (NewTripViewModel)DataContext;
             if (viewModel == null) return;
             if (!viewModel.ValidationViewModel.IsSurnameValid(textBox.Text))
             {
@@ -91,13 +101,13 @@ namespace TravelApp.DesktopHost.View.Agent
             {
                 textBox.BorderBrush = Brushes.Gray;
             }
-            viewModel.Address = textBox.Text;
+            viewModel.StartLocation = textBox.Text;
         }
 
         private void TextBox_EndLocationLostFocus(object sender, RoutedEventArgs e)
         {
             TextBox textBox = (TextBox)sender;
-            NewPlaceViewModel viewModel = (NewPlaceViewModel)DataContext;
+            NewTripViewModel viewModel = (NewTripViewModel)DataContext;
             if (viewModel == null) return;
             if (!viewModel.ValidationViewModel.IsAddressValid(textBox.Text))
             {
@@ -107,16 +117,15 @@ namespace TravelApp.DesktopHost.View.Agent
             {
                 textBox.BorderBrush = Brushes.Gray;
             }
-            viewModel.Link = textBox.Text;
+            viewModel.EndLocation = textBox.Text;
         }
 
         private void TextBox_PriceLostFocus(object sender, RoutedEventArgs e)
         {
-            //todo change view model in all functions
             TextBox textBox = (TextBox)sender;
-            NewPlaceViewModel viewModel = (NewPlaceViewModel)DataContext;
+            NewTripViewModel viewModel = (NewTripViewModel)DataContext;
             if (viewModel == null) return;
-            if (!viewModel.ValidationViewModel.IsNameValid(textBox.Text))
+            if (!viewModel.ValidationViewModel.IsPriceValid(textBox.Text))
             {
                 textBox.BorderBrush = Brushes.Red;
             }
@@ -124,16 +133,15 @@ namespace TravelApp.DesktopHost.View.Agent
             {
                 textBox.BorderBrush = Brushes.Gray;
             }
-            viewModel.Name = textBox.Text;
+            viewModel.Price = textBox.Text;
         }
 
         private void TextBox_DescriptionLostFocus(object sender, RoutedEventArgs e)
         {
-            //todo change view model in all functions
             TextBox textBox = (TextBox)sender;
-            NewPlaceViewModel viewModel = (NewPlaceViewModel)DataContext;
+            NewTripViewModel viewModel = (NewTripViewModel)DataContext;
             if (viewModel == null) return;
-            if (!viewModel.ValidationViewModel.IsNameValid(textBox.Text))
+            if (!viewModel.ValidationViewModel.IsDescriptionValid(textBox.Text))
             {
                 textBox.BorderBrush = Brushes.Red;
             }
@@ -141,7 +149,39 @@ namespace TravelApp.DesktopHost.View.Agent
             {
                 textBox.BorderBrush = Brushes.Gray;
             }
-            viewModel.Name = textBox.Text;
+            viewModel.Description = textBox.Text;
+        }
+
+        private void TextBox_StartDateLostFocus(object sender, RoutedEventArgs e)
+        {
+            DatePicker textBox = (DatePicker)sender;
+            NewTripViewModel viewModel = (NewTripViewModel)DataContext;
+            if (viewModel == null) return;
+            if (!viewModel.ValidationViewModel.IsStartDateValid(textBox.Text))
+            {
+                textBox.BorderBrush = Brushes.Red;
+            }
+            else
+            {
+                textBox.BorderBrush = Brushes.Gray;
+            }
+            viewModel.StartDate = textBox.Text;
+        }
+
+        private void TextBox_EndDateLostFocus(object sender, RoutedEventArgs e)
+        {
+            DatePicker textBox = (DatePicker)sender;
+            NewTripViewModel viewModel = (NewTripViewModel)DataContext;
+            if (viewModel == null) return;
+            if (!viewModel.ValidationViewModel.IsEndDateValid(textBox.Text))
+            {
+                textBox.BorderBrush = Brushes.Red;
+            }
+            else
+            {
+                textBox.BorderBrush = Brushes.Gray;
+            }
+            viewModel.EndDate = textBox.Text;
         }
 
         private void Attractions_GotFocus(object sender, RoutedEventArgs e)

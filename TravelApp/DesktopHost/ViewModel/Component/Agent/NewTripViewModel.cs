@@ -26,7 +26,10 @@ namespace TravelApp.DesktopHost.ViewModel.Component.Agent
         private string _name;
         private string _startLocation;
         private string _endLocation;
-
+        private string _startDate;
+        private string _endDate;
+        private string _price;
+        private string _description;
 
         private double _textFontSize;
         private double _width;
@@ -35,23 +38,61 @@ namespace TravelApp.DesktopHost.ViewModel.Component.Agent
         public string Name
         {
             get => _name;
-            set { _name = value; OnPropertyChanged(nameof(Name)); //ValidationViewModel.IsNameValid(_name); CheckButtonStatus();
+            set { _name = value; OnPropertyChanged(nameof(Name)); ValidationViewModel.IsNameValid(_name); CheckButtonStatus();
             }
         }
 
         public string StartLocation
         {
             get => _startLocation;
-            set { _startLocation = value; OnPropertyChanged(nameof(StartLocation)); //ValidationViewModel.IsStartLocationValid(_startLocation); CheckButtonStatus(); 
+            set { _startLocation = value; OnPropertyChanged(nameof(StartLocation)); ValidationViewModel.IsSurnameValid(_startLocation); CheckButtonStatus(); 
             }
         }
 
         public string EndLocation
         {
             get => _endLocation;
-            set { _endLocation = value; OnPropertyChanged(nameof(EndLocation)); //ValidationViewModel.IsEndLocationValid(_endLocation); CheckButtonStatus();
+            set { _endLocation = value; OnPropertyChanged(nameof(EndLocation)); ValidationViewModel.IsAddressValid(_endLocation); CheckButtonStatus();
             }
         }
+
+        public string StartDate
+        {
+            get => _startDate;
+            set
+            {
+                _startDate = value; OnPropertyChanged(nameof(StartDate)); ValidationViewModel.IsStartDateValid(_startDate); CheckButtonStatus();
+            }
+        }
+
+        public string EndDate
+        {
+            get => _endDate;
+            set
+            {
+                _endDate = value; OnPropertyChanged(nameof(EndDate)); ValidationViewModel.IsEndDateValid(_endDate); CheckButtonStatus();
+            }
+        }
+
+        public string Price
+        {
+            get => _price;
+            set
+            {
+                _price = value; OnPropertyChanged(nameof(Price)); ValidationViewModel.IsPriceValid(_price); CheckButtonStatus();
+            }
+        }
+
+        public string Description
+        {
+            get => _description;
+            set
+            {
+                _description = value; OnPropertyChanged(nameof(Description)); ValidationViewModel.IsDescriptionValid(_description); CheckButtonStatus();
+            }
+        }
+
+
 
         public double TextFontSize
         {
@@ -96,6 +137,7 @@ namespace TravelApp.DesktopHost.ViewModel.Component.Agent
 
         public ICommand Cancel { get; }
         public ICommand Create { get; }
+        public ValidationViewModel ValidationViewModel { get; }
 
         public NewTripViewModel()
         {
@@ -106,6 +148,7 @@ namespace TravelApp.DesktopHost.ViewModel.Component.Agent
             Restaurants = new ComboBoxViewModel(tfService.GetRestaurantsItemModel());
             IsButtonEnabled = false;
             Cancel = new CancelNewTripCommand();
+            ValidationViewModel = new ValidationViewModel();
         }
 
         public event PropertyChangedEventHandler PropertyChanged;
@@ -117,7 +160,25 @@ namespace TravelApp.DesktopHost.ViewModel.Component.Agent
 
         public void CheckButtonStatus()
         {
-            //todo implement
+            if (string.IsNullOrWhiteSpace(_name) || string.IsNullOrWhiteSpace(_price) || string.IsNullOrWhiteSpace(_description) || 
+                string.IsNullOrWhiteSpace(_startDate) || string.IsNullOrWhiteSpace(_endDate) ||
+                string.IsNullOrWhiteSpace(_startLocation) || string.IsNullOrWhiteSpace(_endLocation))
+                IsButtonEnabled = false;
+            else
+            {
+                if (string.IsNullOrWhiteSpace(ValidationViewModel.NameValidation) &&
+                    string.IsNullOrWhiteSpace(ValidationViewModel.SurnameValidation) &&
+                    string.IsNullOrWhiteSpace(ValidationViewModel.AddressValidation) &&
+                    string.IsNullOrWhiteSpace(ValidationViewModel.StartDateValidation) &&
+                    string.IsNullOrWhiteSpace(ValidationViewModel.EndDateValidation) &&
+                    string.IsNullOrWhiteSpace(ValidationViewModel.PriceValidation) &&
+                    string.IsNullOrWhiteSpace(ValidationViewModel.DescriptionValidation))
+                    IsButtonEnabled = true;
+                else
+                {
+                    IsButtonEnabled = false;
+                }
+            }
         }
     }
 }
