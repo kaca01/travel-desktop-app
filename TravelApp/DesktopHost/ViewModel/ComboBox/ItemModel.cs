@@ -14,6 +14,8 @@ namespace TravelApp.DesktopHost.ViewModel.ItemViewModel
         private string _name;
         private bool _isSelected;
 
+        public event EventHandler ValueChanged;
+
         public string Name
         {
             get { return _name; }
@@ -41,7 +43,13 @@ namespace TravelApp.DesktopHost.ViewModel.ItemViewModel
             {
                 _isSelected = value;
                 OnPropertyChanged();
+                OnValueChanged();
             }
+        }
+
+        protected virtual void OnValueChanged()
+        {
+            ValueChanged?.Invoke(this, EventArgs.Empty);
         }
 
         public event PropertyChangedEventHandler PropertyChanged;

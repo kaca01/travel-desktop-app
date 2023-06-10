@@ -300,13 +300,25 @@
             Width="{Binding Width}"
             Height="112"
                         Margin="0,35,0,0">
-                <Label Margin="0 0 0 3"
-                Height="28"
-                FontSize="18"
-                FontFamily="Poppins"
-                FontWeight="SemiBold"
-                HorizontalAlignment="Left">Attractions</Label>
-                <ComboBox x:Name="attractions" 
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*"></ColumnDefinition>
+                        <ColumnDefinition Width="*"></ColumnDefinition>
+                    </Grid.ColumnDefinitions>
+                    <Label Margin="0 0 0 3"
+                    Height="28"
+                    FontSize="18"
+                           Grid.Column="0"
+                    FontFamily="Poppins"
+                    FontWeight="SemiBold"
+                    HorizontalAlignment="Left">Attractions</Label>
+                    <Label FontSize="18" FontWeight="Regular" 
+                           Grid.Column="1" 
+                           Margin="0,0,20,0"
+                           HorizontalAlignment="Right">Selected:</Label>
+                    <Label FontSize="18" FontWeight="Regular" Grid.Column="2" HorizontalAlignment="Right" Content="{Binding Attractions.SelectedCount}"></Label>
+                </Grid>
+                <ComboBox  
                     ItemsSource="{Binding Attractions.FilteredItems}" IsDropDownOpen="{Binding Attractions.IsDropDownOpen}" IsEditable="True" IsTextSearchEnabled="False"
                     Style="{StaticResource MaterialDesignOutlinedComboBox}"
                     Text="{Binding Attractions.SearchText}"
@@ -333,12 +345,24 @@
             Grid.Column="1"
             Width="{Binding Width}"
             Height="112">
-                <Label Margin="0 0 0 3"
-                Height="28"
-                FontSize="18"
-                FontFamily="Poppins"
-                FontWeight="SemiBold"
-                HorizontalAlignment="Left">Accomodations</Label>
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*"></ColumnDefinition>
+                        <ColumnDefinition Width="*"></ColumnDefinition>
+                    </Grid.ColumnDefinitions>
+                    <Label Margin="0 0 0 3"
+                    Height="28"
+                    FontSize="18"
+                           Grid.Column="0"
+                    FontFamily="Poppins"
+                    FontWeight="SemiBold"
+                    HorizontalAlignment="Left">Accomodations</Label>
+                    <Label FontSize="18" FontWeight="Regular" 
+                           Grid.Column="1" 
+                           Margin="0,0,20,0"
+                           HorizontalAlignment="Right">Selected:</Label>
+                    <Label FontSize="18" FontWeight="Regular" Grid.Column="2" HorizontalAlignment="Right" Content="{Binding Accomodations.SelectedCount}"></Label>
+                </Grid>
                 <ComboBox ItemsSource="{Binding Accomodations.FilteredItems}" IsDropDownOpen="{Binding Accomodations.IsDropDownOpen}" IsEditable="True" IsTextSearchEnabled="False"
                     Style="{StaticResource MaterialDesignOutlinedComboBox}"
                     Text="{Binding Accomodations.SearchText}"
@@ -364,12 +388,24 @@
             Grid.Column="1"
             Width="{Binding Width}"
             Height="112">
-                <Label Margin="0 0 0 3"
-                Height="28"
-                FontSize="18"
-                FontFamily="Poppins"
-                FontWeight="SemiBold"
-                HorizontalAlignment="Left">Restaurants</Label>
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*"></ColumnDefinition>
+                        <ColumnDefinition Width="*"></ColumnDefinition>
+                    </Grid.ColumnDefinitions>
+                    <Label Margin="0 0 0 3"
+                    Height="28"
+                    FontSize="18"
+                           Grid.Column="0"
+                    FontFamily="Poppins"
+                    FontWeight="SemiBold"
+                    HorizontalAlignment="Left">Restaurants</Label>
+                    <Label FontSize="18" FontWeight="Regular" 
+                           Grid.Column="1" 
+                           Margin="0,0,20,0"
+                           HorizontalAlignment="Right">Selected:</Label>
+                    <Label FontSize="18" FontWeight="Regular" Grid.Column="2" HorizontalAlignment="Right" Content="{Binding Restaurants.SelectedCount}"></Label>
+                </Grid>
                 <ComboBox ItemsSource="{Binding Restaurants.FilteredItems}" IsDropDownOpen="{Binding Restaurants.IsDropDownOpen}" IsEditable="True" IsTextSearchEnabled="False"
                     Style="{StaticResource MaterialDesignOutlinedComboBox}"
                     Text="{Binding Restaurants.SearchText}"

@@ -16,6 +16,7 @@ namespace TravelApp.DesktopHost.ViewModel.ComboBox
         private string _searchText;
         private ObservableCollection<ItemModel> _items;
         private ObservableCollection<ItemModel> _filteredItems;
+        private int _selectedCount;
         private ICollectionView _itemsView;
         private bool _isDropDownOpen;
 
@@ -36,6 +37,12 @@ namespace TravelApp.DesktopHost.ViewModel.ComboBox
             set { _isDropDownOpen = value; OnPropertyChanged(nameof(IsDropDownOpen)); }
         }
 
+        public int SelectedCount
+        {
+            get { return _selectedCount; }
+            set { _selectedCount = value; OnPropertyChanged(nameof(SelectedCount)); }
+        }
+
         public ObservableCollection<ItemModel> Items
         {
             get { return _items; }
@@ -48,8 +55,10 @@ namespace TravelApp.DesktopHost.ViewModel.ComboBox
 
         public ComboBoxViewModel(List<ItemModel> data) 
         {
+            data.ForEach(child => child.ValueChanged += Child_ValueChanged);
             Items = new ObservableCollection<ItemModel>(data);
             FilteredItems = Items;
+            SelectedCount = 0;
             _itemsView = CollectionViewSource.GetDefaultView(FilteredItems);
         }
 
@@ -63,6 +72,11 @@ namespace TravelApp.DesktopHost.ViewModel.ComboBox
             {
                 FilteredItems = new ObservableCollection<ItemModel>(Items.Where(item => item.Name.ToLower().Contains(SearchText.ToLower())));
             }
+        }
+
+        private void Child_ValueChanged(object sender, EventArgs e)
+        {
+            SelectedCount = Items.Where(item => item.IsSelected == true).Count();
         }
 
         public ObservableCollection<ItemModel> FilteredItems
