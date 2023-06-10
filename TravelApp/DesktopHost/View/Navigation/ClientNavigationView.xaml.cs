@@ -34,9 +34,9 @@ namespace TravelApp.DesktopHost.View
             double windowWidth = e.NewSize.Width;
 
             // TODO : add here else if and view model that you are using
-            if (DataContext is ClientTripsViewModel viewModel)      
+            if (DataContext is ClientTripsViewModel tripsViewModel)      
             {
-                adjustNavigationProperties(viewModel.Navigation, windowWidth);
+                adjustNavigationProperties(tripsViewModel.Navigation, windowWidth);
             }
             else if (DataContext is ClientAttractionsViewModel attractionsViewModel)
             {
