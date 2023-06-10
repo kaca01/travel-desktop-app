@@ -1,4 +1,5 @@
 ﻿using MaterialDesignThemes.Wpf;
+using Microsoft.Win32;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
@@ -11,6 +12,8 @@ using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Data;
 using System.Windows.Input;
+using System.Windows.Media.Imaging;
+using System.Windows.Media;
 using System.Windows.Shapes;
 using System.Xml.Linq;
 using TravelApp.Core.Service;
@@ -18,6 +21,7 @@ using TravelApp.DesktopHost.Command.Agent;
 using TravelApp.DesktopHost.Command.Agent.NewTrip;
 using TravelApp.DesktopHost.ViewModel.ComboBox;
 using TravelApp.DesktopHost.ViewModel.ItemViewModel;
+using GalaSoft.MvvmLight.Command;
 
 namespace TravelApp.DesktopHost.ViewModel.Component.Agent
 {
@@ -131,12 +135,35 @@ namespace TravelApp.DesktopHost.ViewModel.Component.Agent
             }
         }
 
+
+        private Visibility _imageVisibility;
+        public Visibility ImageVisibility
+        {
+            get => _imageVisibility;
+            set { _imageVisibility = value; OnPropertyChanged(nameof(ImageVisibility)); }
+        }
+
+        private BitmapImage _imageSource;
+
+        public BitmapImage ImageSource
+        {
+            get { return _imageSource; }
+            set
+            {
+                _imageSource = value;
+                OnPropertyChanged(nameof(ImageSource));
+                CheckButtonStatus();
+            }
+        }
+
         public ComboBoxViewModel Attractions { get; }
         public ComboBoxViewModel Accomodations { get; }
         public ComboBoxViewModel Restaurants { get; }
 
         public ICommand Cancel { get; }
         public ICommand Create { get; }
+        public ICommand UploadImageCommand { get; }
+
         public ValidationViewModel ValidationViewModel { get; }
 
         public NewTripViewModel()
@@ -148,7 +175,23 @@ namespace TravelApp.DesktopHost.ViewModel.Component.Agent
             Restaurants = new ComboBoxViewModel(tfService.GetRestaurantsItemModel());
             IsButtonEnabled = false;
             Cancel = new CancelNewTripCommand();
+            Create = new CreateNewTripCommand(this);
             ValidationViewModel = new ValidationViewModel();
+            UploadImageCommand = new RelayCommand(UploadImage);
+            ImageVisibility = Visibility.Collapsed;
+        }
+
+        private void UploadImage()
+        {
+            OpenFileDialog openFileDialog = new OpenFileDialog();
+            openFileDialog.Filter = "Image Files (*.jpg;*.jpeg;*.png;*.gif)|*.jpg;*.jpeg;*.png;*.gif";
+            if (openFileDialog.ShowDialog() == true)
+            {
+                string imagePath = openFileDialog.FileName;
+                // Display the image
+                ImageVisibility = Visibility.Visible;
+                ImageSource = new BitmapImage(new Uri(imagePath));
+            }
         }
 
         public event PropertyChangedEventHandler PropertyChanged;
@@ -172,7 +215,7 @@ namespace TravelApp.DesktopHost.ViewModel.Component.Agent
                     string.IsNullOrWhiteSpace(ValidationViewModel.StartDateValidation) &&
                     string.IsNullOrWhiteSpace(ValidationViewModel.EndDateValidation) &&
                     string.IsNullOrWhiteSpace(ValidationViewModel.PriceValidation) &&
-                    string.IsNullOrWhiteSpace(ValidationViewModel.DescriptionValidation))
+                    string.IsNullOrWhiteSpace(ValidationViewModel.DescriptionValidation) && ImageSource != null)
                     IsButtonEnabled = true;
                 else
                 {

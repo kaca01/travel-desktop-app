@@ -26,6 +26,7 @@
             <RowDefinition Height="auto"></RowDefinition>
             <RowDefinition Height="auto"></RowDefinition>
             <RowDefinition Height="auto"></RowDefinition>
+            <RowDefinition Height="auto"></RowDefinition>
             <RowDefinition Height="1*"></RowDefinition>
             <RowDefinition Height="*"></RowDefinition>
         </Grid.RowDefinitions>
@@ -249,7 +250,7 @@
             <StackPanel Grid.Row="8"
                 Grid.Column="1"
                 Width="{Binding Width}"
-                Height="112">
+                Height="160">
                 <Label Margin="0 0 0 3"
                 Height="28"
                 FontSize="18"
@@ -264,6 +265,10 @@
                     materialDesign:TextFieldAssist.UnderlineBrush="#4889E6"
                     ToolTip="Enter the description of your new trip"
                     Text="{Binding Description}"
+                    AcceptsReturn="True"
+                    TextWrapping="Wrap"
+                    Height="100"
+                    VerticalScrollBarVisibility="Auto"
                     PreviewTextInput="TextBox_PreviewTextInputDescription"
                     TextChanged="TextBox_DescriptionLostFocus"
                     LostFocus="TextBox_DescriptionLostFocus">
@@ -287,7 +292,8 @@
                 FontFamily="Poppins"
                 FontWeight="SemiBold"
                 HorizontalAlignment="Left">Attractions</Label>
-                <ComboBox ItemsSource="{Binding Attractions.FilteredItems}" IsDropDownOpen="{Binding Attractions.IsDropDownOpen}" IsEditable="True" IsTextSearchEnabled="False"
+                <ComboBox x:Name="attractions" 
+                    ItemsSource="{Binding Attractions.FilteredItems}" IsDropDownOpen="{Binding Attractions.IsDropDownOpen}" IsEditable="True" IsTextSearchEnabled="False"
                     Style="{StaticResource MaterialDesignOutlinedComboBox}"
                     Text="{Binding Attractions.SearchText}"
                     SelectedItem="{Binding Attractions.SearchText}"
@@ -367,9 +373,20 @@
                     </ComboBox.ItemTemplate>
                 </ComboBox>
             </StackPanel>
-
+            <StackPanel Grid.Column="1"
+                        Grid.Row="12">
+                <Button Command="{Binding UploadImageCommand}" Cursor="Hand"  Padding="2" Background="#DFE6F0" BorderBrush="#DFE6F0" BorderThickness="1" Foreground="Black" ToolTip="Upload a picture for new trip">
+                    <StackPanel Orientation="Horizontal">
+                        <Viewbox Width="25" Height="25">
+                            <materialDesign:PackIcon Kind="Plus" VerticalAlignment="Center"/>
+                        </Viewbox>
+                        <TextBlock Text="Add photo" FontFamily="Poppins" Grid.Column="1" Padding="5"  VerticalAlignment="Center" FontSize="20" Foreground="Black"/>
+                    </StackPanel>
+                </Button>
+                <Image Source="{Binding ImageSource}" Width="250" Height="200" Visibility="{Binding ImageVisibility}"/>
+            </StackPanel>
             <Button 
-                Grid.Row="12"
+                Grid.Row="13"
                 Grid.Column="1"
                 VerticalAlignment="Bottom"
                 Width="{Binding Width}"

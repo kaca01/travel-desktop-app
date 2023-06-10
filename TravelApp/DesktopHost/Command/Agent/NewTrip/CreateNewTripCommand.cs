@@ -27,17 +27,18 @@ namespace TravelApp.DesktopHost.Command.Agent.NewTrip
 
         public override void Execute(object parameter)
         {
-            /*try
+            try
             {
-                TouristFacility tf = _service.Create(_placeVM);
-                MessageBox.Show("Created place with name " + _placeVM.Name, "Successfully created", MessageBoxButton.OK, MessageBoxImage.Information);
-                _navigationStore.CurrentViewModel = new AgentStayEatViewModel();
+
+                Trip tf = _service.Create(_placeVM);
+                MessageBox.Show("Created trip with name " + _placeVM.Name, "Successfully created", MessageBoxButton.OK, MessageBoxImage.Information);
+                _navigationStore.CurrentViewModel = new AgentTripsViewModel();
             }
             catch (Exception e)
             {
                 MessageBox.Show(e.Message, "Warning", MessageBoxButton.OK, MessageBoxImage.Warning);
-            }*/
-            
+            }
+
         }
     }
 }
