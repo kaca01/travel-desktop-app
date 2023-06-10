@@ -24,6 +24,7 @@ namespace TravelApp.Core.Service
             List<Attraction> attractions = this.attractionRepository.GetAll();
             return attractions.Select(a => new ItemModel
             {
+                Id = a.Id,
                 Name = a.Name,
                 IsSelected = false
             }).ToList();

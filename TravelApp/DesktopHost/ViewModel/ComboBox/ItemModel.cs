@@ -10,6 +10,7 @@ namespace TravelApp.DesktopHost.ViewModel.ItemViewModel
 {
     public class ItemModel : INotifyPropertyChanged
     {
+        private int _id;
         private string _name;
         private bool _isSelected;
 
@@ -19,6 +20,16 @@ namespace TravelApp.DesktopHost.ViewModel.ItemViewModel
             set
             {
                 _name = value;
+                OnPropertyChanged();
+            }
+        }
+
+        public int Id
+        {
+            get { return _id; }
+            set
+            {
+                _id = value;
                 OnPropertyChanged();
             }
         }

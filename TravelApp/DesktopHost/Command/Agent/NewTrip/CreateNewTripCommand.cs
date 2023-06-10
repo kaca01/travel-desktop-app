@@ -29,7 +29,6 @@ namespace TravelApp.DesktopHost.Command.Agent.NewTrip
         {
             try
             {
-
                 Trip tf = _service.Create(_placeVM);
                 MessageBox.Show("Created trip with name " + _placeVM.Name, "Successfully created", MessageBoxButton.OK, MessageBoxImage.Information);
                 _navigationStore.CurrentViewModel = new AgentTripsViewModel();

@@ -38,6 +38,17 @@ namespace TravelApp.DesktopHost.View.Agent
             }
         }
 
+        private void ComboBox_PreviewTextInput(object sender, TextCompositionEventArgs e)
+        {
+            ComboBox textBox = (ComboBox)sender;
+
+            // Check if the new text length exceeds the maximum character count
+            if (textBox.Text.Length + e.Text.Length > 50)
+            {
+                e.Handled = true; // Prevent the input from being added to the TextBox
+            }
+        }
+
         private void TextBox_PreviewTextInputPrice(object sender, TextCompositionEventArgs e)
         {
             TextBox textBox = (TextBox)sender;

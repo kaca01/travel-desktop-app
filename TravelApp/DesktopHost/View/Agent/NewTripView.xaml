@@ -246,7 +246,7 @@
                     Content="{Binding ValidationViewModel.PriceValidation}"
                     Foreground="Red"/>
             </StackPanel>
-        
+
             <StackPanel Grid.Row="8"
                 Grid.Column="1"
                 Width="{Binding Width}"
@@ -282,10 +282,24 @@
                     Foreground="Red"/>
             </StackPanel>
 
-            <StackPanel Grid.Row="9"
+            <StackPanel Grid.Column="1"
+                        Grid.Row="9">
+                <Button Command="{Binding UploadImageCommand}" Cursor="Hand" Margin="0,15,0,0" Padding="2" Background="#DFE6F0" BorderBrush="#DFE6F0" BorderThickness="1" Foreground="Black" ToolTip="Upload a picture for new trip">
+                    <StackPanel Orientation="Horizontal">
+                        <Viewbox Width="25" Height="25">
+                            <materialDesign:PackIcon Kind="Plus" VerticalAlignment="Center"/>
+                        </Viewbox>
+                        <TextBlock Text="Add photo" FontFamily="Poppins" Grid.Column="1" Padding="5"  VerticalAlignment="Center" FontSize="20" Foreground="Black"/>
+                    </StackPanel>
+                </Button>
+                <Image Source="{Binding ImageSource}" Width="250" Height="200" Visibility="{Binding ImageVisibility}"/>
+            </StackPanel>
+
+            <StackPanel Grid.Row="10"
             Grid.Column="1"
             Width="{Binding Width}"
-            Height="112">
+            Height="112"
+                        Margin="0,35,0,0">
                 <Label Margin="0 0 0 3"
                 Height="28"
                 FontSize="18"
@@ -303,6 +317,7 @@
                     materialDesign:HintAssist.Foreground="#4889E6"
                     materialDesign:HintAssist.Hint="Search and choose"
                     Background="#A5FFFFFF"
+                    PreviewTextInput="ComboBox_PreviewTextInput"
                     materialDesign:TextFieldAssist.UnderlineBrush="#4889E6"
                     ToolTip="Search and choose attractions for new trip"
                     GotFocus="Attractions_GotFocus">
@@ -314,7 +329,7 @@
                 </ComboBox>
         </StackPanel>
 
-            <StackPanel Grid.Row="10"
+            <StackPanel Grid.Row="11"
             Grid.Column="1"
             Width="{Binding Width}"
             Height="112">
@@ -333,6 +348,7 @@
                     materialDesign:HintAssist.Foreground="#4889E6"
                     materialDesign:HintAssist.Hint="Search and choose"
                     Background="#A5FFFFFF"
+                    PreviewTextInput="ComboBox_PreviewTextInput"
                     materialDesign:TextFieldAssist.UnderlineBrush="#4889E6"
                     ToolTip="Search and choose accomodations for new trip"
                     GotFocus="Accomodations_GotFocus">
@@ -344,7 +360,7 @@
                 </ComboBox>
             </StackPanel>
 
-            <StackPanel Grid.Row="11"
+            <StackPanel Grid.Row="12"
             Grid.Column="1"
             Width="{Binding Width}"
             Height="112">
@@ -363,6 +379,7 @@
                     materialDesign:HintAssist.Foreground="#4889E6"
                     materialDesign:HintAssist.Hint="Search and choose"
                     Background="#A5FFFFFF"
+                    PreviewTextInput="ComboBox_PreviewTextInput"
                     materialDesign:TextFieldAssist.UnderlineBrush="#4889E6"
                     ToolTip="Search and choose restaurants for new trip"
                     GotFocus="Restaurants_GotFocus">
@@ -372,18 +389,6 @@
                         </DataTemplate>
                     </ComboBox.ItemTemplate>
                 </ComboBox>
-            </StackPanel>
-            <StackPanel Grid.Column="1"
-                        Grid.Row="12">
-                <Button Command="{Binding UploadImageCommand}" Cursor="Hand"  Padding="2" Background="#DFE6F0" BorderBrush="#DFE6F0" BorderThickness="1" Foreground="Black" ToolTip="Upload a picture for new trip">
-                    <StackPanel Orientation="Horizontal">
-                        <Viewbox Width="25" Height="25">
-                            <materialDesign:PackIcon Kind="Plus" VerticalAlignment="Center"/>
-                        </Viewbox>
-                        <TextBlock Text="Add photo" FontFamily="Poppins" Grid.Column="1" Padding="5"  VerticalAlignment="Center" FontSize="20" Foreground="Black"/>
-                    </StackPanel>
-                </Button>
-                <Image Source="{Binding ImageSource}" Width="250" Height="200" Visibility="{Binding ImageVisibility}"/>
             </StackPanel>
             <Button 
                 Grid.Row="13"

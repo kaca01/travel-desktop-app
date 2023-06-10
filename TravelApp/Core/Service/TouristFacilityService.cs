@@ -38,7 +38,7 @@ namespace TravelApp.Core.Service
         {
             List<TouristFacility> tf = this._facilityRepository.GetValidRestaurants();
             return tf.Select(a => new ItemModel
-            {
+            {   Id = a.Id,
                 Name = a.Name,
                 IsSelected = false
             }).ToList();
@@ -49,6 +49,7 @@ namespace TravelApp.Core.Service
             List<TouristFacility> tf = this._facilityRepository.GetValidAccomodations();
             return tf.Select(a => new ItemModel
             {
+                Id = a.Id,
                 Name = a.Name,
                 IsSelected = false
             }).ToList();
