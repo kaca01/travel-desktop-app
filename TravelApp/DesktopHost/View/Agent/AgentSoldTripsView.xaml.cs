@@ -47,10 +47,9 @@ namespace TravelApp.DesktopHost.View
                 viewModel.Width = 439;
             }
 
-            if (windowWidth <= 930) { viewModel.TableWidth = 650; viewModel.ArrowMargin = new Thickness(-5, 0, 0, 0); }
-            else if (windowWidth <= 1100) { viewModel.TableWidth = 700; viewModel.ArrowMargin = new Thickness(-15, 0, 0, 0); }
-            else if (windowWidth <= 1250) { viewModel.TableWidth = 750; viewModel.ArrowMargin = new Thickness(-20, 0, 0, 0); }
-            else { viewModel.TableWidth = 800; viewModel.ArrowMargin = new Thickness(-25, 0, 0, 0); }
+            if (windowWidth <= 1100) { viewModel.TableWidth = 655; viewModel.ArrowMargin = new Thickness(0, 0, 0, 0); viewModel.SearchInputWidth = 200; }
+            else if (windowWidth <= 1500) { viewModel.TableWidth = 750; viewModel.ArrowMargin = new Thickness(0, 0, 0, 0); viewModel.SearchInputWidth = 300; }
+            else { viewModel.TableWidth = 800; viewModel.ArrowMargin = new Thickness(0, 0, 0, 0); viewModel.SearchInputWidth = 480; }
         }
 
         private void SelectItem()

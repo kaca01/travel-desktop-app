@@ -32,6 +32,8 @@ namespace TravelApp.DesktopHost.ViewModel
 
         private double _width;
 
+        private double _searchInputWidth;
+
         private double _tableWidth;
 
         private Thickness _arrowMargin;
@@ -115,6 +117,19 @@ namespace TravelApp.DesktopHost.ViewModel
                 {
                     _width = value;
                     OnPropertyChanged(nameof(Width));
+                }
+            }
+        }
+
+        public double SearchInputWidth
+        {
+            get { return _searchInputWidth; }
+            set
+            {
+                if (_searchInputWidth != value)
+                {
+                    _searchInputWidth = value;
+                    OnPropertyChanged(nameof(SearchInputWidth));
                 }
             }
         }

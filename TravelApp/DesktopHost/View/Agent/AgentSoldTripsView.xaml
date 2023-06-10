@@ -8,6 +8,7 @@
              xmlns:viewmodels="clr-namespace:TravelApp.DesktopHost.ViewModel"
              xmlns:components="clr-namespace:TravelApp.DesktopHost.View"
              mc:Ignorable="d" 
+             d:DesignHeight="450" d:DesignWidth="900"
              d:DataContext="{d:DesignInstance Type=viewmodels:AgentSoldTripsViewModel}" 
              Background="White"
              SizeChanged="Window_SizeChanged">
@@ -31,10 +32,11 @@
                     <ColumnDefinition Width="1*" />
                 </Grid.ColumnDefinitions>
 
-                <TextBlock Grid.Column="1" 
+                <TextBlock Grid.Column="0" 
                             Text="Sold Trips"
                             FontSize="{Binding TextSize}"
                             FontWeight="Medium"
+                           HorizontalAlignment="Center"
                             VerticalAlignment="Center"
                             FontFamily="Poppins"/>
 
@@ -67,19 +69,19 @@
 
             <Grid Grid.Row="3">
                 <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="1*" />
+                    <ColumnDefinition Width="2*" />
                     <ColumnDefinition Width="auto" />
-                    <ColumnDefinition Width="4*" />
+                    <ColumnDefinition Width="5*" />
                 </Grid.ColumnDefinitions>
 
-                <Border Grid.Column="0" Grid.Row="0" Width="250" BorderBrush="#DFE6F0" BorderThickness="1" HorizontalAlignment="Center" Background="#DFE6F0">
+                <Border Grid.Column="0" Grid.Row="0" BorderBrush="#DFE6F0" BorderThickness="1" HorizontalAlignment="Center" Background="#DFE6F0" Padding="20" Margin="10 0 0 0">
                     <Grid>
                         <Grid.RowDefinitions>
                             <RowDefinition Height="auto" />
                             <RowDefinition Height="*" />
                         </Grid.RowDefinitions>
 
-                        <Border Grid.Row="0" Width="200" Height="40" Background="White" BorderBrush="Gray" BorderThickness="1" CornerRadius="10" Margin="0 30" >
+                        <Border Grid.Row="0" Width="{Binding SearchInputWidth}" Height="40" Background="White" BorderBrush="Gray" BorderThickness="1" CornerRadius="10" Margin="0 10 0 20" >
                             <Grid>
                                 <Grid.ColumnDefinitions>
                                     <ColumnDefinition Width="Auto" />
@@ -128,11 +130,12 @@
                             </Grid>
                         </Border>
 
-                        <ListBox Grid.Row="1" x:Name="myListBox" SelectionMode="Multiple" ItemsSource="{Binding FilteredTrips}" SelectedItem="{Binding PickedTrips}" SelectionChanged="myListBox_SelectionChanged" DisplayMemberPath="Name" HorizontalAlignment="Center" FontSize="18">
+                        <ListBox Grid.Row="1" x:Name="myListBox" SelectionMode="Multiple" ItemsSource="{Binding FilteredTrips}" SelectedItem="{Binding PickedTrips}" SelectionChanged="myListBox_SelectionChanged" DisplayMemberPath="Name" FontSize="18">
                             <ListBox.ItemContainerStyle>
                                 <Style TargetType="ListBoxItem">
                                     <Setter Property="Margin" Value="0,0,0,10" />
                                     <Setter Property="Cursor" Value="Hand" />
+                                    <Setter Property="ToolTip" Value="{Binding Name}" />
                                     <Setter Property="Template">
                                         <Setter.Value>
                                             <ControlTemplate TargetType="ListBoxItem">
@@ -284,7 +287,7 @@
                                 </DataGridTextColumn.ElementStyle>
                             </DataGridTextColumn>
 
-                            <DataGridTextColumn Header="Price (RSD)" Binding="{Binding Price}" IsReadOnly="True" Width="*" 
+                            <DataGridTextColumn Header="Price(RSD)" Binding="{Binding Price}" IsReadOnly="True" Width="*" 
                                             SortMemberPath="Price" HeaderStyle="{StaticResource SortableColumnHeaderStyle}">
                                 <DataGridTextColumn.ElementStyle>
                                     <Style TargetType="TextBlock">
@@ -337,7 +340,7 @@
                             <DataGridTextColumn Binding="{Binding TransactionDate, StringFormat='{}{0:d}'}" IsReadOnly="True" Width="*" 
                                             SortMemberPath="TransactionDate" HeaderStyle="{StaticResource SortableColumnHeaderStyle}" >
                                 <DataGridTextColumn.Header>
-                                    <DataGridColumnHeader Content="Purchase date">
+                                    <DataGridColumnHeader Content="Sold date">
                                         <DataGridColumnHeader.ToolTip>
                                             <ToolTip Content="Date format is MM/dd/yyyy" />
                                         </DataGridColumnHeader.ToolTip>
@@ -360,9 +363,9 @@
 
             <Grid Grid.Row="4">
                 <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="1*" />
+                    <ColumnDefinition Width="2*" />
                     <ColumnDefinition Width="auto" />
-                    <ColumnDefinition Width="4*" />
+                    <ColumnDefinition Width="5*" />
                 </Grid.ColumnDefinitions>
 
                 <Border Grid.Column="2"  BorderBrush="#DFE6F0" BorderThickness="1"  Background="#DFE6F0" Height="50" Width="550" HorizontalAlignment="Center">
