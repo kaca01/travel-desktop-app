@@ -35,15 +35,18 @@ namespace TravelApp.DesktopHost.View
             {
                 if (windowWidth <= 1000)
                 {
-                    viewModel.FieldsWidth = 170;
+                    viewModel.FieldsWidth = 150;
+                    viewModel.TextFontSize = 30;
+
                 }
                 else if (windowWidth <= 1100)
                 {
-                    viewModel.TextFontSize = 42;
+                    viewModel.FieldsWidth = 170;
+                    viewModel.TextFontSize = 35;
                 }
                 else if (windowWidth <= 1250)
                 {
-                    viewModel.FieldsWidth = 250;
+                    viewModel.FieldsWidth = 200;
                     viewModel.TextFontSize = 46;
                 }
                 else

@@ -32,23 +32,32 @@
                        TextAlignment="Left"
                        VerticalAlignment="Center"
                        MaxWidth="439"
-                       Margin="50 0 0 0"/>
+                       Margin="40 0 0 0"/>
 
-            <WrapPanel Grid.Column="1" HorizontalAlignment="Right" VerticalAlignment="Center" Margin="0 0 10 0">
+            <WrapPanel 
+                Grid.Column="1" 
+                HorizontalAlignment="Right" 
+                VerticalAlignment="Center" 
+                Margin="0 0 10 0">
                 <Border Width="{Binding FieldsWidth}" 
                         Height="40" 
                         Background="White" 
                         BorderBrush="Gray" 
                         BorderThickness="1"
-                        CornerRadius="15">
+                        CornerRadius="15"
+                        >
                     <Grid>
                         <Grid.ColumnDefinitions>
                             <ColumnDefinition Width="Auto" />
                             <ColumnDefinition Width="*" />
                         </Grid.ColumnDefinitions>
-                        <materialDesign:PackIcon Grid.Column="0" Kind="Magnify" VerticalAlignment="Center" Margin="5" />
+                        <materialDesign:PackIcon Grid.Column="0" 
+                                                 Kind="Magnify" 
+                                                 VerticalAlignment="Center" 
+                                                 Margin="5" />
                         <Grid Grid.Column="1">
-                            <TextBox x:Name="myTextBox" Text="{Binding Search, UpdateSourceTrigger=PropertyChanged}" 
+                            <TextBox x:Name="myTextBox" 
+                                     Text="{Binding Search, UpdateSourceTrigger=PropertyChanged}" 
                                      FontFamily="Poppins" 
                                      MaxLength="60" 
                                      Background="Transparent" 
@@ -152,8 +161,7 @@
                                 <Grid>
                                     <Grid.RowDefinitions>
                                         <RowDefinition Height="Auto"/>
-                                        <RowDefinition Height="Auto"/>
-                                        <RowDefinition Height="Auto"/>
+                                        <RowDefinition Height="120"/>
                                         <RowDefinition Height="Auto"/>
                                         <RowDefinition Height="Auto"/>
                                     </Grid.RowDefinitions>
@@ -168,32 +176,40 @@
                                     <TextBlock
                                         Text="{Binding Name}"
                                         TextWrapping="Wrap"
-                                        Width="300"
+                                        
+                                        VerticalAlignment="Center"
+                                        Width="350"
                                         Grid.Row="1"
-                                        Margin="0 20 10 20"
+                                        Margin="38 20 10 20"
                                         Foreground="Black"
                                         FontSize="30"
                                         FontWeight="DemiBold"
                                         />
-                                    <TextBlock
+                                    <ScrollViewer VerticalScrollBarVisibility="Auto"
+                                                  Grid.Row="2"
+                                                  Height="130">
+                                        <TextBlock
                                             Text="{ Binding Description }"
-                                            Width="300"
+                                            Width="350"
                                             TextWrapping="Wrap"
                                             Grid.Row="2"
                                             Margin="20 0 20 0"
                                             FontSize="17"
                                             Foreground="#545454"
-                                            LineHeight="32"/>
+                                            LineHeight="32"
+                                            />
+                                    </ScrollViewer>
 
                                     <Button
                                         Content="Delete"
                                         Cursor="Hand"
-                                        Width="140"
+                                        Width="200"
+                                        Height="35"
                                         Background="#4889E6"
                                         BorderBrush="Transparent"
                                         Grid.Row="3" 
-                                        Margin="30 60 30 25"
-                                        HorizontalAlignment="Left"
+                                        Margin="30 25 30 25"
+                                        HorizontalAlignment="Center"
                                         Foreground="White"
                                         FontSize="16"
                                         FontWeight="DemiBold"
