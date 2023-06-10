@@ -68,6 +68,10 @@
                 <views:AgentSoldTripsView/>
             </DataTemplate>
 
+            <DataTemplate DataType="{x:Type viewmodels:ClientSoldTripsViewModel}">
+                <views:ClientSoldTripsView/>
+            </DataTemplate>
+
         </Grid.Resources>
         <ContentControl Content="{Binding CurrentViewModel}" />
     </Grid>
