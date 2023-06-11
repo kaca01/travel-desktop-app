@@ -262,11 +262,11 @@
                     <ColumnDefinition Width="2*"/>
                     <ColumnDefinition Width="2*"/>
                 </Grid.ColumnDefinitions>
-                <Button Grid.Column="1" Width="200" Height="30" Content="Call off" Background="#DFE6F0" BorderBrush="#DFE6F0" Foreground="#161A25" BorderThickness="1" ToolTip="Click to call off selected reservation"
+                <Button Grid.Column="1" Width="200" Height="30" Content="Call off" Background="#DFE6F0" BorderBrush="#DFE6F0" Foreground="#161A25" BorderThickness="1" ToolTip="Click to call off selected reservation" IsEnabled="{Binding IsEnable}"
                     Command="{Binding CallOff}"
                     CommandParameter="{Binding SelectedItem, ElementName=MyDataGrid}"/>
                 
-                <Button Grid.Column="2" Width="200" Height="30" Content="Buy" Background="#4889E6" BorderBrush="#4889E6" BorderThickness="1" ToolTip="Click to buy selected trip"
+                <Button Grid.Column="2" Width="200" Height="30" Content="Buy" Background="#4889E6" BorderBrush="#4889E6" BorderThickness="1" ToolTip="Click to buy selected trip" IsEnabled="{Binding IsEnable}"
                     Command="{Binding Buy}"
                     CommandParameter="{Binding SelectedItem, ElementName=MyDataGrid}"/>
             </Grid>

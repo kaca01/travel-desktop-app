@@ -18,6 +18,8 @@ namespace TravelApp.DesktopHost.ViewModel
 
         public event PropertyChangedEventHandler PropertyChanged;
 
+        private bool _isEnable;
+
         private double _textSize;
 
         public double TextSize
@@ -120,6 +122,19 @@ namespace TravelApp.DesktopHost.ViewModel
             }
         }
 
+        public bool IsEnable
+        {
+            get { return _isEnable; }
+            set
+            {
+                if (_isEnable != value)
+                {
+                    _isEnable = value;
+                    OnPropertyChanged(nameof(IsEnable));
+                }
+            }
+        }
+
         public ICommand Buy { get; set; }
 
         public ICommand CallOff { get; set; }
@@ -134,6 +149,8 @@ namespace TravelApp.DesktopHost.ViewModel
 
             Buy = new BuyTripCommand(this);
             CallOff = new CallOffReservationCommand(this);
+
+            CheckIsEnable();
         }
 
         protected virtual void OnPropertyChanged(string propertyName)
@@ -144,6 +161,15 @@ namespace TravelApp.DesktopHost.ViewModel
         private void FilterData()
         {
             FilteredItems = new ObservableCollection<TransactionListItemViewModel>(Items.Where(item => item.Passenger.ToLower().Contains(SearchText.ToLower()) || item.Trip.ToLower().Contains(SearchText.ToLower()) || item.Price.Contains(SearchText.ToLower()) || item.StartDate.ToString().Contains(SearchText.ToLower()) || item.EndDate.ToString().Contains(SearchText.ToLower())));
+            CheckIsEnable() ;
+        }
+
+        public void CheckIsEnable()
+        {
+            if (FilteredItems.Count() == 0)
+                IsEnable = false;
+            else 
+                 IsEnable = true;
         }
     }
 }

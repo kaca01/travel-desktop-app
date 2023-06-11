@@ -28,6 +28,7 @@ namespace TravelApp.DesktopHost.Command
                 {
                     _service.TransactionRepository.BuyTrip(selectedItem.Id);
                     _model.FilteredItems.Remove(selectedItem);
+                    _model.CheckIsEnable();
                     MessageBox.Show("You bought the trip: " + 
                                     "\nName: " + selectedItem.Trip + 
                                     "\nPrice: " + selectedItem.Price +
