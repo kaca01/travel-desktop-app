@@ -48,8 +48,8 @@ namespace TravelApp.DesktopHost.View
             }
 
             if (windowWidth <= 1100) { viewModel.TableWidth = 655; viewModel.ArrowMargin = new Thickness(0, 0, 0, 0); viewModel.SearchInputWidth = 200; }
-            else if (windowWidth <= 1500) { viewModel.TableWidth = 750; viewModel.ArrowMargin = new Thickness(0, 0, 0, 0); viewModel.SearchInputWidth = 300; }
-            else { viewModel.TableWidth = 800; viewModel.ArrowMargin = new Thickness(0, 0, 0, 0); viewModel.SearchInputWidth = 480; }
+            else if (windowWidth <= 1500) { viewModel.TableWidth = 850; viewModel.ArrowMargin = new Thickness(0, 0, 0, 0); viewModel.SearchInputWidth = 300; }
+            else { viewModel.TableWidth = 900; viewModel.ArrowMargin = new Thickness(0, 0, 0, 0); viewModel.SearchInputWidth = 480; }
         }
 
         private void SelectItem()
