@@ -11,6 +11,40 @@
              Background="White"
              SizeChanged="Window_SizeChanged"
              d:DataContext="{d:DesignInstance Type=viewmodels:NewTripViewModel}">
+    <UserControl.Resources>
+        <Style TargetType="CheckBox">
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="CheckBox">
+                        <Grid Background="Transparent">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="Auto" />
+                                <ColumnDefinition Width="*" />
+                            </Grid.ColumnDefinitions>
+                            <Ellipse x:Name="RadioButtonCircle"
+                                     Width="16"
+                                     Height="16"
+                                     Stroke="Black"/>
+                            <ContentPresenter Grid.Column="1"
+                                              Margin="4,0,0,0"
+                                              VerticalAlignment="Center"
+                                              RecognizesAccessKey="True" />
+                        </Grid>
+                        <ControlTemplate.Triggers>
+                            <Trigger Property="IsChecked" Value="True">
+                                <Setter TargetName="RadioButtonCircle" Property="Fill" Value="#4889E6" />
+                                <!-- Change circle fill color when checked -->
+                            </Trigger>
+                            <Trigger Property="IsMouseOver" Value="True">
+                                <Setter TargetName="RadioButtonCircle" Property="Stroke" Value="Black" />
+                                <!-- Change circle stroke color on mouseover -->
+                            </Trigger>
+                        </ControlTemplate.Triggers>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+    </UserControl.Resources>
     <ScrollViewer>
     <Grid>
         <Grid.RowDefinitions>
