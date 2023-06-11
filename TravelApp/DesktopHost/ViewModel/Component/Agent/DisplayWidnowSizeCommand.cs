@@ -8,6 +8,7 @@ using TravelApp.DesktopHost.Command;
 
 namespace TravelApp.DesktopHost.ViewModel.Component.Trip
 {
+    // TODO : delete this at the end of the project
     class DisplayWidnowSizeCommand : BaseCommand
     {
         private AgentTripsViewModel _agentTripsViewModel;

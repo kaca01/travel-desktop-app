@@ -115,6 +115,7 @@
                     ItemsSource="{Binding SortCriteria}"
                     Width="{Binding FieldsWidth}"
                     Height="30"
+                    Margin="0 0 20 0"
                     />
             </WrapPanel>
         </Grid>
@@ -128,28 +129,33 @@
                     </ItemsControl.ItemsPanel>
                     <ItemsControl.ItemTemplate>
                         <DataTemplate>
-                            <Border Margin="70 0 20 30" 
+                            <Border Margin="100 0 20 30" 
                                     CornerRadius="30" 
                                     Background="#DFE6F0">
                                 <Grid>
                                     <Grid.RowDefinitions>
                                         <RowDefinition Height="Auto"/>
                                         <RowDefinition Height="Auto"/>
-                                        <RowDefinition Height="Auto"/>
+                                        <RowDefinition Height="120"/>
                                         <RowDefinition Height="Auto"/>
                                         <RowDefinition Height="Auto"/>
                                     </Grid.RowDefinitions>
 
                                     <Border CornerRadius="5">
                                         <Image Source="../../../Style/Images/trip.png" 
-                                               Width="350" 
+                                               Width="300" 
                                                Height="auto" 
                                                Margin="0 25 0 0"
                                                Grid.Row="1"/>
                                     </Border>
-                                    <TextBlock
+                                    <ScrollViewer VerticalScrollBarVisibility="Auto"
+                                                  Grid.Row="2"
+                                                  Height="100"
+                                                  >
+                                        <TextBlock
                                         Text="{Binding Name}"
                                         Width="300"
+                                        VerticalAlignment="Center"
                                         TextWrapping="Wrap"
                                         Grid.Row="2"
                                         Margin="0 20 10 20"
@@ -157,8 +163,9 @@
                                         FontSize="30"
                                         FontWeight="DemiBold"
                                         />
-   
-                                        <TextBlock
+                                    </ScrollViewer>
+
+                                    <TextBlock
                                             Text="{ Binding Description }"
                                             Width="300"
                                             TextWrapping="Wrap"
@@ -168,26 +175,34 @@
                                             Foreground="#545454"
                                             LineHeight="32"/>
 
-                                    <TextBlock
-                                        Grid.Row="4"
-                                        Width="180"
-                                        Text="{Binding Price}"
-                                        HorizontalAlignment="Center"
-                                        TextAlignment="Right"
-                                        Margin="100 0 120 20"
-                                        FontSize="32"
-                                        Foreground="#1E2F97"
-                                        FontWeight="SemiBold"
-                                        />
-                                    <TextBlock
-                                        Grid.Row="4"
-                                        Text="RSD"
-                                        HorizontalAlignment="Right"
-                                        Margin="0 0 50 20"
-                                        FontSize="32"
-                                        Foreground="#1E2F97"
-                                        FontWeight="SemiBold"
-                                        />
+                                    <Grid Grid.Row="4">
+                                        <Grid.ColumnDefinitions>
+                                            <ColumnDefinition Width="3*"/>
+                                            <ColumnDefinition Width="1*"/>
+                                        </Grid.ColumnDefinitions>
+                                        <TextBlock
+                                            Grid.Row="4"
+                                            Grid.Column="0"
+                                            Width="170"
+                                            Text="{ Binding Price }"
+                                            TextAlignment="Right"
+                                            Margin="100 0 10 0"
+                                            FontSize="32"
+                                            Foreground="#1E2F97"
+                                            FontWeight="SemiBold"
+                                            />
+                                        <TextBlock
+                                            Grid.Row="4"
+                                            Grid.Column="1"
+                                            Text="RSD"
+                                            HorizontalAlignment="Right"
+                                            TextAlignment="Right"
+                                            Margin="0 0 15 0"
+                                            FontSize="32"
+                                            Foreground="#1E2F97"
+                                            FontWeight="SemiBold"
+                                            />
+                                    </Grid>
                                     <Button
                                         Content="See Details"
                                         Width="140"

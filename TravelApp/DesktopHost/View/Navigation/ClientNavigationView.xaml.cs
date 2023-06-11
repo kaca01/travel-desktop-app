@@ -32,32 +32,39 @@ namespace TravelApp.DesktopHost.View
         private void Window_SizeChanged(object sender, SizeChangedEventArgs e)
         {
             double windowWidth = e.NewSize.Width;
-            double windowHeigth = e.NewSize.Height;
 
-            // TODO : add here or and view model that you are using
-            // note that you will need to add Navigation property in your view model
-            if (DataContext is ClientTripsViewModel viewModel)      
+            // TODO : add here else if and view model that you are using
+            if (DataContext is ClientTripsViewModel tripsViewModel)      
             {
-                if (windowWidth <= 930)
-                {
-                    viewModel.Navigation.TextFontSize = 14;
-                    viewModel.Navigation.TabWidth = windowWidth / 7;
-                }
-                else if (windowWidth <= 1100)
-                {
-                    viewModel.Navigation.TextFontSize = 15;
-                    viewModel.Navigation.TabWidth = windowWidth / 7; 
-                }
-                else if (windowWidth <= 1250)
-                {
-                    viewModel.Navigation.TextFontSize = 16;
-                    viewModel.Navigation.TabWidth = windowWidth / 7; 
-                }
-                else
-                {
-                    viewModel.Navigation.TextFontSize = 20;
-                    viewModel.Navigation.TabWidth = windowWidth / 7; 
-                }
+                adjustNavigationProperties(tripsViewModel.Navigation, windowWidth);
+            }
+            else if (DataContext is ClientAttractionsViewModel attractionsViewModel)
+            {
+                adjustNavigationProperties(attractionsViewModel.Navigation, windowWidth);
+            }
+        }
+
+        private void adjustNavigationProperties(ClientNavigationViewModel navigation, double windowWidth)
+        {
+            if (windowWidth <= 930)
+            {
+                navigation.TextFontSize = 14;
+                navigation.TabWidth = windowWidth / 7;
+            }
+            else if (windowWidth <= 1100)
+            {
+                navigation.TextFontSize = 15;
+                navigation.TabWidth = windowWidth / 7;
+            }
+            else if (windowWidth <= 1250)
+            {
+                navigation.TextFontSize = 16;
+                navigation.TabWidth = windowWidth / 7;
+            }
+            else
+            {
+                navigation.TextFontSize = 20;
+                navigation.TabWidth = windowWidth / 7;
             }
             else if (DataContext is ClientStayEatViewModel vm)
             {

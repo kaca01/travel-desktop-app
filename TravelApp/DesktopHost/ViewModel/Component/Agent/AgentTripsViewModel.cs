@@ -206,13 +206,12 @@ namespace TravelApp.DesktopHost.ViewModel
             {
                 _tripService.Delete(SelectedTrip);
                 _trips = _tripService.GetAll();
-                SearchedTrips = _trips;
+                SearchedTrips = getDesriptionTrips();
                 MessageBox.Show("Deleted " + trip.Name + "!!!", "Successfully deleted", MessageBoxButton.OK, MessageBoxImage.Information);
             }
 
         }
 
-        // item is selected
         private bool openMessageBox(Trip trip)
         {
             MessageBoxResult result = MessageBox.Show("Are you sure you want to delete " + trip.Name + " trip?", "Delete ", MessageBoxButton.YesNo, MessageBoxImage.Question);

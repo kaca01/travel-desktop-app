@@ -15,6 +15,7 @@ namespace TravelApp.Core.Model
         public string Address { get; set; }
         public string Description { get; set; }
         public byte[] Image { get; set; }
+        public bool IsDeleted { get; set; }
 
     }
 }

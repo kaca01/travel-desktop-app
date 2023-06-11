@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using TravelApp.DesktopHost.ViewModel;
 using TravelApp.DesktopHost.ViewModel.Navigation;
 
 namespace TravelApp.DesktopHost.Command.Navigation
@@ -11,15 +12,15 @@ namespace TravelApp.DesktopHost.Command.Navigation
     {
         private readonly NavigationStore _navigation;
 
+
         public ClientAttractionCommand()
         {
             _navigation = NavigationStore.Instance();
         }
         public override void Execute(object parameter)
         {
-            // TODO : add here _navigation.CurrentViewModel = new AttractionViewModel()
-            // or whatever the class is called
-            throw new NotImplementedException();
+            if (_navigation.CurrentViewModel.GetType() != typeof(ClientAttractionsViewModel))
+                _navigation.CurrentViewModel = new ClientAttractionsViewModel();
         }
     }
 }
