@@ -29,9 +29,12 @@ namespace TravelApp.DesktopHost.View
         private void Window_SizeChanged(object sender, SizeChangedEventArgs e)
         {
             double windowWidth = e.NewSize.Width;
+            double windowHeight = e.NewSize.Height;
+            double scrollViewHeight = windowHeight - 50;
 
             if (DataContext is ClientTripDetailsViewModel viewModel)
             {
+                viewModel.ScrollViewHeight = scrollViewHeight;
                 if (windowWidth <= 1000)
                 {
                     viewModel.FieldsWidth = 150;

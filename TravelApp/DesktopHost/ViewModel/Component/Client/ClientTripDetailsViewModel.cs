@@ -57,6 +57,8 @@ namespace TravelApp.DesktopHost.ViewModel
 
         public ICommand Trips { get; set; }
 
+        public double ScrollViewHeight { get; set; }
+
 
         public ClientTripDetailsViewModel(int selectedTrip)
         {

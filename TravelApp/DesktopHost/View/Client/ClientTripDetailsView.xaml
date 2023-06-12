@@ -14,224 +14,260 @@
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="auto"/>
-            <RowDefinition Height="1*" />
             <RowDefinition Height="auto" />
-            <RowDefinition Height="4*" />
         </Grid.RowDefinitions>
-        <components:ClientNavigationView Grid.Row="0" SelectedIndex="-1"></components:ClientNavigationView>
-                                   
-        <Grid Grid.Row="1">
-            <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="Auto" />
-                <ColumnDefinition Width="Auto" />
-            </Grid.ColumnDefinitions>
+        <components:ClientNavigationView Grid.Row="0" SelectedIndex="0"></components:ClientNavigationView>
 
-            <Button Click="Back"
-                    Height="50"
-                    >
-                <Button.Template>
-                    <ControlTemplate TargetType="Button">
-                        <Image 
-                            Source="../../../Style/Images/back_arrow.png" 
-                            Width="40" 
-                            Height="auto" 
-                            Margin="50 0 0 0"
-                            Grid.Column="0"
-                            />
-                    </ControlTemplate>
-                </Button.Template>
-            </Button>
-
-            <TextBlock 
-                    Grid.Column="1" 
-                    Text="{ Binding Trip.Name }"
-                    FontSize="{Binding TextFontSize}"
-                    FontWeight="Medium"
-                    TextAlignment="Left"
-                    VerticalAlignment="Center"
-                    Margin="40 0 0 0"/>
-
-        </Grid>
-
-        <Grid Grid.Row="2">
-            <Line X1="1" Y1="1" 
-                  X2="1340" Y2="0" 
-                  Stroke="Gray" 
-                  StrokeThickness="0.8"
-                  Margin="100 0 0 0"/>
-        </Grid>
-
-        <Grid Grid.Row="3">
-            <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="500"></ColumnDefinition>
-                <ColumnDefinition Width="50"></ColumnDefinition>
-                <ColumnDefinition Width="500"></ColumnDefinition>
-            </Grid.ColumnDefinitions>
-
-            <Grid Grid.Column="0">
+        <ScrollViewer Height="{ Binding ScrollViewHeight }" Grid.Row="1"  VerticalScrollBarVisibility="Auto">
+            <Grid>
                 <Grid.RowDefinitions>
-                    <RowDefinition Height="auto"></RowDefinition>
-                    <RowDefinition Height="auto"></RowDefinition>
-                    <RowDefinition Height="auto"></RowDefinition>
-                    <RowDefinition Height="auto"></RowDefinition>
-                    <RowDefinition Height="auto"></RowDefinition>
-                    <RowDefinition Height="auto"></RowDefinition>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto" />
                 </Grid.RowDefinitions>
-
-                <TextBlock 
-                    Grid.Row="0"
-                    Text="INFORMATION:"
-                    FontWeight="Bold"
-                    TextAlignment="Left"
-                    FontSize="25"
-                    Foreground="#1E2F97"
-                    Margin="100 80 0 0"/>
-
-                <Grid Grid.Row="1" >
+                <Grid Grid.Row="0" Margin="0 50 0 0">
                     <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="auto"></ColumnDefinition>
-                        <ColumnDefinition Width="auto"></ColumnDefinition>
+                        <ColumnDefinition Width="Auto" />
+                        <ColumnDefinition Width="Auto" />
                     </Grid.ColumnDefinitions>
 
-                    <TextBlock 
-                        Grid.Column="0"
-                        Text="Departure:"
-                        FontWeight="SemiBold"
-                        TextAlignment="Left"
-                        FontSize="25"
-                        Foreground="Black"
-                        Margin="100 50 0 0"/>
+                    <Button Click="Back"
+                        Height="50"
+                        >
+                        <Button.Template>
+                            <ControlTemplate TargetType="Button">
+                                <Image 
+                                Source="../../../Style/Images/back_arrow.png" 
+                                Width="40" 
+                                Height="auto" 
+                                Margin="50 0 0 0"
+                                Grid.Column="0"
+                                />
+                            </ControlTemplate>
+                        </Button.Template>
+                    </Button>
 
                     <TextBlock 
-                        Grid.Column="1"
-                        Text="{Binding Trip.Departure}"
+                        Grid.Column="1" 
+                        Text="{ Binding Trip.Name }"
+                        FontSize="{Binding TextFontSize}"
                         FontWeight="Medium"
                         TextAlignment="Left"
-                        FontSize="25"
-                        Foreground="Gray"
-                        Margin="20 50 0 0"/>
+                        VerticalAlignment="Center"
+                        Margin="40 0 0 0"/>
+
                 </Grid>
 
-                <Grid Grid.Row="2" >
-                    <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="auto"></ColumnDefinition>
-                        <ColumnDefinition Width="auto"></ColumnDefinition>
-                    </Grid.ColumnDefinitions>
-
-                    <TextBlock 
-                        Grid.Column="0"
-                        Text="Destination:"
-                        FontWeight="SemiBold"
-                        TextAlignment="Left"
-                        FontSize="25"
-                        Foreground="Black"
-                        Margin="100 30 0 0"/>
-
-                    <TextBlock 
-                        Grid.Column="1"
-                        Text="{Binding Trip.Destination}"
-                        FontWeight="Medium"
-                        TextAlignment="Left"
-                        FontSize="25"
-                        Foreground="Gray"
-                        Margin="20 30 0 0"/>
-                </Grid>
-
-                <Grid Grid.Row="3" >
-                    <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="auto"></ColumnDefinition>
-                        <ColumnDefinition Width="auto"></ColumnDefinition>
-                        <ColumnDefinition Width="auto"></ColumnDefinition>
-                    </Grid.ColumnDefinitions>
-
-                    <TextBlock 
-                        Grid.Column="0"
-                        Text="Price:"
-                        FontWeight="SemiBold"
-                        TextAlignment="Left"
-                        FontSize="25"
-                        Foreground="Black"
-                        Margin="100 30 0 0"/>
-
-                    <TextBlock 
-                        Grid.Column="1"
-                        Text="{Binding Trip.Price}"
-                        FontWeight="Medium"
-                        TextAlignment="Left"
-                        FontSize="25"
-                        Foreground="Gray"
-                        Margin="20 30 0 0"/>
-
-                    <TextBlock 
-                        Grid.Column="2"
-                        Text="RSD"
-                        FontWeight="Medium"
-                        TextAlignment="Left"
-                        FontSize="25"
-                        Foreground="Gray"
-                        Margin="7 30 0 0"/>
-                </Grid>
-
-                <Grid Grid.Row="4" >
-                    <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="auto"></ColumnDefinition>
-                        <ColumnDefinition Width="auto"></ColumnDefinition>
-                    </Grid.ColumnDefinitions>
-
-                    <TextBlock 
-                        Grid.Column="0"
-                        Text="Start date:"
-                        FontWeight="SemiBold"
-                        TextAlignment="Left"
-                        FontSize="25"
-                        Foreground="Black"
-                        Margin="100 30 0 0"/>
-
-                    <TextBlock 
-                        Grid.Column="1"
-                        Text="{Binding Trip.StartDate}"
-                        FontWeight="Medium"
-                        TextAlignment="Left"
-                        FontSize="25"
-                        Foreground="Gray"
-                        Margin="20 30 0 0"/>
-                </Grid>
-
-                <Grid Grid.Row="5" >
-                    <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="auto"></ColumnDefinition>
-                        <ColumnDefinition Width="auto"></ColumnDefinition>
-                    </Grid.ColumnDefinitions>
-
-                    <TextBlock 
-                        Grid.Column="0"
-                        Text="End date:"
-                        FontWeight="SemiBold"
-                        TextAlignment="Left"
-                        FontSize="25"
-                        Foreground="Black"
-                        Margin="100 30 0 0"/>
-
-                    <TextBlock 
-                        Grid.Column="1"
-                        Text="{Binding Trip.EndDate}"
-                        FontWeight="Medium"
-                        TextAlignment="Left"
-                        FontSize="25"
-                        Foreground="Gray"
-                        Margin="20 30 0 0"/>
-                </Grid>
-
-            </Grid>
-
-            <Grid Grid.Column="1">
-                <Line X1="0" Y1="0"
-                      X2="0" Y2="500" 
+                <Grid Grid.Row="1">
+                    <Line X1="1" Y1="1" 
+                      X2="1340" Y2="0" 
                       Stroke="Gray" 
-                      StrokeThickness="0.8" 
-                      Margin="20 50 0 0"/>
+                      StrokeThickness="0.8"
+                      Margin="100 30 0 0"/>
+                </Grid>
+
+                <Grid Grid.Row="3">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="500"></ColumnDefinition>
+                        <ColumnDefinition Width="Auto"></ColumnDefinition>
+                        <ColumnDefinition Width="800"></ColumnDefinition>
+                    </Grid.ColumnDefinitions>
+
+                    <Grid Grid.Column="0">
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="auto"></RowDefinition>
+                            <RowDefinition Height="auto"></RowDefinition>
+                            <RowDefinition Height="auto"></RowDefinition>
+                            <RowDefinition Height="auto"></RowDefinition>
+                            <RowDefinition Height="auto"></RowDefinition>
+                            <RowDefinition Height="auto"></RowDefinition>
+                        </Grid.RowDefinitions>
+
+                        <TextBlock 
+                            Grid.Row="0"
+                            Text="INFORMATION:"
+                            FontWeight="Bold"
+                            TextAlignment="Left"
+                            FontSize="25"
+                            Foreground="#1E2F97"
+                            Margin="100 115 0 0"/>
+
+                        <Grid Grid.Row="1" >
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="auto"></ColumnDefinition>
+                                <ColumnDefinition Width="auto"></ColumnDefinition>
+                            </Grid.ColumnDefinitions>
+
+                            <TextBlock 
+                            Grid.Column="0"
+                            Text="Departure:"
+                            FontWeight="SemiBold"
+                            TextAlignment="Left"
+                            FontSize="25"
+                            Foreground="Black"
+                            Margin="100 50 0 0"/>
+
+                            <TextBlock 
+                            Grid.Column="1"
+                            Text="{Binding Trip.Departure}"
+                            FontWeight="Medium"
+                            TextAlignment="Left"
+                            FontSize="25"
+                            Foreground="Gray"
+                            Margin="20 50 0 0"/>
+                        </Grid>
+
+                        <Grid Grid.Row="2" >
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="auto"></ColumnDefinition>
+                                <ColumnDefinition Width="auto"></ColumnDefinition>
+                            </Grid.ColumnDefinitions>
+
+                            <TextBlock 
+                                Grid.Column="0"
+                                Text="Destination:"
+                                FontWeight="SemiBold"
+                                TextAlignment="Left"
+                                FontSize="25"
+                                Foreground="Black"
+                                Margin="100 30 0 0"/>
+
+                            <TextBlock 
+                                Grid.Column="1"
+                                Text="{Binding Trip.Destination}"
+                                FontWeight="Medium"
+                                TextAlignment="Left"
+                                FontSize="25"
+                                Foreground="Gray"
+                                Margin="20 30 0 0"/>
+                        </Grid>
+
+                        <Grid Grid.Row="3" >
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="auto"></ColumnDefinition>
+                                <ColumnDefinition Width="auto"></ColumnDefinition>
+                                <ColumnDefinition Width="auto"></ColumnDefinition>
+                            </Grid.ColumnDefinitions>
+
+                            <TextBlock 
+                            Grid.Column="0"
+                            Text="Price:"
+                            FontWeight="SemiBold"
+                            TextAlignment="Left"
+                            FontSize="25"
+                            Foreground="Black"
+                            Margin="100 30 0 0"/>
+
+                            <TextBlock 
+                            Grid.Column="1"
+                            Text="{Binding Trip.Price}"
+                            FontWeight="Medium"
+                            TextAlignment="Left"
+                            FontSize="25"
+                            Foreground="Gray"
+                            Margin="20 30 0 0"/>
+
+                            <TextBlock 
+                            Grid.Column="2"
+                            Text="RSD"
+                            FontWeight="Medium"
+                            TextAlignment="Left"
+                            FontSize="25"
+                            Foreground="Gray"
+                            Margin="7 30 0 0"/>
+                        </Grid>
+
+                        <Grid Grid.Row="4" >
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="auto"></ColumnDefinition>
+                                <ColumnDefinition Width="auto"></ColumnDefinition>
+                            </Grid.ColumnDefinitions>
+
+                            <TextBlock 
+                                Grid.Column="0"
+                                Text="Start date:"
+                                FontWeight="SemiBold"
+                                TextAlignment="Left"
+                                FontSize="25"
+                                Foreground="Black"
+                                Margin="100 30 0 0"/>
+
+                            <TextBlock 
+                                Grid.Column="1"
+                                Text="{Binding Trip.StartDate}"
+                                FontWeight="Medium"
+                                TextAlignment="Left"
+                                FontSize="25"
+                                Foreground="Gray"
+                                Margin="20 30 0 0"/>
+                        </Grid>
+
+                        <Grid Grid.Row="5" >
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="auto"></ColumnDefinition>
+                                <ColumnDefinition Width="auto"></ColumnDefinition>
+                            </Grid.ColumnDefinitions>
+
+                            <TextBlock 
+                                Grid.Column="0"
+                                Text="End date:"
+                                FontWeight="SemiBold"
+                                TextAlignment="Left"
+                                FontSize="25"
+                                Foreground="Black"
+                                Margin="100 30 0 0"/>
+
+                            <TextBlock 
+                                Grid.Column="1"
+                                Text="{Binding Trip.EndDate}"
+                                FontWeight="Medium"
+                                TextAlignment="Left"
+                                FontSize="25"
+                                Foreground="Gray"
+                                Margin="20 30 0 0"/>
+                        </Grid>
+
+                    </Grid>
+
+                    <Grid Grid.Column="1">
+                        <Line X1="0" Y1="0"
+                          X2="0" Y2="500" 
+                          Stroke="Gray" 
+                          StrokeThickness="0.8" 
+                          Margin="20 50 0 0"/>
+                    </Grid>
+
+                    <Grid Grid.Column="2">
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="Auto"></RowDefinition>
+                            <RowDefinition Height="Auto"></RowDefinition>
+                        </Grid.RowDefinitions>
+                        <Border CornerRadius="5" Grid.Row="0">
+                            <Image Source="../../../Style/Images/trip.png" 
+                                   Width="500" 
+                                   HorizontalAlignment="Left"
+                                   Height="auto" 
+                                   Margin="70 75 0 0"
+                                               />
+                        </Border>
+                        <ScrollViewer Grid.Row="1" Height="180" HorizontalScrollBarVisibility="Auto"> 
+                        <TextBlock 
+                            Text="{Binding Trip.Description}"
+                            FontWeight="Medium"
+                            TextAlignment="Left"
+                            FontSize="25"
+                            Foreground="Gray"
+                            Width="700"
+                            TextWrapping="Wrap"
+                            HorizontalAlignment="Left"
+                            Margin="70 30 0 0"/>
+                        </ScrollViewer>
+                    </Grid>
+                
+
+                </Grid>
             </Grid>
-        </Grid>
-        
+        </ScrollViewer>
+
+
     </Grid>
 </UserControl>
