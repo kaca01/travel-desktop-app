@@ -101,9 +101,9 @@
                      materialDesign:TextFieldAssist.UnderlineBrush="#4889E6"
                      ToolTip="Enter the address of your new attraction"
                      Text="{Binding Address}"
-                    PreviewTextInput="TextBox_PreviewTextInput"
-                    TextChanged="TextBox_AddressLostFocus"
-                    LostFocus="TextBox_AddressLostFocus">
+                        PreviewTextInput="TextBox_PreviewTextInput"
+                        TextChanged="TextBox_AddressTextChanged"
+                        LostFocus="TextBox_AddressLostFocus">
                 </TextBox>
                 <Label Height="27"
                        FontSize="15"

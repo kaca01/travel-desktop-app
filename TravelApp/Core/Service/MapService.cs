@@ -13,7 +13,7 @@ namespace TravelApp.Core.Service
     {
         public static (double Latitude, double Longitude) GetCoordinates(string address, string apiKey)
         {
-            string apiUrl = $"http://dev.virtualearth.net/REST/v1/Locations?countryRegion=US&addressLine={Uri.EscapeDataString(address)}&key={apiKey}";
+            string apiUrl = $"http://dev.virtualearth.net/REST/v1/Locations?countryRegion=Serbia&addressLine={Uri.EscapeDataString(address)}&key={apiKey}";
 
             using (WebClient webClient = new WebClient())
             {

@@ -101,7 +101,10 @@ namespace TravelApp.DesktopHost.View.Agent
             }
             else
             {
-                textBox.BorderBrush = Brushes.Gray;
+                if (e.RoutedEvent == TextBox.TextChangedEvent)
+                    textBox.BorderBrush = new SolidColorBrush((Color)ColorConverter.ConvertFromString("#4889E6"));
+                else
+                    textBox.BorderBrush = Brushes.Gray;
             }
             viewModel.Name = textBox.Text;
         }
@@ -117,12 +120,15 @@ namespace TravelApp.DesktopHost.View.Agent
             }
             else
             {
-                textBox.BorderBrush = Brushes.Gray;
+                if (e.RoutedEvent == TextBox.TextChangedEvent)
+                    textBox.BorderBrush = new SolidColorBrush((Color)ColorConverter.ConvertFromString("#4889E6"));
+                else
+                    textBox.BorderBrush = Brushes.Gray;
             }
             viewModel.Description = textBox.Text;
         }
 
-        private void TextBox_AddressLostFocus(object sender, RoutedEventArgs e)
+        private void TextBox_AddressTextChanged(object sender, RoutedEventArgs e)
         {
             TextBox textBox = (TextBox)sender;
             NewAttractionViewModel viewModel = (NewAttractionViewModel)DataContext;
@@ -130,7 +136,26 @@ namespace TravelApp.DesktopHost.View.Agent
             if (!viewModel.ValidationViewModel.IsAddressValid(textBox.Text))
             {
                 textBox.BorderBrush = Brushes.Red;
-                //todo ukloni tacku ako je ima?
+            }
+            else
+            {
+                if (e.RoutedEvent == TextBox.TextChangedEvent)
+                    textBox.BorderBrush = new SolidColorBrush((Color)ColorConverter.ConvertFromString("#4889E6"));
+                else
+                    textBox.BorderBrush = Brushes.Gray;
+            }
+            viewModel.Address = textBox.Text;
+        }
+
+        private void TextBox_AddressLostFocus(object sender, RoutedEventArgs e)
+        {
+            TextBox textBox = (TextBox)sender;
+            NewAttractionViewModel viewModel = (NewAttractionViewModel)DataContext;
+            myMap.Children.Clear();  //obrisi prethodni marker bilo da se desila greska bilo da je nov korektan unos
+            if (viewModel == null) return;
+            if (!viewModel.ValidationViewModel.IsAddressValid(textBox.Text))
+            {
+                textBox.BorderBrush = Brushes.Red;
                 //ispisi gresku ispod
             }
             else
@@ -140,17 +165,6 @@ namespace TravelApp.DesktopHost.View.Agent
                 this.PlaceDot(new Location(latitude, longitude));
             }
             viewModel.Address = textBox.Text;
-        }
-
-        private void TextBox_PreviewTextInputAddress(object sender, TextCompositionEventArgs e)
-        {
-            TextBox textBox = (TextBox)sender;
-
-            // Check if the new text length exceeds the maximum character count
-            if (textBox.Text.Length + e.Text.Length > 35)
-            {
-                e.Handled = true; // Prevent the input from being added to the TextBox
-            }
         }
 
     }
