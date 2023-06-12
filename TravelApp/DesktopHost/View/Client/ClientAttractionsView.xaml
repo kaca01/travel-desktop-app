@@ -9,6 +9,11 @@
              d:DataContext="{d:DesignInstance Type=viewmodel:ClientAttractionsViewModel}"
              xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
              xmlns:components="clr-namespace:TravelApp.DesktopHost.View"
+             xmlns:l="clr-namespace:TravelApp"
+             Focusable="True"
+             l:HelpProvider.HelpKey="allAttractions"
+             GotFocus="SetHelpKey"
+             Loaded="UserControl_Loaded"
              SizeChanged="Window_SizeChanged">
     <Grid>
         <Grid.RowDefinitions>

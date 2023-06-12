@@ -30,6 +30,7 @@ namespace TravelApp.DesktopHost.View.Agent
         public NewAttractionView()
         {
             InitializeComponent();
+            SetHelpKey(null, null);
             myMap.Center = new Location(45.23898647559673, 19.842916112490993); 
             myMap.ZoomLevel = 12;
             mapError.Visibility = Visibility.Collapsed;
@@ -306,6 +307,20 @@ namespace TravelApp.DesktopHost.View.Agent
             }
 
             mapDragging = false;
+        }
+        
+        public void SetHelpKey(object sender, EventArgs e)
+        {
+            IInputElement focusedControl = FocusManager.GetFocusedElement(Application.Current.Windows[0]);
+            if (focusedControl is DependencyObject)
+            {
+                HelpProvider.SetHelpKey((DependencyObject)focusedControl, "newAttraction");
+            }
+        }
+
+        private void UserControl_Loaded(object sender, RoutedEventArgs e)
+        {
+            this.Focus();
         }
     }
 }

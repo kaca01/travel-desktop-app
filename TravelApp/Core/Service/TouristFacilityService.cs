@@ -54,5 +54,9 @@ namespace TravelApp.Core.Service
                 IsSelected = false
             }).ToList();
         }
+
+        public void Edit(TouristFacilityListItemViewModel editedFacility) { 
+            _facilityRepository.Edit(editedFacility);
+        }
     }
 }

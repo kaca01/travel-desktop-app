@@ -96,6 +96,10 @@
             <DataTemplate DataType="{x:Type viewmodels:ClientTripDetailsViewModel}">
                 <views:ClientTripDetailsView/>
             </DataTemplate>
+            
+            <DataTemplate DataType="{x:Type viewmodels:EditPlaceViewModel}">
+                <views:EditPlaceView/>
+            </DataTemplate>
 
         </Grid.Resources>
         <ContentControl Content="{Binding CurrentViewModel}" />

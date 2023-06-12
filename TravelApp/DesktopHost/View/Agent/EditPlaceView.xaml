@@ -1,29 +1,59 @@
-﻿<UserControl x:Class="TravelApp.DesktopHost.View.Agent.NewAttractionView"
+﻿<UserControl x:Class="TravelApp.DesktopHost.View.EditPlaceView"
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:TravelApp.DesktopHost.View"
              xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
-             xmlns:local="clr-namespace:TravelApp.DesktopHost.View.Agent"
-             xmlns:viewmodels="clr-namespace:TravelApp.DesktopHost.ViewModel.Component.Agent"
-             xmlns:views="clr-namespace:TravelApp.DesktopHost.View" 
-             xmlns:m="clr-namespace:Microsoft.Maps.MapControl.WPF;assembly=Microsoft.Maps.MapControl.WPF"
+             xmlns:viewmodels="clr-namespace:TravelApp.DesktopHost.ViewModel"
+             xmlns:views="clr-namespace:TravelApp.DesktopHost.View"
              xmlns:l="clr-namespace:TravelApp"
              Focusable="True"
-             l:HelpProvider.HelpKey="newAttraction"
+             l:HelpProvider.HelpKey="newPlace"
              GotFocus="SetHelpKey"
              Loaded="UserControl_Loaded"
              mc:Ignorable="d" 
              Background="White"
-             SizeChanged="Window_SizeChanged"
-             d:DataContext="{d:DesignInstance Type=viewmodels:NewAttractionViewModel}"
-             Loaded="Window_Loaded">
+             SizeChanged="Window_SizeChanged">
+    <UserControl.Resources>
+    <Style TargetType="RadioButton">
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="RadioButton">
+                    <Grid Background="Transparent">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="Auto" />
+                            <ColumnDefinition Width="*" />
+                        </Grid.ColumnDefinitions>
+                        <Ellipse x:Name="RadioButtonCircle"
+                                     Width="16"
+                                     Height="16"
+                                     Stroke="Black"/>
+                        <ContentPresenter Grid.Column="1"
+                                              Margin="4,0,0,0"
+                                              VerticalAlignment="Center"
+                                              RecognizesAccessKey="True" />
+                    </Grid>
+                    <ControlTemplate.Triggers>
+                        <Trigger Property="IsChecked" Value="True">
+                            <Setter TargetName="RadioButtonCircle" Property="Fill" Value="#4889E6" />
+                            <!-- Change circle fill color when checked -->
+                        </Trigger>
+                        <Trigger Property="IsMouseOver" Value="True">
+                            <Setter TargetName="RadioButtonCircle" Property="Stroke" Value="Black" />
+                            <!-- Change circle stroke color on mouseover -->
+                        </Trigger>
+                    </ControlTemplate.Triggers>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+    </UserControl.Resources>
     <ScrollViewer>
         <Grid>
             <Grid.RowDefinitions>
                 <RowDefinition Height="*"></RowDefinition>
                 <RowDefinition Height="1.5*"></RowDefinition>
-                <RowDefinition Height="auto"></RowDefinition>
                 <RowDefinition Height="auto"></RowDefinition>
                 <RowDefinition Height="auto"></RowDefinition>
                 <RowDefinition Height="auto"></RowDefinition>
@@ -41,7 +71,6 @@
                     Width="50" Height="50"
                     Grid.Column="2"
                     Grid.Row="1"
-                    Margin="20,25,0,0"
                     VerticalAlignment="Top"
                     HorizontalAlignment="Left"
                     Style="{StaticResource CloseButton}"
@@ -52,14 +81,13 @@
             <TextBlock FontSize="{Binding TextFontSize}"
                 Foreground="#161A25"
                 TextAlignment="Left"
-                Margin="0,50, 0 ,30"
+                Margin="0, 20, 0 ,10"
                 Grid.Row="1"
                 Grid.Column="1"
                 FontWeight="Medium"
                 FontFamily="Poppins"
                 MaxWidth="{Binding Width}"
-                x:Name="Title"
-                Text="{Binding Title}"/>
+                x:Name="Title">Edit Place</TextBlock>
             <StackPanel Grid.Row="2"
                     Grid.Column="1"
                     Width="{Binding Width}"
@@ -76,11 +104,11 @@
                      materialDesign:HintAssist.Foreground="#4889E6"
                      Background="#A5FFFFFF"
                      materialDesign:TextFieldAssist.UnderlineBrush="#4889E6"
-                     ToolTip="Enter the name for your new attraction"
+                     ToolTip="Enter the name for your new place"
                      Text="{Binding Name}"
-                     PreviewTextInput="TextBox_PreviewTextInput"
-                        TextChanged="TextBox_NameLostFocus"
-                        LostFocus="TextBox_NameLostFocus">
+                     PreviewTextInput="TextBox_PreviewTextInputName"
+                     TextChanged="TextBox_NameLostFocus"
+                     LostFocus="TextBox_NameLostFocus">
                 </TextBox>
                 <Label Height="27"
                        FontSize="15"
@@ -106,12 +134,11 @@
                      materialDesign:HintAssist.Foreground="#4889E6"
                      Background="#A5FFFFFF"
                      materialDesign:TextFieldAssist.UnderlineBrush="#4889E6"
-                     ToolTip="Enter the address of your new attraction"
+                     ToolTip="Enter the address of your new place"
                      Text="{Binding Address}"
-                        PreviewTextInput="TextBox_PreviewTextInput"
-                        TextChanged="TextBox_AddressTextChanged"
-                        LostFocus="TextBox_AddressLostFocus"
-                        KeyDown="TextBox_KeyDown">
+                     PreviewTextInput="TextBox_PreviewTextInputAddress"
+                     TextChanged="TextBox_AddressLostFocus"
+                     LostFocus="TextBox_AddressLostFocus">
                 </TextBox>
                 <Label Height="27"
                        FontSize="15"
@@ -124,81 +151,63 @@
             <StackPanel Grid.Row="4"
                     Grid.Column="1"
                     Width="{Binding Width}"
-                    Height="280">
-                <m:Map x:Name="myMap" CredentialsProvider="AuLWjg9zk0YyNOzdddizNFywS-R5879R6PnSVyiT_7T3X3SOnJe8TKz0PvlBO0c3" Mode="road" Height="250"
-                       ToolTip="Click on the map to add a location marker"
-                       MouseMove="Marker_MouseMove"
-                       MouseLeftButtonDown="Map_MouseLeftButtonDown"
-                       MouseLeftButtonUp="Map_MouseLeftButtonUp"/>
+                    Height="110">
+                <Label Margin="0 0 0 3"
+                   Height="27"
+                   FontSize="18"
+                   FontFamily="Poppins"
+                   FontWeight="SemiBold"
+                   HorizontalAlignment="Left">Link</Label>
+                <TextBox Style="{StaticResource MaterialDesignOutlinedTextBox}"
+                     FontSize="15"
+                     Margin="0"
+                     materialDesign:HintAssist.Foreground="#4889E6"
+                     materialDesign:HintAssist.Hint="http://example.com"
+                     Background="#A5FFFFFF"
+                     materialDesign:TextFieldAssist.UnderlineBrush="#4889E6"
+                     ToolTip="Leave a link that will lead to more information about a place"
+                     Text="{Binding Link}"
+                     PreviewTextInput="TextBox_PreviewTextInputLink"
+                     TextChanged="TextBox_LinkLostFocus"
+                     LostFocus="TextBox_LinkLostFocus">
+                </TextBox>
                 <Label Height="27"
                        FontSize="15"
                        FontFamily="Poppins"
                        FontWeight="Regular"
-                       x:Name="mapError"
-                       Content="Cannot find address on map"
                        HorizontalAlignment="Left"
+                       Content="{Binding ValidationViewModel.LinkValidation}"
                        Foreground="Red"/>
-
             </StackPanel>
             <StackPanel Grid.Row="5"
-                Grid.Column="1"
-                Width="{Binding Width}"
-                Height="160">
+                    Grid.Column="1"
+                    Width="{Binding Width}"
+                    Height="110">
                 <Label Margin="0 0 0 3"
-                Height="28"
-                FontSize="18"
-                FontFamily="Poppins"
-                FontWeight="SemiBold"
-                HorizontalAlignment="Left">Description</Label>
-                <TextBox Style="{StaticResource MaterialDesignOutlinedTextBox}"
-                    FontSize="15"
-                    Margin="0"
-                    materialDesign:HintAssist.Foreground="#4889E6"
-                    Background="#A5FFFFFF"
-                    materialDesign:TextFieldAssist.UnderlineBrush="#4889E6"
-                    ToolTip="Enter the description of your new attraction"
-                    Text="{Binding Description}"
-                    AcceptsReturn="True"
-                    TextWrapping="Wrap"
-                    Height="100"
-                    VerticalScrollBarVisibility="Auto"
-                    PreviewTextInput="TextBox_PreviewTextInputDescription"
-                    TextChanged="TextBox_DescriptionLostFocus"
-                    LostFocus="TextBox_DescriptionLostFocus">
-                </TextBox>
-                <Label Height="27"
-                    FontSize="15"
-                    FontFamily="Poppins"
-                    FontWeight="Regular"
-                    HorizontalAlignment="Left"
-                    Content="{Binding ValidationViewModel.DescriptionValidation}"
-                    Foreground="Red"/>
-            </StackPanel>
-
-            <StackPanel Grid.Column="1"
-                        Grid.Row="6">
-                <Button Command="{Binding UploadImageCommand}" Cursor="Hand" Margin="0,15,0,0" Padding="2" Background="#DFE6F0" BorderBrush="#DFE6F0" BorderThickness="1" Foreground="Black" ToolTip="Upload a picture for new attraction">
-                    <StackPanel Orientation="Horizontal">
-                        <Viewbox Width="25" Height="25">
-                            <materialDesign:PackIcon Kind="Plus" VerticalAlignment="Center"/>
-                        </Viewbox>
-                        <TextBlock Text="Add photo" FontFamily="Poppins" Grid.Column="1" Padding="5"  VerticalAlignment="Center" FontSize="20" Foreground="Black"/>
-                    </StackPanel>
-                </Button>
-                <Image Source="{Binding ImageSource}" Width="250" Height="200" Visibility="{Binding ImageVisibility}"/>
+                   Height="27"
+                   FontSize="18"
+                   FontFamily="Poppins"
+                   FontWeight="SemiBold"
+                   HorizontalAlignment="Left">Choose type:</Label>
+                <RadioButton IsChecked="{Binding Restaurant}"
+                          Margin="50,0,0,0"
+                             Cursor="Hand">Restaurant</RadioButton>
+                <RadioButton IsChecked="{Binding Accomodation}"
+                          Margin="50,0,0,0"
+                             Cursor="Hand">Accommodation</RadioButton>
             </StackPanel>
 
             <Button Grid.Column="1"
-                Grid.Row="7"
+                Grid.Row="6"
                 VerticalAlignment="Bottom"
                 Width="{Binding Width}"
                 Height="40"
-                Margin="0, 50 ,0 ,50"
+                Margin="0, 22 ,0 ,0"
                 IsEnabled="{Binding IsButtonEnabled}"
-                ToolTip="Click to create the new place"
-                Content="Save"
+                ToolTip="Click to edit a place"
+                Content="Edit"
                 Style="{StaticResource FormButton}"
-                Command="{Binding Create}"
+                Command="{Binding Edit}"
                 IsDefault="True" Cursor="Hand" >
             </Button>
         </Grid>

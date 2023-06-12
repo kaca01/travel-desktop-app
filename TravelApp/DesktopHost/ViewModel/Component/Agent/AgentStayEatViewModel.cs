@@ -10,6 +10,7 @@ using System.Windows.Input;
 using TravelApp.Core.Service;
 using TravelApp.DesktopHost.Command;
 using TravelApp.DesktopHost.Command.Agent;
+using TravelApp.DesktopHost.Command.Agent.EditPlace;
 using TravelApp.DesktopHost.Command.Agent.NewPlace;
 using TravelApp.DesktopHost.Command.Navigation;
 
@@ -127,6 +128,8 @@ namespace TravelApp.DesktopHost.ViewModel
             }
         }
 
+        public ICommand EditPlace { get; }
+
         public AgentStayEatViewModel()
         {
             Navigation = new AgentNavigationViewModel();
@@ -138,6 +141,7 @@ namespace TravelApp.DesktopHost.ViewModel
 
             Delete = new DeleteStayEatItemCommand(this);
             NewPlace = new NewPlaceNavigationCommand();
+            EditPlace = new EditPlaceNavigationCommand();
         }
 
         protected virtual void OnPropertyChanged(string propertyName)

@@ -83,5 +83,20 @@ namespace TravelApp.Core.Repository
                 context.TouristFacilities.Add(tf);
                 return tf;
         }
+
+        public void Edit(TouristFacilityListItemViewModel editedFacility)
+        {
+            var touristFacility = GetById(editedFacility.Id);
+
+            if (touristFacility != null)
+            {
+                touristFacility.Name = editedFacility.Name;
+                touristFacility.Address = editedFacility.Address;
+                touristFacility.Link = editedFacility.Link;
+                string type = editedFacility.Type;
+                touristFacility.Type = (PlaceType)Enum.Parse(typeof(PlaceType), type);
+                //todo check if this works
+            }
+        }
     }
 }

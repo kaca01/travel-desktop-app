@@ -64,7 +64,7 @@ namespace TravelApp.DesktopHost.View
             if (windowWidth <= 930) { viewModel.TableWidth = 650; viewModel.ArrowMargin = new Thickness(-10, 0, 0, 0); }
             else if (windowWidth <= 990) { viewModel.TableWidth = 700; viewModel.ArrowMargin = new Thickness(-20, 0, 0, 0); }
             else if (windowWidth <= 1250) { viewModel.TableWidth = 750; viewModel.ArrowMargin = new Thickness(-30, 0, 0, 0); }
-            else { viewModel.TableWidth = 800; viewModel.ArrowMargin = new Thickness(-40, 0, 0, 0); }
+            else { viewModel.TableWidth = 850; viewModel.ArrowMargin = new Thickness(-40, 0, 0, 0); }
         }
 
         public void SetHelpKey(object sender, EventArgs e)
