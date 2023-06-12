@@ -37,9 +37,18 @@ namespace TravelApp.Core.Repository
                 return false;
         }
 
+        private int generateId()
+        {
+            int max = 0;
+            foreach (Attraction a in context.Attractions)
+                if (a.Id > max) max = a.Id;
+
+            return max + 1;
+        }
+
         public Attraction Create(string name, string address, string description, BitmapImage imageSource)
         {
-                Attraction a = new Attraction() { Name = name, Description = description, Address = address, Image = ImageConverter.ConvertImageSourceToByteArray(imageSource) };
+                Attraction a = new Attraction() {Id = generateId() ,Name = name, Description = description, Address = address, Image = ImageConverter.ConvertImageSourceToByteArray(imageSource) };
                 context.Attractions.Add(a);
                 return a;
         }

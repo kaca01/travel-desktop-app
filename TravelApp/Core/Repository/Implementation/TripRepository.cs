@@ -34,9 +34,18 @@ namespace TravelApp.Core.Repository
                 return false;
         }
 
+        private int generateId()
+        {
+            int max = 0;
+            foreach (Trip t in context.Trips)
+                if (t.Id > max) max = t.Id;
+
+            return max + 1;
+        }
+
         public Trip Create(NewTripViewModel vm, List<Attraction> attrcs, List<TouristFacility> tf)
         {
-                Trip trip = new Trip() { Name = vm.Name, Description = vm.Description, Price = Double.Parse(vm.Price), Image = ImageConverter.ConvertImageSourceToByteArray(vm.ImageSource), Departure = vm.StartLocation, Destination = vm.EndLocation, StartDate = DateTime.Parse(vm.StartDate), EndDate = DateTime.Parse(vm.EndDate), IsDeleted = false };
+                Trip trip = new Trip() { Id = generateId(), Name = vm.Name, Description = vm.Description, Price = Double.Parse(vm.Price), Image = ImageConverter.ConvertImageSourceToByteArray(vm.ImageSource), Departure = vm.StartLocation, Destination = vm.EndLocation, StartDate = DateTime.Parse(vm.StartDate), EndDate = DateTime.Parse(vm.EndDate), IsDeleted = false };
                 trip.Attractions = attrcs;
                 trip.FacilityList = tf;
                 context.Trips.Add(trip);
