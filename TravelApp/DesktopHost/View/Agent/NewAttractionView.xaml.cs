@@ -179,7 +179,7 @@ namespace TravelApp.DesktopHost.View.Agent
             else
             {
                 textBox.BorderBrush = Brushes.Gray;
-                (double latitude, double longitude) = MapService.GetCoordinates(textBox.Text, "AuLWjg9zk0YyNOzdddizNFywS-R5879R6PnSVyiT_7T3X3SOnJe8TKz0PvlBO0c3");
+                (double latitude, double longitude) = MapService.GetCoordinates(textBox.Text);
                 this.PlaceDot(new Location(latitude, longitude), textBox.Text);
                 if (myMap.Children.Count == 0)
                     mapError.Visibility = Visibility.Visible;
@@ -205,6 +205,22 @@ namespace TravelApp.DesktopHost.View.Agent
         async void Marker_MouseUp(object sender, MouseButtonEventArgs e)
         {
             selectedMarker = sender as Pushpin;
+            string address = await MapService.ReverseGeocodeAsync(selectedMarker.Location);
+            await Task.Delay(350);
+            NewAttractionViewModel viewModel = (NewAttractionViewModel)DataContext;
+            if (address != null)
+            {
+                viewModel.Address = address;
+                viewModel.ValidationViewModel.IsAddressValid(address);
+                selectedMarker.ToolTip = "Address: " + address;
+            }
+            else
+            {
+                viewModel.Address = "";
+                viewModel.ValidationViewModel.IsAddressValid("");
+                mapError.Visibility = Visibility.Visible;
+                mapError.Content = "Cannot find corresponding address";
+            }
             //todo find new address ftom latitude and longitude
             e.Handled = true;
             selectedMarker = null;
