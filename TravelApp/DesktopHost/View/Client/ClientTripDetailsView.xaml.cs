@@ -1,4 +1,6 @@
-﻿using System;
+﻿using Microsoft.Maps.MapControl.WPF;
+using Newtonsoft.Json.Linq;
+using System;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
@@ -13,7 +15,10 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using TravelApp.Core.Model;
+using TravelApp.Core.Service;
 using TravelApp.DesktopHost.ViewModel;
+using TravelApp.DesktopHost.ViewModel.Component.Agent;
 
 namespace TravelApp.DesktopHost.View
 {
@@ -25,6 +30,78 @@ namespace TravelApp.DesktopHost.View
         public ClientTripDetailsView()
         {
             InitializeComponent();
+            myMap.Center = new Location(45.23898647559673, 19.842916112490993);
+            myMap.ZoomLevel = 11;
+        }
+
+        void Window_Loaded(object sender, RoutedEventArgs e)
+        {
+            ClientTripDetailsViewModel viewModel = (ClientTripDetailsViewModel)DataContext;
+            if (viewModel != null)
+                Task.Run(() =>
+                {
+                    foreach (Attraction a in viewModel.Trip.Attractions)
+                    {
+                        HandleMarkerRequest(a.Address, "none", a.Name);
+                    }
+                    foreach (TouristFacility tf in viewModel.Trip.FacilityList)
+                    {
+                        if (tf.Type.Equals(PlaceType.RESTAURANT))
+                            HandleMarkerRequest(tf.Address, "r", tf.Name);
+                        else HandleMarkerRequest(tf.Address, "ac", tf.Name);
+                    }
+                });
+        }
+
+        private void PlaceDot(Location location, string type, string name)
+        {
+            Application.Current.Dispatcher.Invoke(() =>
+            {
+                //pin == atrakcija
+                Pushpin dot = new Pushpin
+                {
+                    Location = location
+                };
+                dot.Background = new SolidColorBrush(Colors.Yellow);
+                //zvijezda == restoran
+                if (type == "r")
+                {
+                    dot.Background = new SolidColorBrush(Colors.White);
+                    dot.Content = new Path
+                    {
+                        Data = Geometry.Parse("M 10,10 L 20,30 40,35 20,40 10,60 0,40 10,10 Z"),
+                        Fill = new SolidColorBrush(Colors.Red),
+                        Stroke = new SolidColorBrush(Colors.Black),
+                        StrokeThickness = 1
+                    };
+                }
+                //krug = smjestaj
+                else if (type == "ac")
+                {
+                    dot.Background = new SolidColorBrush(Colors.White);
+                    dot.Content = new Rectangle
+                    {
+                        Width = 20,
+                        Height = 20,
+                        Fill = new SolidColorBrush(Colors.Blue),
+                        Stroke = new SolidColorBrush(Colors.Black),
+                        StrokeThickness = 1
+                    };
+                }
+                ToolTip tt = new ToolTip();
+                tt.Content = "Name = " + name;
+                dot.ToolTip = tt;
+                Point p0 = myMap.LocationToViewportPoint(location);
+                Location loc = myMap.ViewportPointToLocation(p0);
+                MapLayer.SetPosition(dot, loc);
+                myMap.Children.Add(dot);
+            });
+        }
+
+        private void HandleMarkerRequest(string address, string type, string name)
+        {
+            (double latitude, double longitude) = MapService.GetCoordinates(address);
+            PlaceDot(new Location(latitude, longitude), type, name);
         }
 
         private void Window_SizeChanged(object sender, SizeChangedEventArgs e)
