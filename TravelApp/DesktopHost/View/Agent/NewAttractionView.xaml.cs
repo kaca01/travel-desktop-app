@@ -151,6 +151,23 @@ namespace TravelApp.DesktopHost.View.Agent
         {
             TextBox textBox = (TextBox)sender;
             NewAttractionViewModel viewModel = (NewAttractionViewModel)DataContext;
+
+            HandleMarkerRequest(textBox, viewModel);
+        }
+
+        private void TextBox_KeyDown(object sender, KeyEventArgs e)
+        {
+            TextBox textBox = (TextBox)sender;
+            NewAttractionViewModel viewModel = (NewAttractionViewModel)DataContext;
+
+            if (e.Key == Key.Enter)
+            {
+                HandleMarkerRequest(textBox, viewModel);
+            }
+        }
+
+        private void HandleMarkerRequest(TextBox textBox, NewAttractionViewModel viewModel)
+        {
             myMap.Children.Clear();  //obrisi prethodni marker bilo da se desila greska bilo da je nov korektan unos
             if (viewModel == null) return;
             if (!viewModel.ValidationViewModel.IsAddressValid(textBox.Text))
@@ -166,6 +183,5 @@ namespace TravelApp.DesktopHost.View.Agent
             }
             viewModel.Address = textBox.Text;
         }
-
     }
 }

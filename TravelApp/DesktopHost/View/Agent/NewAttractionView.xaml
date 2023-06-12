@@ -103,7 +103,8 @@
                      Text="{Binding Address}"
                         PreviewTextInput="TextBox_PreviewTextInput"
                         TextChanged="TextBox_AddressTextChanged"
-                        LostFocus="TextBox_AddressLostFocus">
+                        LostFocus="TextBox_AddressLostFocus"
+                        KeyDown="TextBox_KeyDown">
                 </TextBox>
                 <Label Height="27"
                        FontSize="15"
