@@ -24,6 +24,10 @@ namespace TravelApp.DesktopHost.View
         public SignupView()
         {
             InitializeComponent();
+            this.Focus();
+            nameField.Focus();
+            SetHelpKey(null, null);
+            
         }
 
         private void TextBox_NameLostFocus(object sender, RoutedEventArgs e)
@@ -157,5 +161,21 @@ namespace TravelApp.DesktopHost.View
                 viewModel.LoginFontSize = 18;
             }
         }
+
+        public void SetHelpKey(object sender, EventArgs e)
+        {
+            IInputElement focusedControl = FocusManager.GetFocusedElement(Application.Current.Windows[0]);
+            if (focusedControl is DependencyObject)
+            {
+                HelpProvider.SetHelpKey((DependencyObject)focusedControl, "register");
+
+            }
+        }
+
+        private void UserControl_Loaded(object sender, RoutedEventArgs e)
+        {
+            nameField.Focus();
+        }
+
     }
 }

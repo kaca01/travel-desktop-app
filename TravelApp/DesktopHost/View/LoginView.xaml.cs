@@ -23,6 +23,8 @@ namespace TravelApp.DesktopHost.View
         public LoginView()
         {
             InitializeComponent();
+            this.Focus();
+            SetHelpKey(null, null);
         }
 
         private void TextBox_PreviewTextInputEmail(object sender, TextCompositionEventArgs e)
@@ -54,5 +56,21 @@ namespace TravelApp.DesktopHost.View
                 viewModel.Width = 439;
             }
         }
+
+        public void SetHelpKey(object sender, EventArgs e)
+        {
+            IInputElement focusedControl = FocusManager.GetFocusedElement(Application.Current.Windows[0]);
+            if (focusedControl is DependencyObject)
+            {
+                HelpProvider.SetHelpKey((DependencyObject)focusedControl, "login");
+            }
+        }
+
+        private void UserControl_Loaded(object sender, RoutedEventArgs e)
+        {
+            // Postavite fokus na željeni element unutar User Control-a
+            emailField.Focus();
+        }
+
     }
 }

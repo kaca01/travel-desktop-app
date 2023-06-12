@@ -25,6 +25,7 @@ namespace TravelApp.DesktopHost.View.Agent
         public NewPlaceView()
         {
             InitializeComponent();
+            SetHelpKey(null, null);
         }
 
         private void TextBox_NameLostFocus(object sender, RoutedEventArgs e)
@@ -127,6 +128,20 @@ namespace TravelApp.DesktopHost.View.Agent
                 viewModel.TextFontSize = 60;
                 viewModel.Width = 439;
             }
+        }
+
+        public void SetHelpKey(object sender, EventArgs e)
+        {
+            IInputElement focusedControl = FocusManager.GetFocusedElement(Application.Current.Windows[0]);
+            if (focusedControl is DependencyObject)
+            {
+                HelpProvider.SetHelpKey((DependencyObject)focusedControl, "newPlace");
+            }
+        }
+
+        private void UserControl_Loaded(object sender, RoutedEventArgs e)
+        {
+            this.Focus();
         }
     }
 }

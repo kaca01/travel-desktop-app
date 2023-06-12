@@ -10,7 +10,11 @@
              xmlns:navigation="clr-namespace:TravelApp.DesktopHost.ViewModel.Navigation"
              xmlns:viewmodel="clr-namespace:TravelApp.DesktopHost.ViewModel"
              SizeChanged="Window_SizeChanged"
-             d:DataContext="{d:DesignInstance Type=viewmodel:AgentNavigationViewModel}">
+             d:DataContext="{d:DesignInstance Type=viewmodel:AgentNavigationViewModel}"
+             Focusable="True"
+              xmlns:l="clr-namespace:TravelApp"
+              l:HelpProvider.HelpKey="index"
+              GotFocus="SetHelpKey">
 
 
         <TabControl Name="navigation"
@@ -132,7 +136,7 @@
             <TabItem.Header>
                 <StackPanel Width="{ Binding Navigation.TabWidth }"
                             Height="auto">
-                    <Button 
+                    <Button x:Name="Help"
                         HorizontalContentAlignment="Left"
                         VerticalContentAlignment="Center"
                         Width="{ Binding Navigation.TabWidth }"
@@ -144,7 +148,7 @@
                         Foreground="#000000"
                         FontSize="{ Binding Navigation.TextFontSize }"
                         FontWeight="Bold"
-                        Command="{ Binding Navigation.Help }"/>
+                        Click="Help_Click"/>
                 </StackPanel>
             </TabItem.Header>
         </TabItem>

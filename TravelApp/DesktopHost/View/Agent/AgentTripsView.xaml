@@ -10,7 +10,12 @@
              xmlns:viewmodel="clr-namespace:TravelApp.DesktopHost.ViewModel"
              d:DataContext="{d:DesignInstance Type=viewmodel:AgentTripsViewModel}"
              xmlns:components="clr-namespace:TravelApp.DesktopHost.View"
-             SizeChanged="Window_SizeChanged">
+             SizeChanged="Window_SizeChanged"
+             xmlns:l="clr-namespace:TravelApp"
+            Focusable="True"
+            l:HelpProvider.HelpKey="allTripsAgent"
+            GotFocus="SetHelpKey"
+            Loaded="UserControl_Loaded">
     
     <Grid>
         <Grid.RowDefinitions>

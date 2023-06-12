@@ -28,6 +28,8 @@ namespace TravelApp.DesktopHost.View
         public AgentNavigationView()
         {
             InitializeComponent();
+            SetHelpKey(null, null);
+            Help.Focus();
         }
 
         private void Window_SizeChanged(object sender, SizeChangedEventArgs e)
@@ -80,6 +82,21 @@ namespace TravelApp.DesktopHost.View
             {
                 navigation.TextFontSize = 20;
                 navigation.TabWidth = windowWidth / 7; 
+            }
+        }
+
+        public void Help_Click(object sender, EventArgs e)
+        {
+            var wnd = (MainWindow)Window.GetWindow(this);
+            wnd.CommandBinding_Executed(sender, null);
+        }
+
+        public void SetHelpKey(object sender, EventArgs e)
+        {
+            IInputElement focusedControl = FocusManager.GetFocusedElement(Application.Current.Windows[0]);
+            if (focusedControl is DependencyObject)
+            {
+                HelpProvider.SetHelpKey((DependencyObject)focusedControl, "index");
             }
         }
     }
