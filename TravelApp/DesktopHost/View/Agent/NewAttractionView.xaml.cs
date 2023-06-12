@@ -207,7 +207,7 @@ namespace TravelApp.DesktopHost.View.Agent
         {
             selectedMarker = sender as Pushpin;
             string address = await MapService.ReverseGeocodeAsync(selectedMarker.Location);
-            await Task.Delay(350);
+            await Task.Delay(200);
             NewAttractionViewModel viewModel = (NewAttractionViewModel)DataContext;
             if (address != null)
             {
@@ -265,7 +265,7 @@ namespace TravelApp.DesktopHost.View.Agent
                     Location location = myMap.ViewportPointToLocation(mousePosition);
 
                     string address = await MapService.ReverseGeocodeAsync(location);
-                    await Task.Delay(310);
+                    await Task.Delay(200);
                     NewAttractionViewModel viewModel = (NewAttractionViewModel)DataContext;
                     if (address != null)
                     {
