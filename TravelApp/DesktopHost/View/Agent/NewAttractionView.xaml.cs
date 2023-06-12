@@ -1,6 +1,9 @@
-﻿using System;
+﻿using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.Maps.MapControl.WPF;
+using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Net;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
@@ -12,6 +15,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using TravelApp.Core.Service;
 using TravelApp.DesktopHost.ViewModel.Component.Agent;
 
 namespace TravelApp.DesktopHost.View.Agent
@@ -24,6 +28,25 @@ namespace TravelApp.DesktopHost.View.Agent
         public NewAttractionView()
         {
             InitializeComponent();
+            myMap.Center = new Location(45.23898647559673, 19.842916112490993); 
+            myMap.ZoomLevel = 14;
+        }
+
+        private void PlaceDot(Location location)
+        {
+            Ellipse dot = new Ellipse();
+            dot.Fill = new SolidColorBrush(Colors.Red);
+            double radius = 12.0;
+            dot.Width = radius * 2;
+            dot.Height = radius * 2;
+            ToolTip tt = new ToolTip();
+            tt.Content = "Address = " + location;
+            dot.ToolTip = tt;
+            Point p0 = myMap.LocationToViewportPoint(location);
+            Point p1 = new Point(p0.X - radius, p0.Y - radius);
+            Location loc = myMap.ViewportPointToLocation(p1);
+            MapLayer.SetPosition(dot, loc);
+            myMap.Children.Add(dot);
         }
 
         private void Window_SizeChanged(object sender, SizeChangedEventArgs e)
@@ -107,10 +130,14 @@ namespace TravelApp.DesktopHost.View.Agent
             if (!viewModel.ValidationViewModel.IsAddressValid(textBox.Text))
             {
                 textBox.BorderBrush = Brushes.Red;
+                //todo ukloni tacku ako je ima?
+                //ispisi gresku ispod
             }
             else
             {
                 textBox.BorderBrush = Brushes.Gray;
+                (double latitude, double longitude) = MapService.GetCoordinates(textBox.Text, "AuLWjg9zk0YyNOzdddizNFywS-R5879R6PnSVyiT_7T3X3SOnJe8TKz0PvlBO0c3");
+                this.PlaceDot(new Location(latitude, longitude));
             }
             viewModel.Address = textBox.Text;
         }
