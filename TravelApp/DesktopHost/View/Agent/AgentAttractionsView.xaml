@@ -209,19 +209,41 @@
                                     <Button
                                         Content="Delete"
                                         Cursor="Hand"
-                                        Width="200"
+                                        Width="140"
                                         Height="35"
                                         Background="#4889E6"
                                         BorderBrush="Transparent"
                                         Grid.Row="3" 
                                         Margin="30 25 30 25"
-                                        HorizontalAlignment="Center"
+                                        HorizontalAlignment="Left"
                                         Foreground="White"
                                         FontSize="16"
                                         FontWeight="DemiBold"
                                         Click="Delete_Click"
                                         CommandParameter="{ Binding Id }"
                                         Style="{ StaticResource FormButton }">
+                                        <Button.Resources>
+                                            <Style TargetType="{x:Type Border}">
+                                                <Setter Property="CornerRadius" Value="20"/>
+                                            </Style>
+                                        </Button.Resources>
+                                    </Button>
+                                    <Button
+                                        Content="Update"
+                                        Width="140"
+                                        Background="White"
+                                        Foreground="Black"
+                                        BorderBrush="Transparent"
+                                        Grid.Row="5" 
+                                        Margin="0 25 30 25"
+                                        HorizontalAlignment="Right"
+                                        FontSize="16"
+                                        Height="36"
+                                        FontWeight="DemiBold"
+                                        Cursor="Hand"
+                                        Click="Update_Click"
+                                        CommandParameter="{Binding Id}"
+                                        Style="{ StaticResource CornerRadius }">
                                         <Button.Resources>
                                             <Style TargetType="{x:Type Border}">
                                                 <Setter Property="CornerRadius" Value="20"/>

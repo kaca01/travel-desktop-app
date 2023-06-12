@@ -9,6 +9,8 @@ using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Input;
 using System.Windows.Media.Imaging;
+using TravelApp.Core;
+using TravelApp.Core.Model;
 using TravelApp.DesktopHost.Command.Agent.NewAttraction;
 using TravelApp.DesktopHost.Command.Agent.NewPlace;
 
@@ -127,15 +129,26 @@ namespace TravelApp.DesktopHost.ViewModel.Component.Agent
         public ICommand Create { get; }
         public ICommand UploadImageCommand { get; }
         public ValidationViewModel ValidationViewModel { get; }
+        public Attraction Attraction { get; set; }
 
-        public NewAttractionViewModel()
-        { 
+        public NewAttractionViewModel(Attraction attraction = null)
+        {
+            ValidationViewModel = new ValidationViewModel();
+
             Cancel = new CancelNewAttractionCommand();
             Create = new CreateNewAttractionCommand(this);
-            ValidationViewModel = new ValidationViewModel();
             IsButtonEnabled = false;
             ImageVisibility = Visibility.Collapsed;
             UploadImageCommand = new RelayCommand(UploadImage);
+
+            if (attraction != null)
+            {
+                Name = attraction.Name;
+                Address = attraction.Address;
+                Description = attraction.Description;
+                ImageSource = ImageConverter.LoadPicture(attraction.Image);
+                ImageVisibility = Visibility.Visible;
+            }
         }
 
         private void UploadImage()
