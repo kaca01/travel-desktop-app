@@ -65,7 +65,7 @@ namespace TravelApp.DesktopHost.View
                 else if (windowWidth <= 990) { viewModel.TableWidth = 650; }
                 else if (windowWidth <= 1200) { viewModel.TableWidth = 700; }
                 else if (windowWidth <= 1400) { viewModel.TableWidth = 900; }
-                else { viewModel.TableWidth = 1150; }
+                else { viewModel.TableWidth = 1075; }
             }
         }
 

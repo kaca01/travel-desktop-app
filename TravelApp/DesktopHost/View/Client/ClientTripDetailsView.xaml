@@ -16,7 +16,8 @@
             <RowDefinition Height="auto"/>
             <RowDefinition Height="auto" />
         </Grid.RowDefinitions>
-        <components:ClientNavigationView Grid.Row="0" SelectedIndex="0"></components:ClientNavigationView>
+        <components:ClientNavigationView Grid.Row="0" SelectedIndex="0" Visibility="{Binding ButtonsVisibility}"></components:ClientNavigationView>
+        <components:AgentNavigationView Grid.Row="0" SelectedIndex="0" Visibility="{Binding EditVisibility}"></components:AgentNavigationView>
 
         <ScrollViewer
             x:Name="VerticalScrollViewer"
@@ -281,7 +282,7 @@
                                    Width="{Binding FieldsWidth}" 
                                    HorizontalAlignment="Left"
                                    Height="auto" 
-                                   Margin="70 75 0 0"
+                                   Margin="70 75 0 20"
                                                />
                         </Border>
                         <ScrollViewer Grid.Row="1" Height="180" HorizontalScrollBarVisibility="Auto">

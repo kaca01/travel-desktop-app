@@ -12,6 +12,9 @@ using TravelApp.DesktopHost.ViewModel.Component.Trip;
 using System.Windows;
 using TravelApp.DesktopHost.Command.Agent;
 using TravelApp.DesktopHost.Command.Agent.NewTrip;
+using System.Drawing;
+using System.IO;
+using System.Windows.Media.Imaging;
 
 namespace TravelApp.DesktopHost.ViewModel
 {
@@ -187,6 +190,7 @@ namespace TravelApp.DesktopHost.ViewModel
                 t.Departure = trip.Departure;
                 t.Departure = trip.Destination;
                 t.Image = trip.Image;
+                t.Picture = loadPicture(trip.Image);
                 t.Description = trip.Description.Substring(0, Math.Min(trip.Description.Length, 120)) + "...";
                 trips.Add(t);
             }
@@ -235,6 +239,35 @@ namespace TravelApp.DesktopHost.ViewModel
             else
                 return false;
 
+        }
+
+        private BitmapImage loadPicture(byte[] imageData)
+        {
+            imageData = ConvertImageToByteArray();
+            using (MemoryStream memoryStream = new MemoryStream(imageData))
+            {
+                // Create a new BitmapImage
+                BitmapImage bitmapImage = new BitmapImage();
+
+                // Set the MemoryStream as the source of the BitmapImage
+                bitmapImage.BeginInit();
+                bitmapImage.StreamSource = memoryStream;
+                bitmapImage.CacheOption = BitmapCacheOption.OnLoad;
+                bitmapImage.EndInit();
+
+                // Set the BitmapImage as the source of the Image control
+                return bitmapImage;
+            }
+        }
+
+        public byte[] ConvertImageToByteArray()
+        {
+            Image image = Image.FromFile("../../../Style/Images/trip.png");
+            using (MemoryStream ms = new MemoryStream())
+            {
+                image.Save(ms, System.Drawing.Imaging.ImageFormat.Png); // Change the format if needed
+                return ms.ToArray();
+            }
         }
     }
 }
