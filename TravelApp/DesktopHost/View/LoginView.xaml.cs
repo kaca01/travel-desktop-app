@@ -23,6 +23,7 @@ namespace TravelApp.DesktopHost.View
         public LoginView()
         {
             InitializeComponent();
+            SetHelpKey(null, null);
         }
 
         private void TextBox_PreviewTextInputEmail(object sender, TextCompositionEventArgs e)
@@ -52,6 +53,16 @@ namespace TravelApp.DesktopHost.View
             {
                 viewModel.TextFontSize = 60;
                 viewModel.Width = 439;
+            }
+        }
+
+        public void SetHelpKey(object sender, EventArgs e)
+        {
+            IInputElement focusedControl = FocusManager.GetFocusedElement(Application.Current.Windows[0]);
+            if (focusedControl is DependencyObject)
+            {
+                HelpProvider.SetHelpKey((DependencyObject)focusedControl, "login");
+
             }
         }
     }
