@@ -62,23 +62,30 @@ namespace TravelApp.DesktopHost.View
                 {
                     Location = location
                 };
+                dot.Background = new SolidColorBrush(Colors.Yellow);
                 //zvijezda == restoran
-                if (type == "r") dot.Content = new Path
+                if (type == "r")
                 {
-                    Data = Geometry.Parse("M 10,10 L 20,30 40,35 20,40 10,60 0,40 10,10 Z"),
-                    Fill = new SolidColorBrush(Colors.Yellow),
-                    Stroke = new SolidColorBrush(Colors.Black),
-                    StrokeThickness = 1
-                };
+                    dot.Background = new SolidColorBrush(Colors.White);
+                    dot.Content = new Path
+                    {
+                        Data = Geometry.Parse("M 10,10 L 20,30 40,35 20,40 10,60 0,40 10,10 Z"),
+                        Fill = new SolidColorBrush(Colors.Red),
+                        Stroke = new SolidColorBrush(Colors.Black),
+                        StrokeThickness = 1
+                    };
+                }
                 //krug = smjestaj
-                else if (type == "ac") dot.Content = new Ellipse
+                else if (type == "ac")
                 {
-                    Width = 20,
-                    Height = 20,
-                    Fill = new SolidColorBrush(Colors.Red),
-                    Stroke = new SolidColorBrush(Colors.Black),
-                    StrokeThickness = 1
-                };
+                    dot.Background = new SolidColorBrush(Colors.White);
+                    dot.Content = new Path
+                    {
+                        Data = Geometry.Parse("M0,0 L10,10 L20,0 Z"),
+                        Fill = Brushes.Blue,
+                        Stroke = new SolidColorBrush(Colors.Black),
+                    };
+                }
                 ToolTip tt = new ToolTip();
                 tt.Content = "Name = " + name;
                 dot.ToolTip = tt;
