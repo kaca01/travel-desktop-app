@@ -10,6 +10,8 @@ namespace TravelApp.DesktopHost.ViewModel
     public class TransactionListItemViewModel
     {
         public int Id { get; set; }  // id of reservation from database
+
+        public int TripId { get; set; }
         public User User { get; set; }
         public string Passenger { get; set; } 
         public string Trip { get; set; }  
@@ -17,6 +19,7 @@ namespace TravelApp.DesktopHost.ViewModel
         public DateTime StartDate { get; set; }
         public DateTime EndDate { get; set; }
         public string Type { get; set; }
+        public DateTime TransactionDate { get; set; }
         public bool IsDeleted { get; set; }
     }
 }

@@ -16,7 +16,7 @@
         d:DataContext="{d:DesignInstance Type=viewmodels:MainViewModel}"
         TextElement.Foreground="{DynamicResource MaterialDesignBody}"
         WindowState="Maximized"
-        MinWidth="900"
+        MinWidth="1000"
         MinHeight="400">
     <Grid>
         <Grid.Resources>
@@ -77,6 +77,14 @@
 
             <DataTemplate DataType="{x:Type viewmodels:ClientAttractionsViewModel}">
                 <views:ClientAttractionsView/>
+            </DataTemplate>
+
+            <DataTemplate DataType="{x:Type viewmodels:AgentSoldTripsViewModel}">
+                <views:AgentSoldTripsView/>
+            </DataTemplate>
+
+            <DataTemplate DataType="{x:Type viewmodels:ClientSoldTripsViewModel}">
+                <views:ClientSoldTripsView/>
             </DataTemplate>
 
         </Grid.Resources>

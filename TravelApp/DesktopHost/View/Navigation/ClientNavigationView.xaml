@@ -98,7 +98,7 @@
                         Foreground="#000000"
                         FontSize="{ Binding Navigation.TextFontSize }"
                         FontWeight="Bold"
-                        Command="{ Binding Navigation.Trips }"/>
+                        Command="{ Binding Navigation.SoldTrips }"/>
                 </StackPanel>
             </TabItem.Header>
         </TabItem>

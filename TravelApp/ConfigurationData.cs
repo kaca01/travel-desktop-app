@@ -129,7 +129,6 @@ namespace TravelApp
             db.Transactions.Add(purchase3);
             db.Transactions.Add(reservation4);
             db.Transactions.Add(purchase4);
-
         }
     }
 }

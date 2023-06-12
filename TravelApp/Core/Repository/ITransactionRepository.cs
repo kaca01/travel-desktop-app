@@ -11,9 +11,9 @@ namespace TravelApp.Core.Repository
     public interface ITransactionRepository
     {
         public List<TransactionListItemViewModel> GetReservations();
-        public List<TransactionListItemViewModel> GetReservationsForCurrentUser();
+        public List<TransactionListItemViewModel> GetReservationsForCurrentUser(string currentUser);
         public List<TransactionListItemViewModel> GetTrips();
-        public List<TransactionListItemViewModel> GetTripsForCurrentUser();
+        public List<TransactionListItemViewModel> GetTripsForCurrentUser(string currentUser);
         public Transaction GetById(int id);
         public void BuyTrip(int id);
         public void CallOffReservation(int id);

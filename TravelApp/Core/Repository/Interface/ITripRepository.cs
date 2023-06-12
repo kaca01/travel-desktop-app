@@ -1,10 +1,12 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using TravelApp.Core.Model;
 using TravelApp.DesktopHost.ViewModel.Component.Agent;
+using TravelApp.DesktopHost.ViewModel;
 
 namespace TravelApp.Core.Repository
 {
@@ -17,5 +19,6 @@ namespace TravelApp.Core.Repository
         public bool Delete(int id);
 
         public Trip Create(NewTripViewModel vm, List<Attraction> attrcs, List<TouristFacility> tf);
+        public List<TripListItemViewModel> GetAllReturnListItem();
     }
 }

@@ -19,6 +19,7 @@ namespace TravelApp.Core.Model
         public User User { get; set; }
         public Trip Trip { get; set; }
         public TransactionType Type { get; set; }
+        public DateTime TransactionDate { get; set; }
         public bool IsDeleted { get; set; }
     }
 }
