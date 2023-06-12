@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using TravelApp.Core.Model;
+using TravelApp.Core.Service;
 using TravelApp.DesktopHost.ViewModel;
 
 namespace TravelApp.Core.Repository
@@ -11,6 +12,9 @@ namespace TravelApp.Core.Repository
     public class TransactionRepository : ITransactionRepository
     {
         TravelContext context = TravelContext.Instance;
+
+        ITripRepository tripRepository = new TripRepository();
+
         public List<TransactionListItemViewModel> GetReservations()
         {
                 return context.Transactions.Select(t => new TransactionListItemViewModel
@@ -42,7 +46,7 @@ namespace TravelApp.Core.Repository
                     Type = t.Type.ToString(),
                     IsDeleted = t.IsDeleted
                     // TODO promeni za trenutnog korisnika
-                }).Where(t => !t.IsDeleted && t.Type.Equals("RESERVATION") && t.User.Email.Equals("ines@gmail.com")).ToList();
+                }).Where(t => !t.IsDeleted && t.Type.Equals("RESERVATION") && t.User.Email.Equals(UserService.CurrentUser.Email)).ToList();
          
         }
 
@@ -110,6 +114,29 @@ namespace TravelApp.Core.Repository
                     transaction.IsDeleted = true;
                     //todo check if this works
                 }
+        }
+
+        public void TripBooking(int id)
+        {
+            User user = UserService.CurrentUser;
+            Trip trip = tripRepository.Get(id);
+
+            Transaction transaction = new Transaction();
+            transaction.IsDeleted = false;
+            transaction.User = user;
+            transaction.Trip = trip;
+            transaction.Type = TransactionType.RESERVATION;
+            transaction.Id = generateId();
+            context.Transactions.Add(transaction);
+        }
+
+        private int generateId()
+        {
+            int max = 0;
+            foreach (Transaction transaction in context.Transactions)
+             if (transaction.Id > max) max = transaction.Id;
+  
+            return max+1;
         }
     }
 }

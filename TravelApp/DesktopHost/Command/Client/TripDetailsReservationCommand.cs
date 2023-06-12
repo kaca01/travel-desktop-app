@@ -6,12 +6,12 @@ using System.Threading.Tasks;
 using System.Windows;
 using TravelApp.Core.Model;
 using TravelApp.Core.Service;
-using TravelApp.DesktopHost.ViewModel;
 using TravelApp.DesktopHost.ViewModel.Navigation;
+using TravelApp.DesktopHost.ViewModel;
 
 namespace TravelApp.DesktopHost.Command
 {
-    class TripDetailsBuyCommand : BaseCommand
+    class TripDetailsReservationCommand : BaseCommand
     {
         private ClientTripDetailsViewModel _viewModel;
 
@@ -19,7 +19,8 @@ namespace TravelApp.DesktopHost.Command
 
         private readonly NavigationStore _navigation;
 
-        public TripDetailsBuyCommand(ClientTripDetailsViewModel viewModel) {
+        public TripDetailsReservationCommand(ClientTripDetailsViewModel viewModel)
+        {
             _viewModel = viewModel;
             _navigation = NavigationStore.Instance();
             _service = new TransactionService();
@@ -31,13 +32,13 @@ namespace TravelApp.DesktopHost.Command
 
             if (openMessageBox(trip))
             {
-                _service.BuyTrip(trip.Id);
-                MessageBox.Show("You bought the trip: " +
+                _service.TripBooking(trip.Id);
+                MessageBox.Show("You have booked the trip: " +
                                 "\nName: " + trip.Name +
                                 "\nPrice: " + trip.Price +
                                 "\nStart Date: " + trip.StartDate.ToShortDateString() +
                                 "\nEnd Date: " + trip.EndDate.ToShortDateString() +
-                                "\nCheck it out in section My Trips!", "Successfully bought.", MessageBoxButton.OK, MessageBoxImage.Information);
+                                "\nCheck it out in section Reservations!", "Successfully booked.", MessageBoxButton.OK, MessageBoxImage.Information);
                 _navigation.CurrentViewModel = new ClientTripsViewModel();
 
             }
@@ -45,7 +46,7 @@ namespace TravelApp.DesktopHost.Command
 
         private bool openMessageBox(Trip item)
         {
-            MessageBoxResult result = MessageBox.Show("You want buy the trip ?" +
+            MessageBoxResult result = MessageBox.Show("Are you sure that you want to book this trip?" +
                                                         "\nName: " + item.Name +
                                                         "\nPrice: " + item.Price +
                                                         "\nStart Date: " + item.StartDate.ToShortDateString() +

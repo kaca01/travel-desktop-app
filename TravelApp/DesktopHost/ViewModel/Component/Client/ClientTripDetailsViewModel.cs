@@ -112,6 +112,8 @@ namespace TravelApp.DesktopHost.ViewModel
 
         public ICommand Buy { get; set; }
 
+        public ICommand Book { get; set; }
+
 
         public ClientTripDetailsViewModel(int selectedTrip)
         {
@@ -120,20 +122,13 @@ namespace TravelApp.DesktopHost.ViewModel
             _trip = _tripService.Get(selectedTrip);
             Trips = new ClientTripsCommand();
             Buy = new TripDetailsBuyCommand(this);
+            Book = new TripDetailsReservationCommand(this);
 
             List<TouristFacilityListItemViewModel> data = _tripService.GetTouristFacilities(_trip.Id);
 
-            // TODO : delete this after fixing the problem with database
-            //ITouristFacilityRepository repo = new TouristFacilityRepository();
-            //var data = repo.Get();
+            _facilities = new ObservableCollection<TouristFacilityListItemViewModel>(data);
 
-            Facilities = new ObservableCollection<TouristFacilityListItemViewModel>(data);
-
-            _attractions = _tripService.GetAttractions(selectedTrip);
-
-            // TODO : dele this after fixing database
-            //AttractionService attractionService = new AttractionService();
-            //Attractions = attractionService.GetAll();
+            _attractions = _tripService.GetAttractions(selectedTrip);;
         }
     }
 }

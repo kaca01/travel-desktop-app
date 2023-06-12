@@ -607,7 +607,7 @@
                     <Button
                         ToolTip="Reserving this trip, you will be able to call it off 3 days before the trip."
                         Grid.Column="3"
-                        Content="Reserve"
+                        Content="Book"
                         Cursor="Hand"
                         Width="200"
                         Height="35"
@@ -618,6 +618,7 @@
                         Foreground="White"
                         FontSize="16"
                         FontWeight="DemiBold"
+                        Command="{ Binding Book }"
                         Style="{ StaticResource FormButton }">
                         <Button.Resources>
                             <Style TargetType="{x:Type Border}">
