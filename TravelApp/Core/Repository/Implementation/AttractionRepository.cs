@@ -11,47 +11,37 @@ namespace TravelApp.Core.Repository
 {
     public class AttractionRepository : IAttractionRepository
     {
+        TravelContext context = TravelContext.Instance;
         public List<Attraction> GetAll()
         {
-            using (var context = new TravelContext())
-            {
+
                 return context.Attractions.Where(a => !a.IsDeleted).ToList();
-            }
+
         }
 
         public Attraction Get(int id)
         {
-            using (var context = new TravelContext())
-            {
-                return context.Attractions.First(t => t.Id == id);
-            }
+                return context.Attractions.Where(u => u.Id == id).ToList()[0];
+
         }
 
         public bool Delete(int id)
         {
-            using (var context = new TravelContext())
-            {
-                Attraction attraction = context.Attractions.First(t => t.Id == id);
-                if (attraction != null)
+                Attraction attraction = context.Attractions.Where(u => u.Id == id).ToList()[0];
+            if (attraction != null)
                 {
                     attraction.IsDeleted = true;
-                    context.SaveChanges();
+                    //todo check if this works
                     return true;
                 }
                 return false;
-            }
         }
 
         public Attraction Create(string name, string address, string description, BitmapImage imageSource)
         {
-            using (var context = new TravelContext())
-            {
-
                 Attraction a = new Attraction() { Name = name, Description = description, Address = address, Image = ImageConverter.ConvertImageSourceToByteArray(imageSource) };
                 context.Attractions.Add(a);
-                context.SaveChanges();
                 return a;
-            }
         }
     }
 }

@@ -26,19 +26,19 @@ namespace TravelApp
     {
         public MainWindow()
         {
+            TravelContext context = TravelContext.Instance;
             new ConfigurationData().PopulateDataBase();
 
             // used to check if data has been properly added to database
-            using (var context = new TravelContext())
-            {
+            context = TravelContext.Instance;
+           
                 // add breakpoint and check if everything has been properly added
-                List<User> users = context.Users.ToList();
-                List<Attraction> attractions = context.Attractions.ToList();
-                List<TouristFacility> facilities = context.TouristFacilities.ToList();
-                List<Trip> trips = context.Trips.ToList();
-                List<Transaction> transactions = context.Transactions.ToList();
+            List<User> users = context.Users.ToList();
+            List<Attraction> attractions = context.Attractions.ToList();
+            List<TouristFacility> facilities = context.TouristFacilities.ToList();
+            List<Trip> trips = context.Trips.ToList();
+            List<Transaction> transactions = context.Transactions.ToList();
 
-            }
             InitializeComponent();
         }
     }

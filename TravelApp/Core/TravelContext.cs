@@ -9,18 +9,27 @@ using TravelApp.Core.Model;
 
 namespace TravelApp.Core
 {
-    public class TravelContext : DbContext
+    public class TravelContext
     {
+        private TravelContext() { }
 
-        protected override void OnConfiguring
-       (DbContextOptionsBuilder optionsBuilder)
+        private static TravelContext instance = null;
+        public static TravelContext Instance
         {
-            optionsBuilder.UseInMemoryDatabase(databaseName: "TravelDb");
+            get
+            {
+                if (instance == null)
+                {
+                    instance = new TravelContext();
+                }
+                return instance;
+            }
         }
-        public DbSet<User> Users { get; set; }
-        public DbSet<TouristFacility> TouristFacilities { get; set; }
-        public DbSet<Attraction> Attractions { get; set; }
-        public DbSet<Trip> Trips { get; set; }
-        public DbSet<Transaction> Transactions { get; set; }
+
+        public List<User> Users { get; set; } = new List<User>();
+        public List<TouristFacility> TouristFacilities { get; set; } = new List<TouristFacility>();
+        public List<Attraction> Attractions { get; set; } = new List<Attraction>();
+        public List<Trip> Trips { get; set; } = new List<Trip>();
+        public List<Transaction> Transactions { get; set; } = new List<Transaction>();
     }
 }
