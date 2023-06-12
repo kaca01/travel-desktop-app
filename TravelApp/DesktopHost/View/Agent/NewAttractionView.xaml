@@ -12,7 +12,6 @@
              Focusable="True"
              l:HelpProvider.HelpKey="newAttraction"
              GotFocus="SetHelpKey"
-             Loaded="UserControl_Loaded"
              mc:Ignorable="d" 
              Background="White"
              SizeChanged="Window_SizeChanged"

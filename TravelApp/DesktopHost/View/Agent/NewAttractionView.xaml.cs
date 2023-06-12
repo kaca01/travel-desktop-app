@@ -53,6 +53,7 @@ namespace TravelApp.DesktopHost.View.Agent
                     });
                 }
             }
+            this.Focus();
         }
 
         private void PlaceDot(Location location, string text)
