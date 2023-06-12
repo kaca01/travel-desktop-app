@@ -4,15 +4,17 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
+using System.Windows.Input;
 using TravelApp.Core.Model;
 using TravelApp.Core.Service;
+using TravelApp.DesktopHost.Command.Agent.NewAttraction;
 using TravelApp.DesktopHost.ViewModel.Component.Trip;
 
 namespace TravelApp.DesktopHost.ViewModel
 {
     internal class AgentAttractionsViewModel : BaseViewModel
     {
-        private IAttractionService _attractionService;
+        private AttractionService _attractionService;
 
         private double _textFontSize;
 
@@ -121,6 +123,8 @@ namespace TravelApp.DesktopHost.ViewModel
             }
         }
 
+        public ICommand NewAttraction { get; }
+
         public AgentAttractionsViewModel() 
         {
             _attractionService = new AttractionService();
@@ -134,6 +138,7 @@ namespace TravelApp.DesktopHost.ViewModel
             FilteredAttractions = Attractions;
             _search = "";
             _selectedSort = 0;
+            NewAttraction = new NewAttractionNavigationCommand();
         }
 
         private void populateSortingCriteria()

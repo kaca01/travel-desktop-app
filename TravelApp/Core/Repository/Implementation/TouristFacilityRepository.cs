@@ -11,34 +11,26 @@ namespace TravelApp.Core.Repository
 {
     public class TouristFacilityRepository : ITouristFacilityRepository
     {
+        TravelContext context = TravelContext.Instance;
         public List<TouristFacility> GetAll()
         {
-            using (var context = new TravelContext())
-            {
+            
                 return context.TouristFacilities.ToList();
-            }
         }
 
         public TouristFacility GetById(int id)
         {
-            using (var context = new TravelContext())
-            {
-                return context.TouristFacilities.First(u => u.Id == id);
-            }
+                return context.TouristFacilities.Where(u => u.Id == id).ToList()[0];
         }
 
         public List<string> GetAllNames()
         {
-            using (var context = new TravelContext())
-            {
                 return context.TouristFacilities.Select(u => u.Name).ToList();
-            }
+       
         }
 
         public List<TouristFacilityListItemViewModel> Get()
         {
-            using (var context = new TravelContext())
-            {
                 return context.TouristFacilities.Select(t => new TouristFacilityListItemViewModel
                 {
                     Id = t.Id,
@@ -48,33 +40,39 @@ namespace TravelApp.Core.Repository
                     Link = t.Link,
                     IsDeleted = t.IsDeleted
                 }).Where(t => !t.IsDeleted).ToList();
-            }
+
+        }
+
+        public List<TouristFacility> GetValidRestaurants()
+        {
+                return context.TouristFacilities.Where(t => !t.IsDeleted && t.Type.Equals(PlaceType.RESTAURANT)).ToList();
+           
+        }
+
+        public List<TouristFacility> GetValidAccomodations()
+        {
+                return context.TouristFacilities.Where(t => !t.IsDeleted && t.Type.Equals(PlaceType.ACCOMODATION)).ToList();
+           
         }
 
         public void DeleteItem(int id) 
         {
-            using (var context = new TravelContext())
-            {
                 TouristFacility facility = GetById(id);
 
                 if (facility != null)
                 {
                     facility.IsDeleted = true;
-                    context.Update(facility);
-                    context.SaveChanges();
+                    //context.Update(facility);
+                    //TODO CHECK THIS
                 }
-            }
+            
         }
 
         public TouristFacility Create(string name, string address, string link, PlaceType type)
         {
-            using (var context = new TravelContext())
-            {
                 TouristFacility tf = new TouristFacility() { Name = name, Address = address, Link = link, Type = type };
                 context.TouristFacilities.Add(tf);
-                context.SaveChanges();
                 return tf;
-            }
         }
     }
 }

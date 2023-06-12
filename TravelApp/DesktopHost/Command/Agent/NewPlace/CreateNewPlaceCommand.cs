@@ -10,7 +10,7 @@ using TravelApp.DesktopHost.ViewModel.Component.Agent;
 using TravelApp.Core.Model;
 using System.Windows;
 
-namespace TravelApp.DesktopHost.Command.Agent
+namespace TravelApp.DesktopHost.Command.Agent.NewPlace
 {
     public class CreateNewPlaceCommand : BaseCommand
     {
@@ -29,8 +29,8 @@ namespace TravelApp.DesktopHost.Command.Agent
         {
             try
             {
-                TouristFacility tf =  _service.Create(_placeVM);
-                MessageBox.Show("Created place with name "+ _placeVM.Name, "Successfully created", MessageBoxButton.OK, MessageBoxImage.Information);
+                TouristFacility tf = _service.Create(_placeVM);
+                MessageBox.Show("Created place with name " + _placeVM.Name, "Successfully created", MessageBoxButton.OK, MessageBoxImage.Information);
                 _navigationStore.CurrentViewModel = new AgentStayEatViewModel();
             }
             catch (Exception e)

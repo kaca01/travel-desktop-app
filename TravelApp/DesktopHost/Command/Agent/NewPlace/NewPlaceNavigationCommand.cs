@@ -7,7 +7,7 @@ using TravelApp.DesktopHost.ViewModel.Navigation;
 using TravelApp.DesktopHost.ViewModel;
 using TravelApp.DesktopHost.ViewModel.Component.Agent;
 
-namespace TravelApp.DesktopHost.Command.Agent
+namespace TravelApp.DesktopHost.Command.Agent.NewPlace
 {
     public class NewPlaceNavigationCommand : BaseCommand
     {

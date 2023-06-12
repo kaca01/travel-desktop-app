@@ -10,7 +10,7 @@ namespace TravelApp.DesktopHost.ViewModel
 {
     public class ClientAttractionsViewModel : BaseViewModel
     {
-        private IAttractionService _attractionService;
+        private AttractionService _attractionService;
 
         private double _textFontSize;
 

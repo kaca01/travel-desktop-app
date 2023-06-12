@@ -21,6 +21,11 @@ namespace TravelApp.DesktopHost.ViewModel
         private string _addressValidation;
         private string _linkValidation;
 
+        private string _startDateValidation;
+        private string _endDateValidation;
+        private string _priceValidation;
+        private string _descriptionValidation;
+
         public string NameValidation
         {
             get => _nameValidation;
@@ -63,11 +68,35 @@ namespace TravelApp.DesktopHost.ViewModel
             set { _linkValidation = value; OnPropertyChanged(nameof(LinkValidation)); }
         }
 
+        public string StartDateValidation
+        {
+            get => _startDateValidation;
+            set { _startDateValidation = value; OnPropertyChanged(nameof(StartDateValidation)); }
+        }
+
+        public string EndDateValidation
+        {
+            get => _endDateValidation;
+            set { _endDateValidation = value; OnPropertyChanged(nameof(EndDateValidation)); }
+        }
+
+        public string PriceValidation
+        {
+            get => _priceValidation;
+            set { _priceValidation = value; OnPropertyChanged(nameof(PriceValidation)); }
+        }
+
+        public string DescriptionValidation
+        {
+            get => _descriptionValidation;
+            set { _descriptionValidation = value; OnPropertyChanged(nameof(DescriptionValidation)); }
+        }
+
         public bool IsNameValid(string name)
         {
             if (string.IsNullOrWhiteSpace(name)) NameValidation = "Required";
             else if (string.IsNullOrWhiteSpace(name.Trim())) NameValidation = "Required";
-            else if (name.Trim().Length < 3) NameValidation = "Name must contain minimum 3 characters";
+            else if (name.Trim().Length < 3) NameValidation = "Must contain minimum 3 characters";
             else
             {
                 NameValidation = "";
@@ -80,7 +109,7 @@ namespace TravelApp.DesktopHost.ViewModel
         {
             if (string.IsNullOrWhiteSpace(name)) SurnameValidation = "Required";
             else if (string.IsNullOrWhiteSpace(name.Trim())) SurnameValidation = "Required";
-            else if (name.Trim().Length < 3) SurnameValidation = "Surname must contain minimum 3 characters";
+            else if (name.Trim().Length < 3) SurnameValidation = "Must contain minimum 3 characters";
             else
             {
                 SurnameValidation = "";
@@ -158,7 +187,7 @@ namespace TravelApp.DesktopHost.ViewModel
         {
             if (string.IsNullOrWhiteSpace(name)) AddressValidation = "Required";
             else if (string.IsNullOrWhiteSpace(name.Trim())) AddressValidation = "Required";
-            else if (name.Trim().Length < 3) AddressValidation = "Address must contain minimum 3 characters";
+            else if (name.Trim().Length < 3) AddressValidation = "Must contain minimum 3 characters";
             else
             {
                 AddressValidation = "";
@@ -181,6 +210,87 @@ namespace TravelApp.DesktopHost.ViewModel
                     return false;
                 }
                 LinkValidation = "";
+                return true;
+            }
+            return false;
+        }
+
+        public bool IsStartDateValid(string name)
+        {
+            if (string.IsNullOrWhiteSpace(name)) StartDateValidation = "Required";
+            else if (string.IsNullOrWhiteSpace(name.Trim())) StartDateValidation = "Required";
+            else
+            {
+                DateTime result;
+                bool success = DateTime.TryParse(name,out result);
+                if (!success)
+                {
+                    StartDateValidation = "Format not valid";
+                    return false;
+                }
+                if (result < DateTime.Now)
+                {
+                    StartDateValidation = "Date must be in future";
+                    return false;
+                }
+                StartDateValidation = "";
+                return true;
+            }
+            return false;
+            //todo must be before end date
+        }
+
+        public bool IsEndDateValid(string name)
+        {
+            if (string.IsNullOrWhiteSpace(name)) EndDateValidation = "Required";
+            else if (string.IsNullOrWhiteSpace(name.Trim())) EndDateValidation = "Required";
+            else
+            {
+                DateTime result;
+                bool success = DateTime.TryParse(name, out result);
+                if (!success)
+                {
+                    EndDateValidation = "Format not valid";
+                    return false;
+                }
+                if (result < DateTime.Now)
+                {
+                    EndDateValidation = "Date must be in future";
+                    return false;
+                }
+                EndDateValidation = "";
+                return true;
+            }
+            return false;
+            //todo must be after start date
+        }
+
+        public bool IsPriceValid(string name)
+        {
+            if (string.IsNullOrWhiteSpace(name)) PriceValidation = "Required";
+            else if (string.IsNullOrWhiteSpace(name.Trim())) PriceValidation = "Required";
+            else
+            {
+                bool flag = name.All(char.IsDigit);
+                if (!flag)
+                {
+                    PriceValidation = "Input must consist of numbers only.";
+                    return false;
+                }
+                PriceValidation = "";
+                return true;
+            }
+            return false;
+        }
+
+        public bool IsDescriptionValid(string name)
+        {
+            if (string.IsNullOrWhiteSpace(name)) DescriptionValidation = "Required";
+            else if (string.IsNullOrWhiteSpace(name.Trim())) DescriptionValidation = "Required";
+            else if (name.Trim().Length < 5) DescriptionValidation = "Description must contain minimum 5 characters";
+            else
+            {
+                DescriptionValidation = "";
                 return true;
             }
             return false;

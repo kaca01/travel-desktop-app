@@ -5,6 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using TravelApp.Core.Model;
 using TravelApp.DesktopHost.ViewModel;
+using TravelApp.DesktopHost.ViewModel.Component.Agent;
 
 namespace TravelApp.Core.Repository
 {
@@ -19,5 +20,7 @@ namespace TravelApp.Core.Repository
         public List<TouristFacilityListItemViewModel> GetTouristFacilities(int id);
 
         public List<Attraction> GetAttractions(int id);
+        
+        public Trip Create(NewTripViewModel vm, List<Attraction> attrcs, List<TouristFacility> tf);
     }
 }

@@ -6,9 +6,9 @@ using System.Threading.Tasks;
 using TravelApp.DesktopHost.ViewModel.Navigation;
 using TravelApp.DesktopHost.ViewModel;
 
-namespace TravelApp.DesktopHost.Command.Agent
+namespace TravelApp.DesktopHost.Command.Agent.NewPlace
 {
-    public class CancelNewPlaceCommand: BaseCommand
+    public class CancelNewPlaceCommand : BaseCommand
     {
         private readonly NavigationStore _navigation;
 

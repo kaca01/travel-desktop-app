@@ -9,6 +9,7 @@ using TravelApp.Core.Service;
 using TravelApp.Core.Model;
 using MaterialDesignThemes.Wpf;
 using System.Windows;
+using TravelApp.DesktopHost.ViewModel.Component.Agent;
 
 namespace TravelApp.DesktopHost.Command
 {
