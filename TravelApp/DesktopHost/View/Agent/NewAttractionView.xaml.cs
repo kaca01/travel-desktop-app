@@ -24,6 +24,7 @@ namespace TravelApp.DesktopHost.View.Agent
         public NewAttractionView()
         {
             InitializeComponent();
+            SetHelpKey(null, null);
         }
 
         private void Window_SizeChanged(object sender, SizeChangedEventArgs e)
@@ -126,5 +127,18 @@ namespace TravelApp.DesktopHost.View.Agent
             }
         }
 
+        public void SetHelpKey(object sender, EventArgs e)
+        {
+            IInputElement focusedControl = FocusManager.GetFocusedElement(Application.Current.Windows[0]);
+            if (focusedControl is DependencyObject)
+            {
+                HelpProvider.SetHelpKey((DependencyObject)focusedControl, "newAttraction");
+            }
+        }
+
+        private void UserControl_Loaded(object sender, RoutedEventArgs e)
+        {
+            this.Focus();
+        }
     }
 }
