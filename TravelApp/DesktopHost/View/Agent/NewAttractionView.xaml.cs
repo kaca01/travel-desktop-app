@@ -42,8 +42,14 @@ namespace TravelApp.DesktopHost.View.Agent
             {
                 if (viewModel.Address != null & viewModel.Address != "")
                 {
-                    (double latitude, double longitude) = MapService.GetCoordinates(viewModel.Address);
-                    PlaceDot(new Location(latitude, longitude), viewModel.Address);
+                    Task.Run(() =>
+                    {
+                        (double latitude, double longitude) = MapService.GetCoordinates(viewModel.Address);
+                        Application.Current.Dispatcher.Invoke(() =>
+                        {
+                            PlaceDot(new Location(latitude, longitude), viewModel.Address);
+                        });
+                    });
                 }
             }
         }
@@ -54,6 +60,7 @@ namespace TravelApp.DesktopHost.View.Agent
             {
                 Location = location
             };
+            dot.Background = new SolidColorBrush(Colors.Yellow);
             ToolTip tt = new ToolTip();
             tt.Content = "Address = " + text;
             dot.ToolTip = tt;

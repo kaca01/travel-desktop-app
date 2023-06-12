@@ -229,7 +229,7 @@
                                         </Button.Resources>
                                     </Button>
                                     <Button
-                                        Content="Update"
+                                        Content="Edit"
                                         Width="140"
                                         Background="White"
                                         Foreground="Black"

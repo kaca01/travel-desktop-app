@@ -145,7 +145,7 @@ namespace TravelApp.DesktopHost.ViewModel.Component.Agent
             ValidationViewModel = new ValidationViewModel();
 
             Cancel = new CancelNewAttractionCommand();
-            Create = new CreateNewAttractionCommand(this);
+            Create = new CreateNewAttractionCommand(this, attraction);
             IsButtonEnabled = false;
             ImageVisibility = Visibility.Collapsed;
             UploadImageCommand = new RelayCommand(UploadImage);

@@ -191,7 +191,7 @@
                 Margin="0, 50 ,0 ,50"
                 IsEnabled="{Binding IsButtonEnabled}"
                 ToolTip="Click to create the new place"
-                Content="Create"
+                Content="Save"
                 Style="{StaticResource FormButton}"
                 Command="{Binding Create}"
                 IsDefault="True" Cursor="Hand" >
