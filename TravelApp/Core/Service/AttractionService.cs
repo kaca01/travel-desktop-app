@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using TravelApp.Core.Model;
 using TravelApp.Core.Repository;
 using TravelApp.DesktopHost.ViewModel;
+using TravelApp.DesktopHost.ViewModel.Component.Agent;
 using TravelApp.DesktopHost.ViewModel.ItemViewModel;
 
 namespace TravelApp.Core.Service
@@ -28,6 +29,10 @@ namespace TravelApp.Core.Service
                 Name = a.Name,
                 IsSelected = false
             }).ToList();
+        }
+        public Attraction Create(NewAttractionViewModel vm)
+        {
+            return this.attractionRepository.Create(vm.Name, vm.Address, vm.Description, vm.ImageSource);
         }
     }
 }
