@@ -7,9 +7,14 @@
              xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
              xmlns:viewmodels="clr-namespace:TravelApp.DesktopHost.ViewModel"
              xmlns:views="clr-namespace:TravelApp.DesktopHost.View"
+             xmlns:l="clr-namespace:TravelApp"
+             Focusable="True"
+             l:HelpProvider.HelpKey="register"
+             GotFocus="SetHelpKey"
              mc:Ignorable="d"
              SizeChanged="Window_SizeChanged"
              Background="White"
+             Loaded="UserControl_Loaded"
              d:DataContext="{d:DesignInstance Type=viewmodels:SignupViewModel}">
     <ScrollViewer>
         <Grid>
@@ -50,7 +55,7 @@
                    FontFamily="Poppins"
                    FontWeight="Regular"
                    HorizontalAlignment="Left">Name</Label>
-                <TextBox Style="{StaticResource MaterialDesignOutlinedTextBox}"
+                <TextBox x:Name="nameField" Style="{StaticResource MaterialDesignOutlinedTextBox}"
                      FontSize="15"
                      Margin="0"
                      materialDesign:HintAssist.Foreground="#4889E6"
