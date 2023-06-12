@@ -18,7 +18,11 @@
         </Grid.RowDefinitions>
         <components:ClientNavigationView Grid.Row="0" SelectedIndex="0"></components:ClientNavigationView>
 
-        <ScrollViewer Height="{ Binding ScrollViewHeight }" Grid.Row="1"  VerticalScrollBarVisibility="Auto">
+        <ScrollViewer
+            x:Name="VerticalScrollViewer"
+            Height="{ Binding ScrollViewHeight }" 
+            Grid.Row="1"  
+            VerticalScrollBarVisibility="Auto">
             <Grid>
                 <Grid.RowDefinitions>
                     <RowDefinition Height="Auto"/>
@@ -290,8 +294,12 @@
                                          HorizontalAlignment="Left"
                                          Margin="100 50 0 0">
                         <!-- bind table width with backend-->
+                        <ScrollViewer
+                            x:Name="SmallerVerticalScrollViewer"
+                            VerticalScrollBarVisibility="Auto"
+                            >
                         <DataGrid ItemsSource="{Binding Facilities}"
-                                  Width="1200"
+                                  Width="{Binding TableWidth}"
                                   Height="500"
                                   RowHeight="55"
                                   HorizontalAlignment="Center"
@@ -303,8 +311,6 @@
                                   CanUserReorderColumns="False"
                                   RowHeaderWidth="0"
                                   HeadersVisibility="Column"
-                                  ScrollViewer.VerticalScrollBarVisibility="Visible"
-                                  ScrollViewer.HorizontalScrollBarVisibility="Auto"
                                   BorderThickness="0">
 
                             <DataGrid.Resources>
@@ -454,6 +460,7 @@
 
                             </DataGrid.Columns>
                         </DataGrid>
+                        </ScrollViewer>
                     </materialDesign:Card>
                 </Grid>
 
@@ -472,7 +479,12 @@
                         Foreground="#1E2F97"
                         Margin="100 100 0 0"/>
 
-                    <ScrollViewer VerticalScrollBarVisibility="Hidden" Grid.Row="1" Height="550">
+                    <ScrollViewer HorizontalScrollBarVisibility="Auto"
+                                  VerticalScrollBarVisibility="Disabled"
+                                  PreviewMouseWheel="HorizontalScrollViewer_PreviewMouseWheel"
+                                  Margin="60 0 70 0"
+                                  Grid.Row="1" 
+                                  >
                         <ItemsControl ItemsSource="{Binding Attractions}">
                             <ItemsControl.ItemsPanel>
                                 <ItemsPanelTemplate>
@@ -481,7 +493,7 @@
                             </ItemsControl.ItemsPanel>
                             <ItemsControl.ItemTemplate>
                                 <DataTemplate>
-                                    <Border Margin="100 50 20 30" 
+                                    <Border Margin="50 50 50 30" 
                                             CornerRadius="30" 
                                             Background="#DFE6F0">   
                                         <Grid>
@@ -590,9 +602,6 @@
                         Foreground="Black"
                         FontSize="30"
                         />
-
-                    
-
                 </Grid>
             </Grid>
         </ScrollViewer>

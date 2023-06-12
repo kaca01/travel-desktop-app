@@ -27,6 +27,10 @@ namespace TravelApp.DesktopHost.ViewModel
 
         private List<Attraction> _attractions;
 
+        private double _scrollViewHeight;
+
+        private double _tableWidth;
+
         public double TextFontSize
         {
             get { return _textFontSize; }
@@ -80,13 +84,30 @@ namespace TravelApp.DesktopHost.ViewModel
             }
         }
 
+        public double ScrollViewHeight
+        {
+            get { return _scrollViewHeight; }
+            set
+            {
+                _scrollViewHeight = value;
+                OnPropertyChanged(nameof(ScrollViewHeight));
+            }
+        }
+
+        public double TableWidth
+        {
+            get { return _tableWidth; }
+            set
+            {
+                _tableWidth = value;
+                OnPropertyChanged(nameof(TableWidth));
+            }
+        }
+
+
         public ClientNavigationViewModel Navigation { get; set; }
 
         public ICommand Trips { get; set; }
-
-
-
-        public double ScrollViewHeight { get; set; }
 
 
         public ClientTripDetailsViewModel(int selectedTrip)

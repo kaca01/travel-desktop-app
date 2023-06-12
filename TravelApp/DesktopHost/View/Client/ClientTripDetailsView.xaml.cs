@@ -31,11 +31,10 @@ namespace TravelApp.DesktopHost.View
         {
             double windowWidth = e.NewSize.Width;
             double windowHeight = e.NewSize.Height;
-            double scrollViewHeight = windowHeight - 50;
 
             if (DataContext is ClientTripDetailsViewModel viewModel)
             {
-                viewModel.ScrollViewHeight = scrollViewHeight;
+                viewModel.ScrollViewHeight = windowHeight - 50;
                 if (windowWidth <= 1000)
                 {
                     viewModel.FieldsWidth = 150;
@@ -57,6 +56,11 @@ namespace TravelApp.DesktopHost.View
                     viewModel.FieldsWidth = 280;
                     viewModel.TextFontSize = 50;
                 }
+
+                if (windowWidth <= 930) { viewModel.TableWidth = 650;}
+                else if (windowWidth <= 990) { viewModel.TableWidth = 700; }
+                else if (windowWidth <= 1250) { viewModel.TableWidth = 750; }
+                else { viewModel.TableWidth = 1200; }
             }
         }
 
@@ -79,6 +83,17 @@ namespace TravelApp.DesktopHost.View
 
             Process.Start(psi);
             e.Handled = true;
+        }
+
+        private void HorizontalScrollViewer_PreviewMouseWheel(object sender, MouseWheelEventArgs e)
+        {
+            // Pass the mouse wheel event to the parent vertical scroll viewer
+            VerticalScrollViewer.RaiseEvent(new MouseWheelEventArgs(e.MouseDevice, e.Timestamp, e.Delta)
+            {
+                RoutedEvent = UIElement.MouseWheelEvent,
+                Source = VerticalScrollViewer
+            });
+            e.Handled = true; // Prevent the smaller scroll viewer from handling the event
         }
     }
 }
