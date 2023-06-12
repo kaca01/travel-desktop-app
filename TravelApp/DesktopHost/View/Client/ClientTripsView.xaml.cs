@@ -53,5 +53,14 @@ namespace TravelApp.DesktopHost.View
                 }
             }
         }
+
+        private void Open_Details(object sender, RoutedEventArgs e)
+        {
+            ClientTripsViewModel viewModel = (ClientTripsViewModel)DataContext;
+            Button button = sender as Button;
+            viewModel.SelectedTrip = ((int)button.CommandParameter);
+            viewModel.TripDetails.Execute(this);
+            
+        }
     }
 }

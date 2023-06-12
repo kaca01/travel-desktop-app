@@ -11,6 +11,45 @@
              xmlns:components="clr-namespace:TravelApp.DesktopHost.View"
              SizeChanged="Window_SizeChanged">
     <Grid>
-            
+        <Grid.RowDefinitions>
+            <RowDefinition Height="auto"/>
+            <RowDefinition Height="1*" />
+            <RowDefinition Height="4*" />
+        </Grid.RowDefinitions>
+        <components:ClientNavigationView Grid.Row="0" SelectedIndex="-1"></components:ClientNavigationView>
+
+
+        <Grid Grid.Row="1">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="Auto" />
+                <ColumnDefinition Width="Auto" />
+            </Grid.ColumnDefinitions>
+
+            <Button Click="Back"
+                    Height="50"
+                    >
+                <Button.Template>
+                    <ControlTemplate TargetType="Button">
+                        <Image 
+                            Source="../../../Style/Images/back_arrow.png" 
+                            Width="40" 
+                            Height="auto" 
+                            Margin="50 0 0 0"
+                            Grid.Column="0"
+                            />
+                    </ControlTemplate>
+                </Button.Template>
+            </Button>
+
+            <TextBlock 
+                    Grid.Column="1" 
+                    Text="{ Binding Trip.Name }"
+                    FontSize="{Binding TextFontSize}"
+                    FontWeight="Medium"
+                    TextAlignment="Left"
+                    VerticalAlignment="Center"
+                    Margin="40 0 0 0"/>
+
+        </Grid>
     </Grid>
 </UserControl>
