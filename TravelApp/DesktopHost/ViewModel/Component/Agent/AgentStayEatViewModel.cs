@@ -10,6 +10,7 @@ using System.Windows.Input;
 using TravelApp.Core.Service;
 using TravelApp.DesktopHost.Command;
 using TravelApp.DesktopHost.Command.Agent;
+using TravelApp.DesktopHost.Command.Agent.NewPlace;
 using TravelApp.DesktopHost.Command.Navigation;
 
 namespace TravelApp.DesktopHost.ViewModel

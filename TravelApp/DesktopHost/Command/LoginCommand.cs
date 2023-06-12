@@ -9,6 +9,7 @@ using TravelApp.Core.Service;
 using TravelApp.Core.Model;
 using MaterialDesignThemes.Wpf;
 using System.Windows;
+using TravelApp.DesktopHost.ViewModel.Component.Agent;
 
 namespace TravelApp.DesktopHost.Command
 {
@@ -37,7 +38,7 @@ namespace TravelApp.DesktopHost.Command
                 }
                 else if (UserService.CurrentUser.Role.Equals(Role.AGENT))
                 {
-                    _navigationStore.CurrentViewModel = new AgentTripsViewModel();
+                    _navigationStore.CurrentViewModel = new NewAttractionViewModel();
                 }
             }
             catch(Exception e) 

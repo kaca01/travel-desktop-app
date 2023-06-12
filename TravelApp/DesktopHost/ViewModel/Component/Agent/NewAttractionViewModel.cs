@@ -1,26 +1,24 @@
-﻿using MaterialDesignThemes.Wpf;
+﻿using GalaSoft.MvvmLight.Command;
+using Microsoft.Win32;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using System.Windows.Input;
 using System.Windows;
-using TravelApp.DesktopHost.Command;
-using TravelApp.DesktopHost.Command.Agent;
+using System.Windows.Input;
+using System.Windows.Media.Imaging;
+using TravelApp.DesktopHost.Command.Agent.NewAttraction;
 using TravelApp.DesktopHost.Command.Agent.NewPlace;
 
 namespace TravelApp.DesktopHost.ViewModel.Component.Agent
 {
-    public class NewPlaceViewModel :BaseViewModel, INotifyPropertyChanged
+    public class NewAttractionViewModel:BaseViewModel, INotifyPropertyChanged
     {
         private string _name;
         private string _address;
-        private string _link;
-
-        private bool _restaurant;
-        private bool _accomodation;
+        private string _description;
 
         private double _textFontSize;
 
@@ -38,22 +36,10 @@ namespace TravelApp.DesktopHost.ViewModel.Component.Agent
             set { _address = value; OnPropertyChanged(nameof(Address)); ValidationViewModel.IsAddressValid(_address); CheckButtonStatus(); }
         }
 
-        public string Link
+        public string Description
         {
-            get => _link;
-            set { _link = value; OnPropertyChanged(nameof(Link)); ValidationViewModel.IsLinkValid(_link); CheckButtonStatus(); }
-        }
-
-        public bool Restaurant
-        {
-            get => _restaurant;
-            set { _restaurant = value; OnPropertyChanged(nameof(Restaurant)); }
-        }
-
-        public bool Accomodation
-        {
-            get => _accomodation;
-            set { _accomodation = value; OnPropertyChanged(nameof(Accomodation)); }
+            get => _description;
+            set { _description = value; OnPropertyChanged(nameof(Description)); ValidationViewModel.IsLinkValid(_description); CheckButtonStatus(); }
         }
 
         public double TextFontSize
@@ -82,6 +68,26 @@ namespace TravelApp.DesktopHost.ViewModel.Component.Agent
             }
         }
 
+        private Visibility _imageVisibility;
+        public Visibility ImageVisibility
+        {
+            get => _imageVisibility;
+            set { _imageVisibility = value; OnPropertyChanged(nameof(ImageVisibility)); }
+        }
+
+        private BitmapImage _imageSource;
+
+        public BitmapImage ImageSource
+        {
+            get { return _imageSource; }
+            set
+            {
+                _imageSource = value;
+                OnPropertyChanged(nameof(ImageSource));
+                CheckButtonStatus();
+            }
+        }
+
         private bool _isButtonEnabled;
         public bool IsButtonEnabled
         {
@@ -93,10 +99,6 @@ namespace TravelApp.DesktopHost.ViewModel.Component.Agent
             }
         }
 
-        public ICommand Cancel { get; }
-        public ICommand Create { get; }
-        public ValidationViewModel ValidationViewModel { get; }
-
         public event PropertyChangedEventHandler PropertyChanged;
 
         protected virtual void OnPropertyChanged(string propertyName)
@@ -106,13 +108,13 @@ namespace TravelApp.DesktopHost.ViewModel.Component.Agent
 
         public void CheckButtonStatus()
         {
-            if (string.IsNullOrWhiteSpace(_name) || string.IsNullOrWhiteSpace(_address) || string.IsNullOrWhiteSpace(_link))
+            if (string.IsNullOrWhiteSpace(_name) || string.IsNullOrWhiteSpace(_address) || string.IsNullOrWhiteSpace(_description))
                 IsButtonEnabled = false;
             else
             {
                 if (string.IsNullOrWhiteSpace(ValidationViewModel.NameValidation) &&
                     string.IsNullOrWhiteSpace(ValidationViewModel.AddressValidation) &&
-                    string.IsNullOrWhiteSpace(ValidationViewModel.LinkValidation))
+                    string.IsNullOrWhiteSpace(ValidationViewModel.DescriptionValidation) && ImageSource != null)
                     IsButtonEnabled = true;
                 else
                 {
@@ -121,13 +123,32 @@ namespace TravelApp.DesktopHost.ViewModel.Component.Agent
             }
         }
 
-        public NewPlaceViewModel()
-        {
-            Cancel = new CancelNewPlaceCommand();
-            Create = new CreateNewPlaceCommand(this);
+        public ICommand Cancel { get; }
+        public ICommand Create { get; }
+        public ICommand UploadImageCommand { get; }
+        public ValidationViewModel ValidationViewModel { get; }
+
+        public NewAttractionViewModel()
+        { 
+            Cancel = new CancelNewAttractionCommand();
+            Create = new CreateNewAttractionCommand(this);
             ValidationViewModel = new ValidationViewModel();
-            Restaurant = true;
             IsButtonEnabled = false;
+            ImageVisibility = Visibility.Collapsed;
+            UploadImageCommand = new RelayCommand(UploadImage);
+        }
+
+        private void UploadImage()
+        {
+            OpenFileDialog openFileDialog = new OpenFileDialog();
+            openFileDialog.Filter = "Image Files (*.jpg;*.jpeg;*.png;*.gif)|*.jpg;*.jpeg;*.png;*.gif";
+            if (openFileDialog.ShowDialog() == true)
+            {
+                string imagePath = openFileDialog.FileName;
+                // Display the image
+                ImageVisibility = Visibility.Visible;
+                ImageSource = new BitmapImage(new Uri(imagePath));
+            }
         }
 
     }

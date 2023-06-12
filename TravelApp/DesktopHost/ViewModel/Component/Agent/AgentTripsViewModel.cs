@@ -10,6 +10,8 @@ using TravelApp.Core.Model;
 using TravelApp.Core.Service;
 using TravelApp.DesktopHost.ViewModel.Component.Trip;
 using System.Windows;
+using TravelApp.DesktopHost.Command.Agent;
+using TravelApp.DesktopHost.Command.Agent.NewTrip;
 
 namespace TravelApp.DesktopHost.ViewModel
 {
@@ -137,6 +139,7 @@ namespace TravelApp.DesktopHost.ViewModel
             }
         }
 
+        public ICommand AddTripNavigation { get; }
 
         public AgentTripsViewModel() 
         {
@@ -153,6 +156,7 @@ namespace TravelApp.DesktopHost.ViewModel
             _searchedTrips = getDesriptionTrips();
             _search = "";
             _selectedSort = 0;
+            AddTripNavigation = new NewTripNavigationCommand();
         }
 
         private void populateSortingCriteria()

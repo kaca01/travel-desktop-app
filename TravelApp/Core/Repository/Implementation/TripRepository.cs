@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using TravelApp.Core.Model;
+using TravelApp.DesktopHost.ViewModel.Component.Agent;
 
 namespace TravelApp.Core.Repository
 {
@@ -37,6 +38,20 @@ namespace TravelApp.Core.Repository
                     return true;
                 }
                 return false;
+            }
+        }
+
+        public Trip Create(NewTripViewModel vm, List<Attraction> attrcs, List<TouristFacility> tf)
+        {
+            using (var context = new TravelContext())
+            {
+
+                Trip trip = new Trip() { Name = vm.Name, Description = vm.Description, Price = Double.Parse(vm.Price), Image = ImageConverter.ConvertImageSourceToByteArray(vm.ImageSource), Departure = vm.StartLocation, Destination = vm.EndLocation, StartDate = DateTime.Parse(vm.StartDate), EndDate = DateTime.Parse(vm.EndDate), IsDeleted = false };
+                trip.Attractions = attrcs;
+                trip.FacilityList = tf;
+                context.Trips.Add(trip);
+                context.SaveChanges();
+                return trip;
             }
         }
     }

@@ -16,5 +16,7 @@ namespace TravelApp.Core.Repository
         public List<TouristFacilityListItemViewModel> Get();
         public void DeleteItem(int id);
         public TouristFacility Create(string name, string address, string link, PlaceType type);
+        public List<TouristFacility> GetValidRestaurants();
+        public List<TouristFacility> GetValidAccomodations();
     }
 }

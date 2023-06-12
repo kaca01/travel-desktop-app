@@ -122,6 +122,7 @@
                         Background="#DFE6F0"
                         BorderBrush="#DFE6F0"
                         Padding="2" 
+                        Command="{Binding AddTripNavigation}"
                         Margin="20 0 30 0">
                     <StackPanel Orientation="Horizontal">
                         <Viewbox Width="25" Height="25">
