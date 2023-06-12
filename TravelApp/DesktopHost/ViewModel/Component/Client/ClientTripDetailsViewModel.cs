@@ -7,6 +7,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Input;
+using TravelApp.Core;
 using TravelApp.Core.Model;
 using TravelApp.Core.Repository;
 using TravelApp.Core.Service;
@@ -173,6 +174,7 @@ namespace TravelApp.DesktopHost.ViewModel
             Navigation = new ClientNavigationViewModel();
             _tripService = new TripService();
             _trip = _tripService.Get(selectedTrip);
+            _trip.Picture = ImageConverter.LoadPicture(_trip.Image);
             Trips = new ClientTripsCommand();
             Buy = new TripDetailsBuyCommand(this);
             Book = new TripDetailsReservationCommand(this);
@@ -181,7 +183,7 @@ namespace TravelApp.DesktopHost.ViewModel
 
             _facilities = new ObservableCollection<TouristFacilityListItemViewModel>(data);
 
-            _attractions = _tripService.GetAttractions(selectedTrip);;
+            _attractions = _tripService.GetAttractions(selectedTrip);
         }
     }
 }

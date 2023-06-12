@@ -5,6 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Input;
+using TravelApp.Core;
 using TravelApp.Core.Model;
 using TravelApp.Core.Service;
 using TravelApp.DesktopHost.Command.Agent.NewAttraction;
@@ -150,6 +151,10 @@ namespace TravelApp.DesktopHost.ViewModel
         private void populateAttractions()
         {
             Attractions = _attractionService.GetAll();
+            foreach(Attraction a in Attractions)
+            {
+                a.Picture = ImageConverter.LoadPicture(a.Image);
+            }
         }
 
         private void sort(int criteria)

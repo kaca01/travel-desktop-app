@@ -4,6 +4,7 @@ using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Media.Imaging;
 
 namespace TravelApp.Core.Model
 {
@@ -16,6 +17,7 @@ namespace TravelApp.Core.Model
         public string Description { get; set; }
         public byte[] Image { get; set; }
         public bool IsDeleted { get; set; }
+        public BitmapImage Picture { get; set; }
 
     }
 }
