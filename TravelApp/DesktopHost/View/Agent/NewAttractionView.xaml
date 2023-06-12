@@ -6,7 +6,8 @@
              xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
              xmlns:local="clr-namespace:TravelApp.DesktopHost.View.Agent"
              xmlns:viewmodels="clr-namespace:TravelApp.DesktopHost.ViewModel.Component.Agent"
-             xmlns:views="clr-namespace:TravelApp.DesktopHost.View"
+             xmlns:views="clr-namespace:TravelApp.DesktopHost.View" 
+             xmlns:m="clr-namespace:Microsoft.Maps.MapControl.WPF;assembly=Microsoft.Maps.MapControl.WPF"
              mc:Ignorable="d" 
              Background="White"
              SizeChanged="Window_SizeChanged"
@@ -100,9 +101,10 @@
                      materialDesign:TextFieldAssist.UnderlineBrush="#4889E6"
                      ToolTip="Enter the address of your new attraction"
                      Text="{Binding Address}"
-                    PreviewTextInput="TextBox_PreviewTextInput"
-                    TextChanged="TextBox_AddressLostFocus"
-                    LostFocus="TextBox_AddressLostFocus">
+                        PreviewTextInput="TextBox_PreviewTextInput"
+                        TextChanged="TextBox_AddressTextChanged"
+                        LostFocus="TextBox_AddressLostFocus"
+                        KeyDown="TextBox_KeyDown">
                 </TextBox>
                 <Label Height="27"
                        FontSize="15"
@@ -115,9 +117,21 @@
             <StackPanel Grid.Row="4"
                     Grid.Column="1"
                     Width="{Binding Width}"
-                    Height="110">
-               
-                
+                    Height="280">
+                <m:Map x:Name="myMap" CredentialsProvider="AuLWjg9zk0YyNOzdddizNFywS-R5879R6PnSVyiT_7T3X3SOnJe8TKz0PvlBO0c3" Mode="road" Height="250"
+                       ToolTip="Click on the map to add a location marker"
+                       MouseMove="Marker_MouseMove"
+                       MouseLeftButtonDown="Map_MouseLeftButtonDown"
+                       MouseLeftButtonUp="Map_MouseLeftButtonUp"/>
+                <Label Height="27"
+                       FontSize="15"
+                       FontFamily="Poppins"
+                       FontWeight="Regular"
+                       x:Name="mapError"
+                       Content="Cannot find address on map"
+                       HorizontalAlignment="Left"
+                       Foreground="Red"/>
+
             </StackPanel>
             <StackPanel Grid.Row="5"
                 Grid.Column="1"

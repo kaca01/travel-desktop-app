@@ -68,9 +68,18 @@ namespace TravelApp.Core.Repository
             
         }
 
+        private int generateId()
+        {
+            int max = 0;
+            foreach (TouristFacility tf in context.TouristFacilities)
+                if (tf.Id > max) max = tf.Id;
+
+            return max + 1;
+        }
+
         public TouristFacility Create(string name, string address, string link, PlaceType type)
         {
-                TouristFacility tf = new TouristFacility() { Name = name, Address = address, Link = link, Type = type };
+                TouristFacility tf = new TouristFacility() { Id = generateId(), Name = name, Address = address, Link = link, Type = type };
                 context.TouristFacilities.Add(tf);
                 return tf;
         }

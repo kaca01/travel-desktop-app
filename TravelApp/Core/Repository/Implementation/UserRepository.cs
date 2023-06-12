@@ -28,10 +28,18 @@ namespace TravelApp.Core.Repository
 
         }
 
+        private int generateId()
+        {
+            int max = 0;
+            foreach (User u in context.Users)
+                if (u.Id > max) max = u.Id;
+
+            return max + 1;
+        }
         public User Create(string name, string surname, string email, string password)
         {
             
-                User user = new User() { Name = name, Surname = surname, Email = email, Password = password, Role = Role.CLIENT };
+                User user = new User() { Id = generateId(), Name = name, Surname = surname, Email = email, Password = password, Role = Role.CLIENT };
                 context.Users.Add(user);
                 return user;
             

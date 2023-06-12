@@ -9,6 +9,7 @@
         xmlns:viewmodels="clr-namespace:TravelApp.DesktopHost.ViewModel"
         xmlns:viewmodelsAgent="clr-namespace:TravelApp.DesktopHost.ViewModel.Component.Agent"
         xmlns:local="clr-namespace:TravelApp"
+        xmlns:m="clr-namespace:Microsoft.Maps.MapControl.WPF;assembly=Microsoft.Maps.MapControl.WPF"
         mc:Ignorable="d"
         Title="TravelApp"
         Icon="./Style/Images/airplane.ico"

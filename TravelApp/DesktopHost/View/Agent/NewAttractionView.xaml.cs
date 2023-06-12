@@ -1,6 +1,9 @@
-﻿using System;
+﻿using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.Maps.MapControl.WPF;
+using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Net;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
@@ -12,7 +15,9 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using TravelApp.Core.Service;
 using TravelApp.DesktopHost.ViewModel.Component.Agent;
+using static TravelApp.Core.Model.BingMapsApiResponse.ResourceSet.Resource;
 
 namespace TravelApp.DesktopHost.View.Agent
 {
@@ -24,6 +29,26 @@ namespace TravelApp.DesktopHost.View.Agent
         public NewAttractionView()
         {
             InitializeComponent();
+            myMap.Center = new Location(45.23898647559673, 19.842916112490993); 
+            myMap.ZoomLevel = 14;
+            mapError.Visibility = Visibility.Collapsed;
+        }
+
+        private void PlaceDot(Location location, string text)
+        {
+            Pushpin dot = new Pushpin
+            {
+                Location = location
+            };
+            ToolTip tt = new ToolTip();
+            tt.Content = "Address = " + text;
+            dot.ToolTip = tt;
+            Point p0 = myMap.LocationToViewportPoint(location);
+            Location loc = myMap.ViewportPointToLocation(p0);
+            MapLayer.SetPosition(dot, loc);
+            dot.MouseLeftButtonDown += Marker_MouseDown;
+            dot.MouseLeftButtonUp += Marker_MouseUp;
+            myMap.Children.Add(dot);
         }
 
         private void Window_SizeChanged(object sender, SizeChangedEventArgs e)
@@ -78,7 +103,10 @@ namespace TravelApp.DesktopHost.View.Agent
             }
             else
             {
-                textBox.BorderBrush = Brushes.Gray;
+                if (e.RoutedEvent == TextBox.TextChangedEvent)
+                    textBox.BorderBrush = new SolidColorBrush((Color)ColorConverter.ConvertFromString("#4889E6"));
+                else
+                    textBox.BorderBrush = Brushes.Gray;
             }
             viewModel.Name = textBox.Text;
         }
@@ -94,12 +122,15 @@ namespace TravelApp.DesktopHost.View.Agent
             }
             else
             {
-                textBox.BorderBrush = Brushes.Gray;
+                if (e.RoutedEvent == TextBox.TextChangedEvent)
+                    textBox.BorderBrush = new SolidColorBrush((Color)ColorConverter.ConvertFromString("#4889E6"));
+                else
+                    textBox.BorderBrush = Brushes.Gray;
             }
             viewModel.Description = textBox.Text;
         }
 
-        private void TextBox_AddressLostFocus(object sender, RoutedEventArgs e)
+        private void TextBox_AddressTextChanged(object sender, RoutedEventArgs e)
         {
             TextBox textBox = (TextBox)sender;
             NewAttractionViewModel viewModel = (NewAttractionViewModel)DataContext;
@@ -110,21 +141,150 @@ namespace TravelApp.DesktopHost.View.Agent
             }
             else
             {
-                textBox.BorderBrush = Brushes.Gray;
+                if (e.RoutedEvent == TextBox.TextChangedEvent)
+                    textBox.BorderBrush = new SolidColorBrush((Color)ColorConverter.ConvertFromString("#4889E6"));
+                else
+                    textBox.BorderBrush = Brushes.Gray;
             }
             viewModel.Address = textBox.Text;
         }
 
-        private void TextBox_PreviewTextInputAddress(object sender, TextCompositionEventArgs e)
+        private void TextBox_AddressLostFocus(object sender, RoutedEventArgs e)
         {
             TextBox textBox = (TextBox)sender;
+            NewAttractionViewModel viewModel = (NewAttractionViewModel)DataContext;
 
-            // Check if the new text length exceeds the maximum character count
-            if (textBox.Text.Length + e.Text.Length > 35)
+            HandleMarkerRequest(textBox, viewModel);
+        }
+
+        private void TextBox_KeyDown(object sender, KeyEventArgs e)
+        {
+            TextBox textBox = (TextBox)sender;
+            NewAttractionViewModel viewModel = (NewAttractionViewModel)DataContext;
+
+            if (e.Key == Key.Enter)
             {
-                e.Handled = true; // Prevent the input from being added to the TextBox
+                HandleMarkerRequest(textBox, viewModel);
             }
         }
 
+        //from text to location
+        private void HandleMarkerRequest(TextBox textBox, NewAttractionViewModel viewModel)
+        {
+            myMap.Children.Clear();  //obrisi prethodni marker bilo da se desila greska bilo da je nov korektan unos
+            if (viewModel == null) return;
+            if (!viewModel.ValidationViewModel.IsAddressValid(textBox.Text))
+            {
+                textBox.BorderBrush = Brushes.Red;
+            }
+            else
+            {
+                textBox.BorderBrush = Brushes.Gray;
+                (double latitude, double longitude) = MapService.GetCoordinates(textBox.Text);
+                this.PlaceDot(new Location(latitude, longitude), textBox.Text);
+                if (myMap.Children.Count == 0)
+                    mapError.Visibility = Visibility.Visible;
+                else mapError.Visibility = Visibility.Collapsed;
+            }
+            viewModel.Address = textBox.Text;
+        }
+
+        Vector _mouseToMarker;
+        private bool isDragging = false;
+        private Pushpin selectedMarker { get; set; }
+
+        void Marker_MouseDown(object sender, MouseButtonEventArgs e)
+        {
+            e.Handled = true;
+            selectedMarker = sender as Pushpin;
+            isDragging = true;
+            _mouseToMarker = Point.Subtract(
+              myMap.LocationToViewportPoint(selectedMarker.Location),
+              e.GetPosition(myMap));
+        }
+
+        async void Marker_MouseUp(object sender, MouseButtonEventArgs e)
+        {
+            selectedMarker = sender as Pushpin;
+            string address = await MapService.ReverseGeocodeAsync(selectedMarker.Location);
+            await Task.Delay(200);
+            NewAttractionViewModel viewModel = (NewAttractionViewModel)DataContext;
+            if (address != null)
+            {
+                viewModel.Address = address;
+                viewModel.ValidationViewModel.IsAddressValid(address);
+                selectedMarker.ToolTip = "Address: " + address;
+            }
+            else
+            {
+                viewModel.Address = "";
+                viewModel.ValidationViewModel.IsAddressValid("");
+                mapError.Visibility = Visibility.Visible;
+                mapError.Content = "Cannot find corresponding address";
+            }
+            e.Handled = true;
+            selectedMarker = null;
+            isDragging = false;
+            selectedMarker = null;
+        }
+
+        private void Marker_MouseMove(object sender, MouseEventArgs e)
+        {
+            if (e.LeftButton == MouseButtonState.Pressed)
+            {
+                if (isDragging && selectedMarker != null)
+                {
+                    selectedMarker.Location = myMap.ViewportPointToLocation(
+                      Point.Add(e.GetPosition(myMap), _mouseToMarker));
+                    e.Handled = true;
+                }
+            }
+        }
+
+        // functions used to differentiate between map mouse click to create a marker and map mouse click to move over the the map
+        private bool mapDragging = false;
+        private Point startPoint;
+
+        private void Map_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
+        {
+            startPoint = e.GetPosition((IInputElement)sender);
+            mapDragging = false;
+        }
+
+        async void Map_MouseLeftButtonUp(object sender, MouseButtonEventArgs e)
+        {
+            if (!mapDragging)
+            {
+                Point endPoint = e.GetPosition((IInputElement)sender);
+                double distance = Math.Sqrt(Math.Pow(endPoint.X - startPoint.X, 2) + Math.Pow(endPoint.Y - startPoint.Y, 2));
+
+                if (distance < 2)
+                {
+                    // Quick click behavior - Create a pushpin
+                    Point mousePosition = e.GetPosition((UIElement)sender);
+                    Location location = myMap.ViewportPointToLocation(mousePosition);
+
+                    string address = await MapService.ReverseGeocodeAsync(location);
+                    await Task.Delay(200);
+                    NewAttractionViewModel viewModel = (NewAttractionViewModel)DataContext;
+                    if (address != null)
+                    {
+                        myMap.Children.Clear();
+                        viewModel.Address = address;
+                        viewModel.ValidationViewModel.IsAddressValid(address);
+                        PlaceDot(location, address);
+                    }
+                    else
+                    {
+                        viewModel.Address = "";
+                        viewModel.ValidationViewModel.IsAddressValid("");
+                        mapError.Visibility = Visibility.Visible;
+                        mapError.Content = "Cannot find corresponding address";
+                    }
+                }
+            }
+
+            mapDragging = false;
+        }
     }
 }

@@ -39,7 +39,10 @@ namespace TravelApp.DesktopHost.View.Agent
             }
             else
             {
-                textBox.BorderBrush = Brushes.Gray;
+                if (e.RoutedEvent == TextBox.TextChangedEvent)
+                    textBox.BorderBrush = new SolidColorBrush((Color)ColorConverter.ConvertFromString("#4889E6"));
+                else
+                    textBox.BorderBrush = Brushes.Gray;
             }
             viewModel.Name = textBox.Text;
         }
@@ -66,7 +69,10 @@ namespace TravelApp.DesktopHost.View.Agent
             }
             else
             {
-                textBox.BorderBrush = Brushes.Gray;
+                if (e.RoutedEvent == TextBox.TextChangedEvent)
+                    textBox.BorderBrush = new SolidColorBrush((Color)ColorConverter.ConvertFromString("#4889E6"));
+                else
+                    textBox.BorderBrush = Brushes.Gray;
             }
             viewModel.Address = textBox.Text;
         }
@@ -93,7 +99,10 @@ namespace TravelApp.DesktopHost.View.Agent
             }
             else
             {
-                textBox.BorderBrush = Brushes.Gray;
+                if (e.RoutedEvent == TextBox.TextChangedEvent)
+                    textBox.BorderBrush = new SolidColorBrush((Color)ColorConverter.ConvertFromString("#4889E6"));
+                else
+                    textBox.BorderBrush = Brushes.Gray;
             }
             viewModel.Link = textBox.Text;
         }
