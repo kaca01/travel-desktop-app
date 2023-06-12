@@ -24,6 +24,7 @@ using TravelApp.DesktopHost.ViewModel.ItemViewModel;
 using GalaSoft.MvvmLight.Command;
 using System.Xaml;
 using TravelApp.Core;
+using TravelApp.Core.Model;
 
 namespace TravelApp.DesktopHost.ViewModel.Component.Agent
 {
@@ -193,7 +194,24 @@ namespace TravelApp.DesktopHost.ViewModel.Component.Agent
                 ImageSource = ImageConverter.LoadPicture(trip.Image);
                 StartLocation = trip.Departure;
                 EndLocation = trip.Destination;
-                // TODO : add restaurants, accommodations and attractions
+
+                foreach (Attraction attr in trip.Attractions)
+                {
+                    ItemModel a = Attractions.FindById(attr.Id);
+                    a.IsSelected = true;
+                }
+                foreach (TouristFacility tf in trip.FacilityList)
+                {
+                    ItemModel a = Accomodations.FindById(tf.Id);
+                    if (a != null)
+                        a.IsSelected = true;
+                }
+                foreach (TouristFacility attr in trip.FacilityList)
+                {
+                    ItemModel a = Restaurants.FindById(attr.Id);
+                    if (a != null)
+                        a.IsSelected = true;
+                }
             }
         }
 

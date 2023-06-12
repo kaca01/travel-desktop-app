@@ -62,6 +62,13 @@ namespace TravelApp.DesktopHost.ViewModel.ComboBox
             _itemsView = CollectionViewSource.GetDefaultView(FilteredItems);
         }
 
+        public ItemModel FindById(int id)
+        {
+            List<ItemModel> list = Items.Where(u => u.Id == id).ToList();
+            if (list.Count == 0) return null;
+            return list[0];
+        }
+
         private void FilterItems()
         {
             if (string.IsNullOrEmpty(SearchText))
