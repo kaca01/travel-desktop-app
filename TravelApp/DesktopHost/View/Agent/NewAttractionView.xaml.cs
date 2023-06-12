@@ -168,6 +168,7 @@ namespace TravelApp.DesktopHost.View.Agent
             }
         }
 
+        //from text to location
         private void HandleMarkerRequest(TextBox textBox, NewAttractionViewModel viewModel)
         {
             myMap.Children.Clear();  //obrisi prethodni marker bilo da se desila greska bilo da je nov korektan unos
@@ -221,7 +222,6 @@ namespace TravelApp.DesktopHost.View.Agent
                 mapError.Visibility = Visibility.Visible;
                 mapError.Content = "Cannot find corresponding address";
             }
-            //todo find new address ftom latitude and longitude
             e.Handled = true;
             selectedMarker = null;
             isDragging = false;
@@ -239,6 +239,52 @@ namespace TravelApp.DesktopHost.View.Agent
                     e.Handled = true;
                 }
             }
+        }
+
+        // functions used to differentiate between map mouse click to create a marker and map mouse click to move over the the map
+        private bool mapDragging = false;
+        private Point startPoint;
+
+        private void Map_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
+        {
+            startPoint = e.GetPosition((IInputElement)sender);
+            mapDragging = false;
+        }
+
+        async void Map_MouseLeftButtonUp(object sender, MouseButtonEventArgs e)
+        {
+            if (!mapDragging)
+            {
+                Point endPoint = e.GetPosition((IInputElement)sender);
+                double distance = Math.Sqrt(Math.Pow(endPoint.X - startPoint.X, 2) + Math.Pow(endPoint.Y - startPoint.Y, 2));
+
+                if (distance < 2)
+                {
+                    // Quick click behavior - Create a pushpin
+                    Point mousePosition = e.GetPosition((UIElement)sender);
+                    Location location = myMap.ViewportPointToLocation(mousePosition);
+
+                    string address = await MapService.ReverseGeocodeAsync(location);
+                    await Task.Delay(310);
+                    NewAttractionViewModel viewModel = (NewAttractionViewModel)DataContext;
+                    if (address != null)
+                    {
+                        myMap.Children.Clear();
+                        viewModel.Address = address;
+                        viewModel.ValidationViewModel.IsAddressValid(address);
+                        PlaceDot(location, address);
+                    }
+                    else
+                    {
+                        viewModel.Address = "";
+                        viewModel.ValidationViewModel.IsAddressValid("");
+                        mapError.Visibility = Visibility.Visible;
+                        mapError.Content = "Cannot find corresponding address";
+                    }
+                }
+            }
+
+            mapDragging = false;
         }
     }
 }

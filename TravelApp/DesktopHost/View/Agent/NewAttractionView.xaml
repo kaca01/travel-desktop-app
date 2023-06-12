@@ -118,9 +118,11 @@
                     Grid.Column="1"
                     Width="{Binding Width}"
                     Height="280">
-                <m:Map x:Name="myMap" CredentialsProvider="AuLWjg9zk0YyNOzdddizNFywS-R5879R6PnSVyiT_7T3X3SOnJe8TKz0PvlBO0c3" Mode="Aerial" Height="250"
-                       ToolTip="Double click on map to add a location marker"
-                       MouseMove="Marker_MouseMove"/>
+                <m:Map x:Name="myMap" CredentialsProvider="AuLWjg9zk0YyNOzdddizNFywS-R5879R6PnSVyiT_7T3X3SOnJe8TKz0PvlBO0c3" Mode="road" Height="250"
+                       ToolTip="Click on the map to add a location marker"
+                       MouseMove="Marker_MouseMove"
+                       MouseLeftButtonDown="Map_MouseLeftButtonDown"
+                       MouseLeftButtonUp="Map_MouseLeftButtonUp"/>
                 <Label Height="27"
                        FontSize="15"
                        FontFamily="Poppins"
