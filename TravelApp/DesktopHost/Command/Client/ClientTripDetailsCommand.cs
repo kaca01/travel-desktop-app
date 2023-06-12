@@ -12,9 +12,9 @@ namespace TravelApp.DesktopHost.Command
     {
         private readonly NavigationStore _navigation;
 
-        private ClientTripsViewModel _viewModel;
+        private BaseViewModel _viewModel;
 
-        public ClientTripDetailsCommand(ClientTripsViewModel viewModel) 
+        public ClientTripDetailsCommand(BaseViewModel viewModel) 
         {
             _navigation = NavigationStore.Instance();
             _viewModel = viewModel;
@@ -22,8 +22,18 @@ namespace TravelApp.DesktopHost.Command
 
         public override void Execute(object parameter)
         {
-            // TODO : get here which trip and pass fruther
-            _navigation.CurrentViewModel = new ClientTripDetailsViewModel(_viewModel.SelectedTrip);
+            if (_navigation.CurrentViewModel.GetType() == typeof(ClientTripsViewModel))
+            {
+                ClientTripsViewModel viewModel = (ClientTripsViewModel)_viewModel;
+                _navigation.CurrentViewModel = new ClientTripDetailsViewModel(viewModel.SelectedTrip);
+
+            }
+            else
+            {
+                AgentTripsViewModel viewModel = (AgentTripsViewModel)_viewModel;
+                _navigation.CurrentViewModel = new ClientTripDetailsViewModel(viewModel.SelectedTrip);
+
+            }
         }
     }
 }

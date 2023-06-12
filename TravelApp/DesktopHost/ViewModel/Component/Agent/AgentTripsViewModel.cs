@@ -39,7 +39,7 @@ namespace TravelApp.DesktopHost.ViewModel
 
         public AgentNavigationViewModel Navigation { get; set; }
 
-        public ICommand DisplayWindowSize { get; }
+        public ICommand TripDetails { get; set; }
 
         public List<string> SortCriteria
         {
@@ -149,7 +149,7 @@ namespace TravelApp.DesktopHost.ViewModel
             _sortCriteria = new List<string>();
             populateSortingCriteria();
             Navigation = new AgentNavigationViewModel();
-            DisplayWindowSize = new DisplayWidnowSizeCommand(this);
+            TripDetails = new ClientTripDetailsCommand(this);
             _trips = new List<Trip>();
             _searchedTrips = new List<Trip>();
             populateTrips();

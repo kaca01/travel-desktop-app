@@ -5,6 +5,7 @@ using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows;
 using System.Windows.Input;
 using TravelApp.Core.Model;
 using TravelApp.Core.Repository;
@@ -33,6 +34,15 @@ namespace TravelApp.DesktopHost.ViewModel
         private double _scrollViewHeight;
 
         private double _tableWidth;
+
+        private bool _isEnabled;
+
+        private Visibility _buttonsVisibility;
+        public Visibility ButtonsVisibility
+        {
+            get => _buttonsVisibility;
+            set { _buttonsVisibility = value; OnPropertyChanged(nameof(ButtonsVisibility)); }
+        }
 
 
         public double TextFontSize
@@ -118,6 +128,16 @@ namespace TravelApp.DesktopHost.ViewModel
             }
         }
 
+        public bool IsEnabled
+        {
+            get { return _isEnabled; }
+            set
+            {
+                _isEnabled = value;
+                OnPropertyChanged(nameof(IsEnabled));
+            }
+        }
+
 
         public ClientNavigationViewModel Navigation { get; set; }
 
@@ -130,6 +150,15 @@ namespace TravelApp.DesktopHost.ViewModel
 
         public ClientTripDetailsViewModel(int selectedTrip)
         {
+            if (UserService.CurrentUser.Role == Role.AGENT)
+            {
+                ButtonsVisibility = Visibility.Hidden;
+            }
+            else
+            {
+                ButtonsVisibility = Visibility.Visible;
+            }
+
             Navigation = new ClientNavigationViewModel();
             _tripService = new TripService();
             _trip = _tripService.Get(selectedTrip);

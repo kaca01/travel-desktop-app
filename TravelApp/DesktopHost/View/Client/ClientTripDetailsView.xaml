@@ -38,6 +38,7 @@
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition Width="Auto" />
                         <ColumnDefinition Width="Auto" />
+                        <ColumnDefinition Width="*" />
                     </Grid.ColumnDefinitions>
 
                     <Button Click="Back"
@@ -64,6 +65,29 @@
                         TextAlignment="Left"
                         VerticalAlignment="Center"
                         Margin="40 0 0 0"/>
+
+                    <Button 
+                        Grid.Column="2"
+                        Width="200"
+                        HorizontalAlignment="Right"
+                        Cursor="Hand" 
+                        Background="#DFE6F0"
+                        BorderBrush="#DFE6F0"
+                        Padding="2" 
+                        Margin="0 0 70 0">
+                        <StackPanel Orientation="Horizontal">
+                            <Viewbox Width="25" Height="25">
+                                <materialDesign:PackIcon Kind="Pencil" VerticalAlignment="Center" Foreground="Black"/>
+                            </Viewbox>
+                            <TextBlock Text="EDIT" 
+                                   FontFamily="Poppins" 
+                                   Grid.Column="1" 
+                                   Padding="5"  
+                                   VerticalAlignment="Center" 
+                                   FontSize="20" 
+                                   Foreground="Black"/>
+                        </StackPanel>
+                    </Button>
 
                 </Grid>
 
@@ -291,8 +315,8 @@
                     <materialDesign:Card Grid.Row="1"
                                          Background="White"
                                          Padding="16"
-                                         HorizontalAlignment="Left"
-                                         Margin="100 50 0 0">
+                                         HorizontalAlignment="Center"
+                                         Margin="0 50 0 0">
                         <!-- bind table width with backend-->
                         <ScrollViewer
                             x:Name="SmallerVerticalScrollViewer"
@@ -618,6 +642,7 @@
                         Foreground="White"
                         FontSize="16"
                         FontWeight="DemiBold"
+                        Visibility="{ Binding ButtonsVisibility }"
                         Command="{ Binding Book }"
                         Style="{ StaticResource FormButton }">
                         <Button.Resources>
@@ -642,6 +667,7 @@
                         Foreground="White"
                         FontSize="16"
                         FontWeight="DemiBold"
+                        Visibility="{Binding ButtonsVisibility}"
                         Command="{ Binding Buy }"
                         Style="{ StaticResource FormButton }">
                         <Button.Resources>
