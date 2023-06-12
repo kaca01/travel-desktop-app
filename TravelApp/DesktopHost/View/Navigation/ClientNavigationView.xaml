@@ -140,8 +140,7 @@
                         BorderBrush="Transparent"
                         Foreground="#000000"
                         FontSize="{ Binding Navigation.TextFontSize }"
-                        FontWeight="Bold"
-                        Command="{ Binding Navigation.Help }"/>
+                        FontWeight="Bold"/>
                 </StackPanel>
             </TabItem.Header>
         </TabItem>
