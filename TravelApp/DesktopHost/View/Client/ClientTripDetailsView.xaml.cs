@@ -61,9 +61,10 @@ namespace TravelApp.DesktopHost.View
                     viewModel.TextFontSize = 50;
                 }
 
-                if (windowWidth <= 930) { viewModel.TableWidth = 650;}
-                else if (windowWidth <= 990) { viewModel.TableWidth = 700; }
-                else if (windowWidth <= 1250) { viewModel.TableWidth = 750; }
+                if (windowWidth <= 930) { viewModel.TableWidth = 600;}
+                else if (windowWidth <= 990) { viewModel.TableWidth = 650; }
+                else if (windowWidth <= 1200) { viewModel.TableWidth = 700; }
+                else if (windowWidth <= 1400) { viewModel.TableWidth = 900; }
                 else { viewModel.TableWidth = 1150; }
             }
         }
