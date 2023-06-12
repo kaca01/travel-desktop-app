@@ -38,10 +38,19 @@ namespace TravelApp.DesktopHost.ViewModel
         private bool _isEnabled;
 
         private Visibility _buttonsVisibility;
+
+        private Visibility _editVisibility;
+
         public Visibility ButtonsVisibility
         {
             get => _buttonsVisibility;
             set { _buttonsVisibility = value; OnPropertyChanged(nameof(ButtonsVisibility)); }
+        }
+
+        public Visibility EditVisibility
+        {
+            get => _editVisibility;
+            set { _editVisibility = value; OnPropertyChanged(nameof(EditVisibility)); }
         }
 
 
@@ -153,10 +162,12 @@ namespace TravelApp.DesktopHost.ViewModel
             if (UserService.CurrentUser.Role == Role.AGENT)
             {
                 ButtonsVisibility = Visibility.Hidden;
+                EditVisibility = Visibility.Visible;
             }
             else
             {
                 ButtonsVisibility = Visibility.Visible;
+                EditVisibility = Visibility.Hidden;
             }
 
             Navigation = new ClientNavigationViewModel();
