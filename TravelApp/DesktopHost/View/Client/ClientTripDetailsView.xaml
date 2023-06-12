@@ -134,22 +134,23 @@
                             </Grid.ColumnDefinitions>
 
                             <TextBlock 
-                            Grid.Column="0"
-                            Text="Departure:"
-                            FontWeight="SemiBold"
-                            TextAlignment="Left"
-                            FontSize="25"
-                            Foreground="Black"
-                            Margin="100 50 0 0"/>
+                                Grid.Column="0"
+                                Text="Departure:"
+                                FontWeight="SemiBold"
+                                TextAlignment="Left"
+                                FontSize="25"
+                                Foreground="Black"
+                                Margin="100 50 0 0"/>
 
                             <TextBlock 
-                            Grid.Column="1"
-                            Text="{Binding Trip.Departure}"
-                            FontWeight="Medium"
-                            TextAlignment="Left"
-                            FontSize="25"
-                            Foreground="Gray"
-                            Margin="20 50 0 0"/>
+                                Grid.Column="1"
+                                Text="{Binding Trip.Departure}"
+                                ToolTip="{Binding Trip.Departure}"
+                                FontWeight="Medium"
+                                TextAlignment="Left"
+                                FontSize="25"
+                                Foreground="Gray"
+                                Margin="20 50 0 0"/>
                         </Grid>
 
                         <Grid Grid.Row="2" >
@@ -170,6 +171,7 @@
                             <TextBlock 
                                 Grid.Column="1"
                                 Text="{Binding Trip.Destination}"
+                                ToolTip="{Binding Trip.Destination}"
                                 FontWeight="Medium"
                                 TextAlignment="Left"
                                 FontSize="25"
@@ -185,17 +187,18 @@
                             </Grid.ColumnDefinitions>
 
                             <TextBlock 
-                            Grid.Column="0"
-                            Text="Price:"
-                            FontWeight="SemiBold"
-                            TextAlignment="Left"
-                            FontSize="25"
-                            Foreground="Black"
-                            Margin="100 30 0 0"/>
+                                Grid.Column="0"
+                                Text="Price:"
+                                FontWeight="SemiBold"
+                                TextAlignment="Left"
+                                FontSize="25"
+                                Foreground="Black"
+                                Margin="100 30 0 0"/>
 
                             <TextBlock 
                             Grid.Column="1"
                             Text="{Binding Trip.Price}"
+                            ToolTip="{Binding Trip.Price}"
                             FontWeight="Medium"
                             TextAlignment="Left"
                             FontSize="25"
@@ -230,6 +233,7 @@
                             <TextBlock 
                                 Grid.Column="1"
                                 Text="{Binding Trip.StartDate}"
+                                ToolTip="{Binding Trip.StartDate}"
                                 FontWeight="Medium"
                                 TextAlignment="Left"
                                 FontSize="25"
@@ -255,6 +259,7 @@
                             <TextBlock 
                                 Grid.Column="1"
                                 Text="{Binding Trip.EndDate}"
+                                ToolTip="{Binding Trip.EndDate}"
                                 FontWeight="Medium"
                                 TextAlignment="Left"
                                 FontSize="25"
