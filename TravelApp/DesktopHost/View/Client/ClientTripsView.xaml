@@ -10,6 +10,11 @@
              xmlns:viewmodel="clr-namespace:TravelApp.DesktopHost.ViewModel"
              d:DataContext="{d:DesignInstance Type=viewmodel:ClientTripsViewModel}"
              xmlns:components="clr-namespace:TravelApp.DesktopHost.View"
+             xmlns:l="clr-namespace:TravelApp"
+             Focusable="True"
+             l:HelpProvider.HelpKey="allTrips"
+             GotFocus="SetHelpKey"
+             Loaded="UserControl_Loaded"
              SizeChanged="Window_SizeChanged">
     <Grid>
         <Grid.RowDefinitions>
