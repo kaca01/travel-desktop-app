@@ -18,5 +18,7 @@ namespace TravelApp.Core.Service
 
         public List<TouristFacilityListItemViewModel> GetTouristFacilities(int id);
 
+        public List<Attraction> GetAttractions(int id);
+
     }
 }

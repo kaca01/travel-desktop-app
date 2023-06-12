@@ -17,5 +17,7 @@ namespace TravelApp.Core.Repository
         public bool Delete(int id);
 
         public List<TouristFacilityListItemViewModel> GetTouristFacilities(int id);
+
+        public List<Attraction> GetAttractions(int id);
     }
 }

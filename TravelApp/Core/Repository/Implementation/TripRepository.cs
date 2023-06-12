@@ -73,5 +73,15 @@ namespace TravelApp.Core.Repository
             return null;
         }
 
+        public List<Attraction> GetAttractions(int id)
+        {
+            using (var context = new TravelContext())
+            {
+                Trip trip = context.Trips.First(item => item.Id == id);
+
+                return trip.Attractions;
+            }
+        }
+
     }
 }

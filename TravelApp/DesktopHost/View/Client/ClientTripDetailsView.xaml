@@ -282,15 +282,15 @@
                         TextAlignment="Left"
                         FontSize="25"
                         Foreground="#1E2F97"
-                        Margin="100 80 0 0"/>
+                        Margin="100 100 0 0"/>
 
                     <materialDesign:Card Grid.Row="1"
                                          Background="White"
                                          Padding="16"
                                          HorizontalAlignment="Left"
-                                         Margin="100 20 0 0">
+                                         Margin="100 50 0 0">
                         <!-- bind table width with backend-->
-                        <DataGrid ItemsSource="{Binding Items}"
+                        <DataGrid ItemsSource="{Binding Facilities}"
                                   Width="1200"
                                   Height="500"
                                   RowHeight="55"
@@ -455,6 +455,144 @@
                             </DataGrid.Columns>
                         </DataGrid>
                     </materialDesign:Card>
+                </Grid>
+
+                <Grid Grid.Row="4">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto"></RowDefinition>
+                        <RowDefinition Height="Auto"></RowDefinition>
+                    </Grid.RowDefinitions>
+
+                    <TextBlock 
+                        Grid.Row="0"
+                        Text="ATTRACTIONS"
+                        FontWeight="Bold"
+                        TextAlignment="Left"
+                        FontSize="25"
+                        Foreground="#1E2F97"
+                        Margin="100 100 0 0"/>
+
+                    <ScrollViewer VerticalScrollBarVisibility="Hidden" Grid.Row="1" Height="550">
+                        <ItemsControl ItemsSource="{Binding Attractions}">
+                            <ItemsControl.ItemsPanel>
+                                <ItemsPanelTemplate>
+                                    <WrapPanel Orientation="Horizontal" />
+                                </ItemsPanelTemplate>
+                            </ItemsControl.ItemsPanel>
+                            <ItemsControl.ItemTemplate>
+                                <DataTemplate>
+                                    <Border Margin="100 50 20 30" 
+                                            CornerRadius="30" 
+                                            Background="#DFE6F0">   
+                                        <Grid>
+                                            <Grid.RowDefinitions>
+                                                <RowDefinition Height="Auto"/>
+                                                <RowDefinition Height="120"/>
+                                                <RowDefinition Height="Auto"/>
+                                                <RowDefinition Height="Auto"/>
+                                            </Grid.RowDefinitions>
+
+                                            <Border CornerRadius="5">
+                                                <Image Source="../../../Style/Images/trip.png" 
+                                            Width="300" 
+                                            Height="auto" 
+                                            Margin="0 25 0 0"
+                                            Grid.Row="0"/>
+                                            </Border>
+                                            <ScrollViewer VerticalScrollBarVisibility="Auto"
+                                                Grid.Row="1"
+                                                Height="100"
+                                                >
+                                                <TextBlock
+                                                    Text="{ Binding Name }"
+                                                    TextWrapping="Wrap"
+                                                    VerticalAlignment="Center"
+                                                    Width="300"
+                                                    Grid.Row="1"
+                                                    Margin="38 20 10 20"
+                                                    Foreground="Black"
+                                                    FontSize="30"
+                                                    FontWeight="DemiBold"
+                                                    />
+                                            </ScrollViewer>
+                                            <ScrollViewer VerticalScrollBarVisibility="Auto"
+                                                Grid.Row="2"
+                                                Height="130"
+                                                          Margin="0 0 0 40">
+                                                <TextBlock
+                                                    Text="{ Binding Description }"
+                                                    Width="300"
+                                                    TextWrapping="Wrap"
+                                                    Grid.Row="2"
+                                                    Margin="20 0 20 0"
+                                                    FontSize="17"
+                                                    Foreground="#545454"
+                                                    LineHeight="32"
+                                                    />  
+                                            </ScrollViewer>
+                                        </Grid>
+                                    </Border>
+                                </DataTemplate>
+                            </ItemsControl.ItemTemplate>
+                        </ItemsControl>
+                    </ScrollViewer>
+                </Grid>
+
+                <Grid Grid.Row="5">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto"></RowDefinition>
+                        <RowDefinition Height="Auto"></RowDefinition> <!-- TODO : in this row put map -->
+                    </Grid.RowDefinitions>
+
+                    <TextBlock
+                        Grid.Row="0"
+                        Text="Check details on the map"
+                        Margin="100 100 0 100"
+                        Foreground="#1E2F97"
+                        FontWeight="Bold"
+                        />
+                    
+                    <!-- TODO : Add here maps and set Grid.Row to 1 -->
+                </Grid>
+
+                <Grid Grid.Row="6">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="Auto"></ColumnDefinition>
+                        <ColumnDefinition Width="Auto"></ColumnDefinition>
+                        <ColumnDefinition Width="Auto"></ColumnDefinition>
+                        <ColumnDefinition Width="Auto"></ColumnDefinition>
+                        <ColumnDefinition Width="Auto"></ColumnDefinition>
+                    </Grid.ColumnDefinitions>
+
+                    <TextBlock
+                        Grid.Column="0"
+                        Text="TOTAL PRICE:"
+                        Margin="100 20 0 50"
+                        FontWeight="Bold"
+                        Foreground="Black"
+                        FontSize="30"
+                        />
+
+                    <TextBlock
+                        Grid.Column="1"
+                        Text="{ Binding Trip.Price }"
+                        Margin="20 20 0 50"
+                        FontWeight="Bold"
+                        Foreground="Black"
+                        FontSize="30"
+                        />
+
+                    <TextBlock
+                        Grid.Column="2"
+                        Text="RSD"
+                        Margin="10 20 0 50"
+                        FontWeight="Bold"
+                        Foreground="Black"
+                        FontSize="30"
+                        />
+
+                    
+
                 </Grid>
             </Grid>
         </ScrollViewer>

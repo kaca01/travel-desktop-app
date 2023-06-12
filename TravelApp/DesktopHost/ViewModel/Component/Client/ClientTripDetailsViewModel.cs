@@ -23,17 +23,9 @@ namespace TravelApp.DesktopHost.ViewModel
 
         private Trip _trip;
 
-        private ObservableCollection<TouristFacilityListItemViewModel> _items;
-        
-        public ObservableCollection<TouristFacilityListItemViewModel> Items
-        {
-            get { return _items; }
-            set
-            {
-                _items = value;
-                OnPropertyChanged(nameof(Items));
-            }
-        }
+        private ObservableCollection<TouristFacilityListItemViewModel> _facilities;
+
+        private List<Attraction> _attractions;
 
         public double TextFontSize
         {
@@ -68,6 +60,26 @@ namespace TravelApp.DesktopHost.ViewModel
             }
         }
 
+        public ObservableCollection<TouristFacilityListItemViewModel> Facilities
+        {
+            get { return _facilities; }
+            set
+            {
+                _facilities = value;
+                OnPropertyChanged(nameof(Facilities));
+            }
+        }
+
+        public List<Attraction> Attractions
+        {
+            get { return _attractions; }
+            set
+            {
+                _attractions = value;
+                OnPropertyChanged(nameof(Attractions));
+            }
+        }
+
         public ClientNavigationViewModel Navigation { get; set; }
 
         public ICommand Trips { get; set; }
@@ -90,7 +102,13 @@ namespace TravelApp.DesktopHost.ViewModel
             ITouristFacilityRepository repo = new TouristFacilityRepository();
             var data = repo.Get();
 
-            Items = new ObservableCollection<TouristFacilityListItemViewModel>(data);
+            Facilities = new ObservableCollection<TouristFacilityListItemViewModel>(data);
+
+            //_attractions = _tripService.GetAttractions(selectedTrip);
+
+            // TODO : dele this after fixing database
+            IAttractionService attractionService = new AttractionService();
+            Attractions = attractionService.GetAll();
         }
     }
 }

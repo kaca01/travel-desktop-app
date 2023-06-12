@@ -46,6 +46,11 @@ namespace TravelApp.DesktopHost.View
             {
                 adjustNavigationProperties(tripDetailsViewModel.Navigation, windowWidth);
             }
+
+            else if (DataContext is ClientStayEatViewModel stayEatViewModel)
+            {
+                adjustNavigationProperties(stayEatViewModel.Navigation, windowWidth);
+            }
         }
 
         private void adjustNavigationProperties(ClientNavigationViewModel navigation, double windowWidth)

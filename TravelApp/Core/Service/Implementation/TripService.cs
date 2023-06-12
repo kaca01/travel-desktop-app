@@ -37,5 +37,10 @@ namespace TravelApp.Core.Service
         {
             return _tripRepository.GetTouristFacilities(id);
         }
+
+        public List<Attraction> GetAttractions(int id)
+        {
+            return _tripRepository.GetAttractions(id);
+        }
     }
 }
