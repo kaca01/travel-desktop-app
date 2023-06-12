@@ -44,6 +44,8 @@ namespace TravelApp.DesktopHost.ViewModel
 
         private Visibility _editVisibility;
 
+        private Visibility _attractionsVisibility;
+
         public Visibility ButtonsVisibility
         {
             get => _buttonsVisibility;
@@ -54,6 +56,11 @@ namespace TravelApp.DesktopHost.ViewModel
         {
             get => _editVisibility;
             set { _editVisibility = value; OnPropertyChanged(nameof(EditVisibility)); }
+        }
+        public Visibility AttractionsVisibility
+        {
+            get => _attractionsVisibility;
+            set { _attractionsVisibility = value; OnPropertyChanged(nameof(AttractionsVisibility)); }
         }
 
 
@@ -189,6 +196,10 @@ namespace TravelApp.DesktopHost.ViewModel
             _facilities = new ObservableCollection<TouristFacilityListItemViewModel>(data);
 
             _attractions = _tripService.GetAttractions(selectedTrip);
+
+            if (_attractions.Count > 0) AttractionsVisibility = Visibility.Hidden;
+            else AttractionsVisibility = Visibility.Visible;
+            
         }
 
        

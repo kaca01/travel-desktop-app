@@ -518,11 +518,23 @@
                         Foreground="#1E2F97"
                         Margin="100 100 0 0"/>
 
+                    <TextBlock 
+                        Grid.Row="1"
+                        Text="No attractions for this trip."
+                        FontWeight="Medium"
+                        TextAlignment="Center"
+                        FontSize="20"
+                        Foreground="Black"
+                        Margin="100 100 0 0"
+                        Visibility="{Binding AttractionsVisibility}"
+                        />
+
                     <ScrollViewer HorizontalScrollBarVisibility="Auto"
                                   VerticalScrollBarVisibility="Disabled"
                                   PreviewMouseWheel="HorizontalScrollViewer_PreviewMouseWheel"
                                   Margin="60 0 70 0"
                                   Grid.Row="1" 
+                                  
                                   >
                         <ItemsControl ItemsSource="{Binding Attractions}">
                             <ItemsControl.ItemsPanel>
