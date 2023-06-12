@@ -38,7 +38,7 @@ namespace TravelApp.DesktopHost.Command
                 }
                 else if (UserService.CurrentUser.Role.Equals(Role.AGENT))
                 {
-                    _navigationStore.CurrentViewModel = new AgentTripsViewModel();
+                    _navigationStore.CurrentViewModel = new NewAttractionViewModel();
                 }
             }
             catch(Exception e) 
