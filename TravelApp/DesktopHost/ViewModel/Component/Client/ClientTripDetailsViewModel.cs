@@ -117,19 +117,19 @@ namespace TravelApp.DesktopHost.ViewModel
             _trip = _tripService.Get(selectedTrip);
             Trips = new ClientTripsCommand();
 
-            //List<TouristFacilityListItemViewModel> data = _tripService.GetTouristFacilities(_trip.Id);
+            List<TouristFacilityListItemViewModel> data = _tripService.GetTouristFacilities(_trip.Id);
 
             // TODO : delete this after fixing the problem with database
-            ITouristFacilityRepository repo = new TouristFacilityRepository();
-            var data = repo.Get();
+            //ITouristFacilityRepository repo = new TouristFacilityRepository();
+            //var data = repo.Get();
 
             Facilities = new ObservableCollection<TouristFacilityListItemViewModel>(data);
 
-            //_attractions = _tripService.GetAttractions(selectedTrip);
+            _attractions = _tripService.GetAttractions(selectedTrip);
 
             // TODO : dele this after fixing database
-            IAttractionService attractionService = new AttractionService();
-            Attractions = attractionService.GetAll();
+            //AttractionService attractionService = new AttractionService();
+            //Attractions = attractionService.GetAll();
         }
     }
 }

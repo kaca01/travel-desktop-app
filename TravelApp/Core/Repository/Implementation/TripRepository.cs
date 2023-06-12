@@ -12,6 +12,7 @@ namespace TravelApp.Core.Repository
     public class TripRepository : ITripRepository
     {
         TravelContext context = TravelContext.Instance;
+        
         public List<Trip> GetAll()
         {
                 return context.Trips.Where(t => !t.IsDeleted).ToList();
@@ -46,44 +47,39 @@ namespace TravelApp.Core.Repository
 
         public List<TouristFacilityListItemViewModel> GetTouristFacilities(int id)
         {
-            using (var context = new TravelContext())
+        
+            Trip trip = context.Trips.First(item => item.Id == id);
+
+            if (trip != null)
             {
-                Trip trip = context.Trips.First(item => item.Id == id);
-
-                if (trip != null)
+                if (trip.FacilityList != null)
+                // Iterate through the property that is also a list and create a new object for each item
                 {
-                    if (trip.FacilityList != null)
-                    // Iterate through the property that is also a list and create a new object for each item
+                    List<TouristFacilityListItemViewModel> facilities =
+                    trip.FacilityList.Select(item => new TouristFacilityListItemViewModel
                     {
-                        List<TouristFacilityListItemViewModel> facilities =
-                        trip.FacilityList.Select(item => new TouristFacilityListItemViewModel
-                        {
-                            // Set properties of the new object based on the item from the property list
-                            Id = item.Id,
-                            Name = item.Name,
-                            Address = item.Address,
-                            Type = item.Type.ToString(),
-                            Link = item.Link,
-                            IsDeleted = item.IsDeleted
-                        }).Where(item => !item.IsDeleted).ToList();
+                        // Set properties of the new object based on the item from the property list
+                        Id = item.Id,
+                        Name = item.Name,
+                        Address = item.Address,
+                        Type = item.Type.ToString(),
+                        Link = item.Link,
+                        IsDeleted = item.IsDeleted
+                    }).Where(item => !item.IsDeleted).ToList();
 
-                        return facilities;
-
-                    }                    
+                    return facilities;
                 }
-
             }
             return null;
         }
 
         public List<Attraction> GetAttractions(int id)
         {
-            using (var context = new TravelContext())
-            {
-                Trip trip = context.Trips.First(item => item.Id == id);
+            
+            Trip trip = context.Trips.First(item => item.Id == id);
 
-                return trip.Attractions;
-            }
+            return trip.Attractions;
+            
         }
 
     }
