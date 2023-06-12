@@ -72,6 +72,10 @@
                 <views:ClientAttractionsView/>
             </DataTemplate>
 
+            <DataTemplate DataType="{x:Type viewmodels:ClientTripDetailsViewModel}">
+                <views:ClientTripDetailsView/>
+            </DataTemplate>
+
         </Grid.Resources>
         <ContentControl Content="{Binding CurrentViewModel}" />
     </Grid>
