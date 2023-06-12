@@ -97,16 +97,14 @@ namespace TravelApp.Core.Repository
 
         public void BuyTrip(int id)
         {
-                Transaction transaction = GetById(id);
+            Transaction transaction = GetById(id);
 
-                if (transaction != null)
-                {
-                    transaction.Type = TransactionType.PURCHASE;
-                    transaction.TransactionDate = DateTime.Now;
-                    context.Update(transaction);
-                    context.SaveChanges();
-                }
-            
+            if (transaction != null)
+            {
+                transaction.Type = TransactionType.PURCHASE;
+                //todo check if this works
+            }
+
         }
 
         public void CallOffReservation(int id)

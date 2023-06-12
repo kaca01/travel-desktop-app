@@ -108,19 +108,17 @@ namespace TravelApp
             trip3.Attractions.Add(attractionRepository.Get(9));
             db.Trips.Add(trip3);
 
-
-
             UserRepository userRepository = new UserRepository();
             TripRepository tripRepository = new TripRepository();
             //purchases and reservations
-            Transaction reservation1 = new Transaction() { Id = 1, User = userRepository.GetById(1), Trip = tripRepository.Get(1), Type = TransactionType.RESERVATION, IsDeleted = false };
-            Transaction purchase1 = new Transaction() { Id = 2, User = userRepository.GetById(2), Trip = tripRepository.Get(1), Type = TransactionType.PURCHASE, IsDeleted = false };
-            Transaction reservation2 = new Transaction() { Id = 3, User = userRepository.GetById(2), Trip = tripRepository.Get(2), Type = TransactionType.RESERVATION, IsDeleted = false };
-            Transaction purchase2 = new Transaction() { Id = 4, User = userRepository.GetById(1), Trip = tripRepository.Get(2), Type = TransactionType.PURCHASE, IsDeleted = false };
-            Transaction reservation3 = new Transaction() { Id = 5, User = userRepository.GetById(1), Trip = tripRepository.Get(3), Type = TransactionType.RESERVATION, IsDeleted = false };
-            Transaction purchase3 = new Transaction() { Id = 6, User = userRepository.GetById(3), Trip = tripRepository.Get(3), Type = TransactionType.PURCHASE, IsDeleted = false };
-            Transaction reservation4 = new Transaction() { Id = 7, User = userRepository.GetById(2), Trip = tripRepository.Get(3), Type = TransactionType.RESERVATION, IsDeleted = false };
-            Transaction purchase4 = new Transaction() { Id = 8, User = userRepository.GetById(4), Trip = tripRepository.Get(3), Type = TransactionType.PURCHASE, IsDeleted = false };
+            Transaction reservation1 = new Transaction() { Id = 1, User = userRepository.GetById(1), Trip = tripRepository.Get(1), Type = TransactionType.RESERVATION, TransactionDate = DateTime.Now.AddDays(-30), IsDeleted = false };
+            Transaction purchase1 = new Transaction() { Id = 2, User = userRepository.GetById(2), Trip = tripRepository.Get(1), Type = TransactionType.PURCHASE, TransactionDate = DateTime.Now.AddDays(-6), IsDeleted = false };
+            Transaction reservation2 = new Transaction() { Id = 3, User = userRepository.GetById(2), Trip = tripRepository.Get(2), Type = TransactionType.RESERVATION, TransactionDate = DateTime.Now.AddDays(-30), IsDeleted = false };
+            Transaction purchase2 = new Transaction() { Id = 4, User = userRepository.GetById(1), Trip = tripRepository.Get(2), Type = TransactionType.PURCHASE, TransactionDate = DateTime.Now.AddDays(-2), IsDeleted = false };
+            Transaction reservation3 = new Transaction() { Id = 5, User = userRepository.GetById(1), Trip = tripRepository.Get(3), Type = TransactionType.RESERVATION, TransactionDate = DateTime.Now.AddDays(-30), IsDeleted = false };
+            Transaction purchase3 = new Transaction() { Id = 6, User = userRepository.GetById(3), Trip = tripRepository.Get(3), Type = TransactionType.PURCHASE, TransactionDate = DateTime.Now.AddDays(-10), IsDeleted = false };
+            Transaction reservation4 = new Transaction() { Id = 7, User = userRepository.GetById(2), Trip = tripRepository.Get(3), Type = TransactionType.RESERVATION, TransactionDate = DateTime.Now.AddDays(-30), IsDeleted = false };
+            Transaction purchase4 = new Transaction() { Id = 8, User = userRepository.GetById(4), Trip = tripRepository.Get(3), Type = TransactionType.PURCHASE, TransactionDate = DateTime.Now.AddDays(-20), IsDeleted = false };
             db.Transactions.Add(reservation1);
             db.Transactions.Add(purchase1);
             db.Transactions.Add(reservation2);

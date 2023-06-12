@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using System.Windows.Documents;
 using TravelApp.Core.Model;
 using TravelApp.Core.Repository;
+using TravelApp.DesktopHost.ViewModel;
 using TravelApp.DesktopHost.ViewModel.Component.Agent;
 using TravelApp.DesktopHost.ViewModel.ItemViewModel;
 
@@ -64,6 +65,11 @@ namespace TravelApp.Core.Service
                 return item;}).ToList();
 
             return this._tripRepository.Create(vm, attrs, facilities);
+        }
+
+        public List<TripListItemViewModel> GetAllReturnListItem()
+        {
+            return _tripRepository.GetAllReturnListItem();
         }
     }
 }
