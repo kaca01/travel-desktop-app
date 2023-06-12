@@ -607,9 +607,22 @@
                         x:Name="myMap" CredentialsProvider="AuLWjg9zk0YyNOzdddizNFywS-R5879R6PnSVyiT_7T3X3SOnJe8TKz0PvlBO0c3" Mode="road" Height="350"
                        ToolTip="Preview of places and attractions for this trip"/>
                         <StackPanel Grid.Column="1">
-                            <Label>Map Legend</Label>
-                            <Label>Map Legend</Label>
-                            <Label>Map Legend</Label>
+                            <Label Grid.Row="0"
+                                   Margin="0,0,0,20"
+                                FontWeight="Bold"
+                                FontSize="25">Map Legend:</Label>
+                            <StackPanel Orientation="Horizontal" Margin="20,0,0,0">
+                                <Polygon Points="0,10 10,0 20,10" Fill="Red" Stroke="Black" StrokeThickness="1"/>
+                                <Label>Restaurant</Label>
+                            </StackPanel>
+                            <StackPanel Orientation="Horizontal"  Margin="20,0,0,0">
+                                <Ellipse Fill="Yellow" Width="20" Height="20" Margin="0 0 5 0"/>
+                                <Label>Attraction</Label>
+                            </StackPanel>
+                            <StackPanel Orientation="Horizontal"  Margin="20,0,0,0">
+                                <Rectangle Fill="Blue" Width="20" Height="20" Margin="0 0 5 0"/>
+                                <Label>Accomodation</Label>
+                            </StackPanel>
                         </StackPanel>
                     </Grid>
                 </Grid>

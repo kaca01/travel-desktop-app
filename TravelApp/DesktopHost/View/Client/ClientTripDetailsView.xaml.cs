@@ -79,11 +79,13 @@ namespace TravelApp.DesktopHost.View
                 else if (type == "ac")
                 {
                     dot.Background = new SolidColorBrush(Colors.White);
-                    dot.Content = new Path
+                    dot.Content = new Rectangle
                     {
-                        Data = Geometry.Parse("M0,0 L10,10 L20,0 Z"),
-                        Fill = Brushes.Blue,
+                        Width = 20,
+                        Height = 20,
+                        Fill = new SolidColorBrush(Colors.Blue),
                         Stroke = new SolidColorBrush(Colors.Black),
+                        StrokeThickness = 1
                     };
                 }
                 ToolTip tt = new ToolTip();
