@@ -17,5 +17,6 @@ namespace TravelApp.Core.Repository
         public Transaction GetById(int id);
         public void BuyTrip(int id);
         public void CallOffReservation(int id);
+        public void TripBooking(int id);
     }
 }

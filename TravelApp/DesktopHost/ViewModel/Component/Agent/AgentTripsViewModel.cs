@@ -39,7 +39,7 @@ namespace TravelApp.DesktopHost.ViewModel
 
         public AgentNavigationViewModel Navigation { get; set; }
 
-        public ICommand DisplayWindowSize { get; }
+        public ICommand TripDetails { get; set; }
 
         public List<string> SortCriteria
         {
@@ -149,7 +149,7 @@ namespace TravelApp.DesktopHost.ViewModel
             _sortCriteria = new List<string>();
             populateSortingCriteria();
             Navigation = new AgentNavigationViewModel();
-            DisplayWindowSize = new DisplayWidnowSizeCommand(this);
+            TripDetails = new ClientTripDetailsCommand(this);
             _trips = new List<Trip>();
             _searchedTrips = new List<Trip>();
             populateTrips();
@@ -177,8 +177,18 @@ namespace TravelApp.DesktopHost.ViewModel
             List<Trip> trips = new List<Trip>();
             foreach (Trip trip in _trips)
             {
-                trip.Description = trip.Description.Substring(0, Math.Min(trip.Description.Length, 120)) + "...";
-                trips.Add(trip);
+                Trip t = new Trip();
+                t.Id = trip.Id;
+                t.IsDeleted = trip.IsDeleted;
+                t.StartDate = trip.StartDate;
+                t.EndDate = trip.EndDate;
+                t.Price = trip.Price;
+                t.Name = trip.Name;
+                t.Departure = trip.Departure;
+                t.Departure = trip.Destination;
+                t.Image = trip.Image;
+                t.Description = trip.Description.Substring(0, Math.Min(trip.Description.Length, 120)) + "...";
+                trips.Add(t);
             }
 
             return trips;

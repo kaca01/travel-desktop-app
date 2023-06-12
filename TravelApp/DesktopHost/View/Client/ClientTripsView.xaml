@@ -221,6 +221,8 @@
                                         Height="40"
                                         FontWeight="DemiBold"
                                         Cursor="Hand"
+                                        Click="Open_Details" 
+                                        CommandParameter="{ Binding Id }"
                                         Style="{ StaticResource CornerRadius }">
                                         <Button.Resources>
                                             <Style TargetType="{x:Type Border}">

@@ -4,6 +4,7 @@ using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Transactions;
 using TravelApp.Core.Repository;
 using TravelApp.DesktopHost.ViewModel;
 
@@ -42,5 +43,17 @@ namespace TravelApp.Core.Service
             }
             return results;
         }
+
+        public void BuyTrip(int id)
+        {
+            _transactionRepository.BuyTrip(id);
+        }
+
+        public void TripBooking(int id)
+        {
+            _transactionRepository.TripBooking(id);
+        }
+
+
     }
 }

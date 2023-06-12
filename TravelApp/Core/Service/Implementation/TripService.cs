@@ -40,6 +40,16 @@ namespace TravelApp.Core.Service
             return _tripRepository.Delete(id);
         }
 
+        public List<TouristFacilityListItemViewModel> GetTouristFacilities(int id)
+        {
+            return _tripRepository.GetTouristFacilities(id);
+        }
+
+        public List<Attraction> GetAttractions(int id)
+        {
+            return _tripRepository.GetAttractions(id);
+        }
+        
         public Trip Create(NewTripViewModel vm)
         {
             if (DateTime.Parse(vm.StartDate) > DateTime.Parse(vm.EndDate))
