@@ -24,7 +24,9 @@ namespace TravelApp.Core.Repository
 
         public User GetByEmail(string email)
         {
-                return context.Users.Where(u => u.Email == email).ToList()[0];
+            List<User> users = context.Users.Where(u => u.Email == email).ToList();
+            if (users.Count == 0) return null;
+            return users[0];
 
         }
 
