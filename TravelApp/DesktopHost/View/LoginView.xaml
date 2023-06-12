@@ -11,6 +11,7 @@
         Focusable="True"
         l:HelpProvider.HelpKey="login"
         GotFocus="SetHelpKey"
+        Loaded="UserControl_Loaded"
         mc:Ignorable="d"
         Background="White"
         SizeChanged="Window_SizeChanged"
@@ -61,7 +62,7 @@
                     FontFamily="Poppins"
                     FontWeight="Regular"
                     HorizontalAlignment="Left">Email</Label>
-                <TextBox Style="{StaticResource MaterialDesignOutlinedTextBox}"
+                <TextBox x:Name="emailField" Style="{StaticResource MaterialDesignOutlinedTextBox}"
                     FontSize="15"
                     Margin="0"
                     materialDesign:HintAssist.Hint="name@domain.com"

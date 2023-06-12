@@ -23,6 +23,7 @@ namespace TravelApp.DesktopHost.View
         public LoginView()
         {
             InitializeComponent();
+            this.Focus();
             SetHelpKey(null, null);
         }
 
@@ -62,8 +63,14 @@ namespace TravelApp.DesktopHost.View
             if (focusedControl is DependencyObject)
             {
                 HelpProvider.SetHelpKey((DependencyObject)focusedControl, "login");
-
             }
         }
+
+        private void UserControl_Loaded(object sender, RoutedEventArgs e)
+        {
+            // Postavite fokus na željeni element unutar User Control-a
+            emailField.Focus();
+        }
+
     }
 }
