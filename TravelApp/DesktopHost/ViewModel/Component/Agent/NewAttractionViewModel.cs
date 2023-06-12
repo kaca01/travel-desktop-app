@@ -4,11 +4,14 @@ using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Linq;
+using System.Reflection;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Input;
 using System.Windows.Media.Imaging;
+using TravelApp.Core;
+using TravelApp.Core.Model;
 using TravelApp.DesktopHost.Command.Agent.NewAttraction;
 using TravelApp.DesktopHost.Command.Agent.NewPlace;
 
@@ -88,6 +91,14 @@ namespace TravelApp.DesktopHost.ViewModel.Component.Agent
             }
         }
 
+        private string _title;
+
+        public string Title
+        {
+            get => _title;
+            set { _title = value; OnPropertyChanged(nameof(Title)); ValidationViewModel.IsNameValid(_title); CheckButtonStatus(); }
+        }
+
         private bool _isButtonEnabled;
         public bool IsButtonEnabled
         {
@@ -127,15 +138,28 @@ namespace TravelApp.DesktopHost.ViewModel.Component.Agent
         public ICommand Create { get; }
         public ICommand UploadImageCommand { get; }
         public ValidationViewModel ValidationViewModel { get; }
+        public Attraction Attraction { get; set; }
 
-        public NewAttractionViewModel()
-        { 
-            Cancel = new CancelNewAttractionCommand();
-            Create = new CreateNewAttractionCommand(this);
+        public NewAttractionViewModel(Attraction attraction = null)
+        {
             ValidationViewModel = new ValidationViewModel();
+
+            Cancel = new CancelNewAttractionCommand();
+            Create = new CreateNewAttractionCommand(this, attraction);
             IsButtonEnabled = false;
             ImageVisibility = Visibility.Collapsed;
             UploadImageCommand = new RelayCommand(UploadImage);
+            Title = "New Attraction";
+
+            if (attraction != null)
+            {
+                Name = attraction.Name;
+                Address = attraction.Address;
+                Description = attraction.Description;
+                ImageSource = ImageConverter.LoadPicture(attraction.Image);
+                ImageVisibility = Visibility.Visible;
+                Title = "Update Attraction";
+            }
         }
 
         private void UploadImage()

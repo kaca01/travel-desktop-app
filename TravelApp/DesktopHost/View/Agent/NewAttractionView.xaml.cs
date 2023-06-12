@@ -15,6 +15,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using System.Xml.Linq;
 using TravelApp.Core.Service;
 using TravelApp.DesktopHost.ViewModel.Component.Agent;
 using static TravelApp.Core.Model.BingMapsApiResponse.ResourceSet.Resource;
@@ -30,8 +31,27 @@ namespace TravelApp.DesktopHost.View.Agent
         {
             InitializeComponent();
             myMap.Center = new Location(45.23898647559673, 19.842916112490993); 
-            myMap.ZoomLevel = 14;
+            myMap.ZoomLevel = 12;
             mapError.Visibility = Visibility.Collapsed;
+        }
+
+        private void Window_Loaded(object sender, RoutedEventArgs e)
+        {
+            NewAttractionViewModel viewModel = (NewAttractionViewModel)DataContext;
+            if (viewModel != null)
+            {
+                if (viewModel.Address != null & viewModel.Address != "")
+                {
+                    Task.Run(() =>
+                    {
+                        (double latitude, double longitude) = MapService.GetCoordinates(viewModel.Address);
+                        Application.Current.Dispatcher.Invoke(() =>
+                        {
+                            PlaceDot(new Location(latitude, longitude), viewModel.Address);
+                        });
+                    });
+                }
+            }
         }
 
         private void PlaceDot(Location location, string text)
@@ -40,6 +60,7 @@ namespace TravelApp.DesktopHost.View.Agent
             {
                 Location = location
             };
+            dot.Background = new SolidColorBrush(Colors.Yellow);
             ToolTip tt = new ToolTip();
             tt.Content = "Address = " + text;
             dot.ToolTip = tt;
@@ -60,12 +81,12 @@ namespace TravelApp.DesktopHost.View.Agent
             NewAttractionViewModel viewModel = (NewAttractionViewModel)DataContext;
             if (windowWidth <= 1200 || windowHeigth <= 700)
             {
-                viewModel.TextFontSize = 40;
+                viewModel.TextFontSize = 35;
                 viewModel.Width = 300;
             }
             else
             {
-                viewModel.TextFontSize = 60;
+                viewModel.TextFontSize = 50;
                 viewModel.Width = 439;
             }
         }

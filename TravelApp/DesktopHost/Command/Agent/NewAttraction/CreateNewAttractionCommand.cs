@@ -17,9 +17,11 @@ namespace TravelApp.DesktopHost.Command.Agent.NewAttraction
         private AttractionService _service;
         private readonly NavigationStore _navigationStore;
         private readonly NewAttractionViewModel _placeVM;
+        private readonly Attraction _attraction;
 
-        public CreateNewAttractionCommand(NewAttractionViewModel placeVM)
+        public CreateNewAttractionCommand(NewAttractionViewModel placeVM, Attraction attraction)
         {
+            _attraction = attraction;
             _service = new AttractionService();
             _placeVM = placeVM;
             _navigationStore = NavigationStore.Instance();
@@ -29,6 +31,7 @@ namespace TravelApp.DesktopHost.Command.Agent.NewAttraction
         {
             try
             {
+                if (_attraction != null) _service.Delete(_attraction.Id);
                 Attraction tf = _service.Create(_placeVM);
                 MessageBox.Show("Created attraction with name " + _placeVM.Name, "Successfully created", MessageBoxButton.OK, MessageBoxImage.Information);
                 _navigationStore.CurrentViewModel = new AgentAttractionsViewModel();
