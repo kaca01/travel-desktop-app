@@ -11,7 +11,8 @@
              mc:Ignorable="d" 
              Background="White"
              SizeChanged="Window_SizeChanged"
-             d:DataContext="{d:DesignInstance Type=viewmodels:NewAttractionViewModel}">
+             d:DataContext="{d:DesignInstance Type=viewmodels:NewAttractionViewModel}"
+             Loaded="Window_Loaded">
     <ScrollViewer>
         <Grid>
             <Grid.RowDefinitions>
@@ -52,7 +53,8 @@
                 FontWeight="Medium"
                 FontFamily="Poppins"
                 MaxWidth="{Binding Width}"
-                x:Name="Title">New Attraction</TextBlock>
+                x:Name="Title"
+                Text="{Binding Title}"/>
             <StackPanel Grid.Row="2"
                     Grid.Column="1"
                     Width="{Binding Width}"

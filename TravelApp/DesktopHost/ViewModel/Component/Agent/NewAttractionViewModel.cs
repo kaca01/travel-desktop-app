@@ -4,6 +4,7 @@ using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Linq;
+using System.Reflection;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
@@ -90,6 +91,14 @@ namespace TravelApp.DesktopHost.ViewModel.Component.Agent
             }
         }
 
+        private string _title;
+
+        public string Title
+        {
+            get => _title;
+            set { _title = value; OnPropertyChanged(nameof(Title)); ValidationViewModel.IsNameValid(_title); CheckButtonStatus(); }
+        }
+
         private bool _isButtonEnabled;
         public bool IsButtonEnabled
         {
@@ -140,6 +149,7 @@ namespace TravelApp.DesktopHost.ViewModel.Component.Agent
             IsButtonEnabled = false;
             ImageVisibility = Visibility.Collapsed;
             UploadImageCommand = new RelayCommand(UploadImage);
+            Title = "New Attraction";
 
             if (attraction != null)
             {
@@ -148,6 +158,7 @@ namespace TravelApp.DesktopHost.ViewModel.Component.Agent
                 Description = attraction.Description;
                 ImageSource = ImageConverter.LoadPicture(attraction.Image);
                 ImageVisibility = Visibility.Visible;
+                Title = "Update Attraction";
             }
         }
 
