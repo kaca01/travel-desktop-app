@@ -30,7 +30,7 @@ namespace TravelApp.DesktopHost.View
         private void TextBox_NameLostFocus(object sender, RoutedEventArgs e)
         {
             TextBox textBox = (TextBox)sender;
-            NewPlaceViewModel viewModel = (NewPlaceViewModel)DataContext;
+            EditPlaceViewModel viewModel = (EditPlaceViewModel)DataContext;
             if (viewModel == null) return;
             if (!viewModel.ValidationViewModel.IsNameValid(textBox.Text))
             {
@@ -57,7 +57,7 @@ namespace TravelApp.DesktopHost.View
         private void TextBox_AddressLostFocus(object sender, RoutedEventArgs e)
         {
             TextBox textBox = (TextBox)sender;
-            NewPlaceViewModel viewModel = (NewPlaceViewModel)DataContext;
+            EditPlaceViewModel viewModel = (EditPlaceViewModel)DataContext;
             if (viewModel == null) return;
             if (!viewModel.ValidationViewModel.IsAddressValid(textBox.Text))
             {
@@ -84,7 +84,7 @@ namespace TravelApp.DesktopHost.View
         private void TextBox_LinkLostFocus(object sender, RoutedEventArgs e)
         {
             TextBox textBox = (TextBox)sender;
-            NewPlaceViewModel viewModel = (NewPlaceViewModel)DataContext;
+            EditPlaceViewModel viewModel = (EditPlaceViewModel)DataContext;
             if (viewModel == null) return;
             if (!viewModel.ValidationViewModel.IsLinkValid(textBox.Text))
             {

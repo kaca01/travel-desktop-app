@@ -18,7 +18,8 @@ namespace TravelApp.DesktopHost.Command.Agent.EditPlace
         }
         public override void Execute(object parameter)
         {
-            _navigation.CurrentViewModel = new EditPlaceViewModel();
+            var selectedItem = parameter as TouristFacilityListItemViewModel;
+            _navigation.CurrentViewModel = new EditPlaceViewModel(selectedItem);
         }
     }
 }

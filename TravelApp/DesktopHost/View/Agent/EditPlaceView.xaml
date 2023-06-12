@@ -199,10 +199,10 @@
                 Height="40"
                 Margin="0, 22 ,0 ,0"
                 IsEnabled="{Binding IsButtonEnabled}"
-                ToolTip="Click to create the new place"
-                Content="Create"
+                ToolTip="Click to edit a place"
+                Content="Edit"
                 Style="{StaticResource FormButton}"
-                Command="{Binding Create}"
+                Command="{Binding Edit}"
                 IsDefault="True" Cursor="Hand" >
             </Button>
         </Grid>

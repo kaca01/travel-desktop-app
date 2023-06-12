@@ -18,5 +18,6 @@ namespace TravelApp.Core.Repository
         public TouristFacility Create(string name, string address, string link, PlaceType type);
         public List<TouristFacility> GetValidRestaurants();
         public List<TouristFacility> GetValidAccomodations();
+        public void Edit(TouristFacilityListItemViewModel editedFacility);
     }
 }
