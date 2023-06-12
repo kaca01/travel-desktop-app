@@ -10,6 +10,11 @@
              mc:Ignorable="d" 
              d:DesignHeight="450" d:DesignWidth="900"
              d:DataContext="{d:DesignInstance Type=viewmodels:AgentSoldTripsViewModel}" 
+             xmlns:l="clr-namespace:TravelApp"
+             Focusable="True"
+             l:HelpProvider.HelpKey="soldTrips"
+             GotFocus="SetHelpKey"
+             Loaded="UserControl_Loaded"
              Background="White"
              SizeChanged="Window_SizeChanged">
     <Grid>

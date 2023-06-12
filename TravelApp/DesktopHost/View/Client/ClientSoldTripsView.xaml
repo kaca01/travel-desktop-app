@@ -10,6 +10,11 @@
              mc:Ignorable="d" 
              d:DataContext="{d:DesignInstance Type=viewmodels:ClientSoldTripsViewModel}" 
              Background="White"
+             Focusable="True"
+             xmlns:l="clr-namespace:TravelApp"
+             l:HelpProvider.HelpKey="myTrips"
+             GotFocus="SetHelpKey"
+             Loaded="UserControl_Loaded"
              SizeChanged="Window_SizeChanged">
     <Grid>
         <Grid>

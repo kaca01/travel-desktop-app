@@ -25,6 +25,7 @@ namespace TravelApp.DesktopHost.View
         {
             InitializeComponent();
             DataContext = new ClientSoldTripsViewModel();
+            SetHelpKey(null, null);
         }
 
         private void Window_SizeChanged(object sender, SizeChangedEventArgs e)
@@ -48,6 +49,20 @@ namespace TravelApp.DesktopHost.View
             else if (windowWidth <= 1100) { viewModel.TableWidth = 700; viewModel.ArrowMargin = new Thickness(-30, 0, 0, 0); }
             else if (windowWidth <= 1250) { viewModel.TableWidth = 750; viewModel.ArrowMargin = new Thickness(-40, 0, 0, 0); }
             else { viewModel.TableWidth = 800; viewModel.ArrowMargin = new Thickness(-50, 0, 0, 0); }
+        }
+
+        public void SetHelpKey(object sender, EventArgs e)
+        {
+            IInputElement focusedControl = FocusManager.GetFocusedElement(Application.Current.Windows[0]);
+            if (focusedControl is DependencyObject)
+            {
+                HelpProvider.SetHelpKey((DependencyObject)focusedControl, "myTrips");
+            }
+        }
+
+        private void UserControl_Loaded(object sender, RoutedEventArgs e)
+        {
+            this.Focus();
         }
     }
 }
