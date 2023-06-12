@@ -35,32 +35,36 @@ namespace TravelApp.DesktopHost.View
             if (DataContext is ClientTripDetailsViewModel viewModel)
             {
                 viewModel.ScrollViewHeight = windowHeight - 50;
-                if (windowWidth <= 1000)
+                if (windowWidth <= 1100)
                 {
-                    viewModel.FieldsWidth = 150;
+                    viewModel.FieldsWidth = 270;
+                    viewModel.DescriptionWidth = 370;
                     viewModel.TextFontSize = 30;
 
                 }
-                else if (windowWidth <= 1100)
+                else if (windowWidth <= 1300)
                 {
-                    viewModel.FieldsWidth = 170;
+                    viewModel.FieldsWidth = 350;
+                    viewModel.DescriptionWidth = 450;
                     viewModel.TextFontSize = 35;
                 }
-                else if (windowWidth <= 1250)
+                else if (windowWidth <= 1400)
                 {
-                    viewModel.FieldsWidth = 200;
+                    viewModel.FieldsWidth = 400;
+                    viewModel.DescriptionWidth = 500;
                     viewModel.TextFontSize = 46;
                 }
                 else
                 {
-                    viewModel.FieldsWidth = 280;
+                    viewModel.FieldsWidth = 500;
+                    viewModel.DescriptionWidth = 600;
                     viewModel.TextFontSize = 50;
                 }
 
                 if (windowWidth <= 930) { viewModel.TableWidth = 650;}
                 else if (windowWidth <= 990) { viewModel.TableWidth = 700; }
                 else if (windowWidth <= 1250) { viewModel.TableWidth = 750; }
-                else { viewModel.TableWidth = 1200; }
+                else { viewModel.TableWidth = 1150; }
             }
         }
 

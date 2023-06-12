@@ -253,7 +253,7 @@
                         </Grid.RowDefinitions>
                         <Border CornerRadius="5" Grid.Row="0">
                             <Image Source="../../../Style/Images/trip.png" 
-                                   Width="500" 
+                                   Width="{Binding FieldsWidth}" 
                                    HorizontalAlignment="Left"
                                    Height="auto" 
                                    Margin="70 75 0 0"
@@ -264,9 +264,9 @@
                                 Text="{Binding Trip.Description}"
                                 FontWeight="Medium"
                                 TextAlignment="Left"
-                                FontSize="25"
+                                FontSize="20"
                                 Foreground="Gray"
-                                Width="700"
+                                Width="{Binding DescriptionWidth}"
                                 TextWrapping="Wrap"
                                 HorizontalAlignment="Left"
                                 Margin="70 30 0 0"/>
@@ -506,10 +506,10 @@
 
                                             <Border CornerRadius="5">
                                                 <Image Source="../../../Style/Images/trip.png" 
-                                            Width="300" 
-                                            Height="auto" 
-                                            Margin="0 25 0 0"
-                                            Grid.Row="0"/>
+                                                    Width="300" 
+                                                    Height="auto" 
+                                                    Margin="0 25 0 0"
+                                                    Grid.Row="0"/>
                                             </Border>
                                             <ScrollViewer VerticalScrollBarVisibility="Auto"
                                                 Grid.Row="1"
@@ -553,7 +553,7 @@
                 <Grid Grid.Row="5">
                     <Grid.RowDefinitions>
                         <RowDefinition Height="Auto"></RowDefinition>
-                        <RowDefinition Height="Auto"></RowDefinition> <!-- TODO : in this row put map -->
+                        <RowDefinition Height="Auto"></RowDefinition> <!-- this is row for the maps -->
                     </Grid.RowDefinitions>
 
                     <TextBlock
@@ -572,8 +572,8 @@
                         <ColumnDefinition Width="Auto"></ColumnDefinition>
                         <ColumnDefinition Width="Auto"></ColumnDefinition>
                         <ColumnDefinition Width="Auto"></ColumnDefinition>
-                        <ColumnDefinition Width="500"></ColumnDefinition>
-                        <ColumnDefinition Width="500"></ColumnDefinition>
+                        <ColumnDefinition Width="{Binding FieldsWidth}"></ColumnDefinition>
+                        <ColumnDefinition Width="{Binding FieldsWidth}"></ColumnDefinition>
                     </Grid.ColumnDefinitions>
 
                     <TextBlock

@@ -20,6 +20,8 @@ namespace TravelApp.DesktopHost.ViewModel
 
         private double _fieldsWidth;
 
+        private double _descriptionWidth;
+
         private ITripService _tripService;
 
         private Trip _trip;
@@ -31,6 +33,7 @@ namespace TravelApp.DesktopHost.ViewModel
         private double _scrollViewHeight;
 
         private double _tableWidth;
+
 
         public double TextFontSize
         {
@@ -52,6 +55,16 @@ namespace TravelApp.DesktopHost.ViewModel
             {
                 _fieldsWidth = value;
                 OnPropertyChanged(nameof(FieldsWidth));
+            }
+        }
+
+        public double DescriptionWidth
+        {
+            get => _descriptionWidth;
+            set
+            {
+                _descriptionWidth = value;
+                OnPropertyChanged(nameof(DescriptionWidth));
             }
         }
 

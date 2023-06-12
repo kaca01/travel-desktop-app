@@ -45,7 +45,6 @@ namespace TravelApp.Core.Repository
                     EndDate = t.Trip.EndDate,
                     Type = t.Type.ToString(),
                     IsDeleted = t.IsDeleted
-                    // TODO promeni za trenutnog korisnika
                 }).Where(t => !t.IsDeleted && t.Type.Equals("RESERVATION") && t.User.Email.Equals(UserService.CurrentUser.Email)).ToList();
          
         }
@@ -81,8 +80,7 @@ namespace TravelApp.Core.Repository
                     EndDate = t.Trip.EndDate,
                     Type = t.Type.ToString(),
                     IsDeleted = t.IsDeleted
-                    // TODO promeni za trenutnog korisnika
-                }).Where(t => !t.IsDeleted && t.Type.Equals("PURCHASE") && t.User.Email.Equals("ines@gmail.com")).ToList();
+                }).Where(t => !t.IsDeleted && t.Type.Equals("PURCHASE") && t.User.Email.Equals(UserService.CurrentUser.Email)).ToList();
             
         }
 
