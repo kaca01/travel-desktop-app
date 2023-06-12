@@ -135,7 +135,7 @@
                         Width="{ Binding Navigation.TabWidth }"
                         Height="40"
                         Content="Help"
-                        ToolTip="Need help? Click me!"
+                        ToolTip="Press F1 to see help"
                         Background="Transparent"
                         BorderBrush="Transparent"
                         Foreground="#000000"
