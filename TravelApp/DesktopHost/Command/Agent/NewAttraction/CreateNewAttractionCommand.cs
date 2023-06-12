@@ -31,8 +31,7 @@ namespace TravelApp.DesktopHost.Command.Agent.NewAttraction
             {
                 Attraction tf = _service.Create(_placeVM);
                 MessageBox.Show("Created attraction with name " + _placeVM.Name, "Successfully created", MessageBoxButton.OK, MessageBoxImage.Information);
-                //_navigationStore.CurrentViewModel = new AgentAttractionViewModel();
-                //todo uncomment
+                _navigationStore.CurrentViewModel = new AgentAttractionsViewModel();
             }
             catch (Exception e)
             {

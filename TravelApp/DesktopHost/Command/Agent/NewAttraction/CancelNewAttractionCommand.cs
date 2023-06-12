@@ -18,8 +18,7 @@ namespace TravelApp.DesktopHost.Command.Agent.NewAttraction
         }
         public override void Execute(object parameter)
         {
-            //_navigation.CurrentViewModel = new AgentAttractionsViewModel();
-            //todo uncomment
+            _navigation.CurrentViewModel = new AgentAttractionsViewModel();
         }
     }
 }

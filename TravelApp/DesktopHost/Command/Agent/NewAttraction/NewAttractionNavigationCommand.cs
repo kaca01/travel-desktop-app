@@ -8,7 +8,6 @@ using TravelApp.DesktopHost.ViewModel.Navigation;
 
 namespace TravelApp.DesktopHost.Command.Agent.NewAttraction
 {
-    //todo use in AgentAttracionViewModel
     public class NewAttractionNavigationCommand : BaseCommand
     {
         private readonly NavigationStore _navigation;

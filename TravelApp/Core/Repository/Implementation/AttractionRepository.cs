@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Media.Imaging;
 using TravelApp.Core.Model;
 using TravelApp.Core.Repository;
 
@@ -38,6 +39,18 @@ namespace TravelApp.Core.Repository
                     return true;
                 }
                 return false;
+            }
+        }
+
+        public Attraction Create(string name, string address, string description, BitmapImage imageSource)
+        {
+            using (var context = new TravelContext())
+            {
+
+                Attraction a = new Attraction() { Name = name, Description = description, Address = address, Image = ImageConverter.ConvertImageSourceToByteArray(imageSource) };
+                context.Attractions.Add(a);
+                context.SaveChanges();
+                return a;
             }
         }
     }

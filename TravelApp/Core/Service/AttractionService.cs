@@ -34,5 +34,20 @@ namespace TravelApp.Core.Service
         {
             return this.attractionRepository.Create(vm.Name, vm.Address, vm.Description, vm.ImageSource);
         }
+
+        public List<Attraction> GetAll()
+        {
+            return attractionRepository.GetAll();
+        }
+
+        public Attraction Get(int id)
+        {
+            return attractionRepository.Get(id);
+        }
+
+        public bool Delete(int id)
+        {
+            return attractionRepository.Delete(id);
+        }
     }
 }
