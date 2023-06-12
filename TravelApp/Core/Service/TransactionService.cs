@@ -28,5 +28,10 @@ namespace TravelApp.Core.Service
         {
             return _transactionRepository.GetReservationsForCurrentUser();
         }
+
+        public void BuyTrip(int id)
+        {
+            _transactionRepository.BuyTrip(id);
+        }
     }
 }

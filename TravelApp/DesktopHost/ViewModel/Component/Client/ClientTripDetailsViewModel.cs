@@ -9,6 +9,7 @@ using System.Windows.Input;
 using TravelApp.Core.Model;
 using TravelApp.Core.Repository;
 using TravelApp.Core.Service;
+using TravelApp.DesktopHost.Command;
 using TravelApp.DesktopHost.Command.Navigation;
 
 namespace TravelApp.DesktopHost.ViewModel
@@ -109,6 +110,8 @@ namespace TravelApp.DesktopHost.ViewModel
 
         public ICommand Trips { get; set; }
 
+        public ICommand Buy { get; set; }
+
 
         public ClientTripDetailsViewModel(int selectedTrip)
         {
@@ -116,6 +119,7 @@ namespace TravelApp.DesktopHost.ViewModel
             _tripService = new TripService();
             _trip = _tripService.Get(selectedTrip);
             Trips = new ClientTripsCommand();
+            Buy = new TripDetailsBuyCommand(this);
 
             List<TouristFacilityListItemViewModel> data = _tripService.GetTouristFacilities(_trip.Id);
 

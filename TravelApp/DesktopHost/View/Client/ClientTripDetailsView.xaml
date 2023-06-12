@@ -572,8 +572,8 @@
                         <ColumnDefinition Width="Auto"></ColumnDefinition>
                         <ColumnDefinition Width="Auto"></ColumnDefinition>
                         <ColumnDefinition Width="Auto"></ColumnDefinition>
-                        <ColumnDefinition Width="Auto"></ColumnDefinition>
-                        <ColumnDefinition Width="Auto"></ColumnDefinition>
+                        <ColumnDefinition Width="500"></ColumnDefinition>
+                        <ColumnDefinition Width="500"></ColumnDefinition>
                     </Grid.ColumnDefinitions>
 
                     <TextBlock
@@ -602,6 +602,53 @@
                         Foreground="Black"
                         FontSize="30"
                         />
+                    <Grid Grid.Column="3"
+                          HorizontalAlignment="Right">
+                    <Button
+                        ToolTip="Reserving this trip, you will be able to call it off 3 days before the trip."
+                        Grid.Column="3"
+                        Content="Reserve"
+                        Cursor="Hand"
+                        Width="200"
+                        Height="35"
+                        Background="#4889E6"
+                        BorderBrush="Transparent"
+                        Grid.Row="3" 
+                        Margin="0 20 0 50"
+                        Foreground="White"
+                        FontSize="16"
+                        FontWeight="DemiBold"
+                        Style="{ StaticResource FormButton }">
+                        <Button.Resources>
+                            <Style TargetType="{x:Type Border}">
+                                <Setter Property="CornerRadius" Value="20"/>
+                            </Style>
+                        </Button.Resources>
+                    </Button>
+                    </Grid>
+
+                    <Button
+                        ToolTip="If you buy the trip you won't be able to call it off."
+                        Grid.Column="4"
+                        Content="Buy"
+                        Cursor="Hand"
+                        Width="200"
+                        Height="35"
+                        Background="#4889E6"
+                        BorderBrush="Transparent"
+                        Grid.Row="3" 
+                        Margin="0 20 0 50"
+                        Foreground="White"
+                        FontSize="16"
+                        FontWeight="DemiBold"
+                        Command="{ Binding Buy }"
+                        Style="{ StaticResource FormButton }">
+                        <Button.Resources>
+                            <Style TargetType="{x:Type Border}">
+                                <Setter Property="CornerRadius" Value="20"/>
+                            </Style>
+                        </Button.Resources>
+                    </Button>
                 </Grid>
             </Grid>
         </ScrollViewer>
