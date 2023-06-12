@@ -20,8 +20,8 @@ namespace TravelApp.Core.Model
         public DateTime StartDate { get; set; }
         public DateTime EndDate { get; set; }
         public bool IsDeleted { get; set; }
-        public virtual List<TouristFacility> FacilityList { get; set;}
-        public virtual List<Attraction> Attractions { get; set;}
+        public virtual List<TouristFacility> FacilityList { get; set;} = new List<TouristFacility>();
+        public virtual List<Attraction> Attractions { get; set;} = new List<Attraction>();
 
     }
 }

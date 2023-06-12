@@ -9,40 +9,32 @@ namespace TravelApp.Core.Repository
 {
     public class UserRepository : IUserRepository
     {
-        
+        TravelContext context = TravelContext.Instance;
         public List<User> GetAll()
         {
-            using (var context = new TravelContext())
-            {
                 return context.Users.ToList();
-            }
+           
         }
 
         public User GetById(int id)
         {
-            using (var context = new TravelContext())
-            {
-                return context.Users.First(u => u.Id == id);
-            }
+                return context.Users.Where(u => u.Id == id).ToList()[0];
+
         }
 
         public User GetByEmail(string email)
         {
-            using (var context = new TravelContext())
-            {
-                return context.Users.FirstOrDefault(u => u.Email == email);
-            }
+                return context.Users.Where(u => u.Email == email).ToList()[0];
+
         }
 
         public User Create(string name, string surname, string email, string password)
         {
-            using (var context = new TravelContext())
-            {
+            
                 User user = new User() { Name = name, Surname = surname, Email = email, Password = password, Role = Role.CLIENT };
                 context.Users.Add(user);
-                context.SaveChanges();
                 return user;
-            }
+            
         }
     }
 }
