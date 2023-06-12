@@ -22,6 +22,8 @@ using TravelApp.DesktopHost.Command.Agent.NewTrip;
 using TravelApp.DesktopHost.ViewModel.ComboBox;
 using TravelApp.DesktopHost.ViewModel.ItemViewModel;
 using GalaSoft.MvvmLight.Command;
+using System.Xaml;
+using TravelApp.Core;
 
 namespace TravelApp.DesktopHost.ViewModel.Component.Agent
 {
@@ -166,7 +168,7 @@ namespace TravelApp.DesktopHost.ViewModel.Component.Agent
 
         public ValidationViewModel ValidationViewModel { get; }
 
-        public NewTripViewModel()
+        public NewTripViewModel(TravelApp.Core.Model.Trip trip = null)
         {
             AttractionService attractionService = new AttractionService();
             TouristFacilityService tfService = new TouristFacilityService();
@@ -179,6 +181,20 @@ namespace TravelApp.DesktopHost.ViewModel.Component.Agent
             ValidationViewModel = new ValidationViewModel();
             UploadImageCommand = new RelayCommand(UploadImage);
             ImageVisibility = Visibility.Collapsed;
+
+            if (trip != null)
+            {
+                ImageVisibility = Visibility.Visible;
+                Name = trip.Name;
+                Description = trip.Description;
+                Price = trip.Price.ToString();
+                StartDate = trip.StartDate.ToString();
+                EndDate = trip.EndDate.ToString();
+                ImageSource = ImageConverter.LoadPicture(trip.Image);
+                StartLocation = trip.Departure;
+                EndLocation = trip.Destination;
+                // TODO : add restaurants, accommodations and attractions
+            }
         }
 
         private void UploadImage()

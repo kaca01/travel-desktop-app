@@ -13,6 +13,7 @@ using TravelApp.Core.Model;
 using TravelApp.Core.Repository;
 using TravelApp.Core.Service;
 using TravelApp.DesktopHost.Command;
+using TravelApp.DesktopHost.Command.Agent.NewTrip;
 using TravelApp.DesktopHost.Command.Navigation;
 
 namespace TravelApp.DesktopHost.ViewModel
@@ -158,6 +159,8 @@ namespace TravelApp.DesktopHost.ViewModel
 
         public ICommand Book { get; set; }
 
+        public ICommand NewTrip { get; set; }
+
 
         public ClientTripDetailsViewModel(int selectedTrip)
         {
@@ -179,6 +182,7 @@ namespace TravelApp.DesktopHost.ViewModel
             Trips = new ClientTripsCommand();
             Buy = new TripDetailsBuyCommand(this);
             Book = new TripDetailsReservationCommand(this);
+            NewTrip = new NewTripNavigationCommand(this);
 
             List<TouristFacilityListItemViewModel> data = _tripService.GetTouristFacilities(_trip.Id);
 
