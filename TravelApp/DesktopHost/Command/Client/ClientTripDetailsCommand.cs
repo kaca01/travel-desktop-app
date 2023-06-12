@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 using TravelApp.DesktopHost.ViewModel;
 using TravelApp.DesktopHost.ViewModel.Navigation;
 
-namespace TravelApp.DesktopHost.Command.Navigation.Client
+namespace TravelApp.DesktopHost.Command
 {
     public class ClientTripDetailsCommand : BaseCommand
     {

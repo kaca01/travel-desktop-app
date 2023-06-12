@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 using System.Windows.Input;
 using TravelApp.Core.Model;
 using TravelApp.Core.Service;
-using TravelApp.DesktopHost.Command.Navigation.Client;
+using TravelApp.DesktopHost.Command;
 
 namespace TravelApp.DesktopHost.ViewModel
 {
@@ -158,8 +158,18 @@ namespace TravelApp.DesktopHost.ViewModel
             List<Trip> trips = new List<Trip>();
             foreach (Trip trip in _trips)
             {
-                trip.Description = trip.Description.Substring(0, Math.Min(trip.Description.Length, 120)) + "...";
-                trips.Add(trip);
+                Trip t = new Trip();
+                t.Id = trip.Id;
+                t.IsDeleted = trip.IsDeleted;
+                t.StartDate = trip.StartDate;
+                t.EndDate = trip.EndDate;
+                t.Price = trip.Price;
+                t.Name = trip.Name;
+                t.Departure = trip.Departure;
+                t.Departure = trip.Destination;
+                t.Image = trip.Image;
+                t.Description = trip.Description.Substring(0, Math.Min(trip.Description.Length, 120)) + "...";
+                trips.Add(t);
             }
 
             return trips;
