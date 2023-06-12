@@ -10,7 +10,12 @@
              mc:Ignorable="d" 
              Background="White"
              SizeChanged="Window_SizeChanged"
-             d:DataContext="{d:DesignInstance Type=viewmodels:NewPlaceViewModel}" >
+             d:DataContext="{d:DesignInstance Type=viewmodels:NewPlaceViewModel}" 
+             xmlns:l="clr-namespace:TravelApp"
+            Focusable="True"
+            l:HelpProvider.HelpKey="newPlace"
+            GotFocus="SetHelpKey"
+            Loaded="UserControl_Loaded">
     <UserControl.Resources>
         <Style TargetType="RadioButton">
             <Setter Property="Template">

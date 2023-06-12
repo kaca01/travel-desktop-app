@@ -9,7 +9,12 @@
              d:DataContext="{d:DesignInstance Type=viewmodels:AgentStayEatViewModel}"
              mc:Ignorable="d" 
              Background="White"
-             SizeChanged="Window_SizeChanged">
+             SizeChanged="Window_SizeChanged"
+             xmlns:l="clr-namespace:TravelApp"
+             Focusable="True"
+             l:HelpProvider.HelpKey="stayAndEatAgent"
+             GotFocus="SetHelpKey"
+             Loaded="UserControl_Loaded">
 
     <Grid>
         <Grid>
