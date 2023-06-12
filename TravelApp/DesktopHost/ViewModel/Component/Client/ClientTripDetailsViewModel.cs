@@ -1,10 +1,13 @@
-﻿using System;
+﻿using MaterialDesignThemes.Wpf;
+using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Input;
 using TravelApp.Core.Model;
+using TravelApp.Core.Repository;
 using TravelApp.Core.Service;
 using TravelApp.DesktopHost.Command.Navigation;
 
@@ -19,6 +22,18 @@ namespace TravelApp.DesktopHost.ViewModel
         private ITripService _tripService;
 
         private Trip _trip;
+
+        private ObservableCollection<TouristFacilityListItemViewModel> _items;
+        
+        public ObservableCollection<TouristFacilityListItemViewModel> Items
+        {
+            get { return _items; }
+            set
+            {
+                _items = value;
+                OnPropertyChanged(nameof(Items));
+            }
+        }
 
         public double TextFontSize
         {
@@ -57,6 +72,8 @@ namespace TravelApp.DesktopHost.ViewModel
 
         public ICommand Trips { get; set; }
 
+
+
         public double ScrollViewHeight { get; set; }
 
 
@@ -66,6 +83,14 @@ namespace TravelApp.DesktopHost.ViewModel
             _tripService = new TripService();
             _trip = _tripService.Get(selectedTrip);
             Trips = new ClientTripsCommand();
+
+            //List<TouristFacilityListItemViewModel> data = _tripService.GetTouristFacilities(_trip.Id);
+
+            // TODO : delete this after fixing the problem with database
+            ITouristFacilityRepository repo = new TouristFacilityRepository();
+            var data = repo.Get();
+
+            Items = new ObservableCollection<TouristFacilityListItemViewModel>(data);
         }
     }
 }

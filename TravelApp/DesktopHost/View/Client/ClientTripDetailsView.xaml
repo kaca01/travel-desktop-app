@@ -23,6 +23,12 @@
                 <Grid.RowDefinitions>
                     <RowDefinition Height="Auto"/>
                     <RowDefinition Height="Auto" />
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="Auto" /> <!-- this is row for the table -->
+                    <RowDefinition Height="Auto" /> <!-- this is row for attractions cards-->
+                    <RowDefinition Height="Auto" /> <!-- this is row for the map -->
+                    <RowDefinition Height="Auto" /> <!-- this is row for buttons -->
+
                 </Grid.RowDefinitions>
                 <Grid Grid.Row="0" Margin="0 50 0 0">
                     <Grid.ColumnDefinitions>
@@ -65,7 +71,7 @@
                       Margin="100 30 0 0"/>
                 </Grid>
 
-                <Grid Grid.Row="3">
+                <Grid Grid.Row="2">
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition Width="500"></ColumnDefinition>
                         <ColumnDefinition Width="Auto"></ColumnDefinition>
@@ -89,7 +95,7 @@
                             TextAlignment="Left"
                             FontSize="25"
                             Foreground="#1E2F97"
-                            Margin="100 115 0 0"/>
+                            Margin="100 80 0 0"/>
 
                         <Grid Grid.Row="1" >
                             <Grid.ColumnDefinitions>
@@ -249,21 +255,206 @@
                                    Margin="70 75 0 0"
                                                />
                         </Border>
-                        <ScrollViewer Grid.Row="1" Height="180" HorizontalScrollBarVisibility="Auto"> 
-                        <TextBlock 
-                            Text="{Binding Trip.Description}"
-                            FontWeight="Medium"
-                            TextAlignment="Left"
-                            FontSize="25"
-                            Foreground="Gray"
-                            Width="700"
-                            TextWrapping="Wrap"
-                            HorizontalAlignment="Left"
-                            Margin="70 30 0 0"/>
+                        <ScrollViewer Grid.Row="1" Height="180" HorizontalScrollBarVisibility="Auto">
+                            <TextBlock 
+                                Text="{Binding Trip.Description}"
+                                FontWeight="Medium"
+                                TextAlignment="Left"
+                                FontSize="25"
+                                Foreground="Gray"
+                                Width="700"
+                                TextWrapping="Wrap"
+                                HorizontalAlignment="Left"
+                                Margin="70 30 0 0"/>
                         </ScrollViewer>
                     </Grid>
-                
+                </Grid>
+                <Grid Grid.Row="3" >
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto"></RowDefinition>
+                        <RowDefinition Height="Auto"></RowDefinition>
+                    </Grid.RowDefinitions>
 
+                    <TextBlock 
+                        Grid.Row="0"
+                        Text="STAY&amp;EAT"
+                        FontWeight="Bold"
+                        TextAlignment="Left"
+                        FontSize="25"
+                        Foreground="#1E2F97"
+                        Margin="100 80 0 0"/>
+
+                    <materialDesign:Card Grid.Row="1"
+                                         Background="White"
+                                         Padding="16"
+                                         HorizontalAlignment="Left"
+                                         Margin="100 20 0 0">
+                        <!-- bind table width with backend-->
+                        <DataGrid ItemsSource="{Binding Items}"
+                                  Width="1200"
+                                  Height="500"
+                                  RowHeight="55"
+                                  HorizontalAlignment="Center"
+                                  AutoGenerateColumns="False"
+                                  CanUserAddRows="False"
+                                  CanUserDeleteRows="False"
+                                  CanUserResizeColumns="False"
+                                  CanUserResizeRows="False"
+                                  CanUserReorderColumns="False"
+                                  RowHeaderWidth="0"
+                                  HeadersVisibility="Column"
+                                  ScrollViewer.VerticalScrollBarVisibility="Visible"
+                                  ScrollViewer.HorizontalScrollBarVisibility="Auto"
+                                  BorderThickness="0">
+
+                            <DataGrid.Resources>
+                                <Style TargetType="DataGridColumnHeader">
+                                    <Setter Property="Background" Value="LightGray" />
+                                    <Setter Property="Padding" Value="23" />
+                                    <Setter Property="FontFamily" Value="Poppins" />
+                                </Style>
+
+                                <SolidColorBrush x:Key="MaterialDesignSelection" Color="Transparent" />
+                                <SolidColorBrush x:Key="MaterialDesignSelectionForeground" Color="	#5A5A5A" />
+
+                                <Style TargetType="DataGridCell">
+                                    <Setter Property="Background" Value="{StaticResource MaterialDesignSelection}" />
+                                    <Setter Property="Foreground" Value="{StaticResource MaterialDesignSelectionForeground}" />
+                                    <Setter Property="BorderThickness" Value="0" />
+                                    <Style.Triggers>
+                                        <Trigger Property="IsSelected" Value="True">
+                                            <Setter Property="Background" Value="{StaticResource MaterialDesignSelection}" />
+                                            <Setter Property="Foreground" Value="{StaticResource MaterialDesignSelectionForeground}" />
+                                            <Setter Property="BorderThickness" Value="0" />
+                                        </Trigger>
+                                    </Style.Triggers>
+                                </Style>
+
+                                <Style x:Key="SortIconStyle" TargetType="Path">
+                                    <Setter Property="Width" Value="8" />
+                                    <Setter Property="Height" Value="6" />
+                                    <Setter Property="Stretch" Value="Fill" />
+                                    <Setter Property="Data" Value="M0,0 L1,0 0.5,1 Z" />
+                                    <Setter Property="Fill" Value="Black" />
+                                    <Setter Property="RenderTransformOrigin" Value="0.5, 0.5" />
+
+                                    <Style.Triggers>
+                                        <EventTrigger RoutedEvent="Loaded">
+                                            <BeginStoryboard>
+                                                <Storyboard>
+                                                    <DoubleAnimation Storyboard.TargetProperty="RenderTransform.(RotateTransform.Angle)" Duration="0:0:0.4" From="0" To="180" AutoReverse="True" RepeatBehavior="Forever" />
+                                                </Storyboard>
+                                            </BeginStoryboard>
+                                        </EventTrigger>
+                                    </Style.Triggers>
+                                </Style>
+
+                                <Style x:Key="SortableColumnHeaderStyle" TargetType="DataGridColumnHeader">
+                                    <Setter Property="Background" Value="LightGray" />
+                                    <Setter Property="FontFamily" Value="Poppins" />
+                                    <Setter Property="HorizontalContentAlignment" Value="Center" />
+                                    <Setter Property="VerticalContentAlignment" Value="Center" />
+                                    <Setter Property="Cursor" Value="Hand" />
+                                    <Setter Property="Template">
+                                        <Setter.Value>
+                                            <ControlTemplate TargetType="{x:Type DataGridColumnHeader}">
+                                                <Grid>
+                                                    <Grid.ColumnDefinitions>
+                                                        <ColumnDefinition Width="*" />
+                                                        <ColumnDefinition Width="auto" />
+                                                    </Grid.ColumnDefinitions>
+                                                    <ContentPresenter Grid.Column="0" VerticalAlignment="Center" Margin="20"/>
+                                                    <Path x:Name="SortArrow" Grid.Column="1" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="{Binding DataContext.ArrowMargin, RelativeSource={RelativeSource AncestorType={x:Type DataGrid}}}" Style="{StaticResource SortIconStyle}" />
+                                                </Grid>
+                                                <ControlTemplate.Triggers>
+                                                    <Trigger Property="SortDirection" Value="Ascending">
+                                                        <Setter TargetName="SortArrow" Property="Visibility" Value="Visible" />
+                                                        <Setter TargetName="SortArrow" Property="RenderTransform">
+                                                            <Setter.Value>
+                                                                <RotateTransform Angle="180" />
+                                                            </Setter.Value>
+                                                        </Setter>
+                                                    </Trigger>
+                                                    <Trigger Property="SortDirection" Value="Descending">
+                                                        <Setter TargetName="SortArrow" Property="Visibility" Value="Visible" />
+                                                    </Trigger>
+                                                    <Trigger Property="IsMouseOver" Value="True">
+                                                        <Setter Property="Background" Value="LightGray" />
+                                                    </Trigger>
+                                                </ControlTemplate.Triggers>
+                                            </ControlTemplate>
+                                        </Setter.Value>
+                                    </Setter>
+                                </Style>
+                            </DataGrid.Resources>
+
+                            <DataGrid.Columns>
+                                <DataGridTextColumn Header="Name" Binding="{Binding Name}" IsReadOnly="True" Width="1.5*"
+                                            SortMemberPath="Name" HeaderStyle="{StaticResource SortableColumnHeaderStyle}" >
+                                    <DataGridTextColumn.ElementStyle>
+                                        <Style TargetType="TextBlock">
+                                            <Setter Property="Padding" Value="16" />
+                                            <Setter Property="FontFamily" Value="Poppins" />
+                                            <Setter Property="VerticalAlignment" Value="Center" />
+                                            <Setter Property="ToolTip" Value="{Binding Name}" />
+                                        </Style>
+                                    </DataGridTextColumn.ElementStyle>
+                                </DataGridTextColumn>
+
+                                <DataGridTextColumn Header="Address" Binding="{Binding Address}" IsReadOnly="True" Width="2*"
+                                            SortMemberPath="Address" HeaderStyle="{StaticResource SortableColumnHeaderStyle}" >
+                                    <DataGridTextColumn.ElementStyle>
+                                        <Style TargetType="TextBlock">
+                                            <Setter Property="Padding" Value="16" />
+                                            <Setter Property="FontFamily" Value="Poppins" />
+                                            <Setter Property="VerticalAlignment" Value="Center" />
+                                            <Setter Property="ToolTip" Value="{Binding Address}" />
+                                        </Style>
+                                    </DataGridTextColumn.ElementStyle>
+                                </DataGridTextColumn>
+
+                                <DataGridTextColumn Header="Type" Binding="{Binding Type}" IsReadOnly="True" Width="*"
+                                            SortMemberPath="Type" HeaderStyle="{StaticResource SortableColumnHeaderStyle}" >
+                                    <DataGridTextColumn.ElementStyle>
+                                        <Style TargetType="TextBlock">
+                                            <Setter Property="Padding" Value="16" />
+                                            <Setter Property="FontFamily" Value="Poppins" />
+                                            <Setter Property="VerticalAlignment" Value="Center" />
+                                            <Setter Property="ToolTip" Value="{Binding Type}" />
+                                        </Style>
+                                    </DataGridTextColumn.ElementStyle>
+                                </DataGridTextColumn>
+
+                                <DataGridTemplateColumn Header="Link" Width="1*">
+                                    <DataGridTemplateColumn.CellTemplate>
+                                        <DataTemplate>
+                                            <TextBlock Padding="16" FontFamily="Poppins" VerticalAlignment="Center" FontSize="15">
+                                                <TextBlock.ToolTip>
+                                                    <ToolTip>
+                                                        <TextBlock Text="Visit us on the web" />
+                                                    </ToolTip>
+                                                </TextBlock.ToolTip>
+                                        <Hyperlink NavigateUri="{Binding Link}" RequestNavigate="Hyperlink_RequestNavigate">
+                                            <Hyperlink.Style>
+                                                <Style TargetType="Hyperlink">
+                                                    <Setter Property="Foreground" Value="#4889E6" />
+                                                    <Style.Triggers>
+                                                        <Trigger Property="IsMouseOver" Value="True">
+                                                            <Setter Property="Foreground" Value="#4889E6" />
+                                                        </Trigger>
+                                                    </Style.Triggers>
+                                                </Style>
+                                            </Hyperlink.Style>
+                                            <Run Text="see more" />
+                                        </Hyperlink>
+                                    </TextBlock>
+                                        </DataTemplate>
+                                    </DataGridTemplateColumn.CellTemplate>
+                                </DataGridTemplateColumn>
+
+                            </DataGrid.Columns>
+                        </DataGrid>
+                    </materialDesign:Card>
                 </Grid>
             </Grid>
         </ScrollViewer>

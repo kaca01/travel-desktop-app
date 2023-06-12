@@ -5,6 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using TravelApp.Core.Model;
 using TravelApp.Core.Repository;
+using TravelApp.DesktopHost.ViewModel;
 
 namespace TravelApp.Core.Service
 {
@@ -30,6 +31,11 @@ namespace TravelApp.Core.Service
         public bool Delete(int id)
         {
             return _tripRepository.Delete(id);
+        }
+
+        public List<TouristFacilityListItemViewModel> GetTouristFacilities(int id)
+        {
+            return _tripRepository.GetTouristFacilities(id);
         }
     }
 }

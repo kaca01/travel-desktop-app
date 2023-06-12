@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using TravelApp.Core.Model;
+using TravelApp.DesktopHost.ViewModel;
 
 namespace TravelApp.Core.Repository
 {
@@ -14,5 +15,7 @@ namespace TravelApp.Core.Repository
         public Trip Get(int id);
 
         public bool Delete(int id);
+
+        public List<TouristFacilityListItemViewModel> GetTouristFacilities(int id);
     }
 }
