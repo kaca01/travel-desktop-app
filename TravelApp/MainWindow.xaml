@@ -58,7 +58,11 @@
             <DataTemplate DataType="{x:Type viewmodelsAgent:NewTripViewModel}">
                 <viewsAgent:NewTripView/>
             </DataTemplate>
-            
+
+            <DataTemplate DataType="{x:Type viewmodelsAgent:NewAttractionViewModel}">
+                <viewsAgent:NewAttractionView/>
+            </DataTemplate>
+
             <DataTemplate DataType="{x:Type viewmodels:AgentReservationsViewModel}">
                 <views:AgentReservationsView/>
             </DataTemplate>
