@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Input;
+using TravelApp.Core;
 using TravelApp.Core.Model;
 using TravelApp.Core.Service;
 using TravelApp.DesktopHost.Command;
@@ -168,6 +169,7 @@ namespace TravelApp.DesktopHost.ViewModel
                 t.Departure = trip.Departure;
                 t.Departure = trip.Destination;
                 t.Image = trip.Image;
+                t.Picture = ImageConverter.LoadPicture(trip.Image);
                 t.Description = trip.Description.Substring(0, Math.Min(trip.Description.Length, 120)) + "...";
                 trips.Add(t);
             }

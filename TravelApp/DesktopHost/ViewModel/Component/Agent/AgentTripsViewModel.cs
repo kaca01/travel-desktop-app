@@ -12,6 +12,9 @@ using TravelApp.DesktopHost.ViewModel.Component.Trip;
 using System.Windows;
 using TravelApp.DesktopHost.Command.Agent;
 using TravelApp.DesktopHost.Command.Agent.NewTrip;
+using System.IO;
+using System.Windows.Media.Imaging;
+using TravelApp.Core;
 
 namespace TravelApp.DesktopHost.ViewModel
 {
@@ -187,6 +190,7 @@ namespace TravelApp.DesktopHost.ViewModel
                 t.Departure = trip.Departure;
                 t.Departure = trip.Destination;
                 t.Image = trip.Image;
+                t.Picture = ImageConverter.LoadPicture(trip.Image);
                 t.Description = trip.Description.Substring(0, Math.Min(trip.Description.Length, 120)) + "...";
                 trips.Add(t);
             }
@@ -236,5 +240,7 @@ namespace TravelApp.DesktopHost.ViewModel
                 return false;
 
         }
+
+
     }
 }

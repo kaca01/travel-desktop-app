@@ -147,7 +147,7 @@
                                     </Grid.RowDefinitions>
 
                                     <Border CornerRadius="5">
-                                        <Image Source="../../../Style/Images/trip.png" 
+                                        <Image Source="{Binding Picture}" 
                                                Width="300" 
                                                Height="auto" 
                                                Margin="0 25 0 0"
