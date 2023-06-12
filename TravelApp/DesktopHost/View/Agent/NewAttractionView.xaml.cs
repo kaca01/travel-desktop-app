@@ -17,6 +17,7 @@ using System.Windows.Navigation;
 using System.Windows.Shapes;
 using TravelApp.Core.Service;
 using TravelApp.DesktopHost.ViewModel.Component.Agent;
+using static TravelApp.Core.Model.BingMapsApiResponse.ResourceSet.Resource;
 
 namespace TravelApp.DesktopHost.View.Agent
 {
@@ -30,22 +31,23 @@ namespace TravelApp.DesktopHost.View.Agent
             InitializeComponent();
             myMap.Center = new Location(45.23898647559673, 19.842916112490993); 
             myMap.ZoomLevel = 14;
+            mapError.Visibility = Visibility.Collapsed;
         }
 
-        private void PlaceDot(Location location)
+        private void PlaceDot(Location location, string text)
         {
-            Ellipse dot = new Ellipse();
-            dot.Fill = new SolidColorBrush(Colors.Red);
-            double radius = 12.0;
-            dot.Width = radius * 2;
-            dot.Height = radius * 2;
+            Pushpin dot = new Pushpin
+            {
+                Location = location
+            };
             ToolTip tt = new ToolTip();
-            tt.Content = "Address = " + location;
+            tt.Content = "Address = " + text;
             dot.ToolTip = tt;
             Point p0 = myMap.LocationToViewportPoint(location);
-            Point p1 = new Point(p0.X - radius, p0.Y - radius);
-            Location loc = myMap.ViewportPointToLocation(p1);
+            Location loc = myMap.ViewportPointToLocation(p0);
             MapLayer.SetPosition(dot, loc);
+            dot.MouseLeftButtonDown += Marker_MouseDown;
+            dot.MouseLeftButtonUp += Marker_MouseUp;
             myMap.Children.Add(dot);
         }
 
@@ -173,15 +175,54 @@ namespace TravelApp.DesktopHost.View.Agent
             if (!viewModel.ValidationViewModel.IsAddressValid(textBox.Text))
             {
                 textBox.BorderBrush = Brushes.Red;
-                //ispisi gresku ispod
             }
             else
             {
                 textBox.BorderBrush = Brushes.Gray;
                 (double latitude, double longitude) = MapService.GetCoordinates(textBox.Text, "AuLWjg9zk0YyNOzdddizNFywS-R5879R6PnSVyiT_7T3X3SOnJe8TKz0PvlBO0c3");
-                this.PlaceDot(new Location(latitude, longitude));
+                this.PlaceDot(new Location(latitude, longitude), textBox.Text);
+                if (myMap.Children.Count == 0)
+                    mapError.Visibility = Visibility.Visible;
+                else mapError.Visibility = Visibility.Collapsed;
             }
             viewModel.Address = textBox.Text;
+        }
+
+        Vector _mouseToMarker;
+        private bool isDragging = false;
+        private Pushpin selectedMarker { get; set; }
+
+        void Marker_MouseDown(object sender, MouseButtonEventArgs e)
+        {
+            e.Handled = true;
+            selectedMarker = sender as Pushpin;
+            isDragging = true;
+            _mouseToMarker = Point.Subtract(
+              myMap.LocationToViewportPoint(selectedMarker.Location),
+              e.GetPosition(myMap));
+        }
+
+        async void Marker_MouseUp(object sender, MouseButtonEventArgs e)
+        {
+            selectedMarker = sender as Pushpin;
+            //todo find new address ftom latitude and longitude
+            e.Handled = true;
+            selectedMarker = null;
+            isDragging = false;
+            selectedMarker = null;
+        }
+
+        private void Marker_MouseMove(object sender, MouseEventArgs e)
+        {
+            if (e.LeftButton == MouseButtonState.Pressed)
+            {
+                if (isDragging && selectedMarker != null)
+                {
+                    selectedMarker.Location = myMap.ViewportPointToLocation(
+                      Point.Add(e.GetPosition(myMap), _mouseToMarker));
+                    e.Handled = true;
+                }
+            }
         }
     }
 }

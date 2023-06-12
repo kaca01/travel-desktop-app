@@ -119,7 +119,16 @@
                     Width="{Binding Width}"
                     Height="280">
                 <m:Map x:Name="myMap" CredentialsProvider="AuLWjg9zk0YyNOzdddizNFywS-R5879R6PnSVyiT_7T3X3SOnJe8TKz0PvlBO0c3" Mode="Aerial" Height="250"
-                       ToolTip="Double click on map to add a location marker"/>
+                       ToolTip="Double click on map to add a location marker"
+                       MouseMove="Marker_MouseMove"/>
+                <Label Height="27"
+                       FontSize="15"
+                       FontFamily="Poppins"
+                       FontWeight="Regular"
+                       x:Name="mapError"
+                       Content="Cannot find address on map"
+                       HorizontalAlignment="Left"
+                       Foreground="Red"/>
 
             </StackPanel>
             <StackPanel Grid.Row="5"
