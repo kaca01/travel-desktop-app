@@ -9,6 +9,8 @@ using System.Windows;
 using System.Windows.Input;
 using TravelApp.Core.Service;
 using TravelApp.DesktopHost.Command;
+using TravelApp.DesktopHost.Command.Client;
+using TravelApp.DesktopHost.ViewModel.Component.ListItem;
 
 namespace TravelApp.DesktopHost.ViewModel
 {

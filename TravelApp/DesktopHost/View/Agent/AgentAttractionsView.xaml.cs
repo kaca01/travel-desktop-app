@@ -12,6 +12,9 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using TravelApp.Core.Model;
+using TravelApp.Core.Repository;
+using TravelApp.DesktopHost.Command.Agent.NewAttraction;
 using TravelApp.DesktopHost.ViewModel;
 
 namespace TravelApp.DesktopHost.View
@@ -24,6 +27,7 @@ namespace TravelApp.DesktopHost.View
         public AgentAttractionsView()
         {
             InitializeComponent();
+            SetHelpKey(null, null);
         }
 
         private void Window_SizeChanged(object sender, SizeChangedEventArgs e)
@@ -62,6 +66,29 @@ namespace TravelApp.DesktopHost.View
             AgentAttractionsViewModel viewModel = (AgentAttractionsViewModel)DataContext;
             Button button = sender as Button;
             viewModel.Delete((int)button.CommandParameter);
+        }
+
+        private void Update_Click(object sender, RoutedEventArgs e)
+        {
+            AgentAttractionsViewModel viewModel = (AgentAttractionsViewModel)DataContext;
+            Button button = sender as Button;
+            int id = ((int)button.CommandParameter);
+            viewModel.SelectedAttraction = id;
+            viewModel.NewAttraction.Execute(this);
+        }
+        
+        public void SetHelpKey(object sender, EventArgs e)
+        {
+            IInputElement focusedControl = FocusManager.GetFocusedElement(Application.Current.Windows[0]);
+            if (focusedControl is DependencyObject)
+            {
+                HelpProvider.SetHelpKey((DependencyObject)focusedControl, "allAttractionsAgent");
+            }
+        }
+
+        private void UserControl_Loaded(object sender, RoutedEventArgs e)
+        {
+            this.Focus();
         }
     }
 }

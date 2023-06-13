@@ -6,15 +6,16 @@ using System.Threading.Tasks;
 using System.Windows;
 using TravelApp.Core.Service;
 using TravelApp.DesktopHost.ViewModel;
+using TravelApp.DesktopHost.ViewModel.Component.ListItem;
 
-namespace TravelApp.DesktopHost.Command
+namespace TravelApp.DesktopHost.Command.Client
 {
-    public class CallOffReservationCommand : BaseCommand
+    public class BuyTripCommand : BaseCommand
     {
         private ClientReservationsViewModel _model;
         private TransactionService _service;
 
-        public CallOffReservationCommand(ClientReservationsViewModel model)
+        public BuyTripCommand(ClientReservationsViewModel model)
         {
             _model = model;
             _service = new TransactionService();
@@ -27,27 +28,27 @@ namespace TravelApp.DesktopHost.Command
             {
                 if (OpenMessageBox(selectedItem))
                 {
-                    _service.TransactionRepository.CallOffReservation(selectedItem.Id);
+                    _service.TransactionRepository.BuyTrip(selectedItem.Id);
                     _model.FilteredItems.Remove(selectedItem);
                     _model.CheckIsEnable();
-                    MessageBox.Show("You called off the trip: " +
+                    MessageBox.Show("You bought the trip: " +
                                     "\nName: " + selectedItem.Trip +
                                     "\nPrice: " + selectedItem.Price +
                                     "\nStart Date: " + selectedItem.StartDate.ToShortDateString() +
-                                    "\nEnd Date: " + selectedItem.EndDate.ToShortDateString(), "Successfully call off", MessageBoxButton.OK, MessageBoxImage.Information);
+                                    "\nEnd Date: " + selectedItem.EndDate.ToShortDateString(), "Successfully bought", MessageBoxButton.OK, MessageBoxImage.Information);
                 }
             }
             else
-                MessageBox.Show("By clicking on a trip in the table, select an item to call off", "Info", MessageBoxButton.OK, MessageBoxImage.Information);
+                MessageBox.Show("By clicking on a trip in the table, select an item to buy", "Info", MessageBoxButton.OK, MessageBoxImage.Information);
         }
 
         private bool OpenMessageBox(TransactionListItemViewModel item)
         {
-            MessageBoxResult result = MessageBox.Show("You want call off the trip ?" +
+            MessageBoxResult result = MessageBox.Show("You want buy the trip ?" +
                                                         "\nName: " + item.Trip +
                                                         "\nPrice: " + item.Price +
                                                         "\nStart Date: " + item.StartDate.ToShortDateString() +
-                                                        "\nEnd Date: " + item.EndDate.ToShortDateString(), "Call off trip", MessageBoxButton.YesNo, MessageBoxImage.Question);
+                                                        "\nEnd Date: " + item.EndDate.ToShortDateString(), "Buy trip", MessageBoxButton.YesNo, MessageBoxImage.Question);
 
             if (result == MessageBoxResult.Yes)
                 return true;

@@ -13,7 +13,9 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using TravelApp.Core.Service;
 using TravelApp.DesktopHost.ViewModel;
+using TravelApp.DesktopHost.ViewModel.Component.Agent;
 
 namespace TravelApp.DesktopHost.View
 {
@@ -22,10 +24,56 @@ namespace TravelApp.DesktopHost.View
     /// </summary>
     public partial class ClientNavigationView : UserControl
     {
-        public int SelectedIndex { get => navigation.SelectedIndex; set => navigation.SelectedIndex = value; }  
+        public int SelectedIndex { get => navigation.SelectedIndex; set => navigation.SelectedIndex = value; }
         public ClientNavigationView()
         {
             InitializeComponent();
+        }
+
+        private void TabControl_PreviewKeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.Key == Key.Enter)
+            {
+                if (SelectedIndex == 0)
+                    BaseViewModel.ClientNavigationViewModel.Trips.Execute(null);
+                else if (SelectedIndex == 1)
+                    BaseViewModel.ClientNavigationViewModel.Attractions.Execute(null);
+                else if (SelectedIndex == 2)
+                    BaseViewModel.ClientNavigationViewModel.StayAndEat.Execute(null);
+                else if (SelectedIndex == 3)
+                    BaseViewModel.ClientNavigationViewModel.SoldTrips.Execute(null);
+                else if (SelectedIndex == 4)
+                    BaseViewModel.ClientNavigationViewModel.Reservations.Execute(null);
+                else if (SelectedIndex == 5)
+                    BaseViewModel.ClientNavigationViewModel.Help.Execute(null);
+                else if (SelectedIndex == 6)
+                    BaseViewModel.ClientNavigationViewModel.LogOut.Execute(null);
+                // Mark the event as handled
+                e.Handled = true;
+            }
+        }
+
+
+        private UIElement FindFirstFocusableElement(DependencyObject element)
+        {
+            if (element == null)
+                return null;
+
+            if (element is UIElement uiElement && uiElement.Focusable)
+                return uiElement;
+
+            int childCount = VisualTreeHelper.GetChildrenCount(element);
+
+            for (int i = 0; i < childCount; i++)
+            {
+                var childElement = VisualTreeHelper.GetChild(element, i);
+                var result = FindFirstFocusableElement(childElement);
+
+                if (result != null)
+                    return result;
+            }
+
+            return null;
         }
 
 
@@ -44,11 +92,20 @@ namespace TravelApp.DesktopHost.View
             }
             else if (DataContext is ClientTripDetailsViewModel tripDetailsViewModel)
             {
-                adjustNavigationProperties(tripDetailsViewModel.Navigation, windowWidth);
+                if (UserService.CurrentUser.Role == Core.Model.Role.CLIENT)
+                {
+                    ClientNavigationViewModel vm = (ClientNavigationViewModel)tripDetailsViewModel.Navigation;
+                    adjustNavigationProperties(vm, windowWidth);
+
+                }
             }
             else if (DataContext is ClientStayEatViewModel stayEatViewModel)
             {
                 adjustNavigationProperties(stayEatViewModel.Navigation, windowWidth);
+            }
+            else if (DataContext is ClientSoldTripsViewModel soldTripsViewModel)
+            {
+                adjustNavigationProperties(soldTripsViewModel.Navigation, windowWidth);
             }
             else if (DataContext is ClientReservationsViewModel reservationsViewModel)
             {

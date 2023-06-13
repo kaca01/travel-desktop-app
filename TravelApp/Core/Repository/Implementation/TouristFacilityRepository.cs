@@ -5,7 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using TravelApp.Core.Model;
-using TravelApp.DesktopHost.ViewModel;
+using TravelApp.DesktopHost.ViewModel.Component.ListItem;
 
 namespace TravelApp.Core.Repository
 {
@@ -82,6 +82,32 @@ namespace TravelApp.Core.Repository
                 TouristFacility tf = new TouristFacility() { Id = generateId(), Name = name, Address = address, Link = link, Type = type };
                 context.TouristFacilities.Add(tf);
                 return tf;
+        }
+
+        public void Edit(TouristFacilityListItemViewModel editedFacility)
+        {
+            var touristFacility = GetById(editedFacility.Id);
+
+            if (touristFacility != null)
+            {
+                touristFacility.Name = editedFacility.Name;
+                touristFacility.Address = editedFacility.Address;
+                touristFacility.Link = editedFacility.Link;
+                string type = editedFacility.Type;
+                touristFacility.Type = (PlaceType)Enum.Parse(typeof(PlaceType), type);
+                //todo check if this works
+            }
+        }
+
+        public void UndoItem(int id)
+        {
+            TouristFacility facility = GetById(id);
+
+            if (facility != null)
+            {
+                facility.IsDeleted = false;
+            }
+
         }
     }
 }

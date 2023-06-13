@@ -7,6 +7,11 @@
              xmlns:viewmodels="clr-namespace:TravelApp.DesktopHost.ViewModel.Component.Agent"
              xmlns:views="clr-namespace:TravelApp.DesktopHost.View"
              xmlns:local="clr-namespace:TravelApp.DesktopHost.View.Agent"
+             xmlns:l="clr-namespace:TravelApp"
+             Focusable="True"
+             l:HelpProvider.HelpKey="newTrip"
+             GotFocus="SetHelpKey"
+             Loaded="UserControl_Loaded"
              mc:Ignorable="d" 
              Background="White"
              SizeChanged="Window_SizeChanged"
@@ -77,12 +82,16 @@
                 Margin="0, 40, 0, 0"
                 VerticalAlignment="Top"
                 HorizontalAlignment="Left"
+                x:Name="Cancel"
                 Style="{StaticResource CloseButton}"
                 Cursor="Hand">
-            <materialDesign:PackIcon Kind="Close" Width="45" Height="45"/>
+                <Button.InputBindings>
+                    <KeyBinding Key="Escape" Command="{Binding Cancel}" />
+                </Button.InputBindings>
+                <materialDesign:PackIcon Kind="Close" Width="45" Height="45"/>
         </Button>
 
-        <TextBlock FontSize="{Binding TextFontSize}"
+            <TextBlock FontSize="{Binding TextFontSize}"
             Foreground="#161A25"
             TextAlignment="Left"
             Margin="0, 40, 0 ,20"
@@ -91,9 +100,10 @@
             FontWeight="Medium"
             FontFamily="Poppins"
             MaxWidth="{Binding Width}"
-            x:Name="Title">New Trip</TextBlock>
-        
-        <StackPanel Grid.Row="2"
+            x:Name="Title"
+            Text="{Binding Title}"/>
+
+            <StackPanel Grid.Row="2"
                 Grid.Column="1"
                 Width="{Binding Width}"
                 Height="112">
@@ -323,7 +333,7 @@
                         <Viewbox Width="25" Height="25">
                             <materialDesign:PackIcon Kind="Plus" VerticalAlignment="Center"/>
                         </Viewbox>
-                        <TextBlock Text="Add photo" FontFamily="Poppins" Grid.Column="1" Padding="5"  VerticalAlignment="Center" FontSize="20" Foreground="Black"/>
+                        <TextBlock Text="Upload photo" FontFamily="Poppins" Grid.Column="1" Padding="5"  VerticalAlignment="Center" FontSize="20" Foreground="Black"/>
                     </StackPanel>
                 </Button>
                 <Image Source="{Binding ImageSource}" Width="250" Height="200" Visibility="{Binding ImageVisibility}"/>
@@ -469,7 +479,7 @@
                 Margin="0, 40 ,0 ,40"
                 IsEnabled="{Binding IsButtonEnabled}"
                 ToolTip="Click to create the new trip"
-                Content="Create"
+                Content="Save"
                 Style="{StaticResource FormButton}"
                 Command="{Binding Create}"
                 IsDefault="True" Cursor="Hand" >

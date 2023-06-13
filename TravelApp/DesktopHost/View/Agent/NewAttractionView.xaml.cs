@@ -15,8 +15,9 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using System.Xml.Linq;
 using TravelApp.Core.Service;
-using TravelApp.DesktopHost.ViewModel.Component.Agent;
+using TravelApp.DesktopHost.ViewModel.Component.Agent.Form;
 using static TravelApp.Core.Model.BingMapsApiResponse.ResourceSet.Resource;
 
 namespace TravelApp.DesktopHost.View.Agent
@@ -29,9 +30,37 @@ namespace TravelApp.DesktopHost.View.Agent
         public NewAttractionView()
         {
             InitializeComponent();
+            SetHelpKey(null, null);
             myMap.Center = new Location(45.23898647559673, 19.842916112490993); 
-            myMap.ZoomLevel = 14;
+            myMap.ZoomLevel = 12;
             mapError.Visibility = Visibility.Collapsed;
+            Loaded += MainWindow_Loaded;
+        }
+
+        private void MainWindow_Loaded(object sender, RoutedEventArgs e)
+        {
+            // Set keyboard focus to the button
+            Cancel.Focus();
+        }
+
+        private void Window_Loaded(object sender, RoutedEventArgs e)
+        {
+            NewAttractionViewModel viewModel = (NewAttractionViewModel)DataContext;
+            if (viewModel != null)
+            {
+                if (viewModel.Address != null & viewModel.Address != "")
+                {
+                    Task.Run(() =>
+                    {
+                        (double latitude, double longitude) = MapService.GetCoordinates(viewModel.Address);
+                        Application.Current.Dispatcher.Invoke(() =>
+                        {
+                            PlaceDot(new Location(latitude, longitude), viewModel.Address);
+                        });
+                    });
+                }
+            }
+            this.Focus();
         }
 
         private void PlaceDot(Location location, string text)
@@ -40,6 +69,7 @@ namespace TravelApp.DesktopHost.View.Agent
             {
                 Location = location
             };
+            dot.Background = new SolidColorBrush(Colors.Yellow);
             ToolTip tt = new ToolTip();
             tt.Content = "Address = " + text;
             dot.ToolTip = tt;
@@ -60,12 +90,12 @@ namespace TravelApp.DesktopHost.View.Agent
             NewAttractionViewModel viewModel = (NewAttractionViewModel)DataContext;
             if (windowWidth <= 1200 || windowHeigth <= 700)
             {
-                viewModel.TextFontSize = 40;
+                viewModel.TextFontSize = 35;
                 viewModel.Width = 300;
             }
             else
             {
-                viewModel.TextFontSize = 60;
+                viewModel.TextFontSize = 50;
                 viewModel.Width = 439;
             }
         }
@@ -285,6 +315,20 @@ namespace TravelApp.DesktopHost.View.Agent
             }
 
             mapDragging = false;
+        }
+        
+        public void SetHelpKey(object sender, EventArgs e)
+        {
+            IInputElement focusedControl = FocusManager.GetFocusedElement(Application.Current.Windows[0]);
+            if (focusedControl is DependencyObject)
+            {
+                HelpProvider.SetHelpKey((DependencyObject)focusedControl, "newAttraction");
+            }
+        }
+
+        private void UserControl_Loaded(object sender, RoutedEventArgs e)
+        {
+            this.Focus();
         }
     }
 }

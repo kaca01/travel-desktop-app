@@ -16,6 +16,10 @@
              GotFocus="SetHelpKey"
              Loaded="UserControl_Loaded">
 
+    <UserControl.InputBindings>
+        <KeyBinding Key="Z" Modifiers="Control" Command="{Binding Undo}" />
+    </UserControl.InputBindings>
+
     <Grid>
         <Grid>
             <Grid.RowDefinitions>
@@ -98,14 +102,14 @@
                             <Viewbox Width="25" Height="25">
                                 <materialDesign:PackIcon Kind="Plus" VerticalAlignment="Center"/>
                             </Viewbox>
-                            <TextBlock Text="Add place" FontFamily="Poppins" Grid.Column="1" Padding="5"  VerticalAlignment="Center" FontSize="20" Foreground="Black" TextDecorations="Underline"/>
+                            <TextBlock Text="Add place" FontFamily="Poppins" Grid.Column="1" Padding="5"  VerticalAlignment="Center" FontSize="20" Foreground="Black"/>
                         </StackPanel>
                     </Button>
                 </WrapPanel>
             </Grid>
 
             <materialDesign:Card Grid.Row="2" Background="White" Padding="16" HorizontalAlignment="Center">
-                <DataGrid x:Name="MyDataGrid" ItemsSource="{Binding FilteredItems}"
+                <DataGrid x:Name="MyDataGrid" ItemsSource="{Binding FilteredItems}" SelectedItem="{Binding SelectedItem}"
                           Width="{Binding TableWidth}"
                           RowHeight="55"
                           HorizontalAlignment="Center"
@@ -271,6 +275,17 @@
                                     <Button Command="{Binding DataContext.Delete, ElementName=MyDataGrid}" Cursor="Hand" Background="#4889E6" BorderBrush="#4889E6" BorderThickness="1" Margin="0 0 5 0" ToolTip="Delete item"
                                             CommandParameter="{Binding}">
                                         <materialDesign:PackIcon Kind="Delete" Width="16" Height="16" />
+                                    </Button>
+                                </DataTemplate>
+                            </DataGridTemplateColumn.CellTemplate>
+                        </DataGridTemplateColumn>
+
+                        <DataGridTemplateColumn Header="Edit">
+                            <DataGridTemplateColumn.CellTemplate>
+                                <DataTemplate>
+                                    <Button Command="{Binding DataContext.EditPlace, ElementName=MyDataGrid}" Cursor="Hand" Background="White" BorderBrush="LightGray" BorderThickness="3" Margin="0 0 5 0" ToolTip="Edit item"
+                                            CommandParameter="{Binding}">
+                                        <materialDesign:PackIcon Kind="Edit" Width="16" Height="16" Foreground="Black"/>
                                     </Button>
                                 </DataTemplate>
                             </DataGridTemplateColumn.CellTemplate>

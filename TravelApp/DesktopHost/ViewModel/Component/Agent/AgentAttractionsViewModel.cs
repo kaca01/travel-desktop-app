@@ -9,11 +9,10 @@ using TravelApp.Core;
 using TravelApp.Core.Model;
 using TravelApp.Core.Service;
 using TravelApp.DesktopHost.Command.Agent.NewAttraction;
-using TravelApp.DesktopHost.ViewModel.Component.Trip;
 
 namespace TravelApp.DesktopHost.ViewModel
 {
-    internal class AgentAttractionsViewModel : BaseViewModel
+    public class AgentAttractionsViewModel : BaseViewModel
     {
         private AttractionService _attractionService;
 
@@ -139,7 +138,7 @@ namespace TravelApp.DesktopHost.ViewModel
             FilteredAttractions = Attractions;
             _search = "";
             _selectedSort = 0;
-            NewAttraction = new NewAttractionNavigationCommand();
+            NewAttraction = new NewAttractionNavigationCommand(this);
         }
 
         private void populateSortingCriteria()
@@ -192,6 +191,7 @@ namespace TravelApp.DesktopHost.ViewModel
                 FilteredAttractions = _attractions;
                 MessageBox.Show("Deleted " + attraction.Name + "!!!", "Successfully deleted", MessageBoxButton.OK, MessageBoxImage.Information);
             }
+            SelectedAttraction = -1;
         }
     }
 }

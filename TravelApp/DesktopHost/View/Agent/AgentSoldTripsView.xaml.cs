@@ -15,6 +15,7 @@ using System.Windows.Navigation;
 using System.Windows.Shapes;
 using TravelApp.DesktopHost.ViewModel;
 using TravelApp.DesktopHost.ViewModel.Component.Agent;
+using TravelApp.DesktopHost.ViewModel.Component.ListItem;
 
 namespace TravelApp.DesktopHost.View
 {
@@ -28,6 +29,7 @@ namespace TravelApp.DesktopHost.View
             InitializeComponent();
             DataContext = new AgentSoldTripsViewModel();
             SelectItem();
+            SetHelpKey(null, null);
         }
 
         private void Window_SizeChanged(object sender, SizeChangedEventArgs e)
@@ -70,5 +72,18 @@ namespace TravelApp.DesktopHost.View
             viewModel.PickedTrips = new ObservableCollection<TripListItemViewModel>(selectedItems);
         }
 
+        public void SetHelpKey(object sender, EventArgs e)
+        {
+            IInputElement focusedControl = FocusManager.GetFocusedElement(Application.Current.Windows[0]);
+            if (focusedControl is DependencyObject)
+            {
+                HelpProvider.SetHelpKey((DependencyObject)focusedControl, "soldTrips");
+            }
+        }
+
+        private void UserControl_Loaded(object sender, RoutedEventArgs e)
+        {
+            this.Focus();
+        }
     }
 }

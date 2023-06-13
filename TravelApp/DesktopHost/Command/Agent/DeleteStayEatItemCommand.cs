@@ -10,18 +10,22 @@ using TravelApp.Core.Repository;
 using TravelApp.Core.Service;
 using TravelApp.DesktopHost.ViewModel;
 using TravelApp.DesktopHost.ViewModel.Component;
+using TravelApp.DesktopHost.ViewModel.Component.ListItem;
+using TravelApp.DesktopHost.ViewModel.Navigation;
 
-namespace TravelApp.DesktopHost.Command
+namespace TravelApp.DesktopHost.Command.Agent
 {
     class DeleteStayEatItemCommand : BaseCommand
     {
         private AgentStayEatViewModel _model;
         private TouristFacilityService _service;
+        private NavigationStore _navigationStore;
 
         public DeleteStayEatItemCommand(AgentStayEatViewModel model)
         {
             _model = model;
             _service = new TouristFacilityService();
+            _navigationStore = NavigationStore.Instance();
         }
 
         public override void Execute(object parameter)
@@ -29,12 +33,17 @@ namespace TravelApp.DesktopHost.Command
             var selectedItem = parameter as TouristFacilityListItemViewModel;
             if (selectedItem != null)
             {
-                if (OpenMessageBox(selectedItem)) {
+                if (OpenMessageBox(selectedItem))
+                {
                     _service.FacilityRepository.DeleteItem(selectedItem.Id);
                     _model.FilteredItems.Remove(selectedItem);
+                    _model.DeletedFacility = _service.FacilityRepository.GetById(selectedItem.Id);
                     MessageBox.Show("Deleted " + selectedItem.Type.ToString().ToLower() + " " + selectedItem.Name, "Successfully deleted", MessageBoxButton.OK, MessageBoxImage.Information);
+                    _navigationStore.CurrentViewModel = new AgentStayEatViewModel();
+                    if (_model.FilteredItems.Count > 0)
+                        _model.SelectedItem = _model.FilteredItems[0];
                 }
-            } 
+            }
             else
                 MessageBox.Show("By clicking on a restaurant or accommodation in the table, select an item to delete", "Info", MessageBoxButton.OK, MessageBoxImage.Information);
         }

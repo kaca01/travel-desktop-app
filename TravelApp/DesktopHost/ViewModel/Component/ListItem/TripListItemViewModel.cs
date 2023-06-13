@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace TravelApp.DesktopHost.ViewModel
+namespace TravelApp.DesktopHost.ViewModel.Component.ListItem
 {
     public class TripListItemViewModel
     {

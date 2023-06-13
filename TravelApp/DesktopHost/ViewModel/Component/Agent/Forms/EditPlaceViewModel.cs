@@ -1,19 +1,17 @@
-﻿using MaterialDesignThemes.Wpf;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Input;
-using System.Windows;
-using TravelApp.DesktopHost.Command;
-using TravelApp.DesktopHost.Command.Agent;
+using TravelApp.DesktopHost.Command.Agent.EditPlace;
 using TravelApp.DesktopHost.Command.Agent.NewPlace;
+using TravelApp.DesktopHost.ViewModel.Component.ListItem;
 
-namespace TravelApp.DesktopHost.ViewModel.Component.Agent
+namespace TravelApp.DesktopHost.ViewModel.Component.Agent.Form
 {
-    public class NewPlaceViewModel :BaseViewModel, INotifyPropertyChanged
+    public class EditPlaceViewModel : BaseViewModel, INotifyPropertyChanged
     {
         private string _name;
         private string _address;
@@ -29,19 +27,19 @@ namespace TravelApp.DesktopHost.ViewModel.Component.Agent
         public string Name
         {
             get => _name;
-            set { _name = value; OnPropertyChanged(nameof(Name)); ValidationViewModel.IsNameValid(_name); CheckButtonStatus(); }
+            set { _name = value; OnPropertyChanged(nameof(Name)); ValidationViewModel.IsNameValid(_name); CheckButtonStatus(); setName(); }
         }
 
         public string Address
         {
             get => _address;
-            set { _address = value; OnPropertyChanged(nameof(Address)); ValidationViewModel.IsAddressValid(_address); CheckButtonStatus(); }
+            set { _address = value; OnPropertyChanged(nameof(Address)); ValidationViewModel.IsAddressValid(_address); CheckButtonStatus(); setAddress(); }
         }
 
         public string Link
         {
             get => _link;
-            set { _link = value; OnPropertyChanged(nameof(Link)); ValidationViewModel.IsLinkValid(_link); CheckButtonStatus(); }
+            set { _link = value; OnPropertyChanged(nameof(Link)); ValidationViewModel.IsLinkValid(_link); CheckButtonStatus(); setLink(); }
         }
 
         public bool Restaurant
@@ -93,8 +91,19 @@ namespace TravelApp.DesktopHost.ViewModel.Component.Agent
             }
         }
 
+        private TouristFacilityListItemViewModel _editPlace;
+        public TouristFacilityListItemViewModel EditPlace
+        {
+            get { return _editPlace; }
+            set
+            {
+                _editPlace = value;
+                OnPropertyChanged(nameof(EditPlace));
+            }
+        }
+
         public ICommand Cancel { get; }
-        public ICommand Create { get; }
+        public ICommand Edit { get; }
         public ValidationViewModel ValidationViewModel { get; }
 
         public event PropertyChangedEventHandler PropertyChanged;
@@ -121,14 +130,52 @@ namespace TravelApp.DesktopHost.ViewModel.Component.Agent
             }
         }
 
-        public NewPlaceViewModel()
+        private void setName()
         {
-            Cancel = new CancelNewPlaceCommand();
-            Create = new CreateNewPlaceCommand(this);
+            _editPlace.Name = Name;
+        }
+
+        private void setAddress()
+        {
+            _editPlace.Address = Address;
+        }
+
+        private void setLink()
+        {
+            _editPlace.Link = Link;
+        }
+
+        public EditPlaceViewModel()
+        {
+            Cancel = new CancelEditPlaceCommand();
+            Edit = new EditPlaceCommand(this);
             ValidationViewModel = new ValidationViewModel();
             Restaurant = true;
             IsButtonEnabled = false;
         }
 
+        public EditPlaceViewModel(TouristFacilityListItemViewModel editPlace)
+        {
+            ValidationViewModel = new ValidationViewModel();
+            Restaurant = true;
+            IsButtonEnabled = false;
+            Cancel = new CancelEditPlaceCommand();
+            Edit = new EditPlaceCommand(this);
+            _editPlace = editPlace;
+            Name = editPlace.Name;
+            Address = editPlace.Address;
+            Link = editPlace.Link;
+
+            if (_editPlace.Type == "RESTAURANT")
+            {
+                Restaurant = true;
+                Accomodation = false;
+            }
+            else
+            {
+                Restaurant = false;
+                Accomodation = true;
+            }
+        }
     }
 }

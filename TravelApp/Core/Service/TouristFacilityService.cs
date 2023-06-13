@@ -5,9 +5,9 @@ using System.Text;
 using System.Threading.Tasks;
 using TravelApp.Core.Model;
 using TravelApp.Core.Repository;
-using TravelApp.DesktopHost.ViewModel;
-using TravelApp.DesktopHost.ViewModel.Component.Agent;
-using TravelApp.DesktopHost.ViewModel.ItemViewModel;
+using TravelApp.DesktopHost.ViewModel.Component.Agent.Form;
+using TravelApp.DesktopHost.ViewModel.Component.ComboBox;
+using TravelApp.DesktopHost.ViewModel.Component.ListItem;
 
 namespace TravelApp.Core.Service
 {
@@ -53,6 +53,10 @@ namespace TravelApp.Core.Service
                 Name = a.Name,
                 IsSelected = false
             }).ToList();
+        }
+
+        public void Edit(TouristFacilityListItemViewModel editedFacility) { 
+            _facilityRepository.Edit(editedFacility);
         }
     }
 }

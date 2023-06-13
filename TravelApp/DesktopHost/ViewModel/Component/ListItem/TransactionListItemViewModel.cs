@@ -5,7 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using TravelApp.Core.Model;
 
-namespace TravelApp.DesktopHost.ViewModel
+namespace TravelApp.DesktopHost.ViewModel.Component.ListItem
 {
     public class TransactionListItemViewModel
     {
@@ -13,8 +13,8 @@ namespace TravelApp.DesktopHost.ViewModel
 
         public int TripId { get; set; }
         public User User { get; set; }
-        public string Passenger { get; set; } 
-        public string Trip { get; set; }  
+        public string Passenger { get; set; }
+        public string Trip { get; set; }
         public string Price { get; set; }
         public DateTime StartDate { get; set; }
         public DateTime EndDate { get; set; }

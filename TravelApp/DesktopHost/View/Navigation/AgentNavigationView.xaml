@@ -17,7 +17,7 @@
               GotFocus="SetHelpKey">
 
 
-        <TabControl Name="navigation"
+    <TabControl Name="navigation"  PreviewKeyDown="TabControl_PreviewKeyDown"
                 materialDesign:NavigationRailAssist.ShowSelectionBackground="True"
                 SnapsToDevicePixels="True"
                 Style="{StaticResource MaterialDesignNavigationRailTabControl}"
@@ -142,7 +142,7 @@
                         Width="{ Binding Navigation.TabWidth }"
                         Height="40"
                         Content="Help"
-                        ToolTip="Need help? Click me!"
+                        ToolTip="Need help? Press F1!"
                         Background="Transparent"
                         BorderBrush="Transparent"
                         Foreground="#000000"
