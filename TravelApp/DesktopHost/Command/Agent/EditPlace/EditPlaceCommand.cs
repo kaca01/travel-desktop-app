@@ -33,7 +33,7 @@ namespace TravelApp.DesktopHost.Command.Agent.EditPlace
                 {
                     SetType();
                     _service.Edit(_placeVM.EditPlace);
-                    MessageBox.Show("Edited place with name " + _placeVM.Name, "Successfully edited", MessageBoxButton.OK, MessageBoxImage.Information);
+                    MessageBox.Show("Updated place with name " + _placeVM.Name, "Successfully updated", MessageBoxButton.OK, MessageBoxImage.Information);
                     _navigationStore.CurrentViewModel = new AgentStayEatViewModel();
                 }
                 _navigationStore.CurrentViewModel = new AgentStayEatViewModel();

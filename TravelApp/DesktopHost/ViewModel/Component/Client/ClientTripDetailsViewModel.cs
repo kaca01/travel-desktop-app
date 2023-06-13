@@ -15,6 +15,7 @@ using TravelApp.Core.Service;
 using TravelApp.DesktopHost.Command;
 using TravelApp.DesktopHost.Command.Agent.NewTrip;
 using TravelApp.DesktopHost.Command.Navigation;
+using TravelApp.DesktopHost.Command.Navigation.Agent;
 
 namespace TravelApp.DesktopHost.ViewModel
 {
@@ -192,6 +193,8 @@ namespace TravelApp.DesktopHost.ViewModel
 
         public ICommand NewTrip { get; set; }
 
+        public ICommand BackArrow { get; set; }
+
 
         public ClientTripDetailsViewModel(int selectedTrip)
         {
@@ -211,8 +214,9 @@ namespace TravelApp.DesktopHost.ViewModel
                 AgentNavEnabled = false;
                 ClientNavEnabled = true;
             }
-
-            
+            BackArrow = new ClientTripsCommand();
+            if (UserService.CurrentUser.Role == Role.AGENT)
+                BackArrow = new AgentTripsCommand();
             _tripService = new TripService();
             _trip = _tripService.Get(selectedTrip);
             _trip.Picture = ImageConverter.LoadPicture(_trip.Image);

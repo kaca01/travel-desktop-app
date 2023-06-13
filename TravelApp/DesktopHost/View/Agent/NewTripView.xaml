@@ -82,9 +82,13 @@
                 Margin="0, 40, 0, 0"
                 VerticalAlignment="Top"
                 HorizontalAlignment="Left"
+                x:Name="Cancel"
                 Style="{StaticResource CloseButton}"
                 Cursor="Hand">
-            <materialDesign:PackIcon Kind="Close" Width="45" Height="45"/>
+                <Button.InputBindings>
+                    <KeyBinding Key="Escape" Command="{Binding Cancel}" />
+                </Button.InputBindings>
+                <materialDesign:PackIcon Kind="Close" Width="45" Height="45"/>
         </Button>
 
             <TextBlock FontSize="{Binding TextFontSize}"
@@ -329,7 +333,7 @@
                         <Viewbox Width="25" Height="25">
                             <materialDesign:PackIcon Kind="Plus" VerticalAlignment="Center"/>
                         </Viewbox>
-                        <TextBlock Text="Add photo" FontFamily="Poppins" Grid.Column="1" Padding="5"  VerticalAlignment="Center" FontSize="20" Foreground="Black"/>
+                        <TextBlock Text="Upload photo" FontFamily="Poppins" Grid.Column="1" Padding="5"  VerticalAlignment="Center" FontSize="20" Foreground="Black"/>
                     </StackPanel>
                 </Button>
                 <Image Source="{Binding ImageSource}" Width="250" Height="200" Visibility="{Binding ImageVisibility}"/>

@@ -34,6 +34,13 @@ namespace TravelApp.DesktopHost.View.Agent
             myMap.Center = new Location(45.23898647559673, 19.842916112490993); 
             myMap.ZoomLevel = 12;
             mapError.Visibility = Visibility.Collapsed;
+            Loaded += MainWindow_Loaded;
+        }
+
+        private void MainWindow_Loaded(object sender, RoutedEventArgs e)
+        {
+            // Set keyboard focus to the button
+            Cancel.Focus();
         }
 
         private void Window_Loaded(object sender, RoutedEventArgs e)

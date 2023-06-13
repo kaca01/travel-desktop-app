@@ -30,7 +30,51 @@ namespace TravelApp.DesktopHost.View
         {
             InitializeComponent();
             SetHelpKey(null, null);
-            Help.Focus();
+        }
+
+        private void TabControl_PreviewKeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.Key == System.Windows.Input.Key.Enter)
+            {
+                if (SelectedIndex == 0)
+                    BaseViewModel.AgentNavigationViewModel.Trips.Execute(null);
+                else if (SelectedIndex == 1)
+                    BaseViewModel.AgentNavigationViewModel.Attractions.Execute(null);
+                else if (SelectedIndex == 2)
+                    BaseViewModel.AgentNavigationViewModel.StayAndEat.Execute(null);
+                else if (SelectedIndex == 3)
+                    BaseViewModel.AgentNavigationViewModel.SoldTrips.Execute(null);
+                else if (SelectedIndex == 4)
+                    BaseViewModel.AgentNavigationViewModel.Reservations.Execute(null);
+                else if (SelectedIndex == 5)
+                    BaseViewModel.AgentNavigationViewModel.Help.Execute(null);
+                else if (SelectedIndex == 6)
+                    BaseViewModel.AgentNavigationViewModel.LogOut.Execute(null);
+                // Mark the event as handled
+                e.Handled = true;
+            }
+        }
+
+        private UIElement FindFirstFocusableElement(DependencyObject element)
+        {
+            if (element == null)
+                return null;
+
+            if (element is UIElement uiElement && uiElement.Focusable)
+                return uiElement;
+
+            int childCount = VisualTreeHelper.GetChildrenCount(element);
+
+            for (int i = 0; i < childCount; i++)
+            {
+                var childElement = VisualTreeHelper.GetChild(element, i);
+                var result = FindFirstFocusableElement(childElement);
+
+                if (result != null)
+                    return result;
+            }
+
+            return null;
         }
 
         private void Window_SizeChanged(object sender, SizeChangedEventArgs e)

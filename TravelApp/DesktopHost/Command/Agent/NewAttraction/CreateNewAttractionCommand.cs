@@ -31,9 +31,13 @@ namespace TravelApp.DesktopHost.Command.Agent.NewAttraction
         {
             try
             {
-                if (_attraction != null) _service.Delete(_attraction.Id);
+                if (_attraction != null)
+                { 
+                    _service.Delete(_attraction.Id);
+                    MessageBox.Show("Updated attraction with name " + _placeVM.Name, "Successfully updated", MessageBoxButton.OK, MessageBoxImage.Information);
+                }else
+                    MessageBox.Show("Created attraction with name " + _placeVM.Name, "Successfully created", MessageBoxButton.OK, MessageBoxImage.Information);
                 Attraction tf = _service.Create(_placeVM);
-                MessageBox.Show("Created attraction with name " + _placeVM.Name, "Successfully created", MessageBoxButton.OK, MessageBoxImage.Information);
                 _navigationStore.CurrentViewModel = new AgentAttractionsViewModel();
             }
             catch (Exception e)

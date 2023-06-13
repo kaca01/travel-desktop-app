@@ -19,5 +19,6 @@ namespace TravelApp.Core.Repository
         public List<TouristFacility> GetValidRestaurants();
         public List<TouristFacility> GetValidAccomodations();
         public void Edit(TouristFacilityListItemViewModel editedFacility);
+        public void UndoItem(int id);
     }
 }

@@ -14,6 +14,8 @@ namespace TravelApp.DesktopHost.ViewModel
     {
 
         private SnackbarMessageQueue _snackbarMessageQueue;
+        public static ClientNavigationViewModel ClientNavigationViewModel = new ClientNavigationViewModel();
+        public static AgentNavigationViewModel AgentNavigationViewModel = new AgentNavigationViewModel();
 
         public SnackbarMessageQueue SnackbarMessageQueue
         {

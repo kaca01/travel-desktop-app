@@ -16,6 +16,10 @@
              GotFocus="SetHelpKey"
              Loaded="UserControl_Loaded">
 
+    <UserControl.InputBindings>
+        <KeyBinding Key="Z" Modifiers="Control" Command="{Binding Undo}" />
+    </UserControl.InputBindings>
+
     <Grid>
         <Grid>
             <Grid.RowDefinitions>
@@ -98,14 +102,14 @@
                             <Viewbox Width="25" Height="25">
                                 <materialDesign:PackIcon Kind="Plus" VerticalAlignment="Center"/>
                             </Viewbox>
-                            <TextBlock Text="Add place" FontFamily="Poppins" Grid.Column="1" Padding="5"  VerticalAlignment="Center" FontSize="20" Foreground="Black" TextDecorations="Underline"/>
+                            <TextBlock Text="Add place" FontFamily="Poppins" Grid.Column="1" Padding="5"  VerticalAlignment="Center" FontSize="20" Foreground="Black"/>
                         </StackPanel>
                     </Button>
                 </WrapPanel>
             </Grid>
 
             <materialDesign:Card Grid.Row="2" Background="White" Padding="16" HorizontalAlignment="Center">
-                <DataGrid x:Name="MyDataGrid" ItemsSource="{Binding FilteredItems}"
+                <DataGrid x:Name="MyDataGrid" ItemsSource="{Binding FilteredItems}" SelectedItem="{Binding SelectedItem}"
                           Width="{Binding TableWidth}"
                           RowHeight="55"
                           HorizontalAlignment="Center"
