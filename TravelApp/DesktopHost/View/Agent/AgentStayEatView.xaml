@@ -98,7 +98,7 @@
                             <Viewbox Width="25" Height="25">
                                 <materialDesign:PackIcon Kind="Plus" VerticalAlignment="Center"/>
                             </Viewbox>
-                            <TextBlock Text="Add place" FontFamily="Poppins" Grid.Column="1" Padding="5"  VerticalAlignment="Center" FontSize="20" Foreground="Black" TextDecorations="Underline"/>
+                            <TextBlock Text="Add place" FontFamily="Poppins" Grid.Column="1" Padding="5"  VerticalAlignment="Center" FontSize="20" Foreground="Black"/>
                         </StackPanel>
                     </Button>
                 </WrapPanel>

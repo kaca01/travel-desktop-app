@@ -329,7 +329,7 @@
                         <Viewbox Width="25" Height="25">
                             <materialDesign:PackIcon Kind="Plus" VerticalAlignment="Center"/>
                         </Viewbox>
-                        <TextBlock Text="Add photo" FontFamily="Poppins" Grid.Column="1" Padding="5"  VerticalAlignment="Center" FontSize="20" Foreground="Black"/>
+                        <TextBlock Text="Upload photo" FontFamily="Poppins" Grid.Column="1" Padding="5"  VerticalAlignment="Center" FontSize="20" Foreground="Black"/>
                     </StackPanel>
                 </Button>
                 <Image Source="{Binding ImageSource}" Width="250" Height="200" Visibility="{Binding ImageVisibility}"/>

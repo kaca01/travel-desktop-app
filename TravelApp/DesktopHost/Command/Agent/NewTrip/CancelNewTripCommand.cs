@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using TravelApp.DesktopHost.ViewModel.Navigation;
 using TravelApp.DesktopHost.ViewModel;
 using TravelApp.Core.Model;
+using System.Windows;
 
 namespace TravelApp.DesktopHost.Command.Agent.NewTrip
 {
@@ -21,9 +22,11 @@ namespace TravelApp.DesktopHost.Command.Agent.NewTrip
         }
         public override void Execute(object parameter)
         {
-            if (_trip == null)
-            _navigation.CurrentViewModel = new AgentTripsViewModel();
-            else _navigation.CurrentViewModel = new ClientTripDetailsViewModel(_trip.Id);
+            MessageBoxResult result = MessageBox.Show("Are you sure you want to leave this page ?", "Leave page", MessageBoxButton.YesNo, MessageBoxImage.Question);
+            if (result == MessageBoxResult.Yes)
+                if (_trip == null)
+                _navigation.CurrentViewModel = new AgentTripsViewModel();
+                else _navigation.CurrentViewModel = new ClientTripDetailsViewModel(_trip.Id);
         }
     }
 }
