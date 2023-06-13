@@ -5,6 +5,7 @@ using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
 using System.Text;
+using System.Threading.Channels;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
@@ -32,6 +33,13 @@ namespace TravelApp.DesktopHost.View
             InitializeComponent();
             myMap.Center = new Location(45.23898647559673, 19.842916112490993);
             myMap.ZoomLevel = 11;
+            Loaded += MainWindow_Loaded;
+        }
+
+        private void MainWindow_Loaded(object sender, RoutedEventArgs e)
+        {
+            // Set keyboard focus to the button
+            BackArrow.Focus();
         }
 
         void Window_Loaded(object sender, RoutedEventArgs e)

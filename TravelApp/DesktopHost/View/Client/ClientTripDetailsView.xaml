@@ -52,6 +52,7 @@
 
                     <Button Click="Back"
                         Height="50"
+                            x:Name="BackArrow"
                         >
                         <Button.Template>
                             <ControlTemplate TargetType="Button">
@@ -64,6 +65,9 @@
                                 />
                             </ControlTemplate>
                         </Button.Template>
+                        <Button.InputBindings>
+                            <KeyBinding Key="Escape" Command="{Binding BackArrow}" />
+                        </Button.InputBindings>
                     </Button>
 
                     <TextBlock 
