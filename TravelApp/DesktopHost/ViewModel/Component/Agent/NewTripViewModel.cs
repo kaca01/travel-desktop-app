@@ -186,7 +186,7 @@ namespace TravelApp.DesktopHost.ViewModel.Component.Agent
             Accomodations = new ComboBoxViewModel(tfService.GetAccomodationsItemModel());
             Restaurants = new ComboBoxViewModel(tfService.GetRestaurantsItemModel());
             IsButtonEnabled = false;
-            Cancel = new CancelNewTripCommand();
+            Cancel = new CancelNewTripCommand(trip);
             Create = new CreateNewTripCommand(this, trip);
             ValidationViewModel = new ValidationViewModel();
             UploadImageCommand = new RelayCommand(UploadImage);
