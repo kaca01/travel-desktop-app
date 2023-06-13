@@ -82,9 +82,13 @@
                 Margin="0, 40, 0, 0"
                 VerticalAlignment="Top"
                 HorizontalAlignment="Left"
+                x:Name="Cancel"
                 Style="{StaticResource CloseButton}"
                 Cursor="Hand">
-            <materialDesign:PackIcon Kind="Close" Width="45" Height="45"/>
+                <Button.InputBindings>
+                    <KeyBinding Key="Escape" Command="{Binding Cancel}" />
+                </Button.InputBindings>
+                <materialDesign:PackIcon Kind="Close" Width="45" Height="45"/>
         </Button>
 
             <TextBlock FontSize="{Binding TextFontSize}"
