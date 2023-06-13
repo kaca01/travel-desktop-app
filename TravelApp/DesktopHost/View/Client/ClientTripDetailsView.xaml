@@ -18,10 +18,12 @@
             <RowDefinition Height="auto"/>
             <RowDefinition Height="auto" />
         </Grid.RowDefinitions>
-        <components:ClientNavigationView Grid.Row="0" SelectedIndex="0" Visibility="{Binding ButtonsVisibility}"></components:ClientNavigationView>
-        <components:AgentNavigationView Grid.Row="0" SelectedIndex="0" Visibility="{Binding EditVisibility}"></components:AgentNavigationView>
+        
+        <components:AgentNavigationView Grid.Row="0" SelectedIndex="0" Visibility="{Binding EditVisibility}" IsEnabled="{Binding AgentNavEnabled}"></components:AgentNavigationView>
+        <components:ClientNavigationView Grid.Row="0" SelectedIndex="0" Visibility="{Binding ButtonsVisibility}" IsEnabled="{Binding ClientNavEnabled}"></components:ClientNavigationView>
 
-        <ScrollViewer
+
+       <ScrollViewer
             x:Name="VerticalScrollViewer"
             Height="{ Binding ScrollViewHeight }" 
             Grid.Row="1"  

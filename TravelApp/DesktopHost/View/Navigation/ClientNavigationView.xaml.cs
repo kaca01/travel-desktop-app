@@ -13,6 +13,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using TravelApp.Core.Service;
 using TravelApp.DesktopHost.ViewModel;
 
 namespace TravelApp.DesktopHost.View
@@ -44,7 +45,12 @@ namespace TravelApp.DesktopHost.View
             }
             else if (DataContext is ClientTripDetailsViewModel tripDetailsViewModel)
             {
-                adjustNavigationProperties(tripDetailsViewModel.Navigation, windowWidth);
+                if (UserService.CurrentUser.Role == Core.Model.Role.CLIENT)
+                {
+                    ClientNavigationViewModel vm = (ClientNavigationViewModel)tripDetailsViewModel.Navigation;
+                    adjustNavigationProperties(vm, windowWidth);
+
+                }
             }
             else if (DataContext is ClientStayEatViewModel stayEatViewModel)
             {

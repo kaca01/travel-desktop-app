@@ -46,6 +46,10 @@ namespace TravelApp.DesktopHost.ViewModel
 
         private Visibility _attractionsVisibility;
 
+        private bool _clientNavEnabled;
+
+        private bool _agentNavEnabled;
+
         public Visibility ButtonsVisibility
         {
             get => _buttonsVisibility;
@@ -61,6 +65,26 @@ namespace TravelApp.DesktopHost.ViewModel
         {
             get => _attractionsVisibility;
             set { _attractionsVisibility = value; OnPropertyChanged(nameof(AttractionsVisibility)); }
+        }
+
+        public bool ClientNavEnabled
+        {
+            get => _clientNavEnabled;
+            set
+            {
+                _clientNavEnabled = value;
+                OnPropertyChanged(nameof(ClientNavEnabled));
+            }
+        }
+
+        public bool AgentNavEnabled
+        {
+            get => _agentNavEnabled;
+            set
+            {
+                _agentNavEnabled = value;
+                OnPropertyChanged(nameof(AgentNavEnabled));
+            }
         }
 
 
@@ -158,7 +182,7 @@ namespace TravelApp.DesktopHost.ViewModel
         }
 
 
-        public ClientNavigationViewModel Navigation { get; set; }
+        public BaseViewModel Navigation { get; set; }
 
         public ICommand Trips { get; set; }
 
@@ -173,16 +197,22 @@ namespace TravelApp.DesktopHost.ViewModel
         {
             if (UserService.CurrentUser.Role == Role.AGENT)
             {
+                Navigation = new AgentNavigationViewModel();
                 ButtonsVisibility = Visibility.Hidden;
                 EditVisibility = Visibility.Visible;
+                AgentNavEnabled = true;
+                ClientNavEnabled = false;
             }
             else
             {
+                Navigation = new ClientNavigationViewModel();
                 ButtonsVisibility = Visibility.Visible;
                 EditVisibility = Visibility.Hidden;
+                AgentNavEnabled = false;
+                ClientNavEnabled = true;
             }
 
-            Navigation = new ClientNavigationViewModel();
+            
             _tripService = new TripService();
             _trip = _tripService.Get(selectedTrip);
             _trip.Picture = ImageConverter.LoadPicture(_trip.Image);

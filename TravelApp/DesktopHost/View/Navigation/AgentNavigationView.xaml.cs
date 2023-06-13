@@ -13,6 +13,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using TravelApp.Core.Service;
 using TravelApp.DesktopHost.ViewModel;
 using TravelApp.DesktopHost.ViewModel.Component.Agent;
 
@@ -57,6 +58,15 @@ namespace TravelApp.DesktopHost.View
             else if (DataContext is AgentReservationsViewModel reservationsViewModel)
             {
                 adjustNavigationProperties(reservationsViewModel.Navigation, windowWidth);
+            }
+            else if (DataContext is ClientTripDetailsViewModel clientTripDetailsViewModel)
+            {
+                if (UserService.CurrentUser.Role == Core.Model.Role.AGENT)
+                {
+                    AgentNavigationViewModel agentViewModel = (AgentNavigationViewModel)clientTripDetailsViewModel.Navigation;
+                    adjustNavigationProperties(agentViewModel, windowWidth);
+
+                }
             }
 
         }
