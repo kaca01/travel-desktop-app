@@ -12,6 +12,10 @@
              xmlns:components="clr-namespace:TravelApp.DesktopHost.View" xmlns:m="clr-namespace:Microsoft.Maps.MapControl.WPF;assembly=Microsoft.Maps.MapControl.WPF"
              Background="White"
              Loaded="Window_Loaded"
+             xmlns:l="clr-namespace:TravelApp"
+             Focusable="True"
+             l:HelpProvider.HelpKey="tripDetails"
+             GotFocus="SetHelpKey"
              SizeChanged="Window_SizeChanged">
     <Grid>
         <Grid.RowDefinitions>

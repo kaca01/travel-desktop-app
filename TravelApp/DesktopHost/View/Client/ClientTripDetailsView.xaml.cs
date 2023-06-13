@@ -32,6 +32,7 @@ namespace TravelApp.DesktopHost.View
             InitializeComponent();
             myMap.Center = new Location(45.23898647559673, 19.842916112490993);
             myMap.ZoomLevel = 11;
+            SetHelpKey(null, null);
         }
 
         void Window_Loaded(object sender, RoutedEventArgs e)
@@ -51,6 +52,8 @@ namespace TravelApp.DesktopHost.View
                         else HandleMarkerRequest(tf.Address, "ac", tf.Name);
                     }
                 });
+
+            this.Focus();
         }
 
         private void PlaceDot(Location location, string type, string name)
@@ -177,5 +180,17 @@ namespace TravelApp.DesktopHost.View
             });
             e.Handled = true; // Prevent the smaller scroll viewer from handling the event
         }
+
+        public void SetHelpKey(object sender, EventArgs e)
+        {
+            IInputElement focusedControl = FocusManager.GetFocusedElement(Application.Current.Windows[0]);
+            if (focusedControl is DependencyObject)
+            {
+                if(UserService.CurrentUser.Role==Role.AGENT)
+                    HelpProvider.SetHelpKey((DependencyObject)focusedControl, "tripDetails");
+                else HelpProvider.SetHelpKey((DependencyObject)focusedControl, "tripDetailsClient");
+            }
+        }
+
     }
 }
