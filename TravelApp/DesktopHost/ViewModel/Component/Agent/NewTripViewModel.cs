@@ -22,6 +22,9 @@ using TravelApp.DesktopHost.Command.Agent.NewTrip;
 using TravelApp.DesktopHost.ViewModel.ComboBox;
 using TravelApp.DesktopHost.ViewModel.ItemViewModel;
 using GalaSoft.MvvmLight.Command;
+using System.Xaml;
+using TravelApp.Core;
+using TravelApp.Core.Model;
 
 namespace TravelApp.DesktopHost.ViewModel.Component.Agent
 {
@@ -96,7 +99,15 @@ namespace TravelApp.DesktopHost.ViewModel.Component.Agent
             }
         }
 
-
+        private string _title;
+        public string Title
+        {
+            get => _title;
+            set
+            {
+                _title = value; OnPropertyChanged(nameof(Title));
+            }
+        }
 
         public double TextFontSize
         {
@@ -166,19 +177,52 @@ namespace TravelApp.DesktopHost.ViewModel.Component.Agent
 
         public ValidationViewModel ValidationViewModel { get; }
 
-        public NewTripViewModel()
+        public NewTripViewModel(TravelApp.Core.Model.Trip trip = null)
         {
+            Title = "New Trip";
             AttractionService attractionService = new AttractionService();
             TouristFacilityService tfService = new TouristFacilityService();
             Attractions = new ComboBoxViewModel(attractionService.GetItemModel());
             Accomodations = new ComboBoxViewModel(tfService.GetAccomodationsItemModel());
             Restaurants = new ComboBoxViewModel(tfService.GetRestaurantsItemModel());
             IsButtonEnabled = false;
-            Cancel = new CancelNewTripCommand();
-            Create = new CreateNewTripCommand(this);
+            Cancel = new CancelNewTripCommand(trip);
+            Create = new CreateNewTripCommand(this, trip);
             ValidationViewModel = new ValidationViewModel();
             UploadImageCommand = new RelayCommand(UploadImage);
             ImageVisibility = Visibility.Collapsed;
+
+            if (trip != null)
+            {
+                Title = "Update Trip";
+                ImageVisibility = Visibility.Visible;
+                Name = trip.Name;
+                Description = trip.Description;
+                Price = trip.Price.ToString();
+                StartDate = trip.StartDate.ToString();
+                EndDate = trip.EndDate.ToString();
+                ImageSource = ImageConverter.LoadPicture(trip.Image);
+                StartLocation = trip.Departure;
+                EndLocation = trip.Destination;
+
+                foreach (Attraction attr in trip.Attractions)
+                {
+                    ItemModel a = Attractions.FindById(attr.Id);
+                    a.IsSelected = true;
+                }
+                foreach (TouristFacility tf in trip.FacilityList)
+                {
+                    ItemModel a = Accomodations.FindById(tf.Id);
+                        if (a != null)
+                        a.IsSelected = true;
+                }
+                foreach (TouristFacility attr in trip.FacilityList)
+                {
+                    ItemModel a = Restaurants.FindById(attr.Id);
+                    if (a != null)
+                        a.IsSelected = true;
+                }
+            }
         }
 
         private void UploadImage()

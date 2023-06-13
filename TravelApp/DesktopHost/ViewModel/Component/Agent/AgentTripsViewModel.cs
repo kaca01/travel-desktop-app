@@ -159,7 +159,7 @@ namespace TravelApp.DesktopHost.ViewModel
             _searchedTrips = getDesriptionTrips();
             _search = "";
             _selectedSort = 0;
-            AddTripNavigation = new NewTripNavigationCommand();
+            AddTripNavigation = new NewTripNavigationCommand(this);
         }
 
         private void populateSortingCriteria()

@@ -18,10 +18,12 @@
             <RowDefinition Height="auto"/>
             <RowDefinition Height="auto" />
         </Grid.RowDefinitions>
-        <components:ClientNavigationView Grid.Row="0" SelectedIndex="0" Visibility="{Binding ButtonsVisibility}"></components:ClientNavigationView>
-        <components:AgentNavigationView Grid.Row="0" SelectedIndex="0" Visibility="{Binding EditVisibility}"></components:AgentNavigationView>
+        
+        <components:AgentNavigationView Grid.Row="0" SelectedIndex="0" Visibility="{Binding EditVisibility}" IsEnabled="{Binding AgentNavEnabled}"></components:AgentNavigationView>
+        <components:ClientNavigationView Grid.Row="0" SelectedIndex="0" Visibility="{Binding ButtonsVisibility}" IsEnabled="{Binding ClientNavEnabled}"></components:ClientNavigationView>
 
-        <ScrollViewer
+
+       <ScrollViewer
             x:Name="VerticalScrollViewer"
             Height="{ Binding ScrollViewHeight }" 
             Grid.Row="1"  
@@ -81,13 +83,15 @@
                         Background="#DFE6F0"
                         BorderBrush="#DFE6F0"
                         Padding="2" 
+                        Command="{Binding NewTrip}"
                         Visibility="{Binding EditVisibility}"
                         Margin="0 0 70 0">
                         <StackPanel Orientation="Horizontal">
                             <Viewbox Width="25" Height="25">
                                 <materialDesign:PackIcon Kind="Pencil" VerticalAlignment="Center" Foreground="Black"/>
                             </Viewbox>
-                            <TextBlock Text="EDIT" 
+                            <TextBlock 
+                                   Text="EDIT" 
                                    FontFamily="Poppins" 
                                    Grid.Column="1" 
                                    Padding="5"  
@@ -289,7 +293,7 @@
                             <RowDefinition Height="Auto"></RowDefinition>
                         </Grid.RowDefinitions>
                         <Border CornerRadius="5" Grid.Row="0">
-                            <Image Source="../../../Style/Images/trip.png" 
+                            <Image Source="{Binding Trip.Picture}" 
                                    Width="{Binding FieldsWidth}" 
                                    HorizontalAlignment="Left"
                                    Height="auto" 
@@ -516,11 +520,23 @@
                         Foreground="#1E2F97"
                         Margin="100 100 0 0"/>
 
+                    <TextBlock 
+                        Grid.Row="1"
+                        Text="No attractions for this trip."
+                        FontWeight="Medium"
+                        TextAlignment="Center"
+                        FontSize="20"
+                        Foreground="Black"
+                        Margin="100 100 0 0"
+                        Visibility="{Binding AttractionsVisibility}"
+                        />
+
                     <ScrollViewer HorizontalScrollBarVisibility="Auto"
                                   VerticalScrollBarVisibility="Disabled"
                                   PreviewMouseWheel="HorizontalScrollViewer_PreviewMouseWheel"
                                   Margin="60 0 70 0"
                                   Grid.Row="1" 
+                                  
                                   >
                         <ItemsControl ItemsSource="{Binding Attractions}">
                             <ItemsControl.ItemsPanel>

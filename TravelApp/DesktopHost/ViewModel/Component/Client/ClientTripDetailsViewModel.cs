@@ -13,6 +13,7 @@ using TravelApp.Core.Model;
 using TravelApp.Core.Repository;
 using TravelApp.Core.Service;
 using TravelApp.DesktopHost.Command;
+using TravelApp.DesktopHost.Command.Agent.NewTrip;
 using TravelApp.DesktopHost.Command.Navigation;
 
 namespace TravelApp.DesktopHost.ViewModel
@@ -43,6 +44,12 @@ namespace TravelApp.DesktopHost.ViewModel
 
         private Visibility _editVisibility;
 
+        private Visibility _attractionsVisibility;
+
+        private bool _clientNavEnabled;
+
+        private bool _agentNavEnabled;
+
         public Visibility ButtonsVisibility
         {
             get => _buttonsVisibility;
@@ -53,6 +60,31 @@ namespace TravelApp.DesktopHost.ViewModel
         {
             get => _editVisibility;
             set { _editVisibility = value; OnPropertyChanged(nameof(EditVisibility)); }
+        }
+        public Visibility AttractionsVisibility
+        {
+            get => _attractionsVisibility;
+            set { _attractionsVisibility = value; OnPropertyChanged(nameof(AttractionsVisibility)); }
+        }
+
+        public bool ClientNavEnabled
+        {
+            get => _clientNavEnabled;
+            set
+            {
+                _clientNavEnabled = value;
+                OnPropertyChanged(nameof(ClientNavEnabled));
+            }
+        }
+
+        public bool AgentNavEnabled
+        {
+            get => _agentNavEnabled;
+            set
+            {
+                _agentNavEnabled = value;
+                OnPropertyChanged(nameof(AgentNavEnabled));
+            }
         }
 
 
@@ -150,7 +182,7 @@ namespace TravelApp.DesktopHost.ViewModel
         }
 
 
-        public ClientNavigationViewModel Navigation { get; set; }
+        public BaseViewModel Navigation { get; set; }
 
         public ICommand Trips { get; set; }
 
@@ -158,33 +190,46 @@ namespace TravelApp.DesktopHost.ViewModel
 
         public ICommand Book { get; set; }
 
+        public ICommand NewTrip { get; set; }
+
 
         public ClientTripDetailsViewModel(int selectedTrip)
         {
             if (UserService.CurrentUser.Role == Role.AGENT)
             {
+                Navigation = new AgentNavigationViewModel();
                 ButtonsVisibility = Visibility.Hidden;
                 EditVisibility = Visibility.Visible;
+                AgentNavEnabled = true;
+                ClientNavEnabled = false;
             }
             else
             {
+                Navigation = new ClientNavigationViewModel();
                 ButtonsVisibility = Visibility.Visible;
                 EditVisibility = Visibility.Hidden;
+                AgentNavEnabled = false;
+                ClientNavEnabled = true;
             }
 
-            Navigation = new ClientNavigationViewModel();
+            
             _tripService = new TripService();
             _trip = _tripService.Get(selectedTrip);
             _trip.Picture = ImageConverter.LoadPicture(_trip.Image);
             Trips = new ClientTripsCommand();
             Buy = new TripDetailsBuyCommand(this);
             Book = new TripDetailsReservationCommand(this);
+            NewTrip = new NewTripNavigationCommand(this);
 
             List<TouristFacilityListItemViewModel> data = _tripService.GetTouristFacilities(_trip.Id);
 
             _facilities = new ObservableCollection<TouristFacilityListItemViewModel>(data);
 
             _attractions = _tripService.GetAttractions(selectedTrip);
+
+            if (_attractions.Count > 0) AttractionsVisibility = Visibility.Hidden;
+            else AttractionsVisibility = Visibility.Visible;
+            
         }
 
        

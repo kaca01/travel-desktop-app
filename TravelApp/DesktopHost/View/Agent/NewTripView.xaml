@@ -87,7 +87,7 @@
             <materialDesign:PackIcon Kind="Close" Width="45" Height="45"/>
         </Button>
 
-        <TextBlock FontSize="{Binding TextFontSize}"
+            <TextBlock FontSize="{Binding TextFontSize}"
             Foreground="#161A25"
             TextAlignment="Left"
             Margin="0, 40, 0 ,20"
@@ -96,9 +96,10 @@
             FontWeight="Medium"
             FontFamily="Poppins"
             MaxWidth="{Binding Width}"
-            x:Name="Title">New Trip</TextBlock>
-        
-        <StackPanel Grid.Row="2"
+            x:Name="Title"
+            Text="{Binding Title}"/>
+
+            <StackPanel Grid.Row="2"
                 Grid.Column="1"
                 Width="{Binding Width}"
                 Height="112">
@@ -474,7 +475,7 @@
                 Margin="0, 40 ,0 ,40"
                 IsEnabled="{Binding IsButtonEnabled}"
                 ToolTip="Click to create the new trip"
-                Content="Create"
+                Content="Save"
                 Style="{StaticResource FormButton}"
                 Command="{Binding Create}"
                 IsDefault="True" Cursor="Hand" >
