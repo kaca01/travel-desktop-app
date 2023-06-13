@@ -99,7 +99,15 @@ namespace TravelApp.DesktopHost.ViewModel.Component.Agent
             }
         }
 
-
+        private string _title;
+        public string Title
+        {
+            get => _title;
+            set
+            {
+                _title = value; OnPropertyChanged(nameof(Title));
+            }
+        }
 
         public double TextFontSize
         {
@@ -171,6 +179,7 @@ namespace TravelApp.DesktopHost.ViewModel.Component.Agent
 
         public NewTripViewModel(TravelApp.Core.Model.Trip trip = null)
         {
+            Title = "New Trip";
             AttractionService attractionService = new AttractionService();
             TouristFacilityService tfService = new TouristFacilityService();
             Attractions = new ComboBoxViewModel(attractionService.GetItemModel());
@@ -178,13 +187,14 @@ namespace TravelApp.DesktopHost.ViewModel.Component.Agent
             Restaurants = new ComboBoxViewModel(tfService.GetRestaurantsItemModel());
             IsButtonEnabled = false;
             Cancel = new CancelNewTripCommand();
-            Create = new CreateNewTripCommand(this);
+            Create = new CreateNewTripCommand(this, trip);
             ValidationViewModel = new ValidationViewModel();
             UploadImageCommand = new RelayCommand(UploadImage);
             ImageVisibility = Visibility.Collapsed;
 
             if (trip != null)
             {
+                Title = "Update Trip";
                 ImageVisibility = Visibility.Visible;
                 Name = trip.Name;
                 Description = trip.Description;
@@ -203,7 +213,7 @@ namespace TravelApp.DesktopHost.ViewModel.Component.Agent
                 foreach (TouristFacility tf in trip.FacilityList)
                 {
                     ItemModel a = Accomodations.FindById(tf.Id);
-                    if (a != null)
+                        if (a != null)
                         a.IsSelected = true;
                 }
                 foreach (TouristFacility attr in trip.FacilityList)
