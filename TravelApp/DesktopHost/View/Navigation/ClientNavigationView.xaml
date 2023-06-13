@@ -10,7 +10,7 @@
              SizeChanged="Window_SizeChanged"
              d:DataContext="{d:DesignInstance Type=viewmodel:ClientNavigationViewModel}">
 
-    <TabControl Name="navigation"
+    <TabControl Name="navigation" PreviewKeyDown="TabControl_PreviewKeyDown"
                 materialDesign:NavigationRailAssist.ShowSelectionBackground="True"
                 SnapsToDevicePixels="True"
                 Style="{StaticResource MaterialDesignNavigationRailTabControl}"
@@ -36,7 +36,8 @@
                         Foreground="#000000"
                         FontSize="{ Binding Navigation.TextFontSize }"
                         FontWeight="Bold"
-                        Command="{ Binding Navigation.Trips }"/>
+                        Command="{ Binding Navigation.Trips }">
+                    </Button>
                 </StackPanel>
             </TabItem.Header>
         </TabItem>
