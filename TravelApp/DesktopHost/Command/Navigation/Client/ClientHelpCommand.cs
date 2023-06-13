@@ -19,7 +19,6 @@ namespace TravelApp.DesktopHost.Command.Navigation
         {
             // TODO : add here _navigation.CurrentViewModel = new HelpViewModel()
             // or whatever the class is called
-            throw new NotImplementedException();
         }
     }
 }
