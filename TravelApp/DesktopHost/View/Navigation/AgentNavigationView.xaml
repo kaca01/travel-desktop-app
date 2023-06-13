@@ -17,7 +17,7 @@
               GotFocus="SetHelpKey">
 
 
-        <TabControl Name="navigation"
+    <TabControl Name="navigation"  PreviewKeyDown="TabControl_PreviewKeyDown"
                 materialDesign:NavigationRailAssist.ShowSelectionBackground="True"
                 SnapsToDevicePixels="True"
                 Style="{StaticResource MaterialDesignNavigationRailTabControl}"
