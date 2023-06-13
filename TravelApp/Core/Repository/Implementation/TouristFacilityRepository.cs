@@ -5,7 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using TravelApp.Core.Model;
-using TravelApp.DesktopHost.ViewModel;
+using TravelApp.DesktopHost.ViewModel.Component.ListItem;
 
 namespace TravelApp.Core.Repository
 {

@@ -11,6 +11,7 @@ using System.Windows;
 using System.Windows.Controls;
 using TravelApp.Core.Model;
 using TravelApp.Core.Service;
+using TravelApp.DesktopHost.ViewModel.Component.ListItem;
 
 namespace TravelApp.DesktopHost.ViewModel
 {

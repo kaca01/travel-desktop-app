@@ -7,9 +7,8 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Data;
 using TravelApp.Core.Service;
-using TravelApp.DesktopHost.ViewModel.ItemViewModel;
 
-namespace TravelApp.DesktopHost.ViewModel.ComboBox
+namespace TravelApp.DesktopHost.ViewModel.Component.ComboBox
 {
     public class ComboBoxViewModel : BaseViewModel
     {
@@ -53,7 +52,7 @@ namespace TravelApp.DesktopHost.ViewModel.ComboBox
             }
         }
 
-        public ComboBoxViewModel(List<ItemModel> data) 
+        public ComboBoxViewModel(List<ItemModel> data)
         {
             data.ForEach(child => child.ValueChanged += Child_ValueChanged);
             Items = new ObservableCollection<ItemModel>(data);

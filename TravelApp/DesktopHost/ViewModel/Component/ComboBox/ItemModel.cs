@@ -6,7 +6,7 @@ using System.Runtime.CompilerServices;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace TravelApp.DesktopHost.ViewModel.ItemViewModel
+namespace TravelApp.DesktopHost.ViewModel.Component.ComboBox
 {
     public class ItemModel : INotifyPropertyChanged
     {

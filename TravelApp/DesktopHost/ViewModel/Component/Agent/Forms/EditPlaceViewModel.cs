@@ -7,8 +7,9 @@ using System.Threading.Tasks;
 using System.Windows.Input;
 using TravelApp.DesktopHost.Command.Agent.EditPlace;
 using TravelApp.DesktopHost.Command.Agent.NewPlace;
+using TravelApp.DesktopHost.ViewModel.Component.ListItem;
 
-namespace TravelApp.DesktopHost.ViewModel
+namespace TravelApp.DesktopHost.ViewModel.Component.Agent.Form
 {
     public class EditPlaceViewModel : BaseViewModel, INotifyPropertyChanged
     {
@@ -26,7 +27,7 @@ namespace TravelApp.DesktopHost.ViewModel
         public string Name
         {
             get => _name;
-            set { _name = value; OnPropertyChanged(nameof(Name)); ValidationViewModel.IsNameValid(_name); CheckButtonStatus();  setName(); }
+            set { _name = value; OnPropertyChanged(nameof(Name)); ValidationViewModel.IsNameValid(_name); CheckButtonStatus(); setName(); }
         }
 
         public string Address
@@ -130,7 +131,7 @@ namespace TravelApp.DesktopHost.ViewModel
         }
 
         private void setName()
-        { 
+        {
             _editPlace.Name = Name;
         }
 
@@ -170,11 +171,11 @@ namespace TravelApp.DesktopHost.ViewModel
                 Restaurant = true;
                 Accomodation = false;
             }
-            else 
+            else
             {
                 Restaurant = false;
                 Accomodation = true;
-            }                   
+            }
         }
     }
 }

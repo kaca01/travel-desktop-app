@@ -17,7 +17,7 @@ using System.Windows.Navigation;
 using System.Windows.Shapes;
 using System.Xml.Linq;
 using TravelApp.Core.Service;
-using TravelApp.DesktopHost.ViewModel.Component.Agent;
+using TravelApp.DesktopHost.ViewModel.Component.Agent.Form;
 using static TravelApp.Core.Model.BingMapsApiResponse.ResourceSet.Resource;
 
 namespace TravelApp.DesktopHost.View.Agent

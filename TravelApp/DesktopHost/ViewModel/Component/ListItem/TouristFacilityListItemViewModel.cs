@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 using TravelApp.Core.Model;
 using TravelApp.Core.Repository;
 
-namespace TravelApp.DesktopHost.ViewModel
+namespace TravelApp.DesktopHost.ViewModel.Component.ListItem
 {
     public class TouristFacilityListItemViewModel : BaseViewModel
     {
@@ -16,6 +16,6 @@ namespace TravelApp.DesktopHost.ViewModel
         public string Type { get; set; }
         public string Link { get; set; }
         public bool IsDeleted { get; set; }
-        
+
     }
 }

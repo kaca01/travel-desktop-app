@@ -13,7 +13,7 @@ namespace TravelApp.DesktopHost.ViewModel
 {
     public class ClientTripsViewModel : BaseViewModel
     {
-        private ITripService _tripService;
+        private TripService _tripService;
 
         private double _textFontSize;
 

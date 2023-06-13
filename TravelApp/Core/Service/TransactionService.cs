@@ -6,7 +6,9 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Transactions;
 using TravelApp.Core.Repository;
-using TravelApp.DesktopHost.ViewModel;
+using TravelApp.Core.Repository.Implementation;
+using TravelApp.Core.Repository.Interface;
+using TravelApp.DesktopHost.ViewModel.Component.ListItem;
 
 namespace TravelApp.Core.Service
 {

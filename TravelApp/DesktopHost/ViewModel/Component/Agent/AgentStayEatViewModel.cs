@@ -14,6 +14,7 @@ using TravelApp.DesktopHost.Command.Agent;
 using TravelApp.DesktopHost.Command.Agent.EditPlace;
 using TravelApp.DesktopHost.Command.Agent.NewPlace;
 using TravelApp.DesktopHost.Command.Navigation;
+using TravelApp.DesktopHost.ViewModel.Component.ListItem;
 
 namespace TravelApp.DesktopHost.ViewModel
 {

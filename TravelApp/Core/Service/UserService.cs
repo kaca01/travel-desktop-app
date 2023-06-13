@@ -5,8 +5,11 @@ using System.Text;
 using System.Threading.Tasks;
 using TravelApp.Core.Model;
 using TravelApp.Core.Repository;
+using TravelApp.Core.Repository.Implementation;
+using TravelApp.Core.Repository.Interface;
 using TravelApp.DesktopHost.Command;
 using TravelApp.DesktopHost.ViewModel;
+using TravelApp.DesktopHost.ViewModel.Component.ListItem;
 using TravelApp.DesktopHost.ViewModel.Navigation;
 
 namespace TravelApp.Core.Service
