@@ -7,6 +7,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Input;
+using TravelApp.Core.Model;
 using TravelApp.Core.Service;
 using TravelApp.DesktopHost.Command;
 using TravelApp.DesktopHost.Command.Agent;
@@ -54,9 +55,23 @@ namespace TravelApp.DesktopHost.ViewModel
             }
         }
 
+        private TouristFacility _deletedFacility;
+
+        public TouristFacility DeletedFacility
+        {
+            get { return _deletedFacility; }
+            set
+            {
+                _deletedFacility = value;
+                OnPropertyChanged(nameof(DeletedFacility));
+            }
+        }
+
         public ICommand Delete { get; }
 
         public ICommand NewPlace { get; }
+
+        public ICommand Undo { get; }
 
         private double _textSize;
 
@@ -138,10 +153,13 @@ namespace TravelApp.DesktopHost.ViewModel
 
             Items = new ObservableCollection<TouristFacilityListItemViewModel>(data);
             FilteredItems = new ObservableCollection<TouristFacilityListItemViewModel>(Items);
+            SelectedItem = FilteredItems[0];
 
             Delete = new DeleteStayEatItemCommand(this);
             NewPlace = new NewPlaceNavigationCommand();
             EditPlace = new EditPlaceNavigationCommand();
+            Undo = new UndoPlaceCommand(this);
+
         }
 
         protected virtual void OnPropertyChanged(string propertyName)

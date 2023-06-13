@@ -80,5 +80,10 @@ namespace TravelApp.DesktopHost.View
         {
             this.Focus();
         }
+
+        private void YourTable_LostFocus(object sender, RoutedEventArgs e)
+        {
+            MyDataGrid.Focus();
+        }
     }
 }

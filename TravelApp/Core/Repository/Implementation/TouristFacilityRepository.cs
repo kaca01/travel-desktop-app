@@ -98,5 +98,16 @@ namespace TravelApp.Core.Repository
                 //todo check if this works
             }
         }
+
+        public void UndoItem(int id)
+        {
+            TouristFacility facility = GetById(id);
+
+            if (facility != null)
+            {
+                facility.IsDeleted = false;
+            }
+
+        }
     }
 }
