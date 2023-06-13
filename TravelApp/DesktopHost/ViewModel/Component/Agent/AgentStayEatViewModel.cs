@@ -153,7 +153,8 @@ namespace TravelApp.DesktopHost.ViewModel
 
             Items = new ObservableCollection<TouristFacilityListItemViewModel>(data);
             FilteredItems = new ObservableCollection<TouristFacilityListItemViewModel>(Items);
-            SelectedItem = FilteredItems[0];
+            if (FilteredItems.Count >0)
+                SelectedItem = FilteredItems[0];
 
             Delete = new DeleteStayEatItemCommand(this);
             NewPlace = new NewPlaceNavigationCommand();

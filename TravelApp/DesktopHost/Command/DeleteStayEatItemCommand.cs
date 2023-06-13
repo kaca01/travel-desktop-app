@@ -38,7 +38,8 @@ namespace TravelApp.DesktopHost.Command
                     _model.DeletedFacility = _service.FacilityRepository.GetById(selectedItem.Id);
                     MessageBox.Show("Deleted " + selectedItem.Type.ToString().ToLower() + " " + selectedItem.Name, "Successfully deleted", MessageBoxButton.OK, MessageBoxImage.Information);
                     _navigationStore.CurrentViewModel = new AgentStayEatViewModel();
-                    _model.SelectedItem = _model.FilteredItems[0];
+                    if (_model.FilteredItems.Count > 0) 
+                        _model.SelectedItem = _model.FilteredItems[0];
                 }
             } 
             else

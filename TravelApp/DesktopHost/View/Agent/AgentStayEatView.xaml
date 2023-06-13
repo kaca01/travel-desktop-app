@@ -110,7 +110,6 @@
 
             <materialDesign:Card Grid.Row="2" Background="White" Padding="16" HorizontalAlignment="Center">
                 <DataGrid x:Name="MyDataGrid" ItemsSource="{Binding FilteredItems}" SelectedItem="{Binding SelectedItem}"
-                          LostFocus="YourTable_LostFocus"
                           Width="{Binding TableWidth}"
                           RowHeight="55"
                           HorizontalAlignment="Center"
