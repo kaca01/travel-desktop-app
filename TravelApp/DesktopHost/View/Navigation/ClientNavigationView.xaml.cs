@@ -32,46 +32,7 @@ namespace TravelApp.DesktopHost.View
 
         private void TabControl_PreviewKeyDown(object sender, KeyEventArgs e)
         {
-            if (e.Key == Key.Tab && Keyboard.Modifiers == ModifierKeys.None)
-            {
-                // Get the currently focused element
-                var focusedElement = Keyboard.FocusedElement as UIElement;
-
-                // Find the parent TabItem of the focused element
-                var tabItem = FindParentTabItem(focusedElement);
-
-                // Find the parent TabControl of the focused element
-                var tabControl = FindParentTabControl(tabItem);
-
-                // Get the list of TabItems within the TabControl
-                var tabItems = tabControl.Items.OfType<TabItem>().ToList();
-
-                // Find the index of the currently focused TabItem
-                var focusedIndex = tabItems.IndexOf(tabItem);
-
-                // Determine the index of the next TabItem based on the Tab key pressed
-                var nextIndex = Keyboard.Modifiers == ModifierKeys.Shift ? focusedIndex - 1 : focusedIndex + 1;
-
-                // Make sure the next index stays within the range of TabItems
-                if (nextIndex < 0)
-                    nextIndex = tabItems.Count - 1;
-                else if (nextIndex >= tabItems.Count)
-                    nextIndex = 0;
-
-                // Get the next TabItem
-                var nextTabItem = tabItems[nextIndex];
-
-                // Find the first focusable element within the next TabItem's content
-                var nextFocusableElement = FindFirstFocusableElement(nextTabItem);
-
-                // Set the focus to the next focusable element
-                nextFocusableElement?.Focus(); 
-                
-                // Mark the event as handled
-                e.Handled = true;
-
-            }
-            else if (e.Key == Key.Enter)
+            if (e.Key == Key.Enter)
             {
                 if (SelectedIndex == 0)
                     BaseViewModel.ClientNavigationViewModel.Trips.Execute(null);
@@ -92,35 +53,6 @@ namespace TravelApp.DesktopHost.View
             }
         }
 
-        private TabItem FindParentTabItem(UIElement element)
-        {
-            if (element == null)
-                return null;
-
-            var parent = VisualTreeHelper.GetParent(element);
-
-            while (parent != null && !(parent is TabItem))
-            {
-                parent = VisualTreeHelper.GetParent(parent);
-            }
-
-            return parent as TabItem;
-        }
-
-        private TabControl FindParentTabControl(UIElement element)
-        {
-            if (element == null)
-                return null;
-
-            var parent = VisualTreeHelper.GetParent(element);
-
-            while (parent != null && !(parent is TabControl))
-            {
-                parent = VisualTreeHelper.GetParent(parent);
-            }
-
-            return parent as TabControl;
-        }
 
         private UIElement FindFirstFocusableElement(DependencyObject element)
         {
