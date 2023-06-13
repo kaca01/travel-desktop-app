@@ -4,7 +4,8 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using TravelApp.DesktopHost.ViewModel.Navigation;
-using TravelApp.DesktopHost.ViewModel;
+using TravelApp.DesktopHost.ViewModel.Component.ListItem;
+using TravelApp.DesktopHost.ViewModel.Component.Agent.Form;
 
 namespace TravelApp.DesktopHost.Command.Agent.EditPlace
 {

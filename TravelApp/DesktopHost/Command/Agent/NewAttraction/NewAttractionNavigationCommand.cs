@@ -7,6 +7,7 @@ using TravelApp.Core.Model;
 using TravelApp.Core.Repository;
 using TravelApp.DesktopHost.ViewModel;
 using TravelApp.DesktopHost.ViewModel.Component.Agent;
+using TravelApp.DesktopHost.ViewModel.Component.Agent.Form;
 using TravelApp.DesktopHost.ViewModel.Navigation;
 
 namespace TravelApp.DesktopHost.Command.Agent.NewAttraction

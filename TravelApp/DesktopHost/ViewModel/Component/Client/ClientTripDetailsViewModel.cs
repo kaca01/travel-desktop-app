@@ -16,6 +16,7 @@ using TravelApp.DesktopHost.Command;
 using TravelApp.DesktopHost.Command.Agent.NewTrip;
 using TravelApp.DesktopHost.Command.Navigation;
 using TravelApp.DesktopHost.Command.Navigation.Agent;
+using TravelApp.DesktopHost.ViewModel.Component.ListItem;
 
 namespace TravelApp.DesktopHost.ViewModel
 {
@@ -27,7 +28,7 @@ namespace TravelApp.DesktopHost.ViewModel
 
         private double _descriptionWidth;
 
-        private ITripService _tripService;
+        private TripService _tripService;
 
         private Trip _trip;
 

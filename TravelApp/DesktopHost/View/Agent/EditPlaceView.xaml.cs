@@ -13,8 +13,8 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
-using TravelApp.DesktopHost.ViewModel;
 using TravelApp.DesktopHost.ViewModel.Component.Agent;
+using TravelApp.DesktopHost.ViewModel.Component.Agent.Form;
 
 namespace TravelApp.DesktopHost.View
 {

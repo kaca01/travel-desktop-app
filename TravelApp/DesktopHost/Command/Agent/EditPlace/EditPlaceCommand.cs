@@ -8,6 +8,8 @@ using TravelApp.Core.Model;
 using TravelApp.Core.Service;
 using TravelApp.DesktopHost.ViewModel;
 using TravelApp.DesktopHost.ViewModel.Component.Agent;
+using TravelApp.DesktopHost.ViewModel.Component.Agent.Form;
+using TravelApp.DesktopHost.ViewModel.Component.ListItem;
 using TravelApp.DesktopHost.ViewModel.Navigation;
 
 namespace TravelApp.DesktopHost.Command.Agent.EditPlace

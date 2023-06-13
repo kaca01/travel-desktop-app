@@ -15,9 +15,9 @@ using TravelApp.Core.Model;
 using TravelApp.DesktopHost.Command.Agent.NewAttraction;
 using TravelApp.DesktopHost.Command.Agent.NewPlace;
 
-namespace TravelApp.DesktopHost.ViewModel.Component.Agent
+namespace TravelApp.DesktopHost.ViewModel.Component.Agent.Form
 {
-    public class NewAttractionViewModel:BaseViewModel, INotifyPropertyChanged
+    public class NewAttractionViewModel : BaseViewModel, INotifyPropertyChanged
     {
         private string _name;
         private string _address;

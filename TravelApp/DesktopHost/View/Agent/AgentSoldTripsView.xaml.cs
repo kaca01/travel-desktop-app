@@ -15,6 +15,7 @@ using System.Windows.Navigation;
 using System.Windows.Shapes;
 using TravelApp.DesktopHost.ViewModel;
 using TravelApp.DesktopHost.ViewModel.Component.Agent;
+using TravelApp.DesktopHost.ViewModel.Component.ListItem;
 
 namespace TravelApp.DesktopHost.View
 {

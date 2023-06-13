@@ -9,7 +9,6 @@ using TravelApp.Core;
 using TravelApp.Core.Model;
 using TravelApp.Core.Service;
 using TravelApp.DesktopHost.Command.Agent.NewAttraction;
-using TravelApp.DesktopHost.ViewModel.Component.Trip;
 
 namespace TravelApp.DesktopHost.ViewModel
 {

@@ -6,8 +6,8 @@ using System.Threading.Tasks;
 using TravelApp.Core.Model;
 using TravelApp.Core.Repository;
 using TravelApp.DesktopHost.ViewModel;
-using TravelApp.DesktopHost.ViewModel.Component.Agent;
-using TravelApp.DesktopHost.ViewModel.ItemViewModel;
+using TravelApp.DesktopHost.ViewModel.Component.Agent.Form;
+using TravelApp.DesktopHost.ViewModel.Component.ComboBox;
 
 namespace TravelApp.Core.Service
 {
